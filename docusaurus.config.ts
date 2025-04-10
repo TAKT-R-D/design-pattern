@@ -35,6 +35,8 @@ const config: Config = {
           sidebarPath: "./sidebars.ts",
           editUrl: "https://github.com/TAKT-R-D/design-pattern/edit/main/",
           editLocalizedFiles: true,
+          showLastUpdateAuthor: true,
+          showLastUpdateTime: true,
         },
         theme: {
           customCss: "./src/css/custom.css",
