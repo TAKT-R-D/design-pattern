@@ -157,6 +157,7 @@ const config: Config = {
         editLocalizedFiles: true,
       },
     ],
+    require.resolve("./src/plugins/cookie-consent"),
     function customRawLoaderPlugin() {
       return {
         name: "custom-raw-loader",
