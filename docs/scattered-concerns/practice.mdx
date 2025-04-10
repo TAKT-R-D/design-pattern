@@ -1,0 +1,68 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/scattered-concerns/ts/ksrc.ts";
+import phpCode from "@site/src/codes/scattered-concerns/php/ksrc.php";
+import pyCode from "@site/src/codes/scattered-concerns/py/ksrc.py";
+
+# Refactoring Task
+
+## Overview
+
+In this task, you'll analyze a codebase where multiple classes (`ApiClient`, `BatchJob`) independently perform logging and configuration loading.  
+The goal is to identify issues such as **scattered and duplicated logic**, **wide change impact**, and to explore directions for refactoring toward better maintainability and extensibility.
+
+## Initial Code
+
+The following example shows an API client and a batch job class, both directly using `console.log` and `getenv`.  
+There is no unified logging format or centralized configuration management, leading to problems in **reusability and maintainability**.
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## Question 1: What are the design issues in this code?
+
+List and describe structural problems, considering the following points:
+
+- **Duplicate logging logic scattered across multiple classes**
+- **Responsibility for configuration loading is fragmented**
+- **No consistent logging format or log levels**, making future changes difficult
+- **No abstraction for infrastructure concerns such as logging and configuration**
+
+## Question 2: How can this structure be improved for better maintainability and extensibility?
+
+Organize your refactoring plan based on the following points:
+
+- How to standardize and centralize logging and its format
+- How to decouple configuration access from individual classes
+- How to design a shared infrastructure layer reusable across the entire application
+
+### Example: Candidate Design Patterns
+
+| Pattern Name      | Purpose and Effect                                                                  |
+| ----------------- | ----------------------------------------------------------------------------------- |
+| `Singleton`       | Centralize logging and configuration logic into a single globally shared instance   |
+| `Facade`          | Provide a simplified API for complex logging/configuration logic                    |
+| `Adapter`         | Wrap external logging/config libraries with app-specific interfaces                 |
+| `Service Locator` | Centralize access to common services, eliminating the need for manual instantiation |
+
+## Optional Extensions
+
+- If you need to switch log output destinations (console, file, database), how should the design evolve?
+- If configuration values are loaded from DB or external APIs instead of `.env`, what impact will that have and how should it be handled?
+
+## Suggested Output Format (for review or team discussion)
+
+- List of structural problems (at least 3)
+- Refactoring strategy and justification for selected patterns
+- Overview of the improved architecture (e.g., how logging/config/business logic responsibilities are separated)

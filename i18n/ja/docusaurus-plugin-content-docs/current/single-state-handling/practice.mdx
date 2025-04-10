@@ -1,0 +1,68 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/single-state-handling/ts/ksrc.ts";
+import phpCode from "@site/src/codes/single-state-handling/php/ksrc.php";
+import pyCode from "@site/src/codes/single-state-handling/py/ksrc.py";
+
+# 練習課題
+
+## 概要
+
+本課題では、問い合わせ対応に関する状態管理を単一のメソッド内の分岐によって制御している構造に対して、  
+拡張性・保守性・テスト性の観点から設計上の課題を明確にし、改善案を検討する。
+
+## 課題コード
+
+以下は、問い合わせチケットの状態を `open` → `in_progress` → `resolved` → `closed` と変化させる処理を `handle()` メソッドに集約した実装である。  
+状態ごとの処理や遷移がすべて `if` 文で記述されており、今後の仕様変更や状態追加に対応しにくい構造となっている。
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## 設問 1：このコードが抱える設計上の問題点を挙げよ
+
+以下の観点を参考に、具体的に列挙すること：
+
+- **状態に応じた処理が 1 か所に集中している**
+- **新しい状態や分岐条件の追加が困難**
+- **SRP（単一責任原則）や OCP（拡張に対して開いている）の違反**
+- **テストや再利用のしにくさ**
+
+## 設問 2：この処理を柔軟かつ保守しやすい構造に改善するにはどうすべきか
+
+以下の観点を含めて改善案を整理すること：
+
+- 状態ごとの処理をどう分離するべきか
+- 状態オブジェクトとしてカプセル化する場合の構成案
+- 適用が考えられるデザインパターンとそれぞれの意図・効果
+
+### 例：適用候補となるパターン
+
+| パターン名 | 主な目的と効果                                                       |
+| ---------- | -------------------------------------------------------------------- |
+| `State`    | 各状態をクラス化し、状態に応じた振る舞いを分離する                   |
+| `Strategy` | 状態ではなく行動を切り替える場合に、処理選択の柔軟性を高める         |
+| `Command`  | 処理をコマンド化し、状態の変化履歴や巻き戻し処理を扱いやすくする     |
+| `Observer` | 状態変化時に他コンポーネントへ通知する構造を導入（状態の反応型更新） |
+
+## 発展課題（任意）
+
+- チケットの状態が「保留」や「エスカレーション」などに分岐する場合、どのように拡張すべきか
+- ユーザーの権限やアクション内容によって、状態遷移が条件付きになる場合の設計方針を検討せよ
+
+## 提出フォーマット（レビュー・勉強会用）
+
+- 構造上の問題点（3 点以上）
+- 設計改善案と適用パターンの選定理由
+- 改善後の構成イメージ（クラス図や処理の流れをテキストで簡潔に）

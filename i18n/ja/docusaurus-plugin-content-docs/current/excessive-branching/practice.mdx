@@ -1,0 +1,70 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/excessive-branching/ts/uncode.ts";
+import phpCode from "@site/src/codes/excessive-branching/php/uncode.php";
+import pyCode from "@site/src/codes/excessive-branching/py/uncode.py";
+
+# 練習課題
+
+## 概要
+
+本課題では、ユーザーの種別に応じて通知メッセージの形式を出し分ける処理において、`if/else` による条件分岐が集中している構造の問題点を整理し、  
+責務の分離・柔軟性の向上・拡張性の確保を目的としたリファクタリング案を検討する。
+
+## 課題コード
+
+以下は、ユーザー種別（ゲスト、メンバー、管理者など）に応じて通知テンプレートを出力する処理の例である。  
+処理対象が増えていく中で、メンテナンス性や可読性にどのような課題が発生するかを考察すること。
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## 設問 1：このコードが抱える設計上の問題点を挙げよ
+
+次の観点を参考に、具体的に列挙すること：
+
+- **条件分岐の集中による保守性の低下**
+- **新しい条件の追加時に必要な変更範囲**
+- **既存コードの変更によって生じる副作用の可能性**
+- **分岐ロジックのテスト容易性の欠如**
+
+## 設問 2：この処理を柔軟かつ拡張可能な構造に改善するにはどうすべきか
+
+以下の観点を含めて改善案を整理すること：
+
+- 条件ごとの振る舞い（メッセージ構成）をどのように分離・委譲すべきか
+- 条件の追加・変更を最小限の修正で対応できる構造にするにはどうすればよいか
+- 適用が考えられるデザインパターンと、それぞれの意図・効果を明記すること
+
+### 例：適用候補となるパターン
+
+| パターン名                  | 主な目的と効果                                                                 |
+| --------------------------- | ------------------------------------------------------------------------------ |
+| `Strategy`                  | ユーザー種別ごとのテンプレート出力をオブジェクトとして分離し、動的に切り替える |
+| `State`                     | ユーザー状態ごとに異なる出力処理を適用する                                     |
+| `Command`                   | 出力処理をコマンドとしてカプセル化し、必要に応じて記録・巻き戻し可能にする     |
+| `Chain of Responsibility`   | 条件に合致した最初のハンドラだけが処理を行う構造にし、柔軟に組み合わせ可能     |
+| `Interpreter`（高度な応用） | 条件ルールを構文として定義・実行し、設定ファイルベースの柔軟な評価に対応       |
+
+## 発展課題（任意）
+
+- メッセージ内容が言語（日本語・英語）によって変わる場合、どのように構造を拡張するべきか
+- ユーザーの所属グループやロール、カスタム設定に応じてテンプレートを動的に生成したい場合、どのような設計が望ましいか
+
+## 提出フォーマット（レビュー・勉強会用）
+
+- 構造上の問題点のリスト（最低 3 点）
+- リファクタリング方針とその理由
+- 適用するパターンとその選定理由
+- 必要に応じて改善後構成のコードスケッチ（簡易版）

@@ -1,0 +1,69 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/duplicate-logic/ts/ksrc.ts";
+import phpCode from "@site/src/codes/duplicate-logic/php/ksrc.php";
+import pyCode from "@site/src/codes/duplicate-logic/py/ksrc.py";
+
+# Refactoring Task
+
+## Overview
+
+This exercise focuses on a structure in which **common pre- and post-processing logic is repeatedly implemented** across multiple file upload classes.  
+You are expected to identify the design problems in terms of maintainability, reusability, and extensibility, and propose a refactoring plan.
+
+## Initial Code
+
+The following implementation handles file uploads for images, videos, and audio, each in a separate class.  
+All classes perform the same sequence of steps—"Start validation", "Upload", and "Print completion"—in a repeated manner.  
+Consider how this duplication might affect future maintenance and what alternatives could be introduced.
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## Question 1: What design issues can you identify in this code?
+
+List specific problems using the following points as guidance:
+
+- **Common logic is duplicated across all classes**
+- **Adding or changing shared behavior requires edits in multiple locations**
+- **Risk of inconsistency or oversight when making updates**
+- **Violation of the Open/Closed Principle (OCP)**
+
+## Question 2: How can the structure be improved for better maintainability and flexibility?
+
+Discuss improvement strategies with consideration for the following:
+
+- What techniques can be used to consolidate common logic?
+- How can the core upload behavior be isolated as the only customizable part?
+- Which design patterns are applicable, and what are their benefits and trade-offs?
+
+### Example: Candidate Design Patterns
+
+| Pattern Name      | Purpose and Effect                                                                        |
+| ----------------- | ----------------------------------------------------------------------------------------- |
+| `Template Method` | Consolidates shared logic in a base class, allowing customization of core steps           |
+| `Strategy`        | Encapsulates variation in behavior as interchangeable strategy objects                    |
+| `Decorator`       | Dynamically adds behavior to the upload process without modifying the core logic          |
+| `Visitor`         | Externalizes operations for different file types to achieve a highly extensible structure |
+
+## Optional Extensions
+
+- If new file types (e.g., JSON, Markdown) need to be added, how can the structure minimize the impact of such changes?
+- If a virus scanning step must be added before uploads, which pattern best accommodates this without breaking existing logic?
+
+## Suggested Output Format (for review or team discussion)
+
+- At least three identified structural issues
+- Refactoring strategy and rationale for chosen pattern(s)
+- Conceptual diagram or textual description of the improved design (e.g., inheritance or delegation model)

@@ -1,0 +1,56 @@
+---
+sidebar_label: アンチパターン
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/scattered-concerns/ts/uncode.ts";
+import phpCode from "@site/src/codes/scattered-concerns/php/uncode.php";
+import pyCode from "@site/src/codes/scattered-concerns/py/uncode.py";
+
+# ログ・設定の分散
+
+## 説明（どんな問題か）
+
+### どんな状態か？
+
+- **ログ出力処理や設定値へのアクセスが、各所でバラバラに記述**されている
+- それぞれが異なる形式・手段でログ出力や設定読み込みをしており、**統一性がない**
+- ログや設定の扱いが**開発者ごとに異なる実装になりがち**
+
+### なぜ問題か？
+
+- **保守性・再利用性が低くなる**
+- ログ形式や出力先を変えたいとき、**影響範囲が大きくなる**
+- 設定値の参照ミスや重複読み込みが**パフォーマンス低下やバグの温床**になる
+
+## アンチパターンのコード例
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+### 問題点：
+
+- `console.log()` を直接使用 → **ログ仕様変更時に全て直す必要がある**
+- `process.env` に直接アクセス → **設定の集中管理ができない**
+- **責務が分散していて再利用も難しい**
+
+## パターン別のリファクタリング
+
+### 対応可能なデザインパターン例
+
+| パターン    | 概要                                            | 主な解決アプローチ             |
+| ----------- | ----------------------------------------------- | ------------------------------ |
+| `Singleton` | アプリケーション全体でインスタンスを 1 つに限定 | ログや設定を共有状態で管理     |
+| `Facade`    | 複雑な設定・ログ処理をシンプルな API で提供     | 窓口を統一して利用しやすくする |

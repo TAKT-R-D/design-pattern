@@ -1,0 +1,61 @@
+---
+sidebar_label: Anti-Pattern
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/forced-compatibility/ts/uncode.ts";
+import phpCode from "@site/src/codes/forced-compatibility/php/uncode.php";
+import pyCode from "@site/src/codes/forced-compatibility/py/uncode.py";
+
+# Forced Compatibility
+
+## Description
+
+### What does it look like?
+
+- New code **directly calls** legacy (outdated) interfaces
+- The caller **manually adapts** to differences in API specifications, cluttering the logic
+- Despite mismatched formats or behavior, the integration is forced for the sake of functionality
+
+### Why is it a problem?
+
+- The calling side **takes on the responsibility** of adapting/transforming the data, blurring design boundaries
+- Any change in the API or specification **ripples across many parts of the codebase**
+- Makes testing or replacing the dependency **difficult**
+
+## Bad Example of the Anti-pattern
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+### Issues:
+
+- `ReportGenerator` is tightly coupled to `LegacyPrinter`’s method names and formatting
+- Interface mismatch is not abstracted; legacy and modern design philosophies are mixed
+- Logic like converting text to uppercase is embedded in `ReportGenerator`, violating the SRP
+- Cannot easily switch to a new printer class or external printing API
+- Cannot replace with a mock printer during testing
+- As usage of `LegacyPrinter` increases, similar transformation logic is duplicated throughout the codebase
+- Any change to the legacy interface **impacts all usage sites**
+
+## Refactoring by Pattern
+
+### Design patterns that can address this
+
+| Pattern   | Overview                                                    | Main Refactoring Approach                         |
+| --------- | ----------------------------------------------------------- | ------------------------------------------------- |
+| `Adapter` | Acts as a “bridge” to match interface differences           | Adds a translation layer between old and new APIs |
+| `Facade`  | Hides subsystem complexity and provides a clean entry point | Use when you want to simplify usage               |
+| `Proxy`   | Controls access to objects                                  | Useful for access control, caching, or lazy calls |

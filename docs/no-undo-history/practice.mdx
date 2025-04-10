@@ -1,0 +1,69 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/no-undo-history/ts/ksrc.ts";
+import phpCode from "@site/src/codes/no-undo-history/php/ksrc.php";
+import pyCode from "@site/src/codes/no-undo-history/py/ksrc.py";
+
+# Refactoring Task
+
+## Overview
+
+This task focuses on improving a drawing service implementation that lacks support for **undo/redo functionality**.  
+Currently, the system does not retain any user interaction history, making it impossible to revert or reapply actions.  
+You'll examine how to refactor the design to **enable state preservation and rollback**.
+
+## Initial Code
+
+The following example shows a `DrawService` class that draws shapes (e.g., circles, squares) on a canvas.  
+However, the class does not store any operation history or state snapshots, so user actions cannot be undone or replayed.
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## Question 1: What are the structural problems in this code?
+
+List and describe specific issues using the following criteria:
+
+- **State accumulates but cannot be reverted**
+- **No operation history is stored**, so rollback and redo are unsupported
+- **Missing common UI/UX feature: Undo/Redo**
+- **Difficult to track or verify user actions**
+
+## Question 2: How can the code be improved to support operation history and restoration?
+
+Use the following points to organize your proposal:
+
+- How should each operation (e.g., drawing) be stored as history?
+- How should state recording and restoration (object/snapshot-based) be designed?
+- Which patterns can help implement command history and rollback support?
+
+### Example: Candidate Design Patterns
+
+| Pattern Name     | Purpose and Effect                                                           |
+| ---------------- | ---------------------------------------------------------------------------- |
+| `Command`        | Encapsulate each user action as a command object that supports undo/redo     |
+| `Memento`        | Store snapshots of object state and allow complete restoration               |
+| `Prototype`      | Clone object states to simplify versioning and recovery                      |
+| `State` (helper) | Encapsulate current state as an object to support transitions and visibility |
+
+## Optional Extensions
+
+- How should redo functionality be implemented along with undo?
+- What features would be needed in real-world use cases, such as **maximum history size** or **user-specific history**?
+
+## Suggested Output Format (for review or team discussion)
+
+- List of structural issues (3 or more)
+- Refactoring strategy and reasons for selected patterns
+- High-level redesign (e.g., flow of storing/restoring history, command abstraction approach)

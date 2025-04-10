@@ -1,0 +1,69 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/scattered-instaniation/ts/ksrc.ts";
+import phpCode from "@site/src/codes/scattered-instaniation/php/ksrc.php";
+import pyCode from "@site/src/codes/scattered-instaniation/py/ksrc.py";
+
+# 練習課題
+
+## 概要
+
+本課題では、通知処理の中で外部サービス（Mailer）のインスタンスが必要な都度 `new` されている実装に対し、  
+その問題点を整理し、テスト容易性や柔軟性を高めるための設計改善について検討する。
+
+## 課題コード
+
+以下は、ユーザーへの通知を行う `Notifier` クラスである。  
+内部で `Mailer` を直接 `new` して使用しており、初期段階では動作しているが、将来的な保守性や拡張性に課題が生じることが懸念される。
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## 設問 1：このコードの設計上の問題点を挙げよ
+
+以下の観点を参考に、具体的に列挙すること：
+
+- **テスト容易性（Mailer を差し替えて検証できるか）**
+- **柔軟性（Mailer の種類を切り替えたいとき）**
+- **依存関係の管理（Notifier は Mailer に強く依存していないか）**
+- **設計原則（DIP：依存性逆転の原則など）に照らしたときの適合性**
+
+## 設問 2：この設計を改善するにはどうすべきか
+
+以下の観点を含めて改善案を整理すること：
+
+- `Mailer` の依存を `Notifier` の内部からどうやって切り離せるか
+- 単体テスト時に依存オブジェクトを差し替える方法
+- **依存関係の注入（Dependency Injection）** を導入した場合のメリット
+
+### 例：適用候補となるパターン
+
+| パターン名             | 主な目的と効果                                                         |
+| ---------------------- | ---------------------------------------------------------------------- |
+| `Factory Method`       | `Mailer` の生成責任を切り出し、状況に応じて生成処理を切り替えられる    |
+| `Abstract Factory`     | 複数の依存オブジェクトを一括で生成する環境（例：Mail + Logger など）   |
+| `Builder`              | 初期化の手順を柔軟に分離し、必要な構成を段階的に組み立てる             |
+| `Singleton`            | グローバルで共有するインスタンスを 1 回だけ生成し、使い回す            |
+| `Dependency Injection` | 依存するオブジェクトを外部から注入し、差し替え可能かつテスト容易にする |
+
+## 発展課題（任意）
+
+- 通知手段が `Email` 以外に `Slack` や `LINE` を選べるようになった場合、どう構造を変えるべきか？
+- テスト環境では送信を実際に行わず、**記録だけするモック Mailer**を使用したい場合、どう設計すればよいか？
+
+## 提出フォーマット（レビュー・勉強会用）
+
+- 構造上の問題点のリスト（最低 3 点）
+- 改善案と選定したパターンの理由
+- 改善後の設計方針とそのメリット（簡易図示・擬似コードも可）

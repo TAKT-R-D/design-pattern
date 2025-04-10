@@ -1,0 +1,68 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/single-state-handling/ts/ksrc.ts";
+import phpCode from "@site/src/codes/single-state-handling/php/ksrc.php";
+import pyCode from "@site/src/codes/single-state-handling/py/ksrc.py";
+
+# Refactoring Task
+
+## Overview
+
+This exercise addresses a structure where the management of inquiry ticket states is handled by a single method using conditional branches.  
+You are to identify the design issues from the perspectives of extensibility, maintainability, and testability, and propose a viable refactoring plan.
+
+## Initial Code
+
+The following implementation defines a `handle()` method that transitions a support ticket through the following states: `open` → `in_progress` → `resolved` → `closed`.  
+All state-dependent behaviors and transitions are hardcoded using `if` statements within the same method, making it difficult to accommodate future changes or new states.
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## Question 1: What design problems exist in this code?
+
+List and explain specific issues based on the following perspectives:
+
+- **All state-specific logic is centralized in a single method**
+- **Difficult to add new states or transition conditions**
+- **Violates SRP (Single Responsibility Principle) and OCP (Open/Closed Principle)**
+- **Hard to test or reuse individual transitions**
+
+## Question 2: How can this structure be made more maintainable and flexible?
+
+Formulate an improvement plan based on the following points:
+
+- How can logic for each state be separated and encapsulated?
+- What would the class design look like if each state were modeled as its own object?
+- What design patterns would be effective, and why?
+
+### Example: Design Pattern Candidates
+
+| Pattern Name | Purpose and Effects                                                              |
+| ------------ | -------------------------------------------------------------------------------- |
+| `State`      | Encapsulates state-specific behavior in separate classes and handles transitions |
+| `Strategy`   | Provides flexible selection of behavior (when transition control is external)    |
+| `Command`    | Treats each operation as an object, enabling tracking of state changes and undo  |
+| `Observer`   | Notifies external components when state changes, enabling reactive state updates |
+
+## Optional Extensions
+
+- If new states such as "on_hold" or "escalated" are introduced, how would the structure accommodate them?
+- If state transitions depend on user permissions or action types, how would you incorporate such conditions into the design?
+
+## Suggested Output Format (for review or study groups)
+
+- List of at least three structural problems
+- Refactoring strategy and rationale behind chosen patterns
+- Design sketch or textual flow of the improved structure (e.g., class relationships or method delegation)

@@ -1,0 +1,55 @@
+---
+sidebar_label: アンチパターン
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/no-undo-history/ts/uncode.ts";
+import phpCode from "@site/src/codes/no-undo-history/php/uncode.php";
+import pyCode from "@site/src/codes/no-undo-history/py/uncode.py";
+
+# 履歴の欠如
+
+## 説明（どんな問題か）
+
+### どんな状態か？
+
+- ユーザーの操作履歴を保存していないため、**操作の取り消し（Undo）ややり直し（Redo）ができない**
+- 処理の副作用を**元に戻す手段がない**
+- 履歴がないため、**状態の復元や巻き戻しが難しい**
+
+### なぜ問題か？
+
+- **ユーザー体験（UX）の低下**（戻る機能がない）
+- 操作ミスのリカバリができず、再入力や復元作業が必要
+- 複雑な状態操作での**バグ修正や調査が困難**
+
+## アンチパターンのコード例
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+### 問題点：
+
+- 入力操作をそのまま状態に反映しており、**元に戻す手段がない**
+- `type()` が直接状態を変更するため、**履歴の管理も困難**
+
+## パターン別のリファクタリング
+
+### 対応可能なデザインパターン例
+
+| パターン  | 概要                                                             | 主な解決アプローチ             |
+| --------- | ---------------------------------------------------------------- | ------------------------------ |
+| `Command` | 処理を「命令オブジェクト」として表現し、実行・取消・再実行を管理 | 操作履歴を保存・実行・巻き戻し |
+| `Memento` | オブジェクトの状態をスナップショットとして保存・復元             | 状態の完全な記録と復元を実現   |

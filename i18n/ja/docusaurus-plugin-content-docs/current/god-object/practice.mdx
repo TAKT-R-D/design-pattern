@@ -1,0 +1,73 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/god-object/ts/ksrc.ts";
+import phpCode from "@site/src/codes/god-object/php/ksrc.php";
+import pyCode from "@site/src/codes/god-object/py/ksrc.py";
+
+# 練習課題
+
+## 概要
+
+本課題では、「単一クラスに複数の責務が集中している状態（God Object）」に起因する設計上の問題点を整理し、  
+適切な責務分割およびデザインパターンの適用による改善案を検討する。
+
+## 課題コード
+
+以下のコードは、ブログ投稿に関する処理を一手に引き受けている `PostManager` クラスの実装例である。  
+このコードを題材に、構造上の問題とその改善方法について考察すること。
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## 設問 1：このコードが抱えている設計上の問題点を挙げよ
+
+次の観点を参考に、具体的に列挙すること：
+
+- **責務分離の欠如**（単一クラスに複数の関心事が混在していないか）
+- **拡張性・保守性の低さ**（変更時に波及が生じやすくないか）
+- **再利用性の欠如**（同様の処理を他で再利用できるか）
+- **テスト容易性の低さ**（各処理を単体で検証可能か）
+
+## 設問 2：本クラスをリファクタリングするにあたって、どのような設計改善が有効か
+
+以下の要素を含めて論じること：
+
+- 分離すべき関心事（例：投稿処理、通知処理、ログ処理）
+- 各処理を別クラスまたはサービスに分けた場合の利点
+- 適用が考えられるデザインパターンと、それぞれの意図・効果
+
+### 例：適用候補となるパターン
+
+| パターン名  | 主な目的と効果                                                           |
+| ----------- | ------------------------------------------------------------------------ |
+| `Facade`    | 投稿確定処理を 1 つのインターフェースに集約し、呼び出し側を簡潔にする    |
+| `Strategy`  | 通知手段（Email / Slack など）を切り替え可能な構造に分離する             |
+| `State`     | 投稿の状態（下書き / 公開済み など）に応じた振る舞いを柔軟に切り替える   |
+| `Composite` | 複数の投稿をひとまとまりで扱えるように構造化する（例：一括投稿処理など） |
+| `Iterator`  | 投稿一覧の処理を外部に公開せず、安全に繰り返し処理できるように設計する   |
+
+## 発展課題（任意）
+
+以下の仕様追加に対して、どのような設計方針で対応するかを検討せよ：
+
+- 投稿に「予約投稿」「公開済み」などの状態管理を導入する
+- 通知手段として Slack / LINE / メールなどを外部設定で切り替え可能にする
+- 投稿ごとにカスタムテンプレートを適用する機能を追加する
+
+## 提出フォーマット（チームレビュー・勉強会用）
+
+- 構造上の問題点（最低 3 点）
+- リファクタリング方針と理由
+- 提案するデザインパターンとその選定理由
+- 必要に応じた改善後クラス構造の図解（任意）

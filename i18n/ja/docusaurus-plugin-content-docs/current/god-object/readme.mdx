@@ -1,0 +1,59 @@
+---
+sidebar_label: アンチパターン
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/god-object/ts/uncode.ts";
+import phpCode from "@site/src/codes/god-object/php/uncode.php";
+import pyCode from "@site/src/codes/god-object/py/uncode.py";
+
+# 責務の集中
+
+## 説明（どんな問題か）
+
+### どんな状態か？
+
+- 1 つのクラスやモジュールが**過剰な責任**を持ちすぎている
+- あらゆる処理がそのクラスの中にあり、**変更や拡張時に全体に影響が及ぶ**
+- **データ保持、処理実行、状態管理など全部入り**
+
+### なぜ問題か？
+
+- クラスの目的が曖昧になり、**読みづらく変更が怖いコード**になる
+- テストが困難（多くの依存や前提を持つ）
+- 再利用不可・責務分離失敗 → **スパゲッティ化の温床**
+
+## アンチパターンのコード例
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+### 問題点
+
+- 注文データ管理・割引ロジック・通知処理・ログ記録すべてが同一クラスにある
+- 「何をしてるクラスなのか」が曖昧
+- 修正が波及しやすく、テスト不能な巨大クラスに成長しがち
+
+## パターン別のリファクタリング
+
+### 対応可能なデザインパターン例
+
+| パターン    | 概要                                             | 主な解決アプローチ                             |
+| ----------- | ------------------------------------------------ | ---------------------------------------------- |
+| `Facade`    | 共通 API を作って内部の複雑さを隠す              | 複数機能を外部から簡潔に呼び出せるようにする   |
+| `Strategy`  | 振る舞い（戦略）を差し替え可能にする             | 拡張しやすく、テストしやすい設計にする         |
+| `State`     | 状態ごとの処理を分離する                         | 条件分岐の代わりに状態クラスで処理             |
+| `Composite` | ツリー構造に整理し「個」と「集合」を統一的に扱う | 階層構造の責務を整理して、責任範囲を明確に     |
+| `Iterator`  | 内部構造の走査方法を抽象化                       | 走査処理の統一とカプセル化によって、保守性向上 |

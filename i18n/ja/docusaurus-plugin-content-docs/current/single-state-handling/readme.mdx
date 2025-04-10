@@ -1,0 +1,57 @@
+---
+sidebar_label: アンチパターン
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/single-state-handling/ts/uncode.ts";
+import phpCode from "@site/src/codes/single-state-handling/php/uncode.php";
+import pyCode from "@site/src/codes/single-state-handling/py/uncode.py";
+
+# 状態遷移ロジックの集中
+
+## 説明（どんな問題か）
+
+### どんな状態か？
+
+- オブジェクトが持つ状態に応じて処理を変えたいが、**状態と振る舞いが密結合**
+- `if` や `switch` 文で状態ごとの処理を管理している
+- 状態が増えると**処理が肥大化し、読みにくくなる**
+
+### なぜ問題か？
+
+- 状態が増えるたびに、既存コードを修正する必要がある（**開閉原則違反**）
+- 責務が 1 クラスに集中して、**テスト困難・可読性低下**
+- 将来的な拡張や状態遷移ロジックが煩雑になる
+
+## アンチパターンのコード例
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+### 問題点：
+
+- 状態が文字列で管理され、振る舞いも 1 クラスに集中
+- 新しい状態が追加されるたびに `publish()` を修正する必要がある
+- 状態と処理が混在していて**拡張に弱い**
+
+## パターン別のリファクタリング
+
+### 対応可能なデザインパターン例
+
+| パターン   | 概要                                         | 主な解決アプローチ                   |
+| ---------- | -------------------------------------------- | ------------------------------------ |
+| `State`    | 状態ごとにオブジェクトを分け、振る舞いを委譲 | 状態を明示的にクラスで管理           |
+| `Strategy` | 振る舞いを外部に差し替える                   | 状態を切り替える制御は外部任せ       |
+| `Command`  | 状態による処理をコマンドオブジェクトで持つ   | 実行内容をオブジェクト化し柔軟に制御 |

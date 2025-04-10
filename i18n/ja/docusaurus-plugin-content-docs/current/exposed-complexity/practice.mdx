@@ -1,0 +1,69 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/exposed-complexity/ts/ksrc.ts";
+import phpCode from "@site/src/codes/exposed-complexity/php/ksrc.php";
+import pyCode from "@site/src/codes/exposed-complexity/py/ksrc.py";
+
+# 練習課題
+
+## 概要
+
+本課題では、購入処理において `在庫確認 → 支払い処理 → 領収書発行` の一連の処理を  
+呼び出し元関数 `completePurchase()` がすべて自前で組み立てている構造に対して、  
+責務分散と抽象化による設計改善を検討する。
+
+## 課題コード
+
+以下は、複数のサービスクラスを使って商品購入の処理を構成しているが、  
+処理の流れがすべて呼び出し元関数に露出しており、再利用・テスト・変更に対して柔軟性を欠いている。
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## 設問 1：このコードが抱える設計上の問題点を挙げよ
+
+以下の観点を参考に、具体的に列挙すること：
+
+- **呼び出し元が複数のクラスを知っており、依存関係が強すぎる**
+- **処理の順序・条件分岐・例外処理が一箇所に集中している**
+- **ロジックの再利用や流れの切り替えが困難**
+- **SRP（単一責任原則）違反、および変更耐性の低さ**
+
+## 設問 2：この構造を柔軟で保守性の高いものにするにはどうすべきか
+
+以下の観点を含めて改善案を整理すること：
+
+- 処理の流れをどこに切り出すべきか（呼び出し元 / 専用サービス / ラッパーなど）
+- 呼び出し元は最小限の情報・操作のみで完結できるようにすべきか
+- 将来の処理変更（追加/入替）に備えてどう構成すべきか
+
+### 例：適用候補となるパターン
+
+| パターン名 | 主な目的と効果                                                           |
+| ---------- | ------------------------------------------------------------------------ |
+| `Facade`   | 一連の複雑な処理を 1 つの窓口としてまとめ、呼び出し元の負担を軽減        |
+| `Proxy`    | 処理の実行前後に追加の制御（認証・ログなど）を加える                     |
+| `Command`  | 各処理をコマンド化し、実行・記録・巻き戻しなどを抽象的に扱えるようにする |
+| `Iterator` | 一連の処理を順に実行する構造にし、処理の順序や構成の差し替えを柔軟にする |
+
+## 発展課題（任意）
+
+- 処理フローに「通知送信」「ポイント付与」などの追加処理を加える場合、どのように設計すれば既存コードを変更せずに拡張できるか？
+- 同様の処理を複数箇所（Web/バッチなど）で再利用する場合、呼び出し方にどのような差異が生じるか？
+
+## 提出フォーマット（レビュー・勉強会用）
+
+- 問題点のリスト（3 点以上）
+- 設計改善の方針と適用パターンの選定理由
+- 改善後の構成概要（処理の隠蔽化、責務分担の分離など）

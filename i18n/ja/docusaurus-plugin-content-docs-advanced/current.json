@@ -1,0 +1,18 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.advancedSidebar.category.Composite Pattern": {
+    "message": "複合利用パターン",
+    "description": "The label for category Composite Pattern in sidebar advancedSidebar"
+  },
+  "sidebar.advancedSidebar.category.Pattern Comparison": {
+    "message": "パターン比較",
+    "description": "The label for category Pattern Comparison in sidebar advancedSidebar"
+  },
+  "sidebar.advancedSidebar.category.Practical Examples": {
+    "message": "実務応用ガイド",
+    "description": "The label for category Practical Examples in sidebar advancedSidebar"
+  }
+}

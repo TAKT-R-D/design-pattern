@@ -1,0 +1,55 @@
+---
+sidebar_label: Anti-Pattern
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/no-undo-history/ts/uncode.ts";
+import phpCode from "@site/src/codes/no-undo-history/php/uncode.php";
+import pyCode from "@site/src/codes/no-undo-history/py/uncode.py";
+
+# No Undo/Redo History
+
+## Description
+
+### What does it look like?
+
+- User actions are not recorded, so **undo/redo functionality is unavailable**
+- There is **no way to revert the side effects** of an operation
+- Without a history, it is difficult to **restore or roll back system state**
+
+### Why is it a problem?
+
+- **Poor user experience (UX)** — no way to undo mistakes
+- Recovery from input errors requires redoing or restoring manually
+- Difficult to **debug or trace issues** in complex state changes
+
+## Bad Example of the Anti-pattern
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+### Issues:
+
+- Input is applied directly to the internal state — **no way to undo**
+- `type()` modifies the content immediately, making **history management difficult**
+
+## Refactoring by Pattern
+
+### Design patterns that can address this
+
+| Pattern   | Overview                                                               | Main Refactoring Approach           |
+| --------- | ---------------------------------------------------------------------- | ----------------------------------- |
+| `Command` | Encapsulate operations as command objects and manage execute/undo/redo | Store and control execution history |
+| `Memento` | Capture and restore full snapshots of an object’s state                | Enable complete state restoration   |

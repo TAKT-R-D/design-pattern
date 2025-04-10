@@ -1,0 +1,59 @@
+---
+sidebar_label: アンチパターン
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/hardcoded-variability/ts/uncode.ts";
+import phpCode from "@site/src/codes/hardcoded-variability/php/uncode.php";
+import pyCode from "@site/src/codes/hardcoded-variability/py/uncode.py";
+
+# 可変部分のハードコード
+
+## 説明（どんな問題か）
+
+### どんな状態か？
+
+- **変化する処理（可変部分）**が直接ベタ書きされていて、他と分離されていない
+- 固定の処理の中に「毎回ちょっと違う部分」が混ざっていて、**再利用しづらい**
+- 同じ処理の流れなのに、**差分だけのために全体をコピペしている**
+
+### なぜ問題か？
+
+- 処理の共通部分と差分が**分離されていないため、変更しにくい**
+- 似たようなコードが複数できてしまい、**バグや保守コストが増加**
+- 処理の柔軟性がないため、**機能追加・切り替えが困難**
+
+## アンチパターンのコード例
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+### 問題点：
+
+- メール送信も Slack 送信も、**共通処理（ログ出力や構造）と差分が混ざっている**
+- 新しい通知手段（LINE、SMS など）を追加するたびに、**似たようなメソッドが増える**
+- **共通処理の見通しが悪く、テスト・保守性が低下**
+
+## パターン別のリファクタリング
+
+### 対応可能なデザインパターン例
+
+| パターン          | 概要                                   | 主な解決アプローチ                     |
+| ----------------- | -------------------------------------- | -------------------------------------- |
+| `Template Method` | 流れを共通化し、差分をサブクラスで定義 | コピペの防止・再利用性アップ           |
+| `Strategy`        | 振る舞いを切り替え可能にする           | 差し替えしやすく、テストしやすい構造に |
+| `Bridge`          | 抽象と実装を分離し、独立に拡張可能     | 変化軸を明確にし、柔軟な構造に         |
+| `Flyweight`       | 共通の状態を共有してオブジェクト数削減 | 重複している共通データを軽量化         |
+| `Prototype`       | インスタンスをテンプレートから複製     | 初期化処理の再利用・差分の効率的生成   |

@@ -1,0 +1,71 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/excessive-branching/ts/uncode.ts";
+import phpCode from "@site/src/codes/excessive-branching/php/uncode.php";
+import pyCode from "@site/src/codes/excessive-branching/py/uncode.py";
+
+# Refactoring Task
+
+## Overview
+
+In this exercise, you'll analyze a code sample in which notification messages are formatted differently based on the user type.  
+The current implementation relies heavily on `if/else` branching, and you are expected to identify the design issues related to this structure.  
+The goal is to propose a refactoring plan that improves responsibility separation, flexibility, and extensibility.
+
+## Initial Code
+
+The following example generates notification messages based on the user's role (e.g., guest, member, admin).  
+As the number of user types grows, consider how this implementation affects maintainability and readability.
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## Question 1: What are the design issues in this code?
+
+List the key design problems with specific references to the code structure. Consider the following aspects:
+
+- **Low maintainability due to tightly concentrated branching logic**
+- **The scope of required changes when new conditions are added**
+- **The risk of side effects from modifying existing logic**
+- **Difficulty in testing condition-specific behavior independently**
+
+## Question 2: How can this implementation be refactored to be more flexible and extensible?
+
+Propose a refactoring plan that addresses the following:
+
+- How to separate and delegate behavior based on each user type
+- How to minimize code modifications when adding or changing conditions
+- Which design patterns could be applied, and what are their intentions and benefits?
+
+### Example: Design Pattern Candidates
+
+| Pattern                   | Intent and Benefits                                                               |
+| ------------------------- | --------------------------------------------------------------------------------- |
+| `Strategy`                | Encapsulates formatting logic for each user type into swappable objects           |
+| `State`                   | Delegates output behavior based on the user’s current state                       |
+| `Command`                 | Wraps formatting logic as commands that can be tracked and undone/redone          |
+| `Chain of Responsibility` | Handles the message by the first eligible handler in a flexible, ordered pipeline |
+| `Interpreter` (advanced)  | Encodes conditional rules as syntax and evaluates them externally for flexibility |
+
+## Optional Extensions
+
+- If message content needs to vary by language (e.g., English, Japanese), how would you refactor the structure?
+- If message templates need to reflect user groups, roles, or custom preferences, how should the system be designed?
+
+## Suggested Output Format (for team review or study groups)
+
+- A list of at least three structural issues
+- Refactoring policy and rationale
+- Proposed design patterns and justification
+- Optional: simplified sketch of the refactored class or architecture

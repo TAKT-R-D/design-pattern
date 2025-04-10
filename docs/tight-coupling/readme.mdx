@@ -1,0 +1,59 @@
+---
+sidebar_label: Anti-Pattern
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/tight-coupling/ts/uncode.ts";
+import phpCode from "@site/src/codes/tight-coupling/php/uncode.php";
+import pyCode from "@site/src/codes/tight-coupling/py/uncode.py";
+
+# Tight Coupling
+
+## Description
+
+### What does it look like?
+
+- A class (e.g., `OrderService`) **directly instantiates or calls** another class (e.g., `EmailService`, `InventoryService`)
+- Due to strong dependencies, **any change to a dependency immediately affects the caller**
+- Difficult to substitute mocks or stubs during testing
+- **Readability, flexibility, and testability suffer**
+
+### Why is it a problem?
+
+- Every addition or modification requires changes in the original class, resulting in **high maintenance cost**
+- Leads to a state where “it works, so don’t touch it,” **accumulating technical debt**
+- The class ends up with multiple responsibilities, resulting in **poor separation of concerns**
+
+## Bad Example of the Anti-pattern
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+### Issues:
+
+- `UserService` is tightly coupled to `Mailer`, and locked into its specific implementation
+- Difficult to switch to another mail system (e.g., external API, mock service)
+- If requirements change (e.g., logging mailer, switching to SMS), changes must be made to `UserService`
+- Even if you want to share the `Mailer` logic, each instance is created separately, making it hard to centralize configuration
+
+## Refactoring by Pattern
+
+### Design patterns that can address this
+
+| Pattern                     | Overview                                              | Main Refactoring Approach                    |
+| --------------------------- | ----------------------------------------------------- | -------------------------------------------- |
+| `Observer`                  | Delegate processing via event notification            | Use external registration for loose coupling |
+| `Mediator`                  | A central coordinator mediates communication          | Reduce many-to-many dependencies to 1-to-1   |
+| `Dependency Injection (DI)` | Inject dependencies from outside for easy replacement | Improves testability and extensibility       |

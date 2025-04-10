@@ -1,0 +1,69 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/duplicate-logic/ts/ksrc.ts";
+import phpCode from "@site/src/codes/duplicate-logic/php/ksrc.php";
+import pyCode from "@site/src/codes/duplicate-logic/py/ksrc.py";
+
+# 練習課題
+
+## 概要
+
+本課題では、複数のファイル種別に対するアップロード処理において、**共通の前後処理が繰り返し記述されている構造**に対し、  
+メンテナンス性・再利用性・拡張性の観点から問題点を洗い出し、改善案を検討する。
+
+## 課題コード
+
+以下は、画像・動画・音声ファイルのアップロード処理をそれぞれ個別のクラスで実装した例である。  
+すべてのクラスで「検証開始」「アップロード」「完了出力」の処理が共通して記述されており、  
+類似の構造が繰り返されている。
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## 設問 1：このコードが抱える設計上の問題点を挙げよ
+
+以下の観点を参考に、具体的に列挙すること：
+
+- **共通処理がすべてのクラスで重複している**
+- **処理を追加・変更する場合の修正箇所が多い**
+- **変更忘れや不整合の発生リスク**
+- **OCP（拡張には開かれている、修正には閉じている）違反**
+
+## 設問 2：この処理を柔軟かつ保守しやすい構造に改善するにはどうすべきか
+
+以下の観点を含めて改善案を整理すること：
+
+- 前処理・後処理を共通化するための手法は何か
+- 中核となる「アップロード本体処理」だけをカスタマイズ可能にするにはどうすればよいか
+- 適用が考えられるデザインパターンと、その効果や向き不向き
+
+### 例：適用候補となるパターン
+
+| パターン名        | 主な目的と効果                                                                 |
+| ----------------- | ------------------------------------------------------------------------------ |
+| `Template Method` | 前後の共通処理を親クラスに集約し、処理の一部だけをサブクラスで上書き可能にする |
+| `Strategy`        | 各処理の差分（アルゴリズム）を独立したオブジェクトとして切り替え可能にする     |
+| `Decorator`       | 共通処理を動的に付加し、基本処理には手を加えずに拡張する                       |
+| `Visitor`         | ファイルタイプごとに異なる処理を外部化し、拡張性の高い構造を実現する           |
+
+## 発展課題（任意）
+
+- ファイル種別の追加（例：JSON, Markdown）に伴って新たなアップロード処理を追加したい場合、どう設計すれば最小の影響で対応可能か？
+- 「アップロード前にウイルススキャン処理を追加したい」という要件が発生した場合、どの構造が適しているか？
+
+## 提出フォーマット（レビュー・勉強会用）
+
+- 構造上の問題点（3 点以上）
+- 設計改善方針と適用パターンの選定理由
+- 改善後の構成イメージ（継承構造や委譲関係をテキストで簡潔に）

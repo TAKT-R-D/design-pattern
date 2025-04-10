@@ -1,0 +1,56 @@
+---
+sidebar_label: Anti-Pattern
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/scattered-concerns/ts/uncode.ts";
+import phpCode from "@site/src/codes/scattered-concerns/php/uncode.php";
+import pyCode from "@site/src/codes/scattered-concerns/py/uncode.py";
+
+# Scattered Concerns
+
+## Description
+
+### What does it look like?
+
+- **Logging logic and configuration access are written inconsistently across the codebase**
+- Each part of the system logs messages or loads config values **in its own way, lacking consistency**
+- Implementation of logs and configs tends to vary **depending on the developer**
+
+### Why is it a problem?
+
+- **Low maintainability and poor reusability**
+- When log format or destination needs to change, **the impact is widespread**
+- Incorrect config access or repeated loading may lead to **performance issues and bugs**
+
+## Bad Example of the Anti-pattern
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+### Issues:
+
+- Direct use of `console.log()` → **Must update every log when the format changes**
+- Direct access to `process.env` → **No centralized configuration management**
+- **Responsibility is scattered and reuse is difficult**
+
+## Refactoring by Pattern
+
+### Design patterns that can address this
+
+| Pattern     | Overview                                               | Main Refactoring Approach               |
+| ----------- | ------------------------------------------------------ | --------------------------------------- |
+| `Singleton` | Restrict instance to one across the application        | Manage logs and configs as shared state |
+| `Facade`    | Provide a simplified API for logging and config access | Create a unified interface for use      |

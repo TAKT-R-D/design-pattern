@@ -1,0 +1,57 @@
+---
+sidebar_label: Anti-Pattern
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/exposed-complexity/ts/uncode.ts";
+import phpCode from "@site/src/codes/exposed-complexity/php/uncode.php";
+import pyCode from "@site/src/codes/exposed-complexity/py/uncode.py";
+
+# Exposed Complexity
+
+## Description
+
+### What does it look like?
+
+- The caller **manually executes a series of complex steps**
+- Multiple components are composed and coordinated **every time they are used**
+- The **overall intent is difficult to grasp** due to scattered logic
+
+### Why is it a problem?
+
+- The same complex logic tends to be **repeated across the codebase**
+- When changes are needed, **every usage site must be updated**
+- The caller takes on too much responsibility, **breaking separation of concerns**
+
+## Bad Example of the Anti-pattern
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+### Issues:
+
+- The caller manually coordinates three components — **exposing a complex workflow**
+- Authentication, data fetching, and audit logging are **all handled by the caller**
+- If similar logic is needed elsewhere, **code duplication and complexity grow**
+
+## Refactoring by Pattern
+
+### Design patterns that can address this
+
+| Pattern    | Overview                                        | Main Refactoring Approach                                  |
+| ---------- | ----------------------------------------------- | ---------------------------------------------------------- |
+| `Facade`   | Provide a unified interface to a complex system | Simplifies and unifies the process invocation              |
+| `Proxy`    | Intermediates access to add or control behavior | Useful for caching, access control, or lazy initialization |
+| `Iterator` | Encapsulates traversal logic over a collection  | Abstracts and standardizes iteration over complex data     |

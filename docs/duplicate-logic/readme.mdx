@@ -1,0 +1,59 @@
+---
+sidebar_label: Anti-Pattern
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/duplicate-logic/ts/uncode.ts";
+import phpCode from "@site/src/codes/duplicate-logic/php/uncode.php";
+import pyCode from "@site/src/codes/duplicate-logic/py/uncode.py";
+
+# Duplicated Logic
+
+## Description
+
+### What does it look like?
+
+- Similar logic is **copy-pasted in multiple places**
+- Slight variations are manually modified after duplicating a base implementation
+- Although it may look readable, **maintainability and consistency are compromised**
+
+### Why is it a problem?
+
+- When changes are needed, **every copy must be found and updated**
+- If even one is missed, it can **lead to bugs**
+- Increases the effort for testing and code reviews, **reducing overall reliability**
+
+## Bad Example of the Anti-pattern
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+### Issues:
+
+- All exporters repeat the same **start and finish logging**
+- The only variation is the output logic, yet the full structure is rewritten every time
+- Any change to logging or formatting must be **reflected across all exporters**
+
+## Refactoring by Pattern
+
+### Design patterns that can address this
+
+| Pattern           | Overview                                                   | Main Refactoring Approach                            |
+| ----------------- | ---------------------------------------------------------- | ---------------------------------------------------- |
+| `Template Method` | Standardize flow and define only differences in subclasses | Centralize the “template” of processing              |
+| `Strategy`        | Inject the varying behavior externally                     | Enable dynamic swapping of logic                     |
+| `Decorator`       | Wrap and add or override functionality                     | Stack reusable enhancements around core behavior     |
+| `Visitor`         | Separate logic from data structure                         | Externalize logic to support multiple output formats |
+| `Prototype`       | Clone instances from a template                            | Replace manual rewriting with instance duplication   |

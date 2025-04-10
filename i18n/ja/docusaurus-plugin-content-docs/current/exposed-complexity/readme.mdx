@@ -1,0 +1,57 @@
+---
+sidebar_label: アンチパターン
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/exposed-complexity/ts/uncode.ts";
+import phpCode from "@site/src/codes/exposed-complexity/php/uncode.php";
+import pyCode from "@site/src/codes/exposed-complexity/py/uncode.py";
+
+# 複雑な手順の露出
+
+## 説明（どんな問題か）
+
+### どんな状態か？
+
+- 呼び出し元が、**複雑な処理をすべて直接実行**している
+- 複数のコンポーネントを毎回組み合わせて使っており、**呼び出しコードが煩雑**
+- 何をしているのか**全体の意図が見えづらい**
+
+### なぜ問題か？
+
+- 同じ複雑な処理が**何度も書かれてしまう**
+- 修正が必要になったとき、**すべての呼び出し箇所に波及**
+- 呼び出し側の責務が増えすぎて、**責任の分離ができていない**
+
+## アンチパターンのコード例
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+### ️ 問題点：
+
+- 呼び出し元が 3 つのクラスを組み合わせて制御しており、**複雑な手順が露出**
+- 認証・データ取得・監査ログが**呼び出し側にべったり**
+- 同じ処理を他でもやる場合、**コードが重複・煩雑**
+
+## パターン別のリファクタリング
+
+### 対応可能なデザインパターン例
+
+| パターン   | 概要                                 | 主な解決アプローチ                           |
+| ---------- | ------------------------------------ | -------------------------------------------- |
+| `Facade`   | 複雑な処理をまとめた窓口を提供       | 処理の呼び出しを簡潔に統一できる             |
+| `Proxy`    | 呼び出しを仲介して処理を追加・制御   | キャッシュ、認証、遅延実行などに対応         |
+| `Iterator` | 集合や構造を安全に走査する手段を提供 | 複雑な繰り返し処理のカプセル化・統一が可能に |

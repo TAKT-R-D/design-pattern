@@ -1,0 +1,62 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.Tutorial - Basics": {
+    "message": "Tutorial - Basics",
+    "description": "The label for category Tutorial - Basics in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Tutorial - Basics.link.generated-index.description": {
+    "message": "5 minutes to learn the most important Docusaurus concepts.",
+    "description": "The generated-index page description for category Tutorial - Basics in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Tutorial - Extras": {
+    "message": "Tutorial - Extras",
+    "description": "The label for category Tutorial - Extras in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.AP01: God Object": {
+    "message": "AP01: 責務の集中",
+    "description": "The label for category AP01: God Object in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.AP02: Excessive Branching": {
+    "message": "AP02: 分岐ロジックの肥大化",
+    "description": "The label for category AP02: Excessive Branching in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.AP03: Scattered Instantiation": {
+    "message": "AP03: インスタンス生成の乱用",
+    "description": "The label for category AP03: Scattered Instantiation in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.AP04: Single State Handling": {
+    "message": "AP04: 状態遷移ロジックの集中",
+    "description": "The label for category AP04: Single State Handling in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.AP05: Duplicate Logic": {
+    "message": "AP05: 重複する処理",
+    "description": "The label for category AP05: Duplicate Logic in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.AP06: Tight Coupling": {
+    "message": "AP06: 密結合",
+    "description": "The label for category AP06: Tight Coupling in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.AP07: Forced Compatibility": {
+    "message": "AP07: 旧仕様への依存",
+    "description": "The label for category AP07: Forced Compatibility in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.AP08: Scattered Concerns": {
+    "message": "AP08: ログ・設定の分散",
+    "description": "The label for category AP08: Scattered Concerns in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.AP09: No Undo History": {
+    "message": "AP09: 履歴の欠如",
+    "description": "The label for category AP09: No Undo History in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.AP10: Exposed Complexity": {
+    "message": "AP10: 複雑な手順の露出",
+    "description": "The label for category AP10: Exposed Complexity in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.AP11: Hardcoded Variability": {
+    "message": "AP11: 可変部分のハードコード",
+    "description": "The label for category AP11: Hardcoded Variability in sidebar tutorialSidebar"
+  }
+}

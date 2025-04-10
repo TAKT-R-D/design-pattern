@@ -1,0 +1,57 @@
+---
+sidebar_label: Anti-Pattern
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/single-state-handling/ts/uncode.ts";
+import phpCode from "@site/src/codes/single-state-handling/php/uncode.php";
+import pyCode from "@site/src/codes/single-state-handling/py/uncode.py";
+
+# Single State Handling
+
+## Description
+
+### What does it look like?
+
+- Object behavior varies by internal state, but **state and behavior are tightly coupled**
+- State-specific behavior is managed using `if` or `switch` statements
+- As states increase, the logic **bloats and becomes harder to read**
+
+### Why is it a problem?
+
+- Each new state requires modifying existing code (**violates the Open/Closed Principle**)
+- Responsibilities are concentrated in a single class, leading to **low readability and difficult testing**
+- Future expansions and state transition logic become complex and error-prone
+
+## Bad Example of the Anti-pattern
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+### Issues:
+
+- State is managed as a plain string, and behavior is centralized in a single method
+- Whenever a new state is added, `publish()` must be modified
+- Mixing state and logic in one place makes the design **fragile and hard to extend**
+
+## Refactoring by Pattern
+
+### Design patterns that can address this
+
+| Pattern    | Overview                                              | Main Refactoring Approach                     |
+| ---------- | ----------------------------------------------------- | --------------------------------------------- |
+| `State`    | Separate objects by state and delegate behavior       | Manage state explicitly using classes         |
+| `Strategy` | Replace behavior externally                           | Let external context control state switching  |
+| `Command`  | Encapsulate state-specific actions as command objects | Represent behavior as objects for flexibility |

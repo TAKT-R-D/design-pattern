@@ -1,0 +1,69 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/hardcoded-variability/ts/ksrc.ts";
+import phpCode from "@site/src/codes/hardcoded-variability/php/ksrc.php";
+import pyCode from "@site/src/codes/hardcoded-variability/py/ksrc.py";
+
+# 練習課題
+
+## 概要
+
+本課題では、レポート出力において「出力開始・終了の共通処理」と「フォーマットごとの中身処理」が**ベタ書きで混在**している実装に対して、  
+共通処理の再利用性と可変処理の拡張性を両立できるような設計改善を検討する。
+
+## 課題コード
+
+以下のコードは、レポートを PDF / CSV / HTML 形式で出力する機能である。  
+出力開始・終了などの共通処理と、出力中身（本体）フォーマットが**1 つのメソッド内にべったり記述されており、メンテナンス性が低い**。
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## 設問 1：このコードが抱える設計上の問題点を挙げよ
+
+以下の観点を参考に、具体的に列挙すること：
+
+- **共通処理が複数メソッドで重複している**
+- **フォーマットごとの差分（可変処理）が共通処理と混在している**
+- **新しいフォーマット追加時の変更コストが高く、拡張に弱い**
+- **共通の出力処理をテスト・再利用しにくい**
+
+## 設問 2：この構造を柔軟かつ保守しやすい設計に改善するにはどうすべきか
+
+以下の観点を含めて改善案を整理すること：
+
+- 共通の処理（前後処理）とフォーマットごとの差分処理をどう分離するか
+- 「差分の局所化」「共通処理の集約化」をどう実現するか
+- 処理の組み合わせ（テンプレート＋プラグイン型）にするにはどう構成すべきか
+
+### 例：適用候補となるパターン
+
+| パターン名        | 主な目的と効果                                                               |
+| ----------------- | ---------------------------------------------------------------------------- |
+| `Template Method` | 共通処理を親クラスに集約し、差分のみをサブクラスでオーバーライド             |
+| `Strategy`        | 処理の一部を差し替え可能なオブジェクトに委譲し、動的な切り替えを実現         |
+| `Bridge`          | 機能の抽象と実装を分離し、組み合わせによる柔軟な構成を実現                   |
+| `Flyweight`       | 差分の少ない共通要素を再利用し、メモリ効率や生成コストを抑える               |
+| `Prototype`       | フォーマット定義済みの出力ロジックを複製して使い回し、変化への対応力を高める |
+
+## 発展課題（任意）
+
+- 出力形式が Markdown / JSON / Excel などさらに追加された場合の設計の影響は？
+- 出力後の処理（保存、圧縮、送信など）を後段に加える必要が出た場合、どの構造が拡張に強いか？
+
+## 提出フォーマット（レビュー・勉強会用）
+
+- 問題点のリスト（3 点以上）
+- 改善方針と適用パターンの選定理由
+- 改善後の構成イメージ（出力構造の抽象化方針、継承 or 委譲の選定など）

@@ -1,0 +1,68 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/tight-coupling/ts/ksrc.ts";
+import phpCode from "@site/src/codes/tight-coupling/php/ksrc.php";
+import pyCode from "@site/src/codes/tight-coupling/py/ksrc.py";
+
+# Refactoring Task
+
+## Overview
+
+This exercise addresses a design in which the `OrderService` directly creates and utilizes an `InventoryService` instance during order processing.  
+You will examine this structure from the perspective of **dependency decoupling, abstraction, and injection**, and propose refactoring strategies.
+
+## Initial Code
+
+The following example shows an `OrderService` class that handles order placement and directly reduces inventory by creating an `InventoryService` instance.  
+This tight coupling raises concerns around maintainability, reusability, and testability.
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## Question 1: What are the structural problems in this code?
+
+Identify and explain the key design issues using the following points as a guide:
+
+- **Tight dependency on implementation**, making mocking or substitution difficult
+- **Low reusability**, resulting in poor decoupling and flexibility
+- **Violations of DIP (Dependency Inversion Principle) and OCP (Open/Closed Principle)**
+- **Blurred responsibility boundaries**, hindering testability and maintainability
+
+## Question 2: How can this structure be refactored to improve flexibility and maintainability?
+
+Provide a refactoring plan considering the following:
+
+- How can the dependent class be **injected from the outside** instead of instantiated internally?
+- How can we **reverse the direction of dependency** to achieve more modular design?
+- How can we support multiple implementations (e.g., `MockInventoryService`, `RemoteInventoryAPI`)?
+
+### Example: Candidate Design Patterns
+
+| Pattern Name           | Purpose and Effect                                                                   |
+| ---------------------- | ------------------------------------------------------------------------------------ |
+| `Observer`             | Decouples components via event notifications, reducing direct dependencies           |
+| `Mediator`             | Centralizes coordination between services, avoiding direct inter-class references    |
+| `Dependency Injection` | Allows injection of dependencies from outside, improving flexibility and testability |
+| `Abstract Factory`     | Enables switching between object configurations by delegating creation logic         |
+
+## Optional Extensions
+
+- If `ShippingService` or `PaymentService` were added, how would you restructure the dependencies?
+- If multiple implementations of `InventoryService` exist (e.g., local vs. remote API), how would you switch between them dynamically?
+
+## Suggested Output Format (for review or team discussion)
+
+- List of structural issues (at least three)
+- Refactoring strategy and rationale for chosen pattern(s)
+- Conceptual design of the improved structure (e.g., injection method or dependency diagram)

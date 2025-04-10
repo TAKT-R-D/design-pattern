@@ -1,0 +1,59 @@
+---
+sidebar_label: アンチパターン
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/scattered-instaniation/ts/uncode.ts";
+import phpCode from "@site/src/codes/scattered-instaniation/php/uncode.php";
+import pyCode from "@site/src/codes/scattered-instaniation/py/uncode.py";
+
+# インスタンス生成の乱用
+
+## 説明（どんな問題か）
+
+### どんな状態か？
+
+- `new` を使ってクラスのインスタンスを**直接あちこちで生成している**
+- どのクラスがどこで使われているか把握しにくく、**依存関係が不透明**
+- インスタンス生成のロジックが**分散しているため管理が難しい**
+
+### なぜ問題か？
+
+- **変更に弱い設計**になる（新しい実装に差し替えづらい）
+- ユニットテストが困難（モック差し替えしにくい）
+- 同じようなオブジェクト生成ロジックがコピペされがち
+- **インスタンス管理がスパゲッティ化**
+
+## アンチパターンのコード例
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+### 問題点：
+
+- `Logger` の生成が `UserService` の中に**べったり直書き**
+- 他のサービスでも同様に `new Logger()` を繰り返す恐れがある
+- **共通ロジック（ロガー）の再利用が難しい**
+
+## パターン別のリファクタリング
+
+### 対応可能なデザインパターン例
+
+| パターン           | 概要                                 | 主な解決アプローチ                     |
+| ------------------ | ------------------------------------ | -------------------------------------- |
+| `Factory Method`   | サブクラスにインスタンスの生成を委譲 | 拡張可能な生成ロジックにする           |
+| `Abstract Factory` | 関連オブジェクト群をまとめて生成     | 生成ロジックを抽象化して切り替え可能に |
+| `Builder`          | 複雑な生成手順を明確にする           | ステップ分離で見通しよく生成           |
+| `Singleton`        | インスタンスを 1 つに制限して再利用  | グローバル状態を共有する際に有効       |

@@ -1,0 +1,60 @@
+---
+sidebar_label: Anti-Pattern
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/excessive-branching/ts/uncode.ts";
+import phpCode from "@site/src/codes/excessive-branching/php/uncode.php";
+import pyCode from "@site/src/codes/excessive-branching/py/uncode.py";
+
+# Excessive Branching
+
+## Description
+
+### What does it look like?
+
+- Excessive use of `if` / `else if` / `switch` makes the code hard to read
+- Logic for handling conditions is duplicated in multiple places
+- As conditions increase, it becomes **a breeding ground for bugs** and **decreases maintainability**
+
+### Why is it a problem?
+
+- Requires reviewing **all conditions** during modifications
+- **Single functions or classes become bloated with responsibility**
+- Difficult to unit test due to tightly coupled conditional logic
+- **Hard to extend (violates the Open/Closed Principle)**
+
+## Bad Example of the Anti-pattern
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+### Issues:
+
+- As `if/else` blocks accumulate, readability, testability, and the risk of bugs increase
+- Every time a new `userType` is introduced, the function body must be edited—making safe extension difficult
+- Discount logic is embedded directly, making it hard to reuse or centralize
+
+## Refactoring by Pattern
+
+### Design patterns that can address this
+
+| Pattern                   | Overview                                | Main Refactoring Approach                            |
+| ------------------------- | --------------------------------------- | ---------------------------------------------------- |
+| `Strategy`                | Extract conditional behavior            | Allows behavior to be swapped at runtime             |
+| `State`                   | Map each state to its own behavior      | Let state objects encapsulate condition logic        |
+| `Command`                 | Encapsulate each condition as a command | Enables recording and undoing actions                |
+| `Chain of Responsibility` | Pass responsibility through a chain     | Express conditions as a natural flow                 |
+| `Interpreter`             | Parse and evaluate structured rules     | Separate complex condition logic as a domain grammar |

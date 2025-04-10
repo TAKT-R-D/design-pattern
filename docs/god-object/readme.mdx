@@ -1,0 +1,59 @@
+---
+sidebar_label: Anti-Pattern
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/god-object/ts/uncode.ts";
+import phpCode from "@site/src/codes/god-object/php/uncode.php";
+import pyCode from "@site/src/codes/god-object/py/uncode.py";
+
+# God Object
+
+## Description
+
+### What does it look like?
+
+- A single class or module holds **too many responsibilities**
+- All kinds of processing are crammed into the class, causing **changes or extensions to have wide-reaching impact**
+- **Data storage, business logic, and state management are all mixed together**
+
+### Why is it a problem?
+
+- The class loses its clear purpose, resulting in **unreadable and fragile code**
+- Difficult to test due to numerous dependencies and assumptions
+- Cannot be reused or separated—**a breeding ground for spaghetti code**
+
+## Bad Example of the Anti-pattern
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+### Issues
+
+- Order data handling, discount logic, notification, and logging are all handled by a single class
+- It is unclear “what this class is supposed to do”
+- The class tends to grow into a monolith that is difficult to test and prone to cascading changes
+
+## Refactoring by Pattern
+
+### Design patterns that can address this
+
+| Pattern     | Overview                                            | Main Refactoring Approach                              |
+| ----------- | --------------------------------------------------- | ------------------------------------------------------ |
+| `Facade`    | Hide internal complexity behind a unified interface | Make multiple subsystems accessible through one API    |
+| `Strategy`  | Make behavior interchangeable                       | Improve testability and extensibility                  |
+| `State`     | Separate behavior by internal state                 | Replace conditionals with state-specific classes       |
+| `Composite` | Organize in a tree structure for unified access     | Clarify responsibilities across hierarchy              |
+| `Iterator`  | Abstract the way collections are traversed          | Encapsulate iteration logic for better maintainability |

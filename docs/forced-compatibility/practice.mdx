@@ -1,0 +1,69 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/forced-compatibility/ts/ksrc.ts";
+import phpCode from "@site/src/codes/forced-compatibility/php/ksrc.php";
+import pyCode from "@site/src/codes/forced-compatibility/py/ksrc.py";
+
+# Refactoring Task
+
+## Overview
+
+This exercise addresses a design where a new business logic connects directly to a legacy file-saving API.  
+The goal is to analyze this structure from the perspectives of **extensibility, maintainability, readability, and testability**, and consider abstraction through an Adapter and possible redesign.
+
+## Initial Code
+
+In the following example, the `ExportService` directly depends on `LegacyFileSaver`, forcefully adapting data to match its interface.  
+As a result, **the new code is burdened with format conversions and compatibility logic**, leading to poor separation of concerns.
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## Question 1: What are the design issues in this code?
+
+List and explain the structural issues using the following points as guidance:
+
+- **Tight coupling with the legacy API (`LegacyFileSaver`)**, making reuse and replacement difficult
+- **Responsibility confusion** due to format conversions and compatibility logic being mixed in the new code
+- **The caller handles interface mismatches directly**, breaking decoupling principles
+- **Low testability** due to dependency on real environments or legacy APIs
+
+## Question 2: How can this be refactored into a more flexible and maintainable structure?
+
+Organize your improvement strategy around the following points:
+
+- How to **abstract away the legacy API** so that the new design doesn’t need to be aware of its details
+- How to make the system adaptable to alternative saving mechanisms (e.g., cloud storage, database)
+- How to **invert dependencies** and enable implementation swapping via interfaces
+
+### Example: Candidate Design Patterns
+
+| Pattern Name | Purpose and Effect                                                                  |
+| ------------ | ----------------------------------------------------------------------------------- |
+| `Adapter`    | Wraps the legacy API and adapts it to be compatible with the new design             |
+| `Facade`     | Provides a simplified interface for multiple legacy API calls                       |
+| `Strategy`   | Allows switching between different saving logics, supporting both legacy and new    |
+| `Bridge`     | Separates abstraction from implementation to allow flexible changes in storage type |
+
+## Optional Extensions
+
+- If modern APIs (e.g., REST or cloud storage) are introduced alongside legacy ones, how should the structure evolve?
+- If a common interface for saving logic is introduced, what responsibilities should be extracted and separated?
+
+## Suggested Output Format (for review or team discussion)
+
+- List of structural issues (minimum three)
+- Refactoring strategy and rationale
+- Proposed pattern(s) and design benefits
+- (Optional) Simplified class/interface diagram showing the refactored structure

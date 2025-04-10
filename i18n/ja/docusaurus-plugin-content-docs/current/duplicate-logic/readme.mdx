@@ -1,0 +1,59 @@
+---
+sidebar_label: アンチパターン
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/duplicate-logic/ts/uncode.ts";
+import phpCode from "@site/src/codes/duplicate-logic/php/uncode.php";
+import pyCode from "@site/src/codes/duplicate-logic/py/uncode.py";
+
+# 重複する処理
+
+## 説明（どんな問題か）
+
+### どんな状態か？
+
+- 同じような処理が**複数の場所でコピペされている**
+- 「ちょっとだけ違う処理」が、**ベースから複製されて手動で書き換えられている**
+- 読みやすく見えても、**保守性・一貫性が失われている**
+
+### なぜ問題か？
+
+- 修正があったとき、**すべてのコピーを見つけて直す必要がある**
+- 一部に修正漏れが発生し、**不具合の原因になる**
+- テスト・レビューの手間が増え、**コードの信頼性が低下**
+
+## アンチパターンのコード例
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+### 問題点：
+
+- 各 Exporter が**開始・終了ログを共通して持っている**
+- 出力部分だけが違うのに、**同じ処理が何度も書かれている**
+- ログの変更やフォーマット修正などが**すべての Exporter に波及**
+
+## パターン別のリファクタリング
+
+### 対応可能なデザインパターン例
+
+| パターン          | 概要                                             | 主な解決アプローチ                             |
+| ----------------- | ------------------------------------------------ | ---------------------------------------------- |
+| `Template Method` | 処理の流れを共通化し、差分だけをサブクラスで定義 | 「処理の型」を 1 ヶ所にまとめて再利用          |
+| `Strategy`        | 差分処理を外から注入                             | 動的に処理を切り替え可能な構造に               |
+| `Decorator`       | 機能をラップして追加・差し替え                   | コア機能に装飾的な処理を重ねて再利用           |
+| `Visitor`         | 処理とデータ構造を分離                           | 処理ごとに振る舞いを外に出して複数形式に対応   |
+| `Prototype`       | インスタンスをテンプレートから複製               | 毎回ベタ書きする代わりに、複製して差分だけ編集 |

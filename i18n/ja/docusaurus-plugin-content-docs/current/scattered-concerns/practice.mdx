@@ -1,0 +1,68 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/scattered-concerns/ts/ksrc.ts";
+import phpCode from "@site/src/codes/scattered-concerns/php/ksrc.php";
+import pyCode from "@site/src/codes/scattered-concerns/py/ksrc.py";
+
+# 練習課題
+
+## 概要
+
+本課題では、複数のクラス（`ApiClient`, `BatchJob`）がそれぞれ独自にログ出力や設定読み込みを行っている実装に対して、  
+共通ロジックの分散・重複・変更影響範囲の広がりといった課題を明確にし、設計改善の方向性を検討する。
+
+## 課題コード
+
+以下は、API クライアントとバッチジョブ処理クラスにおいて、`console.log` や `getenv` を直接使用している例である。  
+ログフォーマットの統一や設定管理の分離がなされておらず、保守性・再利用性に課題がある。
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## 設問 1：このコードが抱える設計上の問題点を挙げよ
+
+以下の観点を参考に、具体的に列挙すること：
+
+- **ログ出力の処理が複数箇所に重複している**
+- **設定取得の責務が各クラスに分散している**
+- **ログ出力形式やログレベルが一貫しておらず、将来的な変更が困難**
+- **共通インフラ機能（ログ・設定）を抽象化できていない**
+
+## 設問 2：この構造を保守性・拡張性の高い設計に改善するにはどうすべきか
+
+以下の観点を含めて改善案を整理すること：
+
+- ログ出力の共通化・フォーマットの標準化をどう実現するか
+- 設定読み込みを一元化し、各クラスから分離する方法
+- アプリケーション全体で再利用可能な共通インフラ層の設計方針
+
+### 例：適用候補となるパターン
+
+| パターン名        | 主な目的と効果                                                           |
+| ----------------- | ------------------------------------------------------------------------ |
+| `Singleton`       | ログ出力や設定取得のクラスを 1 つにまとめ、グローバルに共有              |
+| `Facade`          | 複雑なログ・設定処理を簡素な API として提供し、利用側の負担を減らす      |
+| `Adapter`         | 既存の外部ログライブラリや設定ライブラリをアプリ内インターフェースに変換 |
+| `Service Locator` | 共通サービスへのアクセスを集中化し、各所でのインスタンス管理を不要にする |
+
+## 発展課題（任意）
+
+- ログの出力先（コンソール / ファイル / DB）を切り替えられるようにしたい場合、どのように設計すべきか
+- 設定値が `.env` ではなく、DB や外部 API から読み込まれるようになった場合の影響と対策は？
+
+## 提出フォーマット（レビュー・勉強会用）
+
+- 問題点リスト（3 点以上）
+- 改善方針と適用パターンの選定理由
+- 改善後の構成概要（ログ / 設定 / 業務ロジックの責務分離など）

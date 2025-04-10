@@ -1,0 +1,59 @@
+---
+sidebar_label: アンチパターン
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/tight-coupling/ts/uncode.ts";
+import phpCode from "@site/src/codes/tight-coupling/php/uncode.php";
+import pyCode from "@site/src/codes/tight-coupling/py/uncode.py";
+
+# 密結合
+
+## 説明（どんな問題か）
+
+### どんな状態か？
+
+- あるクラス（例：`OrderService`）が他のクラス（例：`EmailService`, `InventoryService`）を**直接呼び出している**
+- 依存関係が強いため、**他のクラスを変更するとすぐ影響を受ける**
+- テスト時にモックやスタブを差し替えづらい
+- **可読性・柔軟性・テスト性が低下**
+
+### なぜ問題か？
+
+- 処理を追加・変更するたびに元のクラスにも手を入れる必要があり、**修正コストが高い**
+- 「動いているから触れない」状態になり、**技術的負債が蓄積**
+- 複数の責務を 1 クラスが持つようになり、**責務の分離に失敗**
+
+## アンチパターンのコード例
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+### 問題点：
+
+- UserService は Mailer に 強く依存しており、Mailer の具体的な実装にロックインされている
+- 他のメールシステム（外部 API・Mock など）への切り替えが困難
+- たとえば「ログ付き Mailer」や「SMS への切り替え」などが必要になった場合、UserService 側の修正が必要
+- Mailer の機能を共有したい場合でも、毎回 new されるため、設定の共通化・一元管理が困難
+
+## パターン別のリファクタリング
+
+### 対応可能なデザインパターン例
+
+| パターン                    | 概要                                         | 主な解決アプローチ               |
+| --------------------------- | -------------------------------------------- | -------------------------------- |
+| `Observer`                  | イベント通知で依存先を知らずに処理を委譲     | 通知対象を外部登録、疎結合を実現 |
+| `Mediator`                  | 各コンポーネントのやりとりを中央調停役が仲介 | 相互依存を 1 対 1 に減らす       |
+| `Dependency Injection (DI)` | 依存を外部から注入し、動的に差し替え可能に   | テストしやすく、拡張性を確保     |

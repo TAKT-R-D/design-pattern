@@ -1,0 +1,69 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/forced-compatibility/ts/ksrc.ts";
+import phpCode from "@site/src/codes/forced-compatibility/php/ksrc.php";
+import pyCode from "@site/src/codes/forced-compatibility/py/ksrc.py";
+
+# 練習課題
+
+## 概要
+
+本課題では、新しいビジネスロジックに旧仕様のファイル保存 API をそのまま接続している構造に対し、  
+拡張性・保守性・可読性・テスト性の観点から問題点を整理し、アダプタによる抽象化や再設計を検討する。
+
+## 課題コード
+
+以下のコードは、`ExportService` が `LegacyFileSaver` に直接依存し、無理やり仕様を合わせてデータを保存している例である。  
+旧仕様とのインターフェースの不一致により、**新しい設計側で過剰なデータ整形や対応処理を負担している**。
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## 設問 1：このコードが抱えている設計上の問題点を挙げよ
+
+以下の観点を参考に、具体的に列挙すること：
+
+- **旧 API（LegacyFileSaver）に強く依存しており、再利用や変更が困難**
+- **フォーマット変換や互換処理が新しいコードに混在しており、責務が不明瞭**
+- **インターフェースの不一致を呼び出し側が直接吸収している（疎結合になっていない）**
+- **単体テストがしにくく、実行環境への依存が残る**
+
+## 設問 2：この構造を柔軟かつ保守性の高い設計に改善するにはどうすべきか
+
+以下の観点を含めて改善案を整理すること：
+
+- 旧 API の仕様を**新設計側が意識しなくて済むように**抽象化するにはどうするか
+- 異なる保存方式（例：クラウド保存・DB 保存）に切り替えられるような設計にできるか
+- 依存方向を逆転し、**インターフェースベースでの実装切り替えを可能にする方法**
+
+### 例：適用候補となるパターン
+
+| パターン名 | 主な目的と効果                                                               |
+| ---------- | ---------------------------------------------------------------------------- |
+| `Adapter`  | 旧 API のインターフェースをラップし、新設計と互換性を持たせる                |
+| `Facade`   | 複数の旧 API 操作をまとめてシンプルな窓口を提供する                          |
+| `Strategy` | 保存ロジックを切り替え可能な構造とし、旧・新仕様を柔軟に選択できるようにする |
+| `Bridge`   | 実装と抽象を分離し、保存先の変更・拡張を影響なく切り替えられるようにする     |
+
+## 発展課題（任意）
+
+- 旧 API だけでなく、新 API（REST API やクラウドストレージ）を導入した場合、構造をどのように変えるか
+- 保存処理の共通インターフェースを導入する場合、どのような責務・契約に分離すべきか
+
+## 提出フォーマット（レビュー・勉強会用）
+
+- 構造上の問題点（3 点以上）
+- 設計改善の方針とその理由
+- 提案するパターンの適用と、設計上のメリット
+- 必要に応じて改善後の簡易コード構成図（インターフェースの位置づけなど）

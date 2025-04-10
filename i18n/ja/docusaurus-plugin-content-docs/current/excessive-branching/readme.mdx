@@ -1,0 +1,60 @@
+---
+sidebar_label: アンチパターン
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/excessive-branching/ts/uncode.ts";
+import phpCode from "@site/src/codes/excessive-branching/php/uncode.php";
+import pyCode from "@site/src/codes/excessive-branching/py/uncode.py";
+
+# 分岐ロジックの肥大化
+
+## 説明（どんな問題か）
+
+### どんな状態か？
+
+- `if` / `else if` / `switch` による**条件分岐が多すぎて**コードが読みにくい
+- 処理の追加・変更のたびに、**同じ分岐ロジックを複数箇所に書く**
+- 条件が増えると、**バグの温床**になりやすく、**保守性も低下**
+
+### なぜ問題か？
+
+- 修正時に**全ての条件を確認する必要がある**
+- **1 つの関数・クラスに責任が集中**する
+- ユニットテストが困難（条件によって異なる処理が密結合）
+- **拡張がしにくい（開閉原則に反する）**
+
+## アンチパターンのコード例
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+### 問題点：
+
+- `if/else` が増え続けると、可読性・テスト性・エラー発生リスクが高まる
+- 新しい `userType` を追加するたびに関数本体を修正する必要があり、安全に拡張できない
+- 割引の計算が直接埋め込まれていて、他の場所で使い回しにくく、一元管理が困難
+
+## パターン別のリファクタリング
+
+### 対応可能なデザインパターン例
+
+| パターン                  | 概要                               | 主な解決アプローチ                                   |
+| ------------------------- | ---------------------------------- | ---------------------------------------------------- |
+| `Strategy`                | 条件に応じた処理を外部に切り出す   | 実行時に処理を差し替える柔軟性                       |
+| `State`                   | 状態と処理を 1 対 1 で対応         | 条件を「状態オブジェクト」に任せる                   |
+| `Command`                 | 条件ごとの命令をオブジェクト化     | 実行・取り消しなど操作の記録にも ◎                   |
+| `Chain of Responsibility` | 条件判定を責任の連鎖で処理         | 条件分岐をフローで自然に表現できる                   |
+| `Interpreter`             | 文法に従ったルールや式を解釈・評価 | 複雑な条件ロジックを構文として分離し、拡張可能にする |

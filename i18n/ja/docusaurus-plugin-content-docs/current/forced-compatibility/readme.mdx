@@ -1,0 +1,61 @@
+---
+sidebar_label: アンチパターン
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/forced-compatibility/ts/uncode.ts";
+import phpCode from "@site/src/codes/forced-compatibility/php/uncode.php";
+import pyCode from "@site/src/codes/forced-compatibility/py/uncode.py";
+
+# 旧仕様への依存
+
+## 説明（どんな問題か）
+
+### どんな状態か？
+
+- 新しいコードから、**既存の（古い）インターフェースを直接呼び出している**
+- API 仕様の違いを、**呼び出し側で都度調整**しており、ロジックが煩雑
+- 「形式が違うけど、動かさなきゃ」と無理やり接続している
+
+### なぜ問題か？
+
+- 呼び出し側が**変換・調整処理を持ってしまい、責任が曖昧に**
+- API や仕様が変更されたとき、**複数箇所に影響が波及**
+- 外部依存のテストや切り替えが**難しくなる**
+
+## アンチパターンのコード例
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+### 問題点：
+
+- ReportGenerator が LegacyPrinter の具体的なメソッド名やフォーマットに依存
+- インターフェースの違いを吸収せず、新旧の設計思想が混在している
+- 大文字化などの処理が、文脈や責任を無視して ReportGenerator に書かれてしまっている（SRP 違反）
+- 他の出力手段（新しい Printer クラスや外部 API）への切り替えができない
+- テスト用のモックプリンターに置き換えることができない
+- LegacyPrinter に依存する処理が増えると、同じような変換処理が至る所に出現
+- 仕様変更時に**すべての利用箇所に影響が波及する**
+
+## パターン別のリファクタリング
+
+### 対応可能なデザインパターン例
+
+| パターン  | 概要                                             | 主な解決アプローチ                           |
+| --------- | ------------------------------------------------ | -------------------------------------------- |
+| `Adapter` | インターフェースの整合性を取るための「橋渡し役」 | 新旧 API をつなぐ変換レイヤーを追加          |
+| `Facade`  | サブシステムの複雑さを隠し、使いやすい窓口を提供 | 呼び出しを単純化したいときに使用             |
+| `Proxy`   | オブジェクトへのアクセスを代理する               | アクセス制御・キャッシュ・遅延実行などに有効 |

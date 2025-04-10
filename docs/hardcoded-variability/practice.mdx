@@ -1,0 +1,73 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/hardcoded-variability/ts/ksrc.ts";
+import phpCode from "@site/src/codes/hardcoded-variability/php/ksrc.php";
+import pyCode from "@site/src/codes/hardcoded-variability/py/ksrc.py";
+
+# Refactoring Task
+
+## Overview
+
+This task addresses a report generation process in which **common logic (e.g., start/end processing)**  
+and **format-specific logic (PDF/CSV/HTML output)** are tightly coupled and written together.  
+The goal is to improve **reusability of shared steps** and **extensibility of format-specific behavior**  
+by applying appropriate structural refactoring.
+
+## Initial Code
+
+The following code generates reports in PDF, CSV, and HTML formats.  
+However, the format-specific logic is **mixed directly with the shared steps** (e.g., logging),  
+making the code hard to maintain and extend.
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## Question 1: What are the structural problems in this code?
+
+Consider the following aspects when listing the issues:
+
+- **Common logic is duplicated across multiple methods**
+- **Format-specific behavior is mixed with shared control flow**
+- **High modification cost when adding new formats**
+- **Hard to isolate and reuse shared steps for testing or maintenance**
+
+## Question 2: How can this structure be improved for better flexibility and maintainability?
+
+Outline your proposal considering these points:
+
+- How can shared logic (pre/post) be separated from variable logic?
+- How can the **variable logic be localized**, and **common logic centralized**?
+- What structure supports a **template + plugin-style composition**?
+
+### Example: Candidate Design Patterns
+
+| Pattern Name      | Purpose and Effect                                                                  |
+| ----------------- | ----------------------------------------------------------------------------------- |
+| `Template Method` | Centralizes shared behavior in a base class, allowing subclasses to override parts  |
+| `Strategy`        | Delegates format-specific logic to interchangeable objects                          |
+| `Bridge`          | Separates abstraction from implementation for flexible format-function combinations |
+| `Flyweight`       | Shares common state/data to reduce memory usage and instance cost                   |
+| `Prototype`       | Allows pre-configured output logic to be cloned and customized                      |
+
+## Optional Extensions
+
+- How would the design scale if new formats like Markdown, JSON, or Excel are added?
+- If post-processing (e.g., save, compress, send) needs to be inserted,  
+  which structure is most adaptable for such extensions?
+
+## Suggested Output Format (for review or team discussion)
+
+- List of structural issues (at least 3)
+- Refactoring strategy and reasoning for selected patterns
+- Overview of the improved structure (abstraction of output flow, use of inheritance or delegation, etc.)

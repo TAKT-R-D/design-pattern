@@ -1,0 +1,59 @@
+---
+sidebar_label: Anti-Pattern
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/hardcoded-variability/ts/uncode.ts";
+import phpCode from "@site/src/codes/hardcoded-variability/php/uncode.php";
+import pyCode from "@site/src/codes/hardcoded-variability/py/uncode.py";
+
+# Hardcoded Variability
+
+## Description
+
+### What does it look like?
+
+- The **variable part of the logic** is hardcoded directly and not separated from the fixed part
+- “Slightly different” behaviors are mixed into a common flow, making **reuse difficult**
+- Even though the overall flow is the same, the entire logic is **duplicated for small differences**
+
+### Why is it a problem?
+
+- Without clear separation between shared and differing parts, **changes are hard to make**
+- Similar but slightly different code grows, increasing the risk of **bugs and maintenance overhead**
+- The code lacks flexibility, making **feature extension and switching difficult**
+
+## Bad Example of the Anti-pattern
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+### Issues:
+
+- Email and Slack notifications **mix shared structure with their differences**
+- Every time a new channel (e.g., LINE, SMS) is added, **similar methods are created again**
+- The shared logic becomes cluttered, resulting in **poor testability and maintainability**
+
+## Refactoring by Pattern
+
+### Design patterns that can address this
+
+| Pattern           | Overview                                                  | Main Refactoring Approach                                |
+| ----------------- | --------------------------------------------------------- | -------------------------------------------------------- |
+| `Template Method` | Standardize the flow and define differences in subclasses | Prevent duplication and improve reusability              |
+| `Strategy`        | Allow behavior to be swapped                              | Easier to replace and test                               |
+| `Bridge`          | Separate abstraction from implementation                  | Clarify axes of change and enable flexibility            |
+| `Flyweight`       | Share common state to reduce object count                 | Minimize redundant data                                  |
+| `Prototype`       | Clone instances from a template                           | Reuse initialization and generate variations efficiently |

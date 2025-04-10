@@ -1,0 +1,68 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/tight-coupling/ts/ksrc.ts";
+import phpCode from "@site/src/codes/tight-coupling/php/ksrc.php";
+import pyCode from "@site/src/codes/tight-coupling/py/ksrc.py";
+
+# 練習課題
+
+## 概要
+
+本課題では、注文処理の中で在庫調整を行う `InventoryService` を直接生成・利用している構造に対して、  
+**依存性の分離・抽象化・注入の観点から改善案を検討**する。
+
+## 課題コード
+
+以下は、注文を受け付けた際に在庫を減らす処理を行う `OrderService` クラスの実装例である。  
+在庫処理を担う `InventoryService` が `OrderService` の内部で直接生成・操作されており、保守性やテスト性に課題がある。
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## 設問 1：このコードの構造上の問題点を挙げよ
+
+以下の観点を参考に、具体的に列挙すること：
+
+- **実装に強く依存しており、差し替えやモックができない**
+- **クラスの再利用性が低く、疎結合な設計になっていない**
+- **DIP（依存性逆転の原則）や OCP（開放／閉鎖原則）への違反**
+- **クラス間の責務の分離が不明瞭で、テストコードの書きづらさにもつながる**
+
+## 設問 2：この構造を柔軟かつ保守性の高い設計に改善するにはどうすべきか
+
+以下の観点を含めて改善案を整理すること：
+
+- 依存するクラスを**外部から注入可能にする**にはどう設計すべきか
+- 実装と利用側の**依存方向を逆転**するにはどうすればよいか
+- 複数の実装（例：MockInventoryService、RemoteInventoryAPI など）に対応するためには？
+
+### 例：適用候補となるパターン
+
+| パターン名             | 主な目的と効果                                                             |
+| ---------------------- | -------------------------------------------------------------------------- |
+| `Observer`             | 状態変化を通知ベースで分離し、依存関係を減らす                             |
+| `Mediator`             | 複数サービス間の連携を一元的に管理し、直接依存を回避                       |
+| `Dependency Injection` | 依存オブジェクトを外部から注入し、差し替え可能にしてテスト性を高める       |
+| `Abstract Factory`     | 環境に応じたオブジェクト構築を分離し、構成を動的に切り替えられるようにする |
+
+## 発展課題（任意）
+
+- `InventoryService` 以外にも `ShippingService` や `PaymentService` などが加わった場合、依存関係の構造はどう変えるべきか
+- 複数の `InventoryService` 実装（ローカル／外部 API）が存在する場合、どうやって動的に選択・切り替えるべきか
+
+## 提出フォーマット（レビュー・勉強会用）
+
+- 構造上の問題点（3 点以上）
+- 設計改善方針と適用パターンの選定理由
+- 改善後の構成イメージ（依存関係や注入方式の概要）

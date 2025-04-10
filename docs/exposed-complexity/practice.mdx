@@ -1,0 +1,69 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/exposed-complexity/ts/ksrc.ts";
+import phpCode from "@site/src/codes/exposed-complexity/php/ksrc.php";
+import pyCode from "@site/src/codes/exposed-complexity/py/ksrc.py";
+
+# Refactoring Task
+
+## Overview
+
+This task focuses on the purchase process where the function `completePurchase()`  
+**manually orchestrates a sequence of operations**—inventory check, payment, and receipt issuance.  
+You'll examine how to refactor this design by applying **abstraction and responsibility separation** principles.
+
+## Initial Code
+
+The following code shows a purchase workflow using multiple service classes.  
+However, the **entire logic is exposed in the calling function**, making the structure hard to reuse, test, or extend.
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## Question 1: What are the structural problems in this code?
+
+Identify and describe the issues using the following criteria:
+
+- **The caller has direct knowledge of multiple services (tight coupling)**
+- **Control flow, branching, and error handling are concentrated in one place**
+- **Difficult to reuse or rearrange the logic**
+- **Violates SRP (Single Responsibility Principle) and lacks change tolerance**
+
+## Question 2: How can this structure be improved for better flexibility and maintainability?
+
+Organize your proposal using the following perspectives:
+
+- Where should the control flow logic be delegated (caller / dedicated service / wrapper)?
+- Can the caller be simplified to handle only minimal interaction?
+- How can the structure support future changes (inserting or replacing steps)?
+
+### Example: Candidate Design Patterns
+
+| Pattern Name | Purpose and Effect                                                                 |
+| ------------ | ---------------------------------------------------------------------------------- |
+| `Facade`     | Consolidates a complex series of operations behind a simple interface              |
+| `Proxy`      | Allows pre/post processing like logging, authentication, etc., around core logic   |
+| `Command`    | Encapsulates each step as a command that can be executed, recorded, or undone      |
+| `Iterator`   | Enables sequential execution of steps with flexible ordering and structure changes |
+
+## Optional Extensions
+
+- If the flow needs to support **extra steps** like notification or point rewards, how can this be achieved without modifying existing code?
+- If this purchase logic is reused across multiple channels (e.g., Web, batch), what differences should be expected in the way it is invoked?
+
+## Suggested Output Format (for review or team discussion)
+
+- List of design problems (3 or more)
+- Refactoring strategy and reasoning for pattern selection
+- Overview of the improved structure (separation of responsibilities, encapsulated logic, etc.)

@@ -1,0 +1,69 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/scattered-instaniation/ts/ksrc.ts";
+import phpCode from "@site/src/codes/scattered-instaniation/php/ksrc.php";
+import pyCode from "@site/src/codes/scattered-instaniation/py/ksrc.py";
+
+# Refactoring Task
+
+## Overview
+
+In this exercise, you will analyze a `Notifier` class implementation in which an external dependency (`Mailer`) is instantiated with `new` each time it is needed.  
+Identify the design issues this introduces, and propose refactoring strategies that improve flexibility and testability.
+
+## Initial Code
+
+The following code defines a `Notifier` class responsible for sending notifications to users.  
+It directly instantiates the `Mailer` internally, which works initially, but could lead to maintainability and extensibility problems over time.
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## Question 1: What are the design issues in this code?
+
+List and explain the design problems based on the following aspects:
+
+- **Testability** (Is it possible to replace `Mailer` for testing?)
+- **Flexibility** (What if the type of mailer needs to be changed?)
+- **Dependency management** (Is `Notifier` too tightly coupled to `Mailer`?)
+- **Conformance to design principles** (e.g., the Dependency Inversion Principle)
+
+## Question 2: How should the design be improved?
+
+Propose improvements based on the following considerations:
+
+- How can `Notifier` be decoupled from the internal instantiation of `Mailer`?
+- How can the `Mailer` be replaced during unit testing?
+- What benefits arise from applying **Dependency Injection**?
+
+### Example: Design Pattern Candidates
+
+| Pattern Name           | Purpose and Effects                                                                   |
+| ---------------------- | ------------------------------------------------------------------------------------- |
+| `Factory Method`       | Extracts object creation logic and allows switching implementations as needed         |
+| `Abstract Factory`     | Provides a group of related objects (e.g., `Mailer`, `Logger`) as a unified interface |
+| `Builder`              | Separates construction steps and enables flexible, step-by-step initialization        |
+| `Singleton`            | Ensures only one instance exists globally and is reused across the system             |
+| `Dependency Injection` | Injects dependencies externally for better flexibility, testability, and decoupling   |
+
+## Optional Extensions
+
+- If notification methods include `Slack` or `LINE` in addition to email, how would you adapt the design?
+- If the test environment requires a mock mailer that logs instead of sending, how would you design for this flexibility?
+
+## Suggested Output Format (for review or study groups)
+
+- List of at least three structural problems
+- Refactoring approach and the reason for choosing specific patterns
+- Design rationale and improvements (with optional sketches or pseudocode)

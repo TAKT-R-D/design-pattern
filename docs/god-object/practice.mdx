@@ -1,0 +1,73 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/god-object/ts/ksrc.ts";
+import phpCode from "@site/src/codes/god-object/php/ksrc.php";
+import pyCode from "@site/src/codes/god-object/py/ksrc.py";
+
+# Refactoring Task
+
+## Overview
+
+This exercise focuses on identifying design issues caused by the "God Object" anti-pattern, where a single class accumulates multiple responsibilities.  
+The goal is to analyze the problems and propose refactoring strategies using appropriate design patterns to improve the structure.
+
+## Initial Code
+
+The following code shows the implementation of a `PostManager` class that handles all logic related to blog posts.  
+Analyze this code for structural problems and consider ways to improve it.
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+## Question 1: What are the design issues in this code?
+
+List concrete issues by considering the following perspectives:
+
+- **Lack of responsibility separation** (Are multiple concerns mixed within a single class?)
+- **Poor extensibility and maintainability** (Is the code prone to ripple effects when modified?)
+- **Lack of reusability** (Are parts of the code difficult to reuse elsewhere?)
+- **Low testability** (Can each functionality be tested in isolation?)
+
+## Question 2: How would you refactor this class?
+
+Discuss your ideas with the following elements in mind:
+
+- Concerns that should be separated (e.g., posting logic, notification handling, logging)
+- Benefits of splitting responsibilities into separate classes or services
+- Design patterns applicable to each concern and their intended purpose/effect
+
+### Example: Candidate Patterns
+
+| Pattern     | Primary Purpose and Benefit                                                          |
+| ----------- | ------------------------------------------------------------------------------------ |
+| `Facade`    | Consolidates post-confirmation logic into a single interface, simplifying the caller |
+| `Strategy`  | Makes the notification method (e.g., Email / Slack) easily swappable                 |
+| `State`     | Enables behavior to vary based on post state (e.g., draft / published)               |
+| `Composite` | Structures posts so they can be handled as a group (e.g., batch publishing)          |
+| `Iterator`  | Enables safe and abstracted iteration through post collections                       |
+
+## Optional Extensions
+
+For the following feature additions, consider what design strategies would be appropriate:
+
+- Introduce state management for posts (e.g., "scheduled", "published")
+- Allow notification channels (Slack, LINE, email) to be configurable externally
+- Enable custom templates per post
+
+## Suggested Output Format (for team review or study groups)
+
+- Structural issues identified (at least 3 items)
+- Refactoring strategy and justification
+- Proposed design patterns and rationale for selection
+- (Optional) Diagram of improved class structure

@@ -1,0 +1,59 @@
+---
+sidebar_label: Anti-Pattern
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import tsCode from "@site/src/codes/scattered-instaniation/ts/uncode.ts";
+import phpCode from "@site/src/codes/scattered-instaniation/php/uncode.php";
+import pyCode from "@site/src/codes/scattered-instaniation/py/uncode.py";
+
+# Scattered Instantiation
+
+## Description
+
+### What does it look like?
+
+- Classes are instantiated using `new` **directly and repeatedly throughout the codebase**
+- Hard to track which classes are used where, leading to **unclear dependencies**
+- Instantiation logic is **scattered**, making management difficult
+
+### Why is it a problem?
+
+- Results in a **fragile design** that is hard to modify or replace with new implementations
+- Difficult to unit test (hard to inject mocks)
+- Object creation logic is often copy-pasted in multiple places
+- **Instance management becomes tangled like spaghetti code**
+
+## Bad Example of the Anti-pattern
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript">
+    <CodeBlock language="ts">{tsCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="php" label="PHP">
+    <CodeBlock language="php">{phpCode}</CodeBlock>
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <CodeBlock language="python">{pyCode}</CodeBlock>
+  </TabItem>
+</Tabs>
+
+### Issues:
+
+- `Logger` is instantiated directly inside `UserService`
+- Other services may also repeat `new Logger()`, leading to duplication
+- **Difficult to reuse the logger logic as a shared component**
+
+## Refactoring by Pattern
+
+### Design patterns that can address this
+
+| Pattern            | Overview                                   | Main Refactoring Approach                  |
+| ------------------ | ------------------------------------------ | ------------------------------------------ |
+| `Factory Method`   | Delegate object creation to a subclass     | Make instantiation logic extensible        |
+| `Abstract Factory` | Group related objects into a factory       | Abstract creation logic for easy switching |
+| `Builder`          | Clarify complex creation steps             | Separate construction steps for clarity    |
+| `Singleton`        | Restrict to a single instance and reuse it | Useful for shared global state             |
