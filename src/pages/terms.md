@@ -1,6 +1,6 @@
 # Terms of Use
 
-(Last updated: 10th May, 2024)
+(Last updated: 10th April, 2025)
 
 ## Disclaimer
 

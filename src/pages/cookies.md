@@ -1,6 +1,6 @@
 # Cookie Policy
 
-(Last updated: 29th May, 2024)
+(Last updated: 10th April, 2025)
 
 ## 1. Introduction
 

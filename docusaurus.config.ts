@@ -3,23 +3,16 @@ import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 import path from "path";
 
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
-
 const config: Config = {
-  title: "Design Pattern Tutorial",
+  title: "Anti-Pattern Driven Design Pattern Tutorial",
   tagline: "Anti-Pattern Driven Design Pattern Tutorial",
   favicon: "img/favicon.ico",
 
-  // Set the production url of your site here
   url: "https://your-docusaurus-site.example.com",
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: "/",
 
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: "TAKT-R-D", // Usually your GitHub org/user name.
-  projectName: "design-pattern", // Usually your repo name.
+  organizationName: "TAKT-R-D",
+  projectName: "design-pattern",
 
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -40,8 +33,8 @@ const config: Config = {
       {
         docs: {
           sidebarPath: "./sidebars.ts",
-          // editUrl:
-          //   "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+          editUrl: "https://github.com/TAKT-R-D/design-pattern/edit/main/",
+          editLocalizedFiles: true,
         },
         theme: {
           customCss: "./src/css/custom.css",
@@ -158,7 +151,8 @@ const config: Config = {
         path: "advanced",
         routeBasePath: "advanced",
         sidebarPath: require.resolve("./sidebars-advanced.ts"),
-        // editUrl: "https://github.com/your-org/your-repo/edit/main/",
+        editUrl: "https://github.com/TAKT-R-D/design-pattern/edit/main/",
+        editLocalizedFiles: true,
       },
     ],
     function customRawLoaderPlugin() {
