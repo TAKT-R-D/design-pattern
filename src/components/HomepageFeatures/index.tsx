@@ -12,7 +12,7 @@ type FeatureItem = {
 const FeatureList: FeatureItem[] = [
   {
     title: "Anti-Pattern Driven",
-    Svg: require("@site/static/img/undraw_docusaurus_mountain.svg").default,
+    Svg: require("@site/static/img/undraw_alert_w756.svg").default,
     description: (
       <>
         Start from common anti-patterns to understand why they fail, and how
@@ -23,7 +23,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: "Focus on the Structure",
-    Svg: require("@site/static/img/undraw_docusaurus_tree.svg").default,
+    Svg: require("@site/static/img/undraw_design-components_529l.svg").default,
     description: (
       <>
         Instead of memorizing pattern names and jargon, aim to explain "why the
@@ -34,7 +34,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: "Refactoring by Choice",
-    Svg: require("@site/static/img/undraw_docusaurus_react.svg").default,
+    Svg: require("@site/static/img/undraw_solution-mindset_pit7.svg").default,
     description: (
       <>
         For each anti-pattern, multiple design pattern-based solutions are

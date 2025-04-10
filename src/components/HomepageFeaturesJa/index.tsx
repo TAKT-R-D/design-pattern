@@ -12,7 +12,7 @@ type FeatureItem = {
 const FeatureList: FeatureItem[] = [
   {
     title: "アンチパターン駆動",
-    Svg: require("@site/static/img/undraw_docusaurus_mountain.svg").default,
+    Svg: require("@site/static/img/undraw_alert_w756.svg").default,
     description: (
       <>
         よくある「ダメな実装」から出発し、なぜそれが問題なのか、どう改善できるのかを設計パターンで示す。
@@ -22,7 +22,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: "構造で学ぶ",
-    Svg: require("@site/static/img/undraw_docusaurus_tree.svg").default,
+    Svg: require("@site/static/img/undraw_design-components_529l.svg").default,
     description: (
       <>
         パターン名や用語の暗記ではなく、「なぜその構造が有効か」を自分の言葉で説明できることを目指す。
@@ -32,7 +32,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: "選べるリファクタリング",
-    Svg: require("@site/static/img/undraw_docusaurus_react.svg").default,
+    Svg: require("@site/static/img/undraw_solution-mindset_pit7.svg").default,
     description: (
       <>
         1つのアンチパターンに対して複数のパターンで改善例を提示。

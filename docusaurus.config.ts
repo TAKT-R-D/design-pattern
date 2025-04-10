@@ -8,8 +8,9 @@ const config: Config = {
   tagline: "Anti-Pattern Driven Design Pattern Tutorial",
   favicon: "img/favicon.ico",
 
-  url: "https://your-docusaurus-site.example.com",
-  baseUrl: "/",
+  url: "https://takt.dev",
+  baseUrl: "/design-pattern/",
+  trailingSlash: false,
 
   organizationName: "TAKT-R-D",
   projectName: "design-pattern",
