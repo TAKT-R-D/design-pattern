@@ -47,7 +47,6 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
     image: "img/opengraph-image.png",
     colorMode: {
       defaultMode: "dark",
@@ -74,7 +73,7 @@ const config: Config = {
           position: "left",
         },
         {
-          type: "search", // ← 検索を先頭に
+          type: "search",
           position: "right",
         },
         {
