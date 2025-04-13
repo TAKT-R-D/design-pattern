@@ -47,7 +47,6 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
     image: "img/opengraph-image.png",
     colorMode: {
       defaultMode: "dark",
@@ -72,6 +71,10 @@ const config: Config = {
           label: "Advanced",
           activeBaseRegex: "/advanced/",
           position: "left",
+        },
+        {
+          type: "search",
+          position: "right",
         },
         {
           type: "localeDropdown",
@@ -144,6 +147,14 @@ const config: Config = {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
       additionalLanguages: ["php"],
+    },
+    algolia: {
+      appId: "OWPJUFYR8R",
+      apiKey: "07e806cc3f0ce3545fd51c65d9aa9324",
+      indexName: "takt",
+      contextualSearch: true,
+      searchParameters: {},
+      searchPagePath: "search",
     },
   } satisfies Preset.ThemeConfig,
   plugins: [
