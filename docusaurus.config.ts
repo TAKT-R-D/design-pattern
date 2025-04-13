@@ -74,6 +74,10 @@ const config: Config = {
           position: "left",
         },
         {
+          type: "search", // ← 検索を先頭に
+          position: "right",
+        },
+        {
           type: "localeDropdown",
           position: "right",
         },
@@ -144,6 +148,14 @@ const config: Config = {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
       additionalLanguages: ["php"],
+    },
+    algolia: {
+      appId: "OWPJUFYR8R",
+      apiKey: "07e806cc3f0ce3545fd51c65d9aa9324",
+      indexName: "takt",
+      contextualSearch: true,
+      searchParameters: {},
+      searchPagePath: "search",
     },
   } satisfies Preset.ThemeConfig,
   plugins: [
