@@ -1,6 +1,6 @@
 # Cookie Policy
 
-(Last updated: 10th April, 2025)
+(Last updated: 28th July, 2026)
 
 ## 1. Introduction
 
@@ -102,6 +102,7 @@ We may update this Cookie Policy from time to time. Any changes will be posted o
 
 If you have any questions or concerns regarding this Cookie Policy, please contact us at:
 
-Email: kura[at]takt.dev
-Mailing Address: TAKT R&D Co.,Ltd., C5-3804, D'.Capitale, 119 Tran Duy Hung, Trung Hoa, Cau Giay, Ha Noi, Viet Nam
+Email: kura[at]takt.dev<br />
+Mailing Address: TAKT R&D Co.,Ltd., C5-3804, D'.Capitale, 119 Tran Duy Hung, Yen Hoa, Ha Noi, Viet Nam
+
 Thank you.

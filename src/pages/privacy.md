@@ -1,6 +1,6 @@
 # Privacy Policy
 
-(Last updated: 10th April, 2025)
+(Last updated: 28th July, 2026)
 
 This website aims to provide a safe and secure user experience. Below is our privacy policy regarding the handling of personal information.
 
@@ -24,6 +24,7 @@ We comply with all relevant laws and regulations and handle information appropri
 
 If you have any questions or concerns regarding this Privacy Policy, please contact us at:
 
-Email: kura[at]takt.dev
-Mailing Address: TAKT R&D Co.,Ltd., C5-3804, D'.Capitale, 119 Tran Duy Hung, Trung Hoa, Cau Giay, Ha Noi, Viet Nam
+Email: kura[at]takt.dev<br />
+Mailing Address: TAKT R&D Co.,Ltd., C5-3804, D'.Capitale, 119 Tran Duy Hung, Yen Hoa, Ha Noi, Viet Nam
+
 Thank you.
