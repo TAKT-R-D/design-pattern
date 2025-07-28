@@ -1,6 +1,6 @@
 # Terms of Use
 
-(Last updated: 10th April, 2025)
+(Last updated: 28th July, 2026)
 
 ## Disclaimer
 
@@ -26,6 +26,7 @@ However, please refrain from using inline frames or directly linking to images.
 
 If you have any questions or concerns regarding this Terms of Use, please contact us at:
 
-Email: kura[at]takt.dev
-Mailing Address: TAKT R&D Co.,Ltd., C5-3804, D'.Capitale, 119 Tran Duy Hung, Trung Hoa, Cau Giay, Ha Noi, Viet Nam
+Email: kura[at]takt.dev<br />
+Mailing Address: TAKT R&D Co.,Ltd., C5-3804, D'.Capitale, 119 Tran Duy Hung, Yen Hoa, Ha Noi, Viet Nam
+
 Thank you.
