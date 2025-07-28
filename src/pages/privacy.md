@@ -1,6 +1,6 @@
 # Privacy Policy
 
-(Last updated: 28th July, 2026)
+(Last updated: 28th July, 2025)
 
 This website aims to provide a safe and secure user experience. Below is our privacy policy regarding the handling of personal information.
 
