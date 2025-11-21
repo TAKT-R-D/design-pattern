@@ -41,7 +41,7 @@ Streaming Pipeline では、データは以下のようなステップで流れ�
 - **Stateful Processing**：ストリーム処理の途中で状態を持ち、継続的に更新する
 - **Backpressure / Rate Control**：大量の入力に対して、処理能力を超えないよう制御する
 
-### 3.1 概念図（Conceptual Diagram）
+### 概念図（Conceptual Diagram）
 
 ```mermaid
 flowchart LR
@@ -69,7 +69,7 @@ Streaming Pipeline が特に威力を発揮するのは、次のような領域�
 - **決済・トランザクションモニタリング**  
   不正検知、リアルタイムのリスク評価など。
 
-## ✅ 不向きなケース
+## ❌ 不向きなケース
 
 Streaming Pipeline は「何でもストリーミングでやればよい」わけではない。
 

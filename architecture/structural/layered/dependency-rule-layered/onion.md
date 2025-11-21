@@ -38,7 +38,7 @@ Onion Architecture は、
 
 視覚的に「中心に行くほど純粋」「外側ほど技術詳細」というイメージが伝わりやすいのが特徴である。
 
-### 3.1 概念図（Conceptual Diagram）
+### 概念図（Conceptual Diagram）
 
 ![Onion Architecture diagram](./onion.webp)
 
@@ -51,7 +51,7 @@ Onion Architecture は、
 - ドメインモデルを“核”として長期運用したいプロダクト
 - チーム内でレイヤーの責務と依存ルールを共有したいとき
 
-## ✅ 不向きなケース
+## ❌ 不向きなケース
 
 - Hexagonal と同じく、ごく小さな CRUD アプリ
 - チームがまだレイヤーの概念や DDD に慣れていない場合

@@ -38,7 +38,7 @@ Event-driven Architecture（EDA）はこれに対して：
 - 発行側は「誰が購読しているか」を知らない
 - 購読側は「誰が発行したか」を気にせず、自分の関心のあるイベントだけを見る
 
-### 3.1 概念図（Conceptual Diagram）
+### 概念図（Conceptual Diagram）
 
 ![Event-Driven Architecture diagram](./event-driven.png)
 
@@ -56,7 +56,7 @@ Event-driven Architecture（EDA）はこれに対して：
 - 新しいサービスを「既存イベントの購読者として追加」しやすい
 - 非同期処理へ自然に移行できる
 
-## ✅ 不向きなケース
+## ❌ 不向きなケース
 
 - 強い一貫性が必要で、「結果がすぐ分からないと困る」操作
 - 処理フローがシンプルで、同期呼び出しだけで十分なシステム

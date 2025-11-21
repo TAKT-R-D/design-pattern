@@ -17,7 +17,7 @@
 - スケールは自動、従量課金
 - ステートレス関数が基本
 
-### 3.1 概念図（Conceptual Diagram）
+### 概念図（Conceptual Diagram）
 
 ```mermaid
 flowchart LR
@@ -36,7 +36,7 @@ flowchart LR
 - バースト負荷が大きい業務
 - 小規模 API / BFF / バックオフィスツール
 
-## ✅ 不向きなケース
+## ❌ 不向きなケース
 
 - 長時間実行のジョブ
 - ステートフル処理

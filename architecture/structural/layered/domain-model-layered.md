@@ -42,7 +42,7 @@ Domain Model Layered はこれに対して、
 
 のような形が理想とされます（実際には完全分離は難しいが、方向性として）。
 
-### 3.1 概念図（Conceptual Diagram）
+### 概念図（Conceptual Diagram）
 
 ```mermaid
 flowchart TD
@@ -64,7 +64,7 @@ flowchart TD
 
 Domain Model Layered は、**ドメインの複雑さがビジネスのコア価値である** 場合に特に力を発揮する。
 
-## ✅ 不向きなケース
+## ❌ 不向きなケース
 
 - CRUD が中心でドメインルールが単純なアプリ
 - DB スキーマ ≒ 画面項目、という構造で十分なシステム

@@ -16,7 +16,7 @@
 - 現在状態 = 過去イベントの再生結果（Replay）
 - Event Store（イベント専用 DB）を利用することが多い
 
-### 3.1 概念図（Conceptual Diagram）
+### 概念図（Conceptual Diagram）
 
 ![Event Sourcing Architecture diagram](./event-sourcing-overview.png)
 
@@ -29,7 +29,7 @@
 - DDD の Aggregate と相性の良いドメイン
 - 自動再処理・再演算が必要なシステム
 
-## ✅ 不向きなケース
+## ❌ 不向きなケース
 
 - 履歴保持の必要が薄いシンプルな CRUD
 - イベント量が多すぎ、リプレイコストが問題になるケース

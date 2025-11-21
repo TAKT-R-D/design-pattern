@@ -17,9 +17,9 @@
 - API（REST/gRPC/Event）による疎結合連携
 - DevOps / CI/CD / Observability の強い前提
 
-### 3.1 概念図（Conceptual Diagram）
+### 概念図（Conceptual Diagram）
 
-![Microservices Architecture diagram](./microservices-logical.svg)
+![Microservices Architecture diagram](./microservices.svg)
 
 > 出典: Microsoft, “Microservices architecture style – Azure Architecture Center”.  
 > https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/microservices
@@ -30,7 +30,7 @@
 - 可用性・スケール要件が高い Web サービス
 - 機能ごとに技術選択が異なる場合
 
-## ✅ 不向きなケース
+## ❌ 不向きなケース
 
 - 小規模プロダクト（オーバーエンジニアリング）
 - 運用が重く、SRE 体制が不十分

@@ -43,7 +43,7 @@ Input → FilterA → FilterB → FilterC → Output
 
 - 途中で分岐・合流を行うこともできる
 
-### 3.1 概念図（Conceptual Diagram）
+### 概念図（Conceptual Diagram）
 
 ```mermaid
 flowchart LR
@@ -69,7 +69,7 @@ flowchart LR
 
 と説明できる場面で威力を発揮する。
 
-## ✅ 不向きなケース
+## ❌ 不向きなケース
 
 - ステートフルな処理が強く絡むロジック（状態遷移中心のワークフローなど）
 - 双方向通信や複雑なインタラクションが必要な UI

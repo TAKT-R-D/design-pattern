@@ -51,9 +51,9 @@ Clean Architecture はこれに対して：
 - 内側は外側のことを知らない
 - 外側が内側のインターフェースに依存する
 
-### 3.1 概念図（Conceptual Diagram）
+### 概念図（Conceptual Diagram）
 
-![The Clean Architecture diagram](./CleanArchitecture.jpg)
+![The Clean Architecture diagram](./clean.jpg)
 
 > 出典: Robert C. Martin, “The Clean Architecture”, 2012.  
 > https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html
@@ -65,7 +65,7 @@ Clean Architecture はこれに対して：
 - フレームワークに縛られたくないバックエンド
 - 自動テスト・ユースケース単位のテストを重視する開発
 
-## ✅ 不向きなケース
+## ❌ 不向きなケース
 
 - 短命な小規模 CRUD アプリ
 - チームの経験値が低く、層構造を維持するコストの方が高い場合

@@ -16,7 +16,7 @@
 - 読み取り用 DB（キャッシュ／検索専用）と書き込み用 DB を分けることも多い
 - Event Sourcing と併用されることが多い
 
-### 3.1 概念図（Conceptual Diagram）
+### 概念図（Conceptual Diagram）
 
 ![CQRS Architecture diagram](./cqrs.png)
 
@@ -29,7 +29,7 @@
 - 高トラフィックでスケール要求が大きい API
 - 検索要件や集計要件が複雑なドメイン
 
-## ✅ 不向きなケース
+## ❌ 不向きなケース
 
 - 小規模 CRUD アプリ（複雑性が上回る）
 - 分離により整合性や運用負荷が増える状況
