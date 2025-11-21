@@ -56,6 +56,8 @@ Structural Styles は、主に次のような問題に向き合います。
 
 - MVC / MVP / MVVM / MVU など
 
+これらの UI パターンは、プレゼンテーション層（画面まわり）の構造を扱うものであり、Classic Layered や Hexagonal のようなアプリ全体の内部構造スタイルとはレイヤが異なる。そのため、例えば「バックエンドは Hexagonal、UI は MVVM」といった形で組み合わせて利用することができる。
+
 ### E. Flow / Pipeline 系
 
 - Pipe & Filter

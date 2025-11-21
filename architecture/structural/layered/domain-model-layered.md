@@ -40,7 +40,9 @@ Domain Model Layered はこれに対して、
 - Application → Domain
 - Infrastructure → Domain
 
-のような形が理想とされます（実際には完全分離は難しいが、方向性として）。
+のような形が理想とされる（実際には完全分離は難しいが、方向性として）。
+
+現実の実装では、ORM（JPA / Hibernate など）のアノテーションをドメインモデルに直接付与するケースも多く、結果として Domain → Infrastructure の依存が残ることがある。この点が、依存方向をより厳密に分離しようとする Hexagonal / Clean Architecture などの“Dependency Rule 強化系”スタイルとの違いとなる。
 
 ### 概念図（Conceptual Diagram）
 
