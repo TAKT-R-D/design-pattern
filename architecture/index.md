@@ -1,29 +1,24 @@
-# ソフトウェアアーキテクチャの地図
+# 🧩 ソフトウェアアーキテクチャの地図
 
-このサイトは、ソフトウェアアーキテクチャを体系立てて理解するための “地図” を作ることを目的としています。
+このサイトは、ソフトウェアアーキテクチャを体系的に理解するための「地図」を提供することを目的とする。  
+アーキテクチャは単一の概念ではなく、複数の設計レイヤーが重なり合う領域であり、全体像を掴むことが難しい。本サイトでは、それらを整理し、相互関係を理解しやすくするための指針を示す。
 
----
+## ✅ なぜアーキテクチャは分かりにくいのか
 
-## なぜアーキテクチャは分かりにくいのか？
+アーキテクチャの議論が混乱しやすい理由は、異なる次元の設計が同じ文脈で語られがちだからである。  
+以下は代表的なレイヤーであり、それぞれ独立した設計軸を持つ。
 
-ソフトウェアアーキテクチャは、単一の概念ではありません。  
-以下のような **異なる階層の設計が同時に語られる** ため、多くの人が混乱します。
+- アプリ内部構造（Layered, MVC, Hexagonal など）
+- システム構成・粒度（Monolith, Microservices）
+- 通信方式（REST, gRPC, Event-driven）
+- データ構造・基盤（DWH, Data Lake, Event Sourcing）
+- 運用・組織（DevOps, SRE, Team Topologies）
 
-- アプリケーション内部構造（レイヤード、MVC、Hexagonal…）
-- システム構成／粒度（モノリス、マイクロサービス…）
-- 通信方式（REST、gRPC、Event-Driven…）
-- データ構造／基盤（Data Lake、CQRS、Event Sourcing…）
-- 運用・組織（DevOps、Team Topologies、SRE…）
+これらは「構造・配置・通信・データ・運用」というまったく別の設計レイヤーであり、ひとつの図や概念で統合的に説明することはできない。
 
-これらは**構造・配置・通信・データ・運用**というまったく異なる設計レイヤーであり、
-1 つの図や 1 つの概念で説明できるものではありません。
+## ✅ 本サイトの分類構成について
 
----
-
-## この分類構成について（歴史的背景とバランス）
-
-本サイトにおける **Structural Styles（アプリ内部構造）** は、  
-他のカテゴリより細かく分類されています。これは、近年のアーキテクチャ議論において、
+本サイトの分類は、近年のアーキテクチャ議論の歴史的トレンドを踏まえて設計している。
 
 - Hexagonal / Onion / Clean Architecture のような  
   **依存方向ルール（Dependency Rule）を前提としたスタイル** が実務で強く定着したこと
@@ -33,22 +28,42 @@
   **Topologies（モノリス〜マイクロサービス）、Integration、Data、Socio-technical**  
   といった “より外側のレイヤー” の進化が中心になっていること
 
-といった歴史的トレンドによるものです。
+こうした背景により、本サイトでは  
+**Structural Styles（アプリ内部構造）を細かく分類し、外側のレイヤーを別カテゴリとして整理する構成**  
+を採用している。
 
-近年語られる実装プラクティス（例：Vertical Slice / Feature-based など）は、  
-これら既存スタイルの具体的な構成方法として位置づけられ、  
-本サイトでは補足的な扱いとしています。
+### 1. Structural Styles（アプリ内部構造）
 
 ---
 
-# ソフトウェアアーキテクチャ全体樹形図
+### 1. Structural Styles（アプリ内部構造）
 
-アーキテクチャを 5 階層構造として整理した全体像です。
+近年の議論では、Hexagonal / Onion / Clean など **Dependency Rule** を中核としたスタイルが強く定着し、アプリ内部構造の中心的トピックとして扱われてきた。  
+そのため Structural Styles は他カテゴリより細かく分類している。
+
+なお、Vertical Slice / Feature-based などの実装手法は、既存スタイルの具体的な構成パターンとして補足的に位置づけている。
+
+### 2. System Topologies（システム構成・粒度）
+
+モノリスからマイクロサービス、さらにサーバレスやエッジに至るまで、アプリケーションの配置戦略を扱う領域。近年の進化が最も顕著なカテゴリである。
+
+### 3. Integration Styles（通信・連携方式）
+
+REST、gRPC、Event-driven、Service Mesh など、サービス間通信の方式と統合パターンを扱う。
+
+### 4. Data & Analytics Architecture（データ構造・分析基盤）
+
+従来の DWH や Data Lake から、CQRS・Event Sourcing による操作分離、Data Mesh による分散責務まで、データ設計の進化を整理している。
+
+### 5. Cross-cutting & Socio-technical（運用・文化・品質）
+
+DevOps、SRE、Observability、Zero Trust、Team Topologies など、技術基盤だけではなく組織・運用・文化が関わる領域を扱う。
+
+## 🧩 ソフトウェアアーキテクチャ全体樹形図
 
 ```mermaid
 mindmap
   root((Software Architecture))
-    %% 1. Structural Styles
     ("1. Structural Styles\n(アプリ内部構造)")
       A["A. 非構造〜初期系"]
         A1["Big Ball of Mud"]
@@ -78,7 +93,6 @@ mindmap
         G2["Event Loop / Reactor"]
         G3["Reactive Streams / FRP"]
 
-    %% 2. System Topologies
     ("2. System Topologies\n(サービス構成・粒度)")
       T1["Monolith"]
       T2["Modular Monolith"]
@@ -87,7 +101,6 @@ mindmap
       T5["Serverless / FaaS"]
       T6["Edge / Fog Architecture"]
 
-    %% 3. Integration Styles
     ("3. Integration Styles\n(通信・インテグレーション)")
       I1["REST / gRPC / GraphQL"]
       I2["Event-Driven Architecture"]
@@ -95,7 +108,6 @@ mindmap
       I4["Service Mesh"]
       I5["API Gateway / BFF"]
 
-    %% 4. Data / Analytics Architecture
     ("4. Data & Analytics Architecture\n(データ構造・分析基盤)")
       Dn1["Data Warehouse"]
       Dn2["Data Lake / Lakehouse"]
@@ -104,7 +116,6 @@ mindmap
       Dn5["Data Mesh"]
       Dn6["Lambda / Kappa Architecture"]
 
-    %% 5. Cross-cutting & Socio-technical
     ("5. Cross-cutting & Socio-technical\n(運用・文化・品質)")
       S1["DevOps / CI/CD / 12-Factor"]
       S2["Team Topologies / Conway's Law"]
@@ -114,12 +125,7 @@ mindmap
       S6["Green Software / Sustainability"]
 ```
 
----
-
-# カテゴリ間の関係図（横断エッジ）
-
-以下は、アーキテクチャのカテゴリ同士がどのように関連し合うかを示したネットワーク図です。  
-階層構造の樹形図だけでは見えにくい **横断的な依存関係** を可視化しています。
+## 🧩 カテゴリ間の関係図（横断エッジ）
 
 ```mermaid
 graph LR
@@ -138,19 +144,16 @@ graph LR
   DA --- CT
 ```
 
----
-
-# このあと読むべきページ
+## 🧭 このあと読むべきページ
 
 - [**Structural Styles（アプリ内部構造）**](./structural/index.md)
-- [**System Topologies（システム構成・サービス粒度）**](./topologies/index.md)
+- [**System Topologies（サービス構成・粒度）**](./topologies/index.md)
 - [**Integration Styles（通信・連携方式）**](./integration/index.md)
 - [**Data Architecture（データ構造・分析基盤）**](./data/index.md)
 - [**Cross-cutting & Socio-technical（運用・文化・品質）**](./cross-cutting/index.md)
 
-それぞれのカテゴリページでは、
+各カテゴリでは、次の観点から説明する。
 
-- どんな問題を解決するものか
-- どのような思想・構造を持つか
-- どんなアプリに向くのか  
-  を統一フォーマットで解説していきます。
+- 解決しようとした問題
+- スタイルの思想・構造
+- 適するアプリケーション領域

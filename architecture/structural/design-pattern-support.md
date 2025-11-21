@@ -1,17 +1,15 @@
-# Structural Styles とデザインパターン対応表
+# 🧩 Structural Styles とデザインパターン対応表
 
 （アーキテクチャを支えるデザインパターンの体系）
 
-本ページでは、各 Structural Style が **どのデザインパターンの組み合わせによって支えられているか** を一覧化します。
+本ページでは、各 Structural Style が **どのデザインパターンの組み合わせによって支えられているか** を一覧化する。
 
-※ パターン名称は _takt.dev/design-pattern/_ と完全に統一しています。
+※ パターン名称は _takt.dev/design-pattern/_ と完全に統一している。
 
----
-
-## 1. Clean / Hexagonal / Onion（Dependency Rule 系）
+## ✅ Clean / Hexagonal / Onion（Dependency Rule 系）
 
 これらのスタイルは「依存方向の制御」「ポート・アダプタ構造」が中核であり、  
-次のデザインパターンが強く関与します。
+次のデザインパターンが強く関与する。
 
 - **Adapter**：Port/Adapter の “Adapter” 部分
 - **Strategy**：UseCase 抽象化の中心
@@ -23,9 +21,7 @@
 
 **主役パターン：Adapter / Strategy / Command**
 
----
-
-## 2. Layered / Domain Model Layered
+## ✅ Layered / Domain Model Layered
 
 レイヤー境界の明確化と責務分離を支えるパターン。
 
@@ -35,9 +31,7 @@
 - **Composite**：集約内部の階層構造表現
 - **Proxy**：外部システム or 遅延アクセスの抽象化
 
----
-
-## 3. UI 系（MVC / MVP / MVVM / MVU）
+## ✅ UI 系（MVC / MVP / MVVM / MVU）
 
 UI Interaction スタイルを支える主要パターン。
 
@@ -51,9 +45,7 @@ UI Interaction スタイルを支える主要パターン。
 **MVU（React / SwiftUI / Jetpack Compose）では特に  
 State + Command + Observer が強く現れる。**
 
----
-
-## 4. Microkernel / Plugin Architecture
+## ✅ Microkernel / Plugin Architecture
 
 プラグインの拡張性・ホットスワップ性を支えるパターン群。
 
@@ -63,9 +55,7 @@ State + Command + Observer が強く現れる。**
 - **Mediator**：プラグイン間調整
 - **Facade**：コアシステムの外観 API
 
----
-
-## 5. Reactive / Actor / Event Loop / Streams
+## ✅ Reactive / Actor / Event Loop / Streams
 
 イベント駆動・非同期処理・アクターモデルを支えるパターン。
 
@@ -76,9 +66,7 @@ State + Command + Observer が強く現れる。**
 - **Iterator**：ストリーム処理の順次化
 - **Chain of Responsibility**：イベント処理の段階的伝搬
 
----
-
-## 6. Flow / Pipeline（Pipe & Filter / Streaming / Batch）
+## ✅ Flow / Pipeline（Pipe & Filter / Streaming / Batch）
 
 段階的な処理フローを実現する構造。
 
@@ -87,9 +75,7 @@ State + Command + Observer が強く現れる。**
 - **Mediator**：ステップ間の調整
 - **Strategy**：各処理ステップの差し替え
 
----
-
-## 7. Data-centric（Active Record / Table Module / Transaction Script）
+## ✅ Data-centric（Active Record / Table Module / Transaction Script）
 
 データ中心の構造は次のパターンの影響が大きい。
 
@@ -99,13 +85,11 @@ State + Command + Observer が強く現れる。**
 - **Strategy**：バリデーション戦略
 - **Command**：トランザクションスクリプトとしての操作
 
----
-
-## 8. この一覧の活用方法
+## ✅ この一覧の活用方法
 
 - Structural Style を選ぶ際に、**実装で必要になるパターンが自然に分かる**
 - 現在のコードベースがどのパターンを多用しているかから、**採用すべき構造スタイルを逆算できる**
 - 既存サイト（takt.dev/design-pattern）で詳細説明を補完できる
 
 > **アーキテクチャ（構造） ⇄ デザインパターン（実装）**  
-> の橋渡しとなるガイドページです。
+> の橋渡しとなるガイドページである。
