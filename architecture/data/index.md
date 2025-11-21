@@ -1,6 +1,6 @@
-# 4. Data & Analytics Architecture（データ構造・分析基盤）
+# 🧩 Data & Analytics Architecture（データ構造・分析基盤）
 
-Data Architecture は、**データの流れ・保存・変換・分析** に関わるアーキテクチャ層です。
+Data Architecture は、**データの流れ・保存・変換・分析** に関わるアーキテクチャ層を扱う。
 
 - OLTP / OLAP の分離
 - データレイク・データウェアハウス
@@ -8,9 +8,7 @@ Data Architecture は、**データの流れ・保存・変換・分析** に関
 - ドメインイベントの扱い
 - 分散データ整合性（CQRS / Event Sourcing）
 
----
-
-## 4.1 このカテゴリが扱う問題
+## ✅ このカテゴリが扱う問題
 
 - どこにデータを保存するか（DB / Lake / Warehouse）
 - どのように集計・分析するか
@@ -18,9 +16,7 @@ Data Architecture は、**データの流れ・保存・変換・分析** に関
 - ストリーミング vs バッチ
 - 分散システムでのデータ整合性の扱い
 
----
-
-## 4.2 Data Architecture の代表スタイル
+## ✅ Data Architecture の代表スタイル
 
 ### ● Data Warehouse（DWH）
 
@@ -53,17 +49,13 @@ Data Architecture は、**データの流れ・保存・変換・分析** に関
 - バッチ＋ストリーム（Lambda）
 - ストリーム単体の一本化（Kappa）
 
----
-
-## 4.3 このカテゴリの読み方
+## ✅ このカテゴリの読み方
 
 1. OLTP と OLAP の境界を理解する
 2. ストリーミング／バッチのどちらが主か
 3. 組織内のデータ責任がどのように分散するべきか（Mesh）
 
----
-
-## 4.4 他の階層との関係
+## ✅ 他の階層との関係
 
 - **Integration**：イベント駆動がデータ構造に直結
 - **System Topologies**：分散サービスでは CQRS／ES が重要
