@@ -1,29 +1,23 @@
-# Serverless Architecture
+# 🧩 Serverless Architecture
 
-## 1. 一言でいうと
+## ✅ このスタイルの概要
 
 **サーバ管理を隠蔽し、イベント駆動の Functions（FaaS）を中心に構築するアーキテクチャ。**
 
----
-
-## 2. 解決しようとした問題
+## ✅ 解決しようとした問題
 
 - インフラ運用コストの削減
 - スケールの自動化
 - 不規則な負荷変動への対応
 
----
-
-## 3. 基本思想・ルール
+## ✅ 基本思想・ルール
 
 - FaaS（Lambda / Cloud Functions など）によるイベント駆動
 - マネージドサービスを組み合わせた構成
 - スケールは自動、従量課金
 - ステートレス関数が基本
 
----
-
-## 3.1 概念図（Conceptual Diagram）
+### 3.1 概念図（Conceptual Diagram）
 
 ```mermaid
 flowchart LR
@@ -36,39 +30,29 @@ flowchart LR
     FN --> LOG
 ```
 
----
-
-## 4. 得意なアプリケーション
+## ✅ 得意なアプリケーション
 
 - イベント駆動処理（ログ・通知・変換）
 - バースト負荷が大きい業務
 - 小規模 API / BFF / バックオフィスツール
 
----
-
-## 5. 不向きなケース
+## ✅ 不向きなケース
 
 - 長時間実行のジョブ
 - ステートフル処理
 - 高頻度トラフィックの恒常的大規模サービス（コスト増）
 
----
-
-## 6. 歴史
+## ✅ 歴史
 
 - AWS Lambda（2014）から普及
 - BaaS / FaaS 組み合わせのアーキテクチャへ発展
 
----
-
-## 7. 関連スタイル
+## ✅ 関連スタイル
 
 - Microservices：粒度の小ささ・疎結合の思想は類似
 - Event-driven：FaaS の起点として強く連携
 
----
-
-## 8. Framework Examples（代表的なスタック）
+## ✅ 代表的なフレームワーク
 
 - **AWS Lambda / API Gateway / DynamoDB / S3**  
   最も普及している Serverless スタック。
@@ -82,9 +66,7 @@ flowchart LR
 - **Vercel Functions / Netlify Functions**  
   Web フロントと近接した Serverless 構成。
 
----
-
-## 9. Supported Design Patterns（このスタイルを支えるデザインパターン）
+## ✅ このスタイルを支えるデザインパターン
 
 - **Observer**  
   イベント（ファイル生成・メッセージ着信）を起点に処理。
@@ -98,10 +80,8 @@ flowchart LR
 - **Strategy**  
   イベントタイプごとの処理分岐。
 
----
-
-## 10. まとめ
+## ✅ まとめ
 
 Serverless は  
 **「スケール自動化 × 運用最小化」** を実現する、  
-クラウド時代の強力な構造スタイルです。
+クラウド時代の強力な構造スタイルである。
