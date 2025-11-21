@@ -34,10 +34,6 @@
 
 ### 1. Structural Styles（アプリ内部構造）
 
----
-
-### 1. Structural Styles（アプリ内部構造）
-
 近年の議論では、Hexagonal / Onion / Clean など **Dependency Rule** を中核としたスタイルが強く定着し、アプリ内部構造の中心的トピックとして扱われてきた。  
 そのため Structural Styles は他カテゴリより細かく分類している。
 
@@ -143,6 +139,24 @@ graph LR
   IT --- DA
   DA --- CT
 ```
+
+## 🧩 アーキテクチャ全体を理解するためのガイド
+
+アプリ内部構造・システム構成・通信方式・データ基盤といった個別カテゴリを読む前に、全体像を俯瞰するための補足ページを用意している。
+
+### ● Architecture Principles（アーキテクチャ原則）
+
+アーキテクチャに共通する基盤概念（依存方向・境界・結合度と凝集度・整合性モデル・同期／非同期など）を整理した。
+
+### ● Architecture Decision Guide（アーキテクチャ選定ガイド）
+
+外側の構造（Topologies / Integration / Data / Cross-cutting）を、要件・制約・組織構造からどのように選ぶかを体系化したガイド。
+
+### ● Structural Styles Decision Guide（内部構造選定ガイド）
+
+アプリ内部の構造（Layered / Clean / Hexagonal / MVC / MVVM / Transaction Script など）を、ドメイン複雑性・変更容易性・チーム構造などからどのように選ぶかを整理したガイド。
+
+これらは各カテゴリの前提として読むことで、アーキテクチャ全体を俯瞰しながら、個々のスタイルを適切に位置づけるための助けとなる。
 
 ## 🧭 このあと読むべきページ
 
