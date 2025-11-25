@@ -1,0 +1,58 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.architectureSidebar.category.Structural Styles": {
+    "message": "Structural Styles",
+    "description": "The label for category Structural Styles in sidebar architectureSidebar"
+  },
+  "sidebar.architectureSidebar.category.Early / 初期構造": {
+    "message": "Early / 初期構造",
+    "description": "The label for category Early / 初期構造 in sidebar architectureSidebar"
+  },
+  "sidebar.architectureSidebar.category.Data-centric": {
+    "message": "Data-centric",
+    "description": "The label for category Data-centric in sidebar architectureSidebar"
+  },
+  "sidebar.architectureSidebar.category.Layered / Domain / Dependency Rule": {
+    "message": "Layered / Domain / Dependency Rule",
+    "description": "The label for category Layered / Domain / Dependency Rule in sidebar architectureSidebar"
+  },
+  "sidebar.architectureSidebar.category.Dependency-rule-based": {
+    "message": "Dependency-rule-based",
+    "description": "The label for category Dependency-rule-based in sidebar architectureSidebar"
+  },
+  "sidebar.architectureSidebar.category.UI Interaction / Presentation": {
+    "message": "UI Interaction / Presentation",
+    "description": "The label for category UI Interaction / Presentation in sidebar architectureSidebar"
+  },
+  "sidebar.architectureSidebar.category.Flow / Pipeline": {
+    "message": "Flow / Pipeline",
+    "description": "The label for category Flow / Pipeline in sidebar architectureSidebar"
+  },
+  "sidebar.architectureSidebar.category.Microkernel": {
+    "message": "Microkernel",
+    "description": "The label for category Microkernel in sidebar architectureSidebar"
+  },
+  "sidebar.architectureSidebar.category.Reactive / Actor": {
+    "message": "Reactive / Actor",
+    "description": "The label for category Reactive / Actor in sidebar architectureSidebar"
+  },
+  "sidebar.architectureSidebar.category.System Topologies": {
+    "message": "System Topologies",
+    "description": "The label for category System Topologies in sidebar architectureSidebar"
+  },
+  "sidebar.architectureSidebar.category.Integration Styles": {
+    "message": "Integration Styles",
+    "description": "The label for category Integration Styles in sidebar architectureSidebar"
+  },
+  "sidebar.architectureSidebar.category.Data Architecture": {
+    "message": "Data Architecture",
+    "description": "The label for category Data Architecture in sidebar architectureSidebar"
+  },
+  "sidebar.architectureSidebar.category.Cross-cutting & Socio-technical": {
+    "message": "Cross-cutting & Socio-technical",
+    "description": "The label for category Cross-cutting & Socio-technical in sidebar architectureSidebar"
+  }
+}
