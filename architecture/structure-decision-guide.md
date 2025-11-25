@@ -1,133 +1,130 @@
-# 🧩 Structural Styles Decision Guide（アプリ内部構造の選定ガイド）
+# 🧩 Structural Styles Decision Guide
 
-アプリケーション内部構造（Structural Styles）は、外側のトポロジーや通信方式とは異なり、**コードベースの変更容易性・保守性・テスト性に直接影響する領域** である。  
-本ガイドでは、主要な構造スタイルをどのように選ぶべきかを、実務で役立つ判断基準に基づいて整理する。
+Internal Application Structure (Structural Styles) differs from outer topologies and communication methods; it is an **area that directly affects the changeability, maintainability, and testability of the codebase.**
+This guide organizes how to select major structural styles based on practical judgment criteria.
 
-なお、MVC / MVP / MVVM / MVU などの UI パターンは、あくまでプレゼンテーション層の構造を扱うものであり、Hexagonal や Layered のようなアプリ全体の内部構造スタイルとは別軸で成立する。そのため、"Hexagonal + MVVM" のように、内部構造スタイルと UI パターンを組み合わせて採用することが一般的である。
-ここで扱う UI 主導 / Domain 主導は、あくまで「どの層を設計の起点とするか」という観点であり、UI パターンそのものはプレゼンテーション層に限定された構造である。バックエンド側では Hexagonal / Layered などのスタイルと併存させることができる。
+Note that UI patterns like MVC / MVP / MVVM / MVU deal strictly with the structure of the presentation layer and exist on a different axis from system-wide internal structural styles like Hexagonal or Layered. Therefore, it is common to combine an internal structural style with a UI pattern, such as "Hexagonal + MVVM".
+The distinction between "UI-driven" and "Domain-driven" here refers to "which layer is the starting point of design." The UI pattern itself is a structure limited to the presentation layer and can coexist with styles like Hexagonal / Layered on the backend.
 
-## ✅ 判断軸 1：ドメインの複雑性（Domain Complexity）
+## ✅ Axis 1: Domain Complexity
 
-最初に見るべきは、対象ドメインがどれほど複雑かである。
+The first thing to look at is how complex the target domain is.
 
-### ● 低い（CRUD 中心）
+### ● Low (CRUD centric)
 
 - Transaction Script
 - Active Record
 - Table Module
 
-**向いている理由：**  
-ロジックが薄く、複雑なモデル表現が不要であるため。
+**Reason for suitability:**
+Logic is thin, and complex model expression is unnecessary.
 
-### ● 中程度（業務ルールが一定程度存在）
+### ● Medium (Business rules exist to some extent)
 
 - Domain Model Layered
-- MVC / MVVM など UI 主導構造
-- 複数のサービスと連携するがドメインはそこまで難しくないケース
+- UI-driven structures like MVC / MVVM
+- Cases involving coordination with multiple services but the domain itself is not overly difficult
 
-### ● 高い（複雑なルール・状態遷移・不変条件）
+### ● High (Complex rules, state transitions, invariants)
 
 - Hexagonal
 - Clean Architecture
 - Onion Architecture
 
-**向いている理由：**  
-依存方向ルールによりドメインモデルが外部から独立し、変更に強くなる。
+**Reason for suitability:**
+The Dependency Rule makes the domain model independent of the outside, making it robust against changes.
 
-## ✅ 判断軸 2：変更容易性（Changeability）
+## ✅ Axis 2: Changeability
 
-どこが頻繁に変わるのか？  
-どの層が多様な UI / API / 永続化方式に晒されるのか？
+What changes frequently?
+Which layer is exposed to diverse UI / API / persistence methods?
 
-### ● プレゼンテーション層が頻繁に変わる
+### ● Presentation layer changes frequently
 
-- Hexagonal（Port/Adapter により UI を差し替えやすい）
+- Hexagonal (UI can be easily swapped via Port/Adapter)
 
-### ● 永続化が変わる可能性が高い
+### ● Persistence is likely to change
 
-- Hexagonal / Clean（Domain → Infrastructure の依存を逆転させる）
+- Hexagonal / Clean (Invert the dependency of Domain → Infrastructure)
 
-### ● とにかく素早く書きたい
+### ● Want to write quickly anyway
 
 - Transaction Script / Active Record
 
-## ✅ 判断軸 3：チーム規模と構造化要求
+## ✅ Axis 3: Team Scale and Structuring Requirements
 
-### ● 小規模（1〜3 人）
+### ● Small Scale (1-3 people)
 
 - Active Record
 - Transaction Script
 - MVVM / MVC
 
-### ● 中規模（4〜10 人）
+### ● Medium Scale (4-10 people)
 
 - Domain Model Layered
-- MVC → MVVM への移行なども選択肢
+- Migration from MVC → MVVM is also an option
 
-### ● 大規模・複数チーム
+### ● Large Scale / Multiple Teams
 
 - Hexagonal
 - Clean Architecture
 - Onion Architecture
-- Modular Monolith（構造と境界を明確にする）
+- Modular Monolith (Clarify structure and boundaries)
 
-## ✅ 判断軸 4：テスト戦略（Testing Strategy）
+## ✅ Axis 4: Testing Strategy
 
-### ● 単体テストを最重要視する
+### ● Prioritize Unit Testing
 
-- Hexagonal / Clean（Port/Adapter による isolation が効く）
+- Hexagonal / Clean (Isolation via Port/Adapter is effective)
 
-### ● 結合テスト中心
+### ● Integration Test Centric
 
 - Classic Layered
 
-### ● 手動テストに依存（レガシー / 短期開発）
+### ● Rely on Manual Testing (Legacy / Short-term dev)
 
-- Active Record でも実務上成立する
+- Active Record is viable in practice
 
-## ✅ 判断軸 5：UI 主導か Domain 主導か
+## ✅ Axis 5: UI-driven vs Domain-driven
 
-### ● UI 主導（表示が中心・複雑 UI）
+### ● UI-driven (Display centric / Complex UI)
 
 - MVC
 - MVP
 - MVVM
 - MVU
 
-### ● Domain 主導（業務ロジックが中心）
+### ● Domain-driven (Business logic centric)
 
 - Domain Model Layered
 - Hexagonal / Clean
 
-## 🧭 最終選定チャート（Mermaid）
+## 🧭 Final Selection Chart (Mermaid)
 
 ```mermaid
 graph TD
-  A[ドメインの複雑性] -->|低い| B1[Transaction Script / Active Record]
-  A -->|中程度| B2[Domain Model Layered / MVC / MVVM]
-  A -->|高い| B3[Hexagonal / Clean / Onion]
+  A[Domain Complexity] -->|Low| B1[Transaction Script / Active Record]
+  A -->|Medium| B2[Domain Model Layered / MVC / MVVM]
+  A -->|High| B3[Hexagonal / Clean / Onion]
 
-  B1 --> C1[小規模チーム]
-  B2 --> C2[中規模チーム]
-  B3 --> C3[大規模・複数チーム]
+  B1 --> C1[Small Team]
+  B2 --> C2[Medium Team]
+  B3 --> C3[Large / Multiple Teams]
 
-  C1 --> D1[単純テスト戦略]
-  C2 --> D2[結合テスト中心]
-  C3 --> D3[単体テスト重視]
+  C1 --> D1[Simple Test Strategy]
+  C2 --> D2[Integration Test Centric]
+  C3 --> D3[Unit Test Priority]
 
-  D3 --> E[Hexagonal / Clean 優位]
+  D3 --> E[Hexagonal / Clean Advantage]
 ```
 
-## ✅ まとめ
+## ✅ Summary
 
-Structural Styles は「どれが優れているか」ではなく、  
-**どのような構造が、プロダクトの性質・複雑性・チーム体制・変更要求に適しているか**  
-によって選択される。
+Structural Styles are selected not by "which is superior," but by **what structure is suitable for the product's nature, complexity, team structure, and change requirements.**
 
-- ドメインが複雑なら Dependency Rule 系（Hexagonal / Clean）
-- 小規模・短期なら Transaction Script / Active Record
-- UI 主導なら MVC / MVVM
-- チームが大きくなるほど、境界の明確化が重要になる
+- If the domain is complex, use Dependency Rule styles (Hexagonal / Clean).
+- If small-scale/short-term, use Transaction Script / Active Record.
+- If UI-driven, use MVC / MVVM.
+- As the team grows, clarifying boundaries becomes more important.
 
-アプリ内部構造は、外側の Topologies や Integration、Data と連動しつつも、  
-**コードの保守性を支える最も具体的なアーキテクチャレイヤ** である。
+Internal application structure works in conjunction with outer Topologies, Integration, and Data, but it is the **most concrete architectural layer that supports code maintainability.**

@@ -1,74 +1,74 @@
-# 🧩 System Topologies（システム構成・サービス粒度）
+# 🧩 System Topologies (System Configuration & Service Granularity)
 
-System Topologies は、**アプリケーションをどの粒度で分割し、どのように配置・デプロイするか** を扱うアーキテクチャ層を対象とする。
+System Topologies covers the architecture layer dealing with **at what granularity to split the application and how to arrange/deploy it.**
 
-- “1 サービスの中身”ではなく **複数サービス／プロセス間の構成** が対象
-- モノリスからマイクロサービスまで、スケール戦略・組織構造と密接に関係する
+- Targets **configuration between multiple services/processes** rather than "contents of 1 service".
+- Closely related to scaling strategy and organizational structure, ranging from Monolith to Microservices.
 
-## ✅ このカテゴリが扱う問題
+## ✅ Problems Addressed by This Category
 
-- システムをどの粒度で分割すべきか
-- 変更とデプロイの単位をどう決めるか
-- チーム構造とアーキテクチャが噛み合わない問題
-- 可用性・スケール・フォールトアイソレーションをどう実現するか
-- マイクロサービスが“多すぎる／少なすぎる”問題
+- At what granularity should the system be split?
+- How to decide the unit of change and deployment?
+- Mismatch between team structure and architecture.
+- How to realize availability, scale, and fault isolation.
+- Problems of "too many / too few" microservices.
 
-## ✅ System Topologies の代表スタイル
+## ✅ Representative Styles of System Topologies
 
-### ● Monolith（モノリス）
+### ● Monolith
 
-- 単一デプロイ、単一プロセス構成
-- 小〜中規模、密結合で問題ない範囲では最も効率的
-- 強い内的整合性・簡単なデプロイがメリット
+- Single deployment, single process configuration.
+- Most efficient for small to medium scale where tight coupling is not an issue.
+- Merits are strong internal consistency and simple deployment.
 
-### ● Modular Monolith（モジュラーモノリス）
+### ● Modular Monolith
 
-- 内部をモジュール化しつつ、デプロイは 1 つ
-- “将来のマイクロサービス化”を見据えるが、過度な分割はしない
+- Internally modularized, but deployment is one unit.
+- Anticipates "future microservices" but avoids excessive splitting.
 
-### ● Microservices（マイクロサービス）
+### ● Microservices
 
-- プロセス単位で独立デプロイ可能なサービス群
-- チーム単位で進化できる構成
-- ただし運用コスト・可観測性のハードルが高い
+- Group of services independently deployable per process.
+- Configuration allowing evolution per team.
+- However, hurdles for operation cost and observability are high.
 
-### ● Service-Oriented Architecture（SOA）
+### ● Service-Oriented Architecture (SOA)
 
-- エンタープライズ統合の文脈で登場
-- ESB 中心の古典的 SOA と、API 中心のモダン SOA がある
+- Emerged in the context of enterprise integration.
+- Includes classic SOA centered on ESB and modern SOA centered on APIs.
 
 ### ● Serverless / FaaS
 
-- Function 単位でデプロイ
-- 機能単位のスケール／コスト効率を目的
-- きめ細かい分割が可能だが複雑にもなりやすい
+- Deployed per Function.
+- Aimed at scaling/cost efficiency per feature unit.
+- Allows fine-grained splitting but can easily become complex.
 
 ### ● Edge / Fog Architecture
 
-- クラウドに加え、エッジ（端末/ローカル拠点）で処理分散
-- IoT・低レイテンシ系のアプリで重要
+- Distributes processing to the edge (devices/local sites) in addition to the cloud.
+- Important for IoT and low-latency applications.
 
-### ● Cell-based Architecture（セル構造）
+### ● Cell-based Architecture
 
-- 超大規模システムで採用される構成
-- Cell（小さな独立クラスター）単位で水平スケール
-- フォールトアイソレーションとスケールを両立
+- Configuration adopted in ultra-large-scale systems.
+- Horizontal scale per Cell (small independent cluster).
+- Balances fault isolation and scale.
 
-### ● Multi-region Architecture（マルチリージョン構成）
+### ● Multi-region Architecture
 
-- 複数リージョンにサービスを配置
-- 可用性・レイテンシ・DR を高水準で実現
-- Active-active / Active-passive 構成
+- Deploys services to multiple regions.
+- Realizes high standards of availability, latency, and DR.
+- Active-active / Active-passive configurations.
 
-## ✅ このカテゴリの読み方
+## ✅ How to Read This Category
 
-1. 小 → 大、単純 → 複雑に進む順で理解する
-2. 自社／自分のシステム規模・組織規模をマッピングする
-3. コスト（認知・運用）と価値（独立性・スケール）を比較する
+1. Understand in order from Small → Large, Simple → Complex.
+2. Map your own system scale and organizational scale.
+3. Compare Cost (Cognitive/Operational) and Value (Independence/Scale).
 
-## ✅ 他の階層との関係
+## ✅ Relationship with Other Layers
 
-- **Integration Styles**：マイクロサービスでは通信方式が死活問題
-- **Structural Styles**：各サービス内部構造は別カテゴリ（Layered/Hex など）
-- **Cross-cutting**：Observability・SLO は特にマイクロサービスで必須
-- **Data Architecture**：分散データ整合性問題（CQRS / Event Sourcing）が登場
+- **Integration Styles**: Communication method is a matter of life and death in Microservices.
+- **Structural Styles**: Internal structure of each service is a separate category (Layered/Hex etc.).
+- **Cross-cutting**: Observability / SLO is essential especially in Microservices.
+- **Data Architecture**: Distributed data consistency problems (CQRS / Event Sourcing) appear.

@@ -1,22 +1,22 @@
-# 🧩 Monolith（モノリス）
+# 🧩 Monolith
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-**アプリケーションの機能が単一デプロイユニットとしてまとまっている構造スタイル。**
+**A structural style where application functions are gathered as a single deployment unit.**
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-- 小規模〜中規模アプリで開発速度を最大化したい
-- デプロイやリリースをシンプルに保ちたい
-- 機能間の変更・追加が素早く反映されるようにしたい
+- Want to maximize development speed in small to medium-scale apps.
+- Want to keep deployment and release simple.
+- Want changes/additions between functions to be reflected quickly.
 
-## ✅ 基本思想・ルール
+## ✅ Basic Philosophy & Rules
 
-- 1 つのコードベース、1 つのデータベース（であることが多い）
-- 1 つのデプロイパッケージでリリース
-- 関数間呼び出しで機能が密結合になりやすい
+- One codebase, one database (often).
+- Released in one deployment package.
+- Functions tend to be tightly coupled by inter-function calls.
 
-### 概念図（Conceptual Diagram）
+### Conceptual Diagram
 
 ```mermaid
 flowchart TD
@@ -28,60 +28,60 @@ flowchart TD
     B --> C
 ```
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-- 初期プロダクト（MVP）
-- 小規模〜中規模の業務システム
-- チームが少人数の環境
+- Initial Product (MVP).
+- Small to medium-scale business systems.
+- Environments with small teams.
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-- チーム規模が大きい
-- モジュール境界が頻繁に衝突する
-- リリースの独立性が求められる
+- Large team scale.
+- Module boundaries collide frequently.
+- Independence of release is required.
 
-## ✅ 歴史
+## ✅ History
 
-- Web アプリケーション初期から一般的な構造
-- SOA → Microservices の台頭で役割が再定義された
+- Common structure since the early days of Web applications.
+- Role redefined with the rise of SOA → Microservices.
 
-## ✅ 関連スタイル
+## ✅ Related Styles
 
-- Modular Monolith：モノリスを構造的に整理した発展型
-- Microservices：デプロイ粒度が異なる対極的モデル
+- **Modular Monolith**: Advanced form organizing Monolith structurally.
+- **Microservices**: Opposite model with different deployment granularity.
 
-## ✅ 代表的なフレームワーク
+## ✅ Representative Frameworks
 
-- **Ruby on Rails / Laravel / Django**  
-  単一アプリケーションで MVC を構成する典型的モノリス。
+- **Ruby on Rails / Laravel / Django**
+  Typical monolith configuring MVC in a single application.
 
-- **Spring Boot（単一 WAR/JAR デプロイ）**  
-  モノリス構成として多数の企業システムで利用。
+- **Spring Boot (Single WAR/JAR deployment)**
+  Used in many enterprise systems as monolith configuration.
 
-- **Next.js（モノリス構成）**  
-  API Routes + Web UI + SSR を 1 プロジェクトに集約する構造。
+- **Next.js (Monolith configuration)**
+  Structure aggregating API Routes + Web UI + SSR into 1 project.
 
-- **.NET MVC / ASP.NET Core**  
-  企業システムのモノリス構築で広く採用。
+- **.NET MVC / ASP.NET Core**
+  Widely adopted in enterprise system monolith construction.
 
-## ✅ このスタイルを支えるデザインパターン
+## ✅ Design Patterns Supporting This Style
 
-- **Facade**  
-  アプリ全体の入り口（Controller）を統一化。
+- **Facade**
+  Unifies the entrance (Controller) of the entire app.
 
-- **Template Method**  
-  共通的な処理（バリデーション → 実行 → レスポンス）を統一。
+- **Template Method**
+  Unifies common processing (Validation → Execution → Response).
 
-- **Strategy**  
-  モジュール内でアルゴリズム切り替えを行う際。
+- **Strategy**
+  When switching algorithms within a module.
 
-- **Composite**  
-  UI やドメイン構造を階層的に扱う。
+- **Composite**
+  Handles UI or domain structure hierarchically.
 
-- **Mediator**  
-  大規模モノリス内で複数モジュールの連携を調整。
+- **Mediator**
+  Adjusts coordination of multiple modules within a large monolith.
 
-## ✅ まとめ
+## ✅ Summary
 
-モノリスは単純・高速・変更容易性に優れ、  
-**小〜中規模システムでは依然として最有力候補** となる構造スタイルである。
+Monolith excels in simplicity, speed, and ease of change,
+and remains the **strongest candidate for small to medium-scale systems.**

@@ -1,49 +1,48 @@
-# 🧩 Observability（可観測性）
+# 🧩 Observability
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-**システム内部で何が起きているかを、“外から”把握可能にするための設計思想。**
+**Design philosophy to make it possible to grasp what is happening inside the system "from outside".**
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-- 障害時に原因が分からない（ブラックボックス化）
-- 分散システムでのトレーシングが困難
-- データ不足で改善ポイントが見えない
-- 従来の「監視」では不十分な複雑性の増大
+- Cannot understand cause at failure (Black box).
+- Tracing in distributed system is difficult.
+- Cannot see improvement points due to lack of data.
+- Increase in complexity where traditional "Monitoring" is insufficient.
 
-## ✅ 基本思想・ルール
+## ✅ Basic Philosophy & Rules
 
-- メトリクス（Metrics）
-- ログ（Logs）
-- トレース（Traces）
-- “三本柱（Three Pillars）” としての統合
-- コンテキスト（Trace ID）を持つデータ吐き出し
-- 可観測性をコード・インフラレイヤで設計に組み込む
+- Metrics
+- Logs
+- Traces
+- Integration as "Three Pillars".
+- Data output with context (Trace ID).
+- Incorporate observability into design at code/infrastructure layer.
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-- マイクロサービス
-- サーバレス＋イベント駆動システム
-- SLA / SLO に基づくサービス運用
+- Microservices.
+- Serverless + Event-driven systems.
+- Service operation based on SLA / SLO.
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-- 単一ノードの小規模アプリ（過剰設計）
-- ログ管理・可観測性ツールの運用ができない環境
+- Single node small-scale app (Over-engineering).
+- Environment where log management / observability tool operation is impossible.
 
-## ✅ 歴史
+## ✅ History
 
-- 監視（Monitoring）から可観測性（Observability）へ進化
-- Dapper → OpenTracing → OpenTelemetry と標準化が進む
+- Evolved from Monitoring to Observability.
+- Standardization progressed from Dapper → OpenTracing → OpenTelemetry.
 
-## ✅ 関連スタイル
+## ✅ Related Styles
 
-- SRE：可観測性は SRE プラクティスの基盤
-- DevOps：デリバリーの高速化を安全に行う前提
-- Service Mesh：トレース・メトリクス収集の自動化
+- SRE: Observability is foundation of SRE practices.
+- DevOps: Prerequisite for safe acceleration of delivery.
+- Service Mesh: Automation of trace/metrics collection.
 
-## ✅ まとめ
+## ✅ Summary
 
-Observability は  
-**複雑なシステムを理解可能な状態に保つための必須アプローチ** で、  
-障害対応・改善・高速開発のいずれにも不可欠である。
+Observability is an **essential approach to keep complex systems in understandable state**,
+and is indispensable for failure response, improvement, and rapid development.

@@ -1,171 +1,165 @@
-# 🧩 REST / gRPC / GraphQL（同期リクエスト駆動の統合スタイル）
+# 🧩 REST / gRPC / GraphQL (Synchronous Request-Driven Integration Styles)
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-**サービス間を「リクエスト＆レスポンス」で同期的につなぐ代表的な 3 つのプロトコル／API スタイル** を俯瞰するページである。
+This page overviews **three representative protocols / API styles connecting services synchronously with "Request & Response".**
 
-- REST：リソース指向の HTTP API スタイル
-- gRPC：IDL ベースの高速バイナリ RPC
-- GraphQL：クライアント駆動の柔軟なクエリ API
+- REST: Resource-oriented HTTP API style.
+- gRPC: IDL-based fast binary RPC.
+- GraphQL: Client-driven flexible query API.
 
-ここでは「どのような思想で何を解決しようとしているのか」を軸に整理する。
+Here we organize them based on "what philosophy they have and what problems they try to solve".
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-3 者とも、基本的には **サービス間通信をシンプルに、再利用可能にしたい** という課題に向き合っていますが、焦点は少しずつ異なります。
+All three basically face the challenge of **wanting to make inter-service communication simple and reusable**, but their focus differs slightly.
 
-- REST：
+- REST:
+  - Wants to provide resource-oriented and unified interface in the world of Web / HTTP.
+  - Wants to design link-oriented and cacheable APIs.
 
-  - Web / HTTP の世界で、リソース指向かつ統一されたインターフェースを提供したい
-  - リンク指向・キャッシュ可能な API を設計したい
+- gRPC:
+  - Wants to reduce JSON/HTTP overhead and realize fast and type-safe communication in microservices.
+  - Wants bidirectional streaming and strict interface definition (IDL).
 
-- gRPC：
+- GraphQL:
+  - Wants to resolve "N+1 REST calls" and responses with too much/too little data in situations where necessary data differs per client.
+  - Wants to design schema and data fetching form led by frontend.
 
-  - マイクロサービス間の通信で、JSON/HTTP のオーバーヘッドを減らし、高速で型安全な通信を実現したい
-  - 双方向ストリーミングや厳密なインターフェース定義（IDL）が欲しい
-
-- GraphQL：
-  - クライアントごとに必要なデータが違う状況で、「N+1 REST 呼び出し」や過不足の多いレスポンスを解消したい
-  - フロントエンド主導でスキーマとデータ取得形態を設計したい
-
-## ✅ 基本思想・ルール
+## ✅ Basic Philosophy & Rules
 
 ### REST
 
-- HTTP メソッド（GET/POST/PUT/DELETE...）＋ URL でリソース操作を表現
-- ステータスコード・ヘッダ・キャッシュなど HTTP の仕組みを活用
-- HATEOAS（リンクを通じた遷移）など、ハイパーメディア指向の設計思想
+- Expresses resource operation with HTTP methods (GET/POST/PUT/DELETE...) + URL.
+- Utilizes HTTP mechanisms like status codes, headers, and caching.
+- Hypermedia-oriented design philosophy like HATEOAS (transition via links).
 
 ### gRPC
 
-- Protocol Buffers（proto）などの IDL でインターフェースを定義
-- バイナリ形式＋ HTTP/2 による高速・効率的な通信
-- Unary / Server Streaming / Client Streaming / Bidirectional Streaming をサポート
+- Defines interface with IDL like Protocol Buffers (proto).
+- Fast and efficient communication by binary format + HTTP/2.
+- Supports Unary / Server Streaming / Client Streaming / Bidirectional Streaming.
 
 ### GraphQL
 
-- Schema による型付き API 定義
-- クライアントがクエリで「欲しいフィールドのみ」を宣言的に指定
-- 単一エンドポイントで複数リソースを組み合わせた取得が可能
+- Typed API definition by Schema.
+- Client declaratively specifies "only fields wanted" in query.
+- Possible to fetch combination of multiple resources with single endpoint.
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
 ### REST
 
-- パブリック API / Web API 全般
-- キャッシュや HTTP インフラを活かしたい API
-- リソース中心の CRUD API
+- Public API / Web API in general.
+- APIs that want to utilize caching and HTTP infrastructure.
+- Resource-centric CRUD APIs.
 
 ### gRPC
 
-- マイクロサービス間の内部通信
-- 高スループット・低レイテンシが重要なバックエンド
-- 型安全なインターフェースが重要な多言語環境
+- Internal communication between microservices.
+- Backends where high throughput and low latency are important.
+- Multi-language environments where type-safe interfaces are important.
 
 ### GraphQL
 
-- フロントエンドからの柔軟なデータ取得が必要な BFF 的役割
-- モバイル／SPA でのネットワーク回数削減
-- UI のバリエーションや A/B テストが多いプロダクト
+- BFF role where flexible data fetching from frontend is necessary.
+- Reducing network round trips in Mobile / SPA.
+- Products with many UI variations or A/B tests.
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
 ### REST
 
-- クライアントごとに必要なデータ構造が大きく異なる場合
-- 高速な双方向ストリーミングが必要な場合
+- When necessary data structure differs greatly per client.
+- When fast bidirectional streaming is required.
 
 ### gRPC
 
-- ブラウザから直接叩くパブリック API（標準ブラウザからの利用は JSON/REST より敷居が高い）
-- HTTP デバッグツールで確認したい運用現場
+- Public API called directly from browser (Usage from standard browser has higher threshold than JSON/REST).
+- Operation sites that want to check with HTTP debug tools.
 
 ### GraphQL
 
-- 非常にシンプルな CRUD API（GraphQL サーバのコストがオーバーキル）
-- キャッシュ戦略がシンプルな REST で十分なケース
-- スキーマ設計・N+1 問題対策の知見がチームにない場合
+- Very simple CRUD APIs (GraphQL server cost is overkill).
+- Cases where simple REST caching strategy is sufficient.
+- When team lacks knowledge of schema design and N+1 problem countermeasures.
 
-## ✅ 歴史（系譜・親スタイル）
+## ✅ History (Genealogy / Parent Styles)
 
-- REST：Fielding の論文を起点に、Web アーキテクチャとして普及
-- gRPC：Google 内部技術をもとに OSS 化され、マイクロサービス時代の RPC として拡大
-- GraphQL：Facebook がフロントエンドの課題から生み出し、その後 OSS として広く利用されるように
+- REST: Spread as Web architecture starting from Fielding's dissertation.
+- gRPC: OSS based on Google internal technology, expanded as RPC for microservices era.
+- GraphQL: Created by Facebook from frontend challenges, then widely used as OSS.
 
-3 者は対立軸というより、**Web API / サービス間通信の進化の別方向** と捉えると理解しやすい。
+It is easier to understand if you view them as **different directions of evolution of Web API / Inter-service communication** rather than opposing axes.
 
-## ✅ 関連スタイル
+## ✅ Related Styles
 
-- **Event-driven / Messaging**：非同期統合スタイルとの対比
-- **API Gateway / BFF**：これらの API をどう公開・集約するかのスタイル
-- **Service Mesh**：通信経路の制御・観測の観点からの補完的スタイル
+- **Event-driven / Messaging**: Contrast with asynchronous integration styles.
+- **API Gateway / BFF**: Style of how to expose and aggregate these APIs.
+- **Service Mesh**: Complementary style from the perspective of communication path control and observation.
 
-## ✅ 代表的なフレームワーク
+## ✅ Representative Frameworks
 
 ### REST
 
-- **Spring MVC / Spring Boot**  
-  エンタープライズ向け Web/API サーバの代表格。RESTful API の典型例として参照されることが多い。
+- **Spring MVC / Spring Boot**
+  Representative of enterprise Web/API servers. Often referenced as typical example of RESTful API.
 
-- **Ruby on Rails**  
-  リソース指向のルーティングとコントローラで RESTful API を構築しやすい。
+- **Ruby on Rails**
+  Easy to build RESTful API with resource-oriented routing and controllers.
 
-- **Django REST Framework**  
-  Django 上で REST API を実装するためのデファクトスタンダード。
+- **Django REST Framework**
+  De facto standard for implementing REST API on Django.
 
-- **Express / FastAPI など**  
-  軽量な Web フレームワークで、シンプルな REST API を素早く構築できる。
+- **Express / FastAPI etc.**
+  Lightweight Web frameworks capable of building simple REST APIs quickly.
 
 ### gRPC
 
-- **gRPC 公式ライブラリ（Go / Java / C# / Node.js など）**  
-  IDL（proto）とコード生成を通じて、高速かつ型安全な RPC を提供する。
+- **gRPC Official Libraries (Go / Java / C# / Node.js etc.)**
+  Provides fast and type-safe RPC through IDL (proto) and code generation.
 
-- **Envoy / gRPC-Web**  
-  ブラウザから gRPC を扱うためのプロキシやアダプタ。
+- **Envoy / gRPC-Web**
+  Proxy and adapter to handle gRPC from browser.
 
 ### GraphQL
 
-- **Apollo Server / Apollo Gateway**  
-  Node.js ベースの GraphQL サーバ／フェデレーション実装。
+- **Apollo Server / Apollo Gateway**
+  Node.js based GraphQL server / federation implementation.
 
-- **Hasura**  
-  DB スキーマから即座に GraphQL API を生成するバックエンド。
+- **Hasura**
+  Backend generating GraphQL API immediately from DB schema.
 
-- **GraphQL Java / Hot Chocolate (.NET) など**  
-  各言語での GraphQL サーバ実装。
+- **GraphQL Java / Hot Chocolate (.NET) etc.**
+  GraphQL server implementations in each language.
 
-## ✅ このスタイルを支えるデザインパターン
+## ✅ Design Patterns Supporting This Style
 
-REST / gRPC / GraphQL は通信プロトコルですが、その裏では次のようなデザインパターンがよく使われる。
+REST / gRPC / GraphQL are communication protocols, but the following design patterns are often used behind them.
 
-- **Facade**  
-  複数のドメイン操作を 1 つの API としてまとめ、クライアントから見た入口を簡潔にする。
+- **Facade**
+  Summarizes multiple domain operations as one API, simplifying the entrance seen from client.
 
-- **Adapter**  
-  内部のモデル／インターフェースと外部公開 API のデータ形式の差を吸収する。
+- **Adapter**
+  Absorbs difference in data format between internal model/interface and externally exposed API.
 
-- **Proxy**  
-  認証・キャッシュ・レートリミットなど、通信経路上での制御を追加する際に用いられる。
+- **Proxy**
+  Used when adding control on communication path like authentication, caching, rate limiting.
 
-- **Strategy**  
-  バージョン違いやクライアント別の振る舞いを切り替える場合に利用される。
+- **Strategy**
+  Used when switching behavior by version difference or client.
 
-- **Template Method**  
-  共通のリクエスト処理フロー（認証 → バリデーション → 処理 → レスポンス整形）を統一する。
+- **Template Method**
+  Unifies common request processing flow (Authentication → Validation → Processing → Response formatting).
 
-## ✅ まとめ
+## ✅ Summary
 
-REST / gRPC / GraphQL は、
+REST / gRPC / GraphQL are styles that:
 
-- 同じ「リクエスト＆レスポンス型の統合」でも、
-- 解決したい問題と得意領域が少しずつ異なる
+- Are all "Request & Response type integration", but
+- Have slightly different problems to solve and areas of expertise.
 
-スタイルである。
+When choosing, it is realistic to use them in combination in the right places from perspectives like:
 
-選択の際は、
-
-- **誰が主役か？（クライアント／バックエンド／サービス間）**
-- **何がボトルネックか？（帯域／レイテンシ／開発速度／柔軟性）**
-
-といった観点から、適材適所で組み合わせて使うのが現実的である。
+- **Who is the protagonist? (Client / Backend / Inter-service)**
+- **What is the bottleneck? (Bandwidth / Latency / Development Speed / Flexibility)**

@@ -1,45 +1,41 @@
-# 🧩 Classic Layered Architecture（クラシックレイヤードアーキテクチャ）
+# 🧩 Classic Layered Architecture
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-**UI / Application / Domain / Infrastructure のようにアプリケーションを層に分割し、上位レイヤーが下位レイヤーに依存する構造スタイル。**
-最も広く知られている「3 層 / n 層アーキテクチャ」。
+**A structural style where the application is divided into layers like UI / Application / Domain / Infrastructure, and upper layers depend on lower layers.**
+Also known as the most widely known "3-tier / n-tier architecture".
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-- 画面（UI）・ビジネスロジック・DB アクセスが混在したスパゲッティ構造
-- 変更の影響範囲が読めない
-- チーム分業がしづらい
+- Spaghetti structure where screen (UI), business logic, and DB access are mixed.
+- Unpredictable scope of impact when making changes.
+- Difficulty in dividing work among teams.
 
-Classic Layered は、
+Classic Layered aims to **make the structure clear** by:
 
-> 「似た責務のコードを層としてまとめ、上下の依存を整理する」
+> "Grouping code with similar responsibilities into layers and organizing vertical dependencies."
 
-ことで、**構造を見通し良くする** ことを狙う。
+## ✅ Basic Philosophy & Rules
 
-## ✅ 基本思想・ルール
-
-典型的なレイヤー構造：
+Typical layer structure:
 
 - Presentation / UI
 - Application / Service
 - Domain / Business Logic
 - Infrastructure / Data Access
 
-基本ルール：
+Basic Rules:
 
-- 上位レイヤーは下位レイヤーに依存してよい
-- 下位レイヤーが上位レイヤーに依存することは避ける
-- レイヤーを“ジャンプ”する依存は避ける（UI → DB 直結など）
+- Upper layers can depend on lower layers.
+- Lower layers should avoid depending on upper layers.
+- Avoid "jumping" layers (e.g., connecting UI directly to DB).
 
-実装上は、
+In implementation, it is often operated with a structure where:
 
-- パッケージや名前空間でレイヤーを分ける
-- レイヤー内の依存は比較的自由
+- Layers are separated by packages or namespaces.
+- Dependencies within a layer are relatively free.
 
-という構造で運用されることが多い。
-
-## ✅ 概念図（Conceptual Diagram）
+## ✅ Conceptual Diagram
 
 ```mermaid
 flowchart TD
@@ -53,83 +49,81 @@ flowchart TD
     DOMAIN --> INFRA
 ```
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-- 業務 Web アプリケーション全般
-- ビジネスロジックがそこまで複雑ではない社内システム
-- 画面や API ごとに素直な CRUD が中心のアプリ
-- チーム分業（フロント / バックエンド / DB）を前提とした開発
+- General business Web applications.
+- Internal systems where business logic is not overly complex.
+- Apps centered on straightforward CRUD for each screen or API.
+- Development assuming team division (Frontend / Backend / DB).
 
-Classic Layered は **“とりあえずこれで分割する” という標準解** として有効である。
+Classic Layered is effective as a **standard solution for "splitting for now"**.
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-- ドメインルールが複雑で、ドメインモデルを本格的に設計したい場合
-- 外部サービス連携や複数 UI を前提にしたアプリケーション
-- フレームワークや DB への依存を極力減らしたい場合
+- When domain rules are complex and you want to design a domain model in earnest.
+- Applications assuming external service integration or multiple UIs.
+- When you want to minimize dependency on frameworks or DBs.
 
-典型的な限界として：
+Typical limitations:
 
-- Domain 層が薄くなりがち（実質的には Application/Service にロジック集中）
-- インフラ依存（ORM・フレームワーク）が Domain に侵食しやすい
-- テストがインフラ依存に引きずられる
+- The Domain layer tends to become thin (logic concentrates in Application/Service).
+- Infrastructure dependencies (ORM, frameworks) easily erode into the Domain.
+- Tests get dragged down by infrastructure dependencies.
 
-## ✅ 歴史（系譜・親スタイル）
+## ✅ History (Genealogy / Parent Styles)
 
-- 非構造〜Transaction Script の時代からの進化として登場
-- 90〜2000 年代のエンタープライズアプリで標準的なスタイルに
-- Fowler の _Patterns of Enterprise Application Architecture_ などで整理
-- のちに DDD や Hexagonal へと発展する “ベースキャンプ”的な存在
+- Emerged as an evolution from the Non-structured ~ Transaction Script era.
+- Became the standard style for enterprise apps in the 90s-2000s.
+- Organized in Fowler's _Patterns of Enterprise Application Architecture_, etc.
+- A "base camp" style that later evolved into DDD and Hexagonal.
 
-## ✅ 関連スタイル
+## ✅ Related Styles
 
-- **Domain Model Layered**：ドメイン層を厚くした発展系
-- **Hexagonal / Onion / Clean**：依存方向を厳しく管理するさらなる発展系
-- **MVC / MVVM**：UI 層内部の構造として組み合わせて利用される
+- **Domain Model Layered**: An evolved form with a thicker domain layer.
+- **Hexagonal / Onion / Clean**: Further evolved forms that strictly manage dependency direction.
+- **MVC / MVVM**: Used in combination as the structure within the UI layer.
 
-## ✅ 代表的なフレームワーク
+## ✅ Representative Frameworks
 
-Classic Layered はもっとも一般的な構造スタイルのひとつであり、多くのフレームワークがこの形を前提にしているか、自然に誘導します。
+Classic Layered is one of the most common structural styles, and many frameworks assume this shape or naturally induce it.
 
-- **Spring Boot（Java）**  
-  Controller / Service / Repository といった 3 層構造が標準的なサンプルとして提示される。
+- **Spring Boot (Java)**
+  A 3-tier structure of Controller / Service / Repository is presented as a standard sample.
 
-- **ASP.NET Core / .NET**  
-  Presentation / Application / Domain / Infrastructure のようなレイヤード構成のテンプレートが豊富。
+- **ASP.NET Core / .NET**
+  Templates with layered configurations like Presentation / Application / Domain / Infrastructure are abundant.
 
-- **NestJS（Node.js）**  
-  Module / Controller / Provider といった構成が、レイヤードに寄せた設計をしやすくしている。
+- **NestJS (Node.js)**
+  Configurations like Module / Controller / Provider make it easy to design leaning towards layered.
 
-- **Angular**  
-  UI フレームワークだが、Component / Service / Data Access という 3 層的な構造で考えやすい。
+- **Angular**
+  Although a UI framework, it is easy to think in a 3-tier structure of Component / Service / Data Access.
 
-## ✅ このスタイルを支えるデザインパターン
+## ✅ Design Patterns Supporting This Style
 
-Classic Layered 自体はシンプルな責務分割だが、レイヤー間の関係を整理するために次のパターンがよく使われる。
+Classic Layered itself is a simple division of responsibilities, but the following patterns are often used to organize relationships between layers.
 
-- **Facade**  
-  上位レイヤ（UI / Application）から下位レイヤの複雑さを隠し、統一インターフェースを提供する。
+- **Facade**
+  Hides the complexity of lower layers from upper layers (UI / Application) and provides a unified interface.
 
-- **Strategy**  
-  ビジネスロジックのバリエーションを Application / Domain レイヤで切り替える際に使われる。
+- **Strategy**
+  Used when switching variations of business logic in the Application / Domain layer.
 
-- **Template Method**  
-  複数の Service や Repository が似た処理手順を持つ場合、その骨格を共通化する。
+- **Template Method**
+  Commonizes the skeleton when multiple Services or Repositories have similar processing procedures.
 
-- **Proxy**  
-  外部 API やキャッシュ、リモートサービスへのアクセスを、Infrastructure レイヤでラップする際に利用される。
+- **Proxy**
+  Used when wrapping access to external APIs, caches, or remote services in the Infrastructure layer.
 
-## ✅ まとめ
+## ✅ Summary
 
-Classic Layered は、
+Classic Layered is still an active style in the sense that:
 
-- シンプルで理解しやすく、
-- 多くのフレームワークやサンプルコードが前提としている
+- It is simple and easy to understand.
+- Many frameworks and sample codes assume it.
 
-という意味で、今でも現役のスタイルである。
+On the other hand, because of limitations like:
 
-一方で、
+- Framework dependency and weak domain expression
 
-- フレームワーク依存やドメイン表現の弱さ
-
-といった限界もあるため、**より複雑なシステムでは次の発展段階（Domain Model / Hexagonal など）を検討するための基準点** として位置づけるとよい。
+It is good to position it as a **reference point for considering the next developmental stage (Domain Model / Hexagonal, etc.) in more complex systems.**

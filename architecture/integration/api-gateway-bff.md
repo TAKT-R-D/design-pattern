@@ -1,126 +1,121 @@
-# 🧩 API Gateway / BFF（Backend for Frontend）
+# 🧩 API Gateway / BFF (Backend for Frontend)
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-**複数のバックエンドサービスをまとめて公開する「入口（Gateway）」と、  
-クライアント種類ごとに最適化されたバックエンドを用意する「BFF」の構造スタイル。**
+**A structural style with a common "Entrance (Gateway)" exposing multiple backend services, and "BFF" preparing optimized backends for each client type.**
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-マイクロサービスや複数クライアント（Web / モバイル / 外部パートナー）が登場すると：
+When microservices or multiple clients (Web / Mobile / External Partners) appear:
 
-- クライアントが多数のサービスを直接呼び出すと複雑になる
-- 認証・認可・レートリミット・ロギングなど共通処理が重複
-- Web とモバイルで必要なデータ形が違い、同じ API では使い勝手が悪い
+- Complexity increases if clients call many services directly.
+- Common processing like authentication, authorization, rate limiting, and logging is duplicated.
+- Data shape required by Web and Mobile differs, making same API inconvenient.
 
-API Gateway / BFF はこれに対して：
+API Gateway / BFF responds with a structure that:
 
-- 共通の入口で横断的な関心事を処理し
-- クライアント種類ごとに最適化された Facade を用意する
+- Processes cross-cutting concerns at a common entrance.
+- Prepares Facades optimized for each client type.
 
-という構造で応える。
-
-## ✅ 基本思想・ルール
+## ✅ Basic Philosophy & Rules
 
 ### ● API Gateway
 
-- 外部からのすべてのリクエストの入口
-- 主な役割：
-  - 認証・認可
-  - レートリミット
-  - ロギング・トレーシング
-  - ルーティング（どのサービスに送るか）
-  - プロトコル変換（外部は REST、内部は gRPC など）
+- Entrance for all requests from outside.
+- Main roles:
+  - Authentication / Authorization
+  - Rate Limiting
+  - Logging / Tracing
+  - Routing (Which service to send to)
+  - Protocol Conversion (External REST, Internal gRPC, etc.)
 
-### ● BFF（Backend for Frontend）
+### ● BFF (Backend for Frontend)
 
-- 特定のクライアント（Web, iOS, Android 等）に特化したバックエンド
-- 役割：
-  - クライアントごとに適切なデータ形に変換
-  - 複数サービス呼び出しのオーケストレーション
-  - クライアント特有のユースケースを集約
+- Backend specialized for specific clients (Web, iOS, Android, etc.).
+- Roles:
+  - Convert to appropriate data shape per client.
+  - Orchestration of multiple service calls.
+  - Aggregation of client-specific use cases.
 
-構成例：
+Configuration Example:
 
-- Internet → API Gateway → Web BFF → 各種バックエンドサービス
-- Internet → API Gateway → Mobile BFF → 各種バックエンドサービス
+- Internet → API Gateway → Web BFF → Various Backend Services
+- Internet → API Gateway → Mobile BFF → Various Backend Services
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-- Web / モバイル / 外部パートナー API を同時に提供する SaaS
-- マイクロサービスが多く、クライアントが直接すべてを知るべきではないシステム
-- クライアントごとに画面設計・UX が大きく異なるプロダクト
+- SaaS providing Web / Mobile / External Partner APIs simultaneously.
+- Systems with many microservices where clients should not know everything directly.
+- Products where screen design / UX differs significantly per client.
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-- シンプルなモノリシックアプリ（API が 1 つのバックエンドで完結）
-- クライアントが 1 種類しかなく、複雑な集約ロジックも不要な場合
+- Simple monolithic apps (API completes with 1 backend).
+- Cases with only 1 type of client and no complex aggregation logic needed.
 
-過剰に BFF を増やすと：
+If BFFs are increased excessively:
 
-- 境界が増えすぎて変更コストが上がる
-- 同じようなロジックが複数 BFF に重複する
+- Boundaries increase too much, raising change cost.
+- Similar logic duplicates across multiple BFFs.
 
-といった問題も起こるため、分割粒度に注意が必要である。
+Care is needed for splitting granularity.
 
-## ✅ 歴史（系譜・親スタイル）
+## ✅ History (Genealogy / Parent Styles)
 
-- API Gateway 自体は SOA 時代から存在（ESB ＋ Gateway 等）
-- スマートフォンの普及とともに BFF の考え方が生まれた
-- Microservices, REST/gRPC/GraphQL の普及とともに標準的な構成要素になった
+- API Gateway itself existed since SOA era (ESB + Gateway etc.).
+- Idea of BFF was born with the spread of smartphones.
+- Became standard component with spread of Microservices, REST/gRPC/GraphQL.
 
-## ✅ 関連スタイル
+## ✅ Related Styles
 
-- **REST / gRPC / GraphQL**：Gateway/BFF が表側で提供する API スタイル
-- **Service Mesh**：サービス間通信の内部実装を担うレイヤー（Gateway より内側）
-- **Event-driven / Saga**：Gateway/BFF からトリガーされる非同期フローの構成要素
+- **REST / gRPC / GraphQL**: API styles provided by Gateway/BFF on the front side.
+- **Service Mesh**: Layer responsible for internal implementation of inter-service communication (Inside Gateway).
+- **Event-driven / Saga**: Components of asynchronous flow triggered from Gateway/BFF.
 
-## ✅ 代表的なフレームワーク
+## ✅ Representative Frameworks
 
-API Gateway / BFF は製品としても OSS としても多くの選択肢がある。
+There are many choices for API Gateway / BFF as both products and OSS.
 
-- **AWS API Gateway / Azure API Management / GCP API Gateway**  
-  マネージドな API Gateway サービス。認証・レート制限・ルーティングなどを提供。
+- **AWS API Gateway / Azure API Management / GCP API Gateway**
+  Managed API Gateway services. Provide authentication, rate limiting, routing, etc.
 
-- **Kong / Tyk / KrakenD / NGINX**  
-  OSS / 商用の API Gateway 製品。プラグインによる拡張が可能。
+- **Kong / Tyk / KrakenD / NGINX**
+  OSS / Commercial API Gateway products. Extensible via plugins.
 
-- **Spring Cloud Gateway**  
-  Spring エコシステム向けの API Gateway 実装。
+- **Spring Cloud Gateway**
+  API Gateway implementation for Spring ecosystem.
 
-- **Node.js / Express / NestJS 製 BFF**  
-  Web / モバイルクライアント向けに特化した BFF を実装する際によく使われる。
+- **Node.js / Express / NestJS based BFF**
+  Often used when implementing BFF specialized for Web / Mobile clients.
 
-- **Next.js（App Router / Route Handlers）**  
-  Web フロントエンドと BFF 的な API を同一プロジェクト内で構成しやすい。
+- **Next.js (App Router / Route Handlers)**
+  Easy to configure Web frontend and BFF-like API within the same project.
 
-## ✅ このスタイルを支えるデザインパターン
+## ✅ Design Patterns Supporting This Style
 
-API Gateway / BFF はクライアントから見た“入り口”として、複数のパターンの組み合わせで成立する。
+API Gateway / BFF is established by a combination of multiple patterns as an "entrance" seen from the client.
 
-- **Facade**  
-  複数バックエンドサービスを 1 つの API として見せる外観。
+- **Facade**
+  Appearance showing multiple backend services as one API.
 
-- **Adapter**  
-  クライアントが扱いやすい形にデータやインターフェースを変換する。
+- **Adapter**
+  Converts data and interfaces into forms easy for clients to handle.
 
-- **Proxy**  
-  認証・認可・レートリミット・キャッシュなど、リクエストの前後で制御を挟む。
+- **Proxy**
+  Interposes control like authentication, authorization, rate limiting, caching before and after requests.
 
-- **Mediator**  
-  複数サービスからのレスポンスを統合し、1 回のレスポンスにまとめる役割。
+- **Mediator**
+  Role of integrating responses from multiple services into one response.
 
-- **Strategy**  
-  クライアント種類ごとのルーティングやレスポンス構造を切り替える場合に用いられる。
+- **Strategy**
+  Used when switching routing or response structure per client type.
 
-## ✅ まとめ
+## ✅ Summary
 
-API Gateway / BFF は、
+API Gateway / BFF is a structural style that is almost standard in modern Web / Mobile services as:
 
-- 外部公開の入り口
-- クライアント特化のオーケストレーション層
+- **Entrance for external exposure**
+- **Client-specific orchestration layer**
 
-として、モダンな Web / モバイルサービスではほぼ標準と言える構造スタイルである。
-
-特に、  
-**「どこまでを共通 Gateway に寄せ、どこからを BFF に分割するか」** が設計上の重要な判断ポイントになる。
+Especially,
+**"How much to bring to common Gateway and from where to split to BFF"** becomes an important judgment point in design.

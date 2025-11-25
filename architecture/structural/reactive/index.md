@@ -1,62 +1,58 @@
-# 🧩 G. Reactive / Event-driven 系（リアクティブ・イベント駆動構造）
+# 🧩 G. Reactive / Event-driven Structural Styles
 
-## ✅ 概要
+## ✅ Overview
 
-この系統は、**イベントやメッセージの流れを中心に、非同期で反応する構造** を扱うスタイル群を対象とする。
+This family deals with styles that handle **structures reacting asynchronously centered on the flow of events and messages.**
 
-- 入力に応じて「いつ・どのように」反応するかを設計の主対象にする
-- スレッド・コールバック・イベントループ・メッセージキューなどを前提とした構造
-- 並行処理・高スループット・リアクティブシステムで重要
+- Main design object is "when and how" to react to input.
+- Structure assumes threads, callbacks, event loops, message queues, etc.
+- Important in concurrency, high throughput, and reactive systems.
 
-代表的なスタイル：
+Representative Styles:
 
 - Actor Model
-- Event Loop ベース構造
+- Event Loop based structure
 - Reactive Streams
 
-## ✅ なぜこの系統が生まれたか（歴史・背景）
+## ✅ Why This Family Emerged (History & Background)
 
-- CPU コア数の増加に伴う並行・並列性の重要性
-- Web / モバイル / IoT による接続数・イベント数の爆発的増加
-- ブロッキングな I/O モデルではスケールが難しくなった
-- 高い応答性（レスポンス）と耐障害性が求められるようになった
+- Importance of concurrency/parallelism with increasing CPU cores.
+- Explosive increase in connections/events due to Web / Mobile / IoT.
+- Blocking I/O models became difficult to scale.
+- High responsiveness and fault tolerance became required.
 
-> 「スレッドを直接管理するのではなく、  
->  イベントやメッセージの流れとして並行性を扱いたい」
+Reactive / Event-driven styles developed from the need:
 
-というニーズから、Reactive / Event-driven 系のスタイルが発展してきた。
+> "Want to handle concurrency as a flow of events or messages, rather than managing threads directly."
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-- 低レベルなスレッド管理（ロック／ミューテックス地獄）
-- 同期 I/O によるスループット限界
-- 異常時の復旧・フォールトトレランス設計の難しさ
+- Low-level thread management (Lock / Mutex hell).
+- Throughput limits due to synchronous I/O.
+- Difficulty in recovery from abnormalities and fault tolerance design.
 
-Reactive 系は、
+Reactive family considers the design of the entire system from perspectives like:
 
-- 「イベント（メッセージ）の流れ」
-- 「非同期処理の組み合わせ」
-- 「リアクティブな応答性」
+- "Flow of events (messages)"
+- "Combination of asynchronous processing"
+- "Reactive responsiveness"
 
-といった観点から、システム全体の設計を考える。
+## ✅ Styles Belonging to This Family
 
-## ✅ この系統に属するスタイル
+- **Actor Model**: Concurrency model where actors communicate with messages.
+- **Event Loop based structure**: Structure handling asynchronous I/O with a single event loop (Node.js etc.).
+- **Reactive Streams**: Standardized model including asynchronous stream processing and backpressure.
 
-- **Actor Model**：アクター同士がメッセージでやり取りする並行モデル
-- **Event Loop ベース構造**：1 本のイベントループで非同期 I/O をさばく構造（Node.js など）
-- **Reactive Streams**：非同期ストリームの処理・バックプレッシャーまで含めて標準化したモデル
+## ✅ Relationship with Other Families
 
-## ✅ 他の系統との関係
+- Combined with **Flow / Pipeline** to configure processing flow of event streams.
+- Closely related to **Integration Styles (EDA, Messaging)**.
+- Often adopted as internal implementation of **Layered / Domain Model**.
 
-- **Flow / Pipeline 系** と組み合わせて、イベントストリームの処理フローを構成する
-- **Integration Styles（EDA, メッセージング）** と密接に関連
-- **Layered / Domain Model 系** の内部実装としてこれらを採用することも多い
+## ✅ When to Reference
 
-## ✅ どんな時に参考になるか
+- Services requiring high throughput and low latency.
+- Servers handling many clients or connections (Chat / Game / IoT etc.).
+- Systems with event-driven business logic.
 
-- 高スループット・低レイテンシを求められるサービス
-- 多数のクライアントや接続を扱うサーバ（チャット／ゲーム／IoT 等）
-- イベントドリブンなビジネスロジックを持つシステム
-
-この系統を理解することで、
-**「何がいつ起き、それにどう反応するか」という軸でアーキテクチャを捉える視点** が得られる。
+Understanding this family gives you the **perspective of capturing architecture on the axis of 'What happens when, and how to react to it'.**

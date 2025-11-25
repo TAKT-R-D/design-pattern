@@ -1,77 +1,75 @@
 # 🧩 Data Mesh
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-**組織のデータを「分散したプロダクト」として扱い、ドメインチームに所有権と責任を持たせるデータアーキテクチャ。**
+**Data architecture treating organization's data as "distributed products" and giving ownership and responsibility to domain teams.**
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-- 中央集権型 DWH/湖のボトルネック
-- データ基盤チームへの要求集中（データ要求が捌けない）
-- ドメイン知識不足によるデータ品質問題
+- Bottleneck of centralized DWH/Lake.
+- Concentration of requests to data platform team (Cannot handle data requests).
+- Data quality problem due to lack of domain knowledge.
 
-## ✅ 基本思想・ルール
+## ✅ Basic Philosophy & Rules
 
-1. **ドメイン指向のデータ所有**
-2. **データプロダクト思考（SLO・品質・API）**
-3. **セルフサービスデータプラットフォーム**
-4. **標準化されたインターフェースとガバナンス**
+1. **Domain-oriented Data Ownership**
+2. **Data Product Thinking (SLO, Quality, API)**
+3. **Self-service Data Platform**
+4. **Standardized Interface and Governance**
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-- 大規模組織でのデータ分散管理
-- 事業部ごとの独立した分析基盤運用
-- データカタログ・データ API を活用する環境
+- Data distributed management in large-scale organizations.
+- Operation of independent analysis platform per business division.
+- Environment utilizing Data Catalog / Data API.
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-- 小規模な組織（分散のメリットが薄い）
-- ガバナンス組織や SLO 運用の文化がない場合
+- Small-scale organizations (Merit of distribution is thin).
+- Cases without governance organization or culture of SLO operation.
 
-## ✅ 歴史
+## ✅ History
 
-- Zhamak Dehghani による提唱
-- Data Lake / Warehouse の限界に対する設計思想的アプローチ
+- Proposed by Zhamak Dehghani.
+- Design philosophy approach to limits of Data Lake / Warehouse.
 
-## ✅ 関連スタイル
+## ✅ Related Styles
 
-- Data Lake / Lakehouse：データ保持レイヤの実装基盤
-- CQRS / EDA：プロダクト間連携の実装手段
+- Data Lake / Lakehouse: Implementation infrastructure of data retention layer.
+- CQRS / EDA: Implementation means of inter-product coordination.
 
-## ✅ 代表的なフレームワーク
+## ✅ Representative Frameworks
 
-- **Databricks / Lakehouse Platform**  
-  データプロダクト単位の管理に向いたプラットフォーム。
+- **Databricks / Lakehouse Platform**
+  Platform suitable for management per data product unit.
 
-- **Snowflake + Data Marketplace**  
-  データシェアリングを前提とした Mesh 的運用が可能。
+- **Snowflake + Data Marketplace**
+  Mesh-like operation premised on data sharing is possible.
 
-- **AWS Glue / Athena + Lake Formation**  
-  分散したデータプロダクトのメタデータ・アクセス権を統一管理。
+- **AWS Glue / Athena + Lake Formation**
+  Unified management of metadata and access rights of distributed data products.
 
-- **Data Catalog（Amundsen / DataHub / Collibra）**  
-  データ検索・オーナーシップ管理を行う Mesh 必須コンポーネント。
+- **Data Catalog (Amundsen / DataHub / Collibra)**
+  Mesh essential component performing data search and ownership management.
 
-## ✅ このスタイルを支えるデザインパターン
+## ✅ Design Patterns Supporting This Style
 
-Data Mesh は組織構造のパターン寄りだが、技術的には次が関連する。
+Data Mesh is closer to organizational structure pattern, but technically related to:
 
-- **Facade**  
-  データ API やデータプロダクトの“入口”として機能する。
+- **Facade**
+  Functions as "entrance" of Data API or Data Product.
 
-- **Mediator**  
-  プラットフォームが各データプロダクト間を調停する役割を担う。
+- **Mediator**
+  Platform plays role of mediating between each data product.
 
-- **Strategy**  
-  ドメインごとに異なる処理方式・保持形式を選択できる柔軟性。
+- **Strategy**
+  Flexibility to select different processing method / retention format per domain.
 
-- **Iterator**  
-  分散データを横断的に扱う際の抽象に利用されることがある。
+- **Iterator**
+  Used for abstraction when handling distributed data cross-sectionally.
 
-## ✅ まとめ
+## ✅ Summary
 
-Data Mesh は中央集権型データ基盤の限界に対し、  
-**ドメインチームがデータをプロダクトとして所有し、  
-分散協調しながら全体最適を図るアーキテクチャ思想** である。
+Data Mesh is an **architecture philosophy where domain teams own data as products and aim for overall optimization while cooperating in distributed manner**, against the limits of centralized data infrastructure.
 
-大規模組織向けであり、データプロダクト管理・ガバナンス・SLO 運用が不可欠である。
+It is for large-scale organizations, and data product management, governance, and SLO operation are essential.

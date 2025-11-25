@@ -1,77 +1,75 @@
-# 🧩 C. レイヤード／ドメインモデル系（Layered & Domain-centric Styles）
+# 🧩 C. Layered & Domain-centric Styles
 
-## ✅ 概要
+## ✅ Overview
 
-この系統は、アプリケーション内部を **レイヤー（層）に分割し、依存方向にルールを設ける** スタイルを扱う。
+This family covers styles that **divide the application interior into layers and establish rules for dependency directions**.
 
-- UI / アプリケーション / ドメイン / インフラなどに分割
-- レイヤー間の依存を制御することで、変更容易性・テスト容易性を高める
-- ドメインの複雑さに応じて、より“ドメイン中心”なスタイルへ発展してきた系譜
+- Division into UI / Application / Domain / Infrastructure, etc.
+- Enhancing changeability and testability by controlling dependencies between layers.
+- A genealogy that has evolved into more "domain-centric" styles according to the complexity of the domain.
 
-代表的なスタイルは次の 3 つに大別できます。
+Representative styles can be broadly classified into the following three:
 
-- **Classic Layered**（3 層 / n 層アーキテクチャ）
-- **Domain Model Layered**（DDD/Fowler 的レイヤード）
-- **依存ルール重視 Layered（Dependency-rule-based Layered）**
-  - Hexagonal / Onion / Clean など
+- **Classic Layered** (3-tier / n-tier architecture)
+- **Domain Model Layered** (DDD/Fowler-style Layered)
+- **Dependency-rule-based Layered**
+  - Hexagonal / Onion / Clean, etc.
 
-## ✅ なぜこの系統が生まれたか（歴史・背景）
+## ✅ Why this Family Emerged (History/Background)
 
-- Big Ball of Mud / Transaction Script などの“場当たり的構造”からの脱却
-- UI / ロジック / データアクセスが混ざったコードの保守性の低さ
-- チーム開発・長期運用・フレームワーク更新に耐えられる構造が必要に
+- Breaking away from "ad-hoc structures" like Big Ball of Mud / Transaction Script.
+- Low maintainability of code where UI / logic / data access are mixed.
+- Need for structures that can withstand team development, long-term operation, and framework updates.
 
-その流れの中で：
+In that flow:
 
-1. **Classic Layered** が「まずは層に分ける」という最初の回答となり、
-2. より複雑な領域では **Domain Model Layered** としてドメイン中心の層構造が発展し、
-3. 最終的に **Hexagonal / Onion / Clean** に代表される、
-   **依存方向とドメイン保護を強く意識したスタイル** へと進化していきました。
+1. **Classic Layered** became the first answer of "first, divide into layers".
+2. In more complex domains, **Domain Model Layered** developed as a domain-centric layered structure.
+3. Finally, it evolved into styles represented by **Hexagonal / Onion / Clean**, which are **strongly conscious of dependency direction and domain protection**.
 
-## ✅ 解決しようとした問題
+## ✅ Problems Solved
 
-レイヤード系は主に次のような問題に取り組む。
+Layered styles mainly address the following problems:
 
-- UI・アプリケーションロジック・ドメインロジック・インフラの混在
-- フレームワークや DB に強く依存したコード
-- 単体テストが書きづらい
-- 仕様変更のたびにシステム全体を触ることになる
+- Mixture of UI, application logic, domain logic, and infrastructure.
+- Code strongly dependent on frameworks and DBs.
+- Difficulty in writing unit tests.
+- Having to touch the entire system every time specifications change.
 
-特にドメインモデル系（Domain Model Layered 以降）では：
+Especially in Domain Model styles (Domain Model Layered and later):
 
-- ビジネスルールを **ドメインモデルとして明示的に表現したい**
-- フレームワークや外部システムから **ドメインを守りたい**
+- Motivation to **explicitly express business rules as domain models**.
+- Motivation to **protect the domain** from frameworks and external systems.
 
-というモチベーションが強くなる。
+becomes stronger.
 
-## ✅ この系統に属するスタイル
+## ✅ Styles Belonging to this Family
 
 ### ● Classic Layered
 
-- UI / Application / Domain / Infrastructure などに分けた、最も広く知られるレイヤード構造
+- The most widely known layered structure, divided into UI / Application / Domain / Infrastructure, etc.
 
 ### ● Domain Model Layered
 
-- Domain 層を明示し、オブジェクト指向のドメインモデルを中心に据えたスタイル
+- A style that explicitly defines the Domain layer and places the object-oriented domain model at the center.
 
 ### ● Dependency-rule-based Layered
 
-- 依存は内側のレイヤーにのみ許可する
-- ドメインを中心に、外側に向かってインターフェースやインフラを配置
-- Hexagonal / Onion / Clean などがこのグループに含まれる
+- Dependencies are allowed only to inner layers.
+- Interfaces and infrastructure are placed outwards, centering on the domain.
+- Hexagonal / Onion / Clean, etc., are included in this group.
 
-## ✅ 他の系統との関係
+## ✅ Relationship with Other Families
 
-- **A/B 系（初期・データ中心）** が抱えた混乱を解決するために登場した“メインストリーム”
-- **UI 系（MVC/MVVM 等）** は、レイヤード構造の中の「プレゼンテーション層」の細分化とも捉えられる
-- **Reactive / Flow 系** と組み合わせて使われることも多い（レイヤー間をイベントで繋ぐなど）
+- The "mainstream" that appeared to solve the confusion held by **A/B Families (Early / Data-centric)**.
+- **UI Families (MVC/MVVM, etc.)** can be seen as a subdivision of the "Presentation Layer" within the layered structure.
+- Often used in combination with **Reactive / Flow Families** (e.g., connecting layers with events).
 
-## ✅ どんな時に参考になるか
+## ✅ When to Reference
 
-- ドメインの複雑さが中〜高程度で、長期運用が前提のシステム
-- フレームワークやデータベースの寿命より、ドメインの寿命が長い場合
-- テスト容易性・変更容易性を重視したい場合
+- Systems where domain complexity is medium to high and long-term operation is a prerequisite.
+- When the lifespan of the domain is longer than that of the framework or database.
+- When you want to emphasize testability and changeability.
 
-この系統は、
-**「モダンな業務システムの“デフォルト候補”」** となることが多く、
-他のスタイルを検討する際の基準点としても重要となる。
+This family often becomes the **"default candidate" for modern business systems**,
+and is also important as a reference point when considering other styles.

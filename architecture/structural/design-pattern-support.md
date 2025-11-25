@@ -1,95 +1,94 @@
-# 🧩 Structural Styles とデザインパターン対応表
+# 🧩 Table of Structural Styles and Design Patterns
 
-（アーキテクチャを支えるデザインパターンの体系）
+(System of Design Patterns supporting Architecture)
 
-本ページでは、各 Structural Style が **どのデザインパターンの組み合わせによって支えられているか** を一覧化する。
+This page lists **which combination of design patterns supports** each Structural Style.
 
-※ パターン名称は _takt.dev/design-pattern/_ と完全に統一している。
+*Note: Pattern names are completely unified with _takt.dev/design-pattern/_.*
 
-## ✅ Clean / Hexagonal / Onion（Dependency Rule 系）
+## ✅ Clean / Hexagonal / Onion (Dependency Rule Family)
 
-これらのスタイルは「依存方向の制御」「ポート・アダプタ構造」が中核であり、  
-次のデザインパターンが強く関与する。
+These styles center on "Control of Dependency Direction" and "Port/Adapter Structure", and the following design patterns are strongly involved.
 
-- **Adapter**：Port/Adapter の “Adapter” 部分
-- **Strategy**：UseCase 抽象化の中心
-- **Command**：ユースケースを操作オブジェクトとして扱う
-- **Facade**：アプリケーションサービスの外観
-- **Proxy**：外部 API／インフラアクセスの抽象
-- **Abstract Factory**：依存切り替え（テストダブル含む）
-- **Builder**：集約構築など複雑生成の補助
+- **Adapter**: The "Adapter" part of Port/Adapter.
+- **Strategy**: Center of UseCase abstraction.
+- **Command**: Treating UseCases as operation objects.
+- **Facade**: Appearance of Application Services.
+- **Proxy**: Abstraction of external API / Infrastructure access.
+- **Abstract Factory**: Dependency switching (including Test Doubles).
+- **Builder**: Assistance for complex creation like Aggregate construction.
 
-**主役パターン：Adapter / Strategy / Command**
+**Main Patterns: Adapter / Strategy / Command**
 
 ## ✅ Layered / Domain Model Layered
 
-レイヤー境界の明確化と責務分離を支えるパターン。
+Patterns supporting clarification of layer boundaries and separation of responsibilities.
 
-- **Facade**：上位レイヤから下位を隠す外観
-- **Template Method**：Service / Repository の処理骨格共有
-- **Strategy**：ドメインロジック切り替え
-- **Composite**：集約内部の階層構造表現
-- **Proxy**：外部システム or 遅延アクセスの抽象化
+- **Facade**: Appearance hiding lower layers from upper layers.
+- **Template Method**: Sharing processing skeletons of Service / Repository.
+- **Strategy**: Switching domain logic.
+- **Composite**: Expression of hierarchical structure inside Aggregates.
+- **Proxy**: Abstraction of external systems or lazy access.
 
-## ✅ UI 系（MVC / MVP / MVVM / MVU）
+## ✅ UI Family (MVC / MVP / MVVM / MVU)
 
-UI Interaction スタイルを支える主要パターン。
+Major patterns supporting UI Interaction styles.
 
-- **Observer**：状態 → UI の反映
-- **State**：UI 状態の保持
-- **Command**：UI イベントを操作オブジェクト化
-- **Mediator**：View と ViewModel / Presenter の仲介
-- **Memento**：Undo/Redo などの状態復元
-- **Strategy**：描画戦略・入力制御の差し替え
+- **Observer**: Reflection of State → UI.
+- **State**: Holding UI state.
+- **Command**: Turning UI events into operation objects.
+- **Mediator**: Mediation between View and ViewModel / Presenter.
+- **Memento**: State restoration like Undo/Redo.
+- **Strategy**: Switching drawing strategies / input control.
 
-**MVU（React / SwiftUI / Jetpack Compose）では特に  
-State + Command + Observer が強く現れる。**
+**In MVU (React / SwiftUI / Jetpack Compose),  
+State + Command + Observer appear particularly strongly.**
 
 ## ✅ Microkernel / Plugin Architecture
 
-プラグインの拡張性・ホットスワップ性を支えるパターン群。
+Patterns supporting extensibility and hot-swappability of plugins.
 
-- **Strategy**：プラグインの切り替え
-- **Abstract Factory**：プラグイン生成の統一化
-- **Proxy**：拡張ポイントのラップ
-- **Mediator**：プラグイン間調整
-- **Facade**：コアシステムの外観 API
+- **Strategy**: Switching plugins.
+- **Abstract Factory**: Unification of plugin creation.
+- **Proxy**: Wrapping extension points.
+- **Mediator**: Coordination between plugins.
+- **Facade**: Appearance API of the core system.
 
 ## ✅ Reactive / Actor / Event Loop / Streams
 
-イベント駆動・非同期処理・アクターモデルを支えるパターン。
+Patterns supporting Event-driven, Asynchronous processing, and Actor Model.
 
-- **Observer**：イベント購読
-- **Mediator**：イベント分配
-- **Command**：メッセージを操作オブジェクトとして扱う
-- **State**：Actor の内部状態
-- **Iterator**：ストリーム処理の順次化
-- **Chain of Responsibility**：イベント処理の段階的伝搬
+- **Observer**: Event subscription.
+- **Mediator**: Event distribution.
+- **Command**: Treating messages as operation objects.
+- **State**: Internal state of Actor.
+- **Iterator**: Sequentialization of stream processing.
+- **Chain of Responsibility**: Step-by-step propagation of event processing.
 
-## ✅ Flow / Pipeline（Pipe & Filter / Streaming / Batch）
+## ✅ Flow / Pipeline (Pipe & Filter / Streaming / Batch)
 
-段階的な処理フローを実現する構造。
+Structure realizing stepwise processing flow.
 
-- **Chain of Responsibility**：フィルタの連鎖
-- **Iterator**：ストリームの逐次処理
-- **Mediator**：ステップ間の調整
-- **Strategy**：各処理ステップの差し替え
+- **Chain of Responsibility**: Chaining of filters.
+- **Iterator**: Sequential processing of streams.
+- **Mediator**: Coordination between steps.
+- **Strategy**: Switching of each processing step.
 
-## ✅ Data-centric（Active Record / Table Module / Transaction Script）
+## ✅ Data-centric (Active Record / Table Module / Transaction Script)
 
-データ中心の構造は次のパターンの影響が大きい。
+Data-centric structures are heavily influenced by the following patterns.
 
-- **Template Method**：永続化処理の統一
-- **Proxy**：遅延ロード
-- **Observer**：変更通知
-- **Strategy**：バリデーション戦略
-- **Command**：トランザクションスクリプトとしての操作
+- **Template Method**: Unification of persistence processing.
+- **Proxy**: Lazy loading.
+- **Observer**: Change notification.
+- **Strategy**: Validation strategy.
+- **Command**: Operation as a Transaction Script.
 
-## ✅ この一覧の活用方法
+## ✅ How to Use This List
 
-- Structural Style を選ぶ際に、**実装で必要になるパターンが自然に分かる**
-- 現在のコードベースがどのパターンを多用しているかから、**採用すべき構造スタイルを逆算できる**
-- 既存サイト（takt.dev/design-pattern）で詳細説明を補完できる
+- When choosing a Structural Style, **naturally understand the patterns needed for implementation**.
+- From the patterns heavily used in the current codebase, **calculate backward to the structural style that should be adopted**.
+- Supplement detailed explanations with the existing site (takt.dev/design-pattern).
 
-> **アーキテクチャ（構造） ⇄ デザインパターン（実装）**  
-> の橋渡しとなるガイドページである。
+> This is a guide page serving as a bridge between  
+> **Architecture (Structure) ⇄ Design Patterns (Implementation)**.

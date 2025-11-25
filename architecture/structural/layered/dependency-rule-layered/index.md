@@ -1,72 +1,66 @@
-# 🧩 Dependency-rule-based Layered（依存ルール重視レイヤード）
+# 🧩 Dependency-rule-based Layered
 
-## ✅ 概要
+## ✅ Overview
 
-Dependency-rule-based Layered は、
+Dependency-rule-based Layered is a group of layered styles that strongly emphasize the rule:
 
-> **「依存は内側に向かう一方向のみ」**
+> **"Dependencies point only inward"**
 
-というルールを強く打ち出し、  
-**ドメインモデルを外部技術やインフラから守る** ことを重視するレイヤード系スタイルのグループである。
+And prioritize **protecting the domain model from external technologies and infrastructure.**
 
-代表的なスタイル：
+Representative Styles:
 
-- Hexagonal Architecture（Ports & Adapters）
+- Hexagonal Architecture (Ports & Adapters)
 - Onion Architecture
 - Clean Architecture
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-Domain Model Layered まで来ても、実務では次のような問題が残っていた：
+Even with Domain Model Layered, the following problems remained in practice:
 
-- Domain 層にフレームワーク依存コード（アノテーション、ORM 特有の型など）が侵食する
-- テストでインフラ依存を切り離しにくい
-- Web UI / バッチ / CLI / メッセージなど複数の I/O を自然に扱いづらい
+- Framework dependency code (annotations, ORM-specific types, etc.) erodes into the Domain layer.
+- It is difficult to separate infrastructure dependencies in tests.
+- Hard to naturally handle multiple I/Os like Web UI / Batch / CLI / Messages.
 
-Dependency-rule-based Layered はこれに対して：
+Dependency-rule-based Layered attempts to answer this by:
 
-- 依存方向を **内側のレイヤーのみに固定** し、
-- ドメインを「純粋なルールの集合」として残す
+- **Fixing dependency direction only to inner layers**, and
+- Leaving the domain as a "set of pure rules".
 
-という方向で答えようとする。
+## ✅ Basic Philosophy & Rules
 
-## ✅ 基本思想・ルール
+Common core concepts:
 
-共通のコアとなる考え方：
+- Domain Model is at the center (Inside).
+- Application Services, Interface Adapters, Frameworks & Drivers are placed on the outside.
+- Dependency arrows always point inward.
+- Outer layers depend on inner abstractions (interfaces).
 
-- ドメインモデルが中心（内側）
-- 外側にアプリケーションサービス、インターフェースアダプタ、フレームワーク / ドライバが配置される
-- 依存矢印は常に内側に向かう
-- 外側のレイヤーは、内側の抽象（インターフェース）に依存する
+Expressions differ between Hexagonal / Onion / Clean, but this philosophy is common.
 
-表現は Hexagonal / Onion / Clean で異なるが、この思想は共通する。
+## ✅ Styles Belonging to This Family
 
-## ✅ この系統に属するスタイル
-
-- **Hexagonal Architecture（Ports & Adapters）**
-
-  - ドメインと外部をポートとアダプタでつなぐ、六角形のメタファ
+- **Hexagonal Architecture (Ports & Adapters)**
+  - Hexagonal metaphor connecting domain and outside with ports and adapters.
 
 - **Onion Architecture**
-
-  - ドメイン中心の層構造を“玉ねぎ”として可視化したスタイル
+  - Style visualizing the domain-centric layer structure as an "onion".
 
 - **Clean Architecture**
-  - Entities / Use Cases / Interface Adapters / Frameworks & Drivers と明確に層を定義
-  - 依存ルールとユースケース層を強調
+  - Clearly defines layers: Entities / Use Cases / Interface Adapters / Frameworks & Drivers.
+  - Emphasizes dependency rules and the Use Case layer.
 
-## ✅ 他の系統との関係
+## ✅ Relationship with Other Families
 
-- Classic / Domain Model Layered の **発展系**
-- Integration Styles（REST / gRPC / EDA）との接続において、Ports & Adapters のような考え方が特に重要
-- テスト戦略（ユニット / 統合）と非常に深く関わる
+- **Evolved form** of Classic / Domain Model Layered.
+- In connection with Integration Styles (REST / gRPC / EDA), concepts like Ports & Adapters are particularly important.
+- deeply involved with testing strategies (Unit / Integration).
 
-## ✅ どんな時に参考になるか
+## ✅ When to Reference
 
-- ドメインが複雑で、長期運用が前提のプロダクト
-- フレームワーク依存を減らし、将来の技術選択の自由度を残したい
-- 複数の UI / API / バッチ / メッセージングチャネルを扱うバックエンド
-- 自動テストを重視し、ドメインを外部から独立に検証したい
+- Products where the domain is complex and long-term operation is assumed.
+- Want to reduce framework dependency and leave freedom for future technology choices.
+- Backends handling multiple I/O channels like UI / API / Batch / Messaging.
+- Development prioritizing automated tests and wanting to verify the domain independently from the outside.
 
-このディレクトリ配下では Hexagonal / Onion / Clean を個別に取り上げ、  
-それぞれの特徴と違いを整理する。
+Under this directory, Hexagonal / Onion / Clean are taken up individually, organizing their characteristics and differences.

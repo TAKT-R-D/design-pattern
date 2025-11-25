@@ -1,50 +1,48 @@
-# 🧩 SLO / SRE（Site Reliability Engineering）
+# 🧩 SLO / SRE (Site Reliability Engineering)
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-**信頼性を「エンジニアリング」で達成するための実践体系。SLO（目標）とエラーバジェットで可用性を設計する。**
+**Practical system to achieve reliability by "Engineering". Design availability with SLO (Objective) and Error Budget.**
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-- 可用性の定義が曖昧なまま開発・運用してしまう
-- 「安定性 vs 開発速度」の衝突が収束しない
-- 障害時の対応が属人化している
-- 高可用性を“根性”で実現しようとする文化
+- Develop and operate with ambiguous definition of availability.
+- Conflict of "Stability vs Development Speed" does not converge.
+- Response at failure is personalized.
+- Culture trying to realize high availability with "guts".
 
-## ✅ 基本思想・ルール
+## ✅ Basic Philosophy & Rules
 
-- SLI（指標）→ SLO（目標）→ SLA（契約）の三段階
-- “エラーバジェット” によるバランス制御  
-  → 信頼性が十分なら開発速度を上げ、  
-   使い切ったら安定化に注力する
-- インシデントレスポンスの標準化（On-call, Runbook）
-- ポストモーテム文化（責任追及ではなく改善）
+- Three stages: SLI (Indicator) → SLO (Objective) → SLA (Agreement).
+- Balance control by "Error Budget".
+  → If reliability is sufficient, increase development speed.
+   If used up, focus on stabilization.
+- Standardization of incident response (On-call, Runbook).
+- Post-mortem culture (Improvement rather than blame).
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-- インターネット規模のサービス
-- マイクロサービスや分散システム
-- 強い可用性要件（99.9%〜99.999%）
+- Internet-scale services.
+- Microservices and distributed systems.
+- Strong availability requirements (99.9% - 99.999%).
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-- 可用性要件が低い小規模アプリ
-- 運用文化が育っていない組織（組織トレーニングが必要）
+- Small-scale apps with low availability requirements.
+- Organization where operation culture is not nurtured (Organization training is needed).
 
-## ✅ 歴史
+## ✅ History
 
-- Google SRE を起点に体系化
-- SLO / Error Budget が標準化し、クラウド時代の指標に採用
+- Systematized starting from Google SRE.
+- SLO / Error Budget became standard and adopted as metrics in cloud era.
 
-## ✅ 関連スタイル
+## ✅ Related Styles
 
-- Observability：SLI 計測の基盤
-- DevOps：文化的背景と自動化
-- Team Topologies：On-call や運用責任の分配
+- Observability: Foundation of SLI measurement.
+- DevOps: Cultural background and automation.
+- Team Topologies: Distribution of On-call and operational responsibility.
 
-## ✅ まとめ
+## ✅ Summary
 
-SRE は  
-**「信頼性をコードで保証する」アプローチ**  
-であり、  
-**SLO + Error Budget** による可用性管理が中心となる。
+SRE is an **approach to "guarantee reliability with code"**,
+and availability management by **SLO + Error Budget** becomes central.

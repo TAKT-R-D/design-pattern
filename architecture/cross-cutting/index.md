@@ -1,57 +1,57 @@
-# 🧩 Cross-cutting & Socio-technical（運用・文化・品質）
+# 🧩 Cross-cutting & Socio-technical (Operation, Culture, Quality)
 
-Cross-cutting は、アーキテクチャの **すべての階層を横断して影響する領域** を扱う。  
-技術だけでなく、**運用・組織構造・文化・品質** といった “社会技術的要素” が中心となる。
+Cross-cutting deals with areas that **affect all layers of architecture cross-sectionally.**
+It centers on "socio-technical elements" such as **Operation, Organization Structure, Culture, and Quality** in addition to technology.
 
-## ✅ このカテゴリが扱う問題
+## ✅ Problems Addressed by This Category
 
-- アーキテクチャが組織構造と噛み合わない
-- 開発／運用チームの断絶によるデプロイの遅さ
-- マイクロサービスの運用破綻（可観測性不足）
-- セキュリティ要件の未充足
-- “品質” をアーキテクチャに組み込む難しさ
+- Architecture does not mesh with organizational structure.
+- Slow deployment due to disconnect between development/operation teams.
+- Operational failure of microservices (Lack of observability).
+- Unmet security requirements.
+- Difficulty of incorporating "Quality" into architecture.
 
-## ✅ Cross-cutting の主要概念
+## ✅ Key Concepts of Cross-cutting
 
 ### ● DevOps / CI/CD / 12-Factor App
 
-- デリバリーの高速化・自動化
-- 設計と運用を分離しない文化
+- Acceleration and automation of delivery.
+- Culture not separating design and operation.
 
 ### ● Team Topologies / Conway’s Law
 
-- 組織構造がアーキテクチャに影響する
-- ストリームアラインドチーム / プラットフォームチーム など
+- Organizational structure affects architecture.
+- Stream-aligned teams / Platform teams etc.
 
-### ● SLO-driven Architecture（SRE）
+### ● SLO-driven Architecture (SRE)
 
-- SLO / Error Budget による信頼性のコントロール
-- 依存サービスの可用性設計
+- Control of reliability by SLO / Error Budget.
+- Availability design of dependent services.
 
 ### ● Zero Trust Security
 
-- “内部ネットワーク＝安全” を捨て、常に検証する思想
+- Philosophy abandoning "Internal network = Safe" and always verifying.
 
 ### ● Observability
 
-- Logs / Metrics / Traces でシステム全体の状態を可視化
-- マイクロサービスでは必須
+- Visualize state of entire system with Logs / Metrics / Traces.
+- Essential for microservices.
 
 ### ● Green Software / Sustainability
 
-- CO2 排出削減
-- クラウドリソースの適正化
-- 省コスト運用と価値最大化の両立
+- CO2 emission reduction.
+- Optimization of cloud resources.
+- Balancing cost saving and value maximization.
 
-## ✅ このカテゴリの読み方
+## ✅ How to Read This Category
 
-1. **技術そのものだけでなく、人と組織を含む視点** を持つ
-2. Topologies や Integration の “現実的な運用” を支える基礎として理解する
-3. 組織に合わせてアーキテクチャを変える必要があることを認識する
+1. Have a perspective including **people and organization, not just technology itself.**
+2. Understand as a foundation supporting "realistic operation" of Topologies and Integration.
+3. Recognize the need to change architecture according to organization.
 
-## ✅ 他の階層との関係
+## ✅ Relationship with Other Layers
 
-- **Structural Styles**：テスト容易性・変更容易性に影響
-- **Topologies**：マイクロサービス運用には SLO/Observability が必須
-- **Integration**：Mesh や Gateway でセキュリティ・可観測性を補強
-- **Data Architecture**：データガバナンスや監査と密接
+- **Structural Styles**: Affects testability and changeability.
+- **Topologies**: SLO/Observability is essential for microservices operation.
+- **Integration**: Reinforce security/observability with Mesh and Gateway.
+- **Data Architecture**: Closely related to data governance and audit.

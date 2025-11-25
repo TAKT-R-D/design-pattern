@@ -1,124 +1,119 @@
-# 🧩 MVU（Model-View-Update / Elm Architecture）
+# 🧩 MVU (Model-View-Update / Elm Architecture)
 
-## ✅ このスタイルの概要
+## ✅ Overview of this Style
 
-**状態（Model）と画面（View）、状態更新（Update）を純粋関数とメッセージで結びつける UI 構造スタイル。**  
-Elm によって有名になり、関数型フロントエンドの代表的アプローチとなった。
+**A UI structural style that connects State (Model), Screen (View), and State Update (Update) using pure functions and messages.**  
+Made famous by Elm, it became a representative approach for functional front-end development.
 
-## ✅ 解決しようとした問題
+## ✅ Problems Solved
 
-MVVM まで来ても、次のような課題があった：
+Even with MVVM, the following challenges remained:
 
-- 双方向バインディングが複雑になると状態の流れが追いにくい
-- ViewModel が肥大化し、どこで何が変更されているか分かりづらい
-- 非同期処理やイベントが増えるとロジックが分散する
+- State flow becomes hard to trace when two-way binding becomes complex.
+- ViewModels become bloated, making it difficult to understand where and what is being changed.
+- Logic becomes scattered as asynchronous processing and events increase.
 
-MVU は、
+MVU responds to this with a simple principle:
 
-> 「状態は 1 箇所に集約し、  
->  すべての更新はメッセージを介して単一の Update 関数で扱う」
+> "Aggregate state in one place, and  
+>  handle all updates via a single Update function through messages."
 
-というシンプルな原則でこれに応える。
-
-## ✅ 基本思想・ルール
+## ✅ Basic Philosophy and Rules
 
 ### ● Model
 
-- アプリケーションの状態を表すレコード / オブジェクト
+- A record / object representing the application state.
 
 ### ● View
 
-- `view : Model -> Html Msg` のように、状態から UI（仮想 DOM）を生成する純粋関数
-- ユーザー操作は `Msg`（メッセージ）として表現される
+- A pure function that generates UI (Virtual DOM) from state, like `view : Model -> Html Msg`.
+- User operations are expressed as `Msg` (Messages).
 
 ### ● Update
 
-- `update : Msg -> Model -> Model` のように、  
-  メッセージと現在の状態を受け取り、次の状態を返す純粋関数
+- A pure function that takes a message and the current state, and returns the next state, like `update : Msg -> Model -> Model`.
 
-### ● ループ構造
+### ● Loop Structure
 
-- Model をもとに View を描画
-- ユーザー操作等から Msg が発生
-- Update が新しい Model を返す
-- 再度 View を描画
+- Render View based on Model.
+- Msg is generated from user operations, etc.
+- Update returns a new Model.
+- Render View again.
 
-このループを回し続けることで UI が動作します。
+The UI operates by continuously running this loop.
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-- Elm や PureScript などの関数型フロントエンド
-- Redux / TEA（The Elm Architecture）に影響を受けた React アプリ
-- 状態遷移が多く、イベント駆動の UI
+- Functional front-ends like Elm and PureScript.
+- React apps influenced by Redux / TEA (The Elm Architecture).
+- Event-driven UIs with many state transitions.
 
-特徴：
+Characteristics:
 
-- 状態の流れ（データフロー）が非常に明瞭
-- デバッグ・タイムトラベルがしやすい
+- State flow (data flow) is very clear.
+- Easy to debug and time travel.
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-- 関数型スタイルに慣れていないチーム
-- 小さなフォーム中心の画面だけのアプリ（オーバーヘッドになりうる）
+- Teams not accustomed to functional style.
+- Apps with only small form-centric screens (can be overhead).
 
-また、すべてを MVU に当てはめようとすると：
+Also, trying to fit everything into MVU can lead to:
 
-- Update 関数が肥大化する
-- メッセージの種類が増えすぎる
+- Bloated Update functions.
+- Too many types of messages.
 
-といった課題もある。
+These are some of the challenges.
 
-## ✅ 歴史（系譜・親スタイル）
+## ✅ History (Genealogy / Parent Styles)
 
-- Elm 言語が提唱したアーキテクチャ
-- Redux や React Hooks など、多くのフロントエンド技術に影響
-- MVVM / Flux などと同じく、UI 状態管理の一つの流派として広く認識されている
+- Architecture proposed by the Elm language.
+- Influenced many front-end technologies like Redux and React Hooks.
+- Widely recognized as a school of UI state management, similar to MVVM / Flux.
 
-## ✅ 関連スタイル
+## ✅ Related Styles
 
-- **MVVM**：バインディングベースの UI 構造
-- **Flux / Redux**：単一ストア＋リデューサーという構造が MVU に近い
-- **FRP / Reactive Streams**：イベントストリームとしての UI モデル
+- **MVVM**: Binding-based UI structure.
+- **Flux / Redux**: Structure of Single Store + Reducer is close to MVU.
+- **FRP / Reactive Streams**: UI model as event streams.
 
-## ✅ 代表的なフレームワーク
+## ✅ Representative Frameworks
 
-MVU（The Elm Architecture）は、関数型・宣言的 UI の世界で広く影響を与えている。
+MVU (The Elm Architecture) has had a wide influence in the world of functional and declarative UI.
 
 - **Elm**  
-  MVU の元祖となった言語／フレームワーク。`Model` / `View` / `Update` の構造が明示されている。
+  The language/framework that originated MVU. The structure of `Model` / `View` / `Update` is explicit.
 
 - **React + Redux**  
-  単一ストアと Reducer による状態更新は、MVU の影響を強く受けている。
+  State updates via Single Store and Reducer are strongly influenced by MVU.
 
-- **React Hooks（useReducer など）**  
-  `state` と `dispatch` による更新フローは、MVU 的な発想に近い。
+- **React Hooks (useReducer, etc.)**  
+  Update flow via `state` and `dispatch` is close to the MVU idea.
 
 - **SwiftUI / Jetpack Compose**  
-  単一方向データフローと宣言的 UI により、MVU に近いスタイルで UI を構築できる。
+  Can build UIs in a style close to MVU due to unidirectional data flow and declarative UI.
 
-## ✅ このスタイルを支えるデザインパターン
+## ✅ Design Patterns Supporting this Style
 
-MVU は形式的には関数型の構造ですが、オブジェクト指向のデザインパターンで見ると次の要素が強く現れる。
+Although MVU is formally a functional structure, the following elements appear strongly when viewed through object-oriented design patterns.
 
 - **State**  
-  単一の Model にアプリケーション状態を集約し、その変化によって振る舞いを変える。
+  Aggregates application state into a single Model and changes behavior based on its changes.
 
 - **Command**  
-  `Msg`（メッセージ）を「操作オブジェクト」として扱い、Update 関数で解釈する。
+  Treats `Msg` (message) as an "operation object" and interprets it in the Update function.
 
 - **Observer**  
-  状態が変わるたびに View が再計算されるという意味で、Model → View の通知的な構造を持つ。
+  Has a notification-like structure of Model → View in the sense that the View is recalculated whenever the state changes.
 
-## ✅ まとめ
+## ✅ Summary
 
-MVU は、
+MVU is a style that assembles UI with simple rules:
 
-- 単一の状態
-- 純粋関数による更新
-- 宣言的な View
+- Single State
+- Update via Pure Functions
+- Declarative View
 
-というシンプルなルールで UI を組み立てるスタイルである。
-
-状態管理が複雑になりがちなモダンフロントエンドにおいて、  
-**「すべての変更はメッセージを通じて単一の Update に集約する」** という発想は、  
-他のフレームワークやパターンにも大きな影響を与え続けている。
+In modern front-ends where state management tends to become complex,  
+the idea that **"all changes are aggregated into a single Update through messages"**  
+continues to have a significant influence on other frameworks and patterns.

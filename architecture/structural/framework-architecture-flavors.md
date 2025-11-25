@@ -1,138 +1,133 @@
 # 🧩 Frameworks and Their Architectural Flavors
 
-（主要フレームワークが持つ “アーキテクチャ風味” を読み解く）
+(Deciphering the "Architectural Flavor" held by major frameworks)
 
-## ✅ はじめに：フレームワークはアーキテクチャではない
+## ✅ Introduction: Frameworks are not Architecture
 
-多くのフレームワークは、**特定のアーキテクチャスタイルを強制するわけではない**。  
-しかし、それぞれに **「こう設計すると自然にしっくりくる」傾向（flavor）** が存在する。
+Many frameworks do not **force a specific architectural style**.
+However, each has a **tendency (flavor) where "designing this way feels natural"**.
 
-例：
+Examples:
 
-- Rails は Active Record の思想が強い
-- React / SwiftUI は MVU（Elm Architecture）に近い
-- Spring Boot / NestJS は Clean / Hexagonal に寄せやすい
-- Node.js は Event Loop（非同期 I/O）中心の構造を誘導する
+- Rails has a strong Active Record philosophy.
+- React / SwiftUI are close to MVU (Elm Architecture).
+- Spring Boot / NestJS are easy to align with Clean / Hexagonal.
+- Node.js induces a structure centered on Event Loop (Async I/O).
 
-つまり、
+In other words, we decipher with the stance:
 
-> **“フレームワークがアーキテクチャを決める” のではなく、  
->  “フレームワークが自然と誘導する方向性を理解する” ことが重要**
+> **It is important not to think "The framework decides the architecture", but to "Understand the direction the framework naturally induces".**
 
-というスタンスで読み解く。
-
-## ✅ UI 系フレームワークのアーキテクチャ風味
+## ✅ Architectural Flavors of UI Frameworks
 
 ### React
 
-- **分類：MVU（Model–View–Update）系 / Elm Architecture 影響下**
-- 単方向データフロー、immutability、宣言的 UI
-- Redux との組み合わせは MVU 色をさらに強める  
-  **→ UI Structural Style の「MVU」の代表例として扱える**
+- **Classification: MVU (Model–View–Update) family / Under Elm Architecture influence**
+- Unidirectional data flow, immutability, declarative UI.
+- Combination with Redux further strengthens the MVU color.
+  **→ Can be treated as a representative example of UI Structural Style "MVU".**
 
-### Next.js（App Router）
+### Next.js (App Router)
 
-- **分類：UI の構造スタイルというより「Topologies / Integration」寄り**
-- SSR / SSG / ISR / Edge Rendering など、**レンダリング戦略そのものがアーキテクチャを決定する**
-- API Routes / Route Handlers / Server Actions により、**UI と API（バックエンド）が同居する構造**
-- ファイルベースルーティングにより、機能単位のフォルダ構成が自然に強制される  
-  → Vertical Slice / Feature-based に近いプロジェクト構成になりやすい
-- React（MVU）を内包しているが、Next.js 自体は **“構造アーキテクチャ” ではなく “アプリの全体構成（トポロジー）” を規定する存在**
+- **Classification: Closer to "Topologies / Integration" than UI structural style**
+- Rendering strategies like SSR / SSG / ISR / Edge Rendering **themselves determine the architecture**.
+- **Structure where UI and API (Backend) coexist** via API Routes / Route Handlers / Server Actions.
+- File-based routing naturally enforces folder structure by feature.
+  → Tends to become a project structure close to Vertical Slice / Feature-based.
+- While containing React (MVU), Next.js itself is **an entity that defines "Overall App Configuration (Topology)" rather than "Structural Architecture".**
 
-**→ アーキテクチャスタイルとしては MVU ではなく、「Topologies（SSR/Edge）＋ Integration（UI + API 統合）」の世界に属する。**
+**→ As an architectural style, it belongs to the world of "Topologies (SSR/Edge) + Integration (UI + API Integration)" rather than MVU.**
 
-### Vue.js（3.x）
+### Vue.js (3.x)
 
-- Options API：MVVM に近い
-- Composition API：React に寄った関数型要素も増加  
-  **→ 全体としては MVVM と MVU のハイブリッド**
+- Options API: Close to MVVM.
+- Composition API: Increased functional elements leaning towards React.
+  **→ Overall, a hybrid of MVVM and MVU.**
 
 ### Angular
 
-- **明確な MVVM / Layered 構造**
-- Component（VM）・Template（View）・Service（Logic）  
-  **→ UI 構造スタイルの典型例として扱いやすい**
+- **Clear MVVM / Layered structure**
+- Component (VM), Template (View), Service (Logic).
+  **→ Easy to treat as a typical example of UI structural style.**
 
 ### SwiftUI / Jetpack Compose
 
-- **完全に MVU 系**
-- 状態の単一ソース、再計算、宣言的 UI  
-  **→ 近年の Declarative UI の最も純粋な実装**
+- **Completely MVU family**
+- Single source of truth, re-computation, declarative UI.
+  **→ The purest implementation of recent Declarative UI.**
 
-## ✅ Data-centric 系フレームワークのアーキテクチャ風味
+## ✅ Architectural Flavors of Data-centric Frameworks
 
 ### Ruby on Rails
 
-- **Active Record をコアに据えた典型例**
-- MVC だが実質的に Fat Model / Transaction Script になりがち  
-  **→ Structural Style の「Data-centric（Active Record）」の代表例**
+- **Typical example centered on Active Record**
+- MVC, but practically tends to become Fat Model / Transaction Script.
+  **→ Representative example of Structural Style "Data-centric (Active Record)".**
 
 ### Laravel
 
-- Eloquent が Active Record 的
-- 直観的だが、ドメインモデルの分割は開発者の工夫次第  
-  **→ Data-centric の文脈で理解しやすい**
+- Eloquent is Active Record-like.
+- Intuitive, but domain model splitting is up to the developer's ingenuity.
+  **→ Easy to understand in the context of Data-centric.**
 
 ### Django
 
-- MVT（Model–View–Template）で MVC に近い
-- ORM は Data Mapper に寄る  
-  **→ Data-centric の中では「Table Module / Data Mapper」寄りの代表例**
+- MVT (Model–View–Template) is close to MVC.
+- ORM leans towards Data Mapper.
+  **→ Representative example leaning towards "Table Module / Data Mapper" within Data-centric.**
 
-## ✅ Layered / Clean / Dependency Rule 系フレームワーク
+## ✅ Layered / Clean / Dependency Rule Frameworks
 
-### Spring Boot（Java）
+### Spring Boot (Java)
 
-- **Clean / Hexagonal を作りやすい構造**
-- Controller → Service → Repository の分割が自然
-- DI による依存方向の制御がやりやすい  
-  **→ Clean Architecture 実装例が最も多いフレームワークの一つ**
+- **Structure easy to make Clean / Hexagonal**
+- Division of Controller → Service → Repository is natural.
+- Easy to control dependency direction via DI.
+  **→ One of the frameworks with the most Clean Architecture implementation examples.**
 
-### NestJS（Node.js）
+### NestJS (Node.js)
 
-- モジュール構造・DI・デコレータが Spring に酷似
-- Port / Adapter / UseCase の実装が明確に作れる  
-  **→ Node.js 界の Clean / Hexagonal の代表**
+- Module structure, DI, and Decorators are very similar to Spring.
+- Implementation of Port / Adapter / UseCase can be made clearly.
+  **→ Representative of Clean / Hexagonal in the Node.js world.**
 
 ### .NET / ASP.NET Core
 
-- Clean Architecture テンプレートが標準化
-- DDD / CQRS / Hexagonal の文献・実例が非常に豊富  
-  **→ Clean / Layered 系の“実務標準プラットフォーム”**
+- Clean Architecture templates are standardized.
+- Literature and examples of DDD / CQRS / Hexagonal are very abundant.
+  **→ "De facto standard platform" for Clean / Layered families.**
 
-## ✅ Reactive / Actor 系フレームワーク
+## ✅ Reactive / Actor Frameworks
 
 ### Node.js
 
-- **Event Loop ベース構造そのもの**
-- 非同期 I/O、コールバック、Promise、イベント駆動  
-  **→ Structural Style の「Event Loop」の代表例**
+- **Event Loop based structure itself**
+- Async I/O, Callbacks, Promises, Event-driven.
+  **→ Representative example of Structural Style "Event Loop".**
 
 ### Erlang / Elixir / Akka
 
-- **Actor Model のガチ実装**
-- メッセージパッシング・スーパービジョンが言語レベル  
-  **→ Reactive 系 Structural Style の純粋なサンプル**
+- **Serious implementation of Actor Model**
+- Message passing and supervision are at the language level.
+  **→ Pure sample of Reactive Structural Style.**
 
-## ✅ スタイル × フレームワーク 対応表（概要版）
+## ✅ Style × Framework Correspondence Table (Overview)
 
-| Structural Style                | 代表フレームワーク / 技術                  |
+| Structural Style                | Representative Framework / Technology      |
 | ------------------------------- | ------------------------------------------ |
 | **MVU**                         | React / Redux, SwiftUI, Jetpack Compose    |
-| **MVVM**                        | Vue（Options API）, Angular                |
+| **MVVM**                        | Vue (Options API), Angular                 |
 | **MVC / MVT**                   | Rails, Django                              |
-| **Active Record**               | Rails（ActiveRecord）, Laravel（Eloquent） |
-| **Data Mapper 寄り**            | Django ORM                                 |
+| **Active Record**               | Rails (ActiveRecord), Laravel (Eloquent)   |
+| **Data Mapper leaning**         | Django ORM                                 |
 | **Layered / Clean / Hexagonal** | Spring Boot, NestJS, .NET                  |
 | **Event Loop**                  | Node.js                                    |
 | **Actor Model**                 | Erlang / Elixir, Akka                      |
 
-## ✅ このページが提供したい価値
+## ✅ Value This Page Wants to Provide
 
-- アーキテクチャを学ぶとき、**身近なフレームワークがどのスタイルに近いのか**が分かる
-- コードを読むとき、**どの“レンズ”で見ると理解が深まるのか**が分かる
-- 自分の使っている技術がどの思想の上に立っているかが見える
+- When learning architecture, understand **which style familiar frameworks are close to**.
+- When reading code, understand **which "lens" deepens understanding**.
+- See which philosophy the technology you are using stands on.
 
-> **「フレームワークの裏で動いているアーキテクチャ思想」を理解するためのガイド**
-
-として、このページを活用してほしい。
+Please use this page as a **guide to understand "the architectural philosophy moving behind the framework".**

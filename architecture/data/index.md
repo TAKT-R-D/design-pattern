@@ -1,62 +1,62 @@
-# 🧩 Data & Analytics Architecture（データ構造・分析基盤）
+# 🧩 Data & Analytics Architecture
 
-Data Architecture は、**データの流れ・保存・変換・分析** に関わるアーキテクチャ層を扱う。
+Data Architecture covers the architecture layer dealing with **flow, storage, transformation, and analysis of data.**
 
-- OLTP / OLAP の分離
-- データレイク・データウェアハウス
-- ストリーミング処理
-- ドメインイベントの扱い
-- 分散データ整合性（CQRS / Event Sourcing）
+- Separation of OLTP / OLAP
+- Data Lake / Data Warehouse
+- Streaming Processing
+- Handling of Domain Events
+- Distributed Data Consistency (CQRS / Event Sourcing)
 
-## ✅ このカテゴリが扱う問題
+## ✅ Problems Addressed by This Category
 
-- どこにデータを保存するか（DB / Lake / Warehouse）
-- どのように集計・分析するか
-- データのライフサイクル（取得 → 保存 → 変換 → 分析 → 提供）
-- ストリーミング vs バッチ
-- 分散システムでのデータ整合性の扱い
+- Where to store data (DB / Lake / Warehouse).
+- How to aggregate and analyze.
+- Data lifecycle (Acquisition → Storage → Transformation → Analysis → Provision).
+- Streaming vs Batch.
+- Handling of data consistency in distributed systems.
 
-## ✅ Data Architecture の代表スタイル
+## ✅ Representative Styles of Data Architecture
 
-### ● Data Warehouse（DWH）
+### ● Data Warehouse (DWH)
 
-- 解析・レポート用の集約データベース
-- 企業内 BI の中心
+- Aggregation database for analysis and reporting.
+- Center of enterprise BI.
 
 ### ● Data Lake / Lakehouse
 
-- 非構造／構造データをまとめて扱う大規模基盤
-- ML・大規模分析向け
-- Lakehouse は DWH + Lake の融合型
+- Large-scale infrastructure handling unstructured/structured data together.
+- For ML and large-scale analysis.
+- Lakehouse is a fusion of DWH + Lake.
 
-### ● CQRS（Command Query Responsibility Segregation）
+### ● CQRS (Command Query Responsibility Segregation)
 
-- 書き込みモデルと読み取りモデルを分離
-- 高負荷分散・高速読み取りが必要な場面に有効
+- Separates write model and read model.
+- Effective in situations requiring high load distribution and fast reading.
 
 ### ● Event Sourcing
 
-- 状態を “イベントの履歴” で管理
-- 監査／再構築／スナップショットなど高度な要件に対応
+- Manages state by "history of events".
+- Supports advanced requirements like audit / reconstruction / snapshot.
 
 ### ● Data Mesh
 
-- ドメイン単位でデータ製品を管理する
-- 組織構造とデータ責務の分散がポイント
+- Manages data products per domain.
+- Organization structure and distribution of data responsibility are key points.
 
 ### ● Lambda / Kappa Architecture
 
-- バッチ＋ストリーム（Lambda）
-- ストリーム単体の一本化（Kappa）
+- Batch + Stream (Lambda).
+- Unification with Stream alone (Kappa).
 
-## ✅ このカテゴリの読み方
+## ✅ How to Read This Category
 
-1. OLTP と OLAP の境界を理解する
-2. ストリーミング／バッチのどちらが主か
-3. 組織内のデータ責任がどのように分散するべきか（Mesh）
+1. Understand the boundary between OLTP and OLAP.
+2. Which is primary: Streaming or Batch.
+3. How data responsibility within the organization should be distributed (Mesh).
 
-## ✅ 他の階層との関係
+## ✅ Relationship with Other Layers
 
-- **Integration**：イベント駆動がデータ構造に直結
-- **System Topologies**：分散サービスでは CQRS／ES が重要
-- **Cross-cutting**：データガバナンス・監査・SLO などと密接
+- **Integration**: Event-driven is directly connected to data structure.
+- **System Topologies**: CQRS/ES is important in distributed services.
+- **Cross-cutting**: Closely related to Data Governance, Audit, SLO, etc.

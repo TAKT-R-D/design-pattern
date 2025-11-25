@@ -1,52 +1,49 @@
 # 🧩 Zero Trust Architecture
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-**「誰も信頼しない」を前提に、すべての通信を検証し続けるセキュリティアーキテクチャ。  
-境界型防御の限界を超えるための現代的なモデル。**
+**Security architecture that assumes "Trust No One" and continuously verifies all communications. A modern model to overcome the limitations of perimeter defense.**
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-- 境界防御（Firewall）前提のセキュリティの限界
-- クラウド・SaaS・リモートワークによる“境界の消失”
-- 内部侵害（内部犯行・資格情報漏洩）の増加
-- ネットワーク内に入られた瞬間の無制限アクセス
+- Limitations of security based on perimeter defense (Firewall).
+- "Disappearance of perimeter" due to Cloud / SaaS / Remote Work.
+- Increase in internal breaches (Insider threats / Credential leaks).
+- Unlimited access once inside the network.
 
-## ✅ 基本思想・ルール
+## ✅ Basic Philosophy & Rules
 
-- “Never trust, always verify”
-- ID ベースのアクセス制御（IAM による厳密な認証・認可）
-- マイクロセグメンテーション（きめ細かい境界）
-- デバイス検証・コンテキスト認証
-- 通信の暗号化（mTLS）
-- ポリシーの継続的適用・監査
+- "Never trust, always verify"
+- ID-based access control (Strict authentication/authorization by IAM).
+- Micro-segmentation (Fine-grained boundaries).
+- Device verification / Context authentication.
+- Communication encryption (mTLS).
+- Continuous application and audit of policies.
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-- クラウド／マルチクラウド環境
-- リモートワーク前提の組織
-- セキュリティ要件が厳しい領域（金融・行政）
-- Service Mesh + mTLS を活かしたマイクロサービス
+- Cloud / Multi-cloud environments.
+- Organizations assuming remote work.
+- Areas with strict security requirements (Finance / Government).
+- Microservices utilizing Service Mesh + mTLS.
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-- オンプレのみの単純ネットワーク
-- IAM が未整備で認証基盤を作る余力がない組織
+- Simple on-premise only networks.
+- Organizations where IAM is undeveloped and cannot afford to build authentication infrastructure.
 
-## ✅ 歴史
+## ✅ History
 
-- Google BeyondCorp によりモデル化
-- ゼロトラストの概念がフレームワークとして標準化（NIST 等）
+- Modeled by Google BeyondCorp.
+- Concept of Zero Trust standardized as framework (NIST etc.).
 
-## ✅ 関連スタイル
+## ✅ Related Styles
 
-- Service Mesh：mTLS・ポリシー管理と相性が良い
-- DevOps / SRE：セキュリティ自動化の側面
-- Identity & Access Management：中心的基盤
+- Service Mesh: Good compatibility with mTLS / Policy management.
+- DevOps / SRE: Aspect of security automation.
+- Identity & Access Management: Central infrastructure.
 
-## ✅ まとめ
+## ✅ Summary
 
-Zero Trust は  
-**“ネットワークを信頼しない”という前提に立つ現代セキュリティの標準形**  
-であり、  
-アプリ・ネットワーク・デバイスの全層にまたがって構築される。
+Zero Trust is the **standard form of modern security standing on the premise of 'Do not trust the network'**,
+and is built across all layers of App, Network, and Device.

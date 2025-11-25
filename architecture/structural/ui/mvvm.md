@@ -1,123 +1,119 @@
-# 🧩 MVVM（Model-View-ViewModel）
+# 🧩 MVVM (Model-View-ViewModel)
 
-## ✅ このスタイルの概要
+## ✅ Overview of this Style
 
-**View と ViewModel をデータバインディングで結びつけ、状態と振る舞いを ViewModel に集約する UI 構造スタイル。**  
-WPF / SwiftUI / Vue / React+状態管理 などと相性が良い。
+**A UI structural style that connects View and ViewModel with data binding, aggregating state and behavior in the ViewModel.**  
+It works well with WPF / SwiftUI / Vue / React+State Management, etc.
 
-## ✅ 解決しようとした問題
+## ✅ Problems Solved
 
-MVP まで来ても、次のような課題があった：
+Even with MVP, the following challenges remained:
 
-- View と Presenter のやりとりが「メソッド呼び出しの嵐」になりがち
-- UI フレームワークに備わったデータバインディング機構を活かし切れていない
-- 状態と描画の同期が煩雑
+- Interaction between View and Presenter tends to become a "storm of method calls".
+- Not fully utilizing the data binding mechanisms provided by UI frameworks.
+- Synchronization of state and rendering is cumbersome.
 
-MVVM は、
+MVVM attempts to balance **Declarative UI and State Management** by:
 
-> 「ViewModel が状態と振る舞いを持ち、View はそれをバインディングして描画する」
+> "Having the ViewModel hold state and behavior, and the View bind to it for rendering."
 
-ことで、**宣言的 UI と状態管理** を両立しようとする。
-
-## ✅ 基本思想・ルール
+## ✅ Basic Philosophy and Rules
 
 ### ● View
 
-- 画面（XAML, SwiftUI の View, Vue/React のテンプレートなど）
-- 可能な限りロジックを持たず、ViewModel のプロパティ／コマンドにバインド
+- The screen (XAML, SwiftUI View, Vue/React templates, etc.).
+- Holds as little logic as possible, binding to ViewModel properties/commands.
 
 ### ● ViewModel
 
-- 画面に必要な状態（プロパティ）を保持
-- ユーザー操作を Command やメソッドとして定義
-- Model / Domain と連携して状態を更新
+- Holds the state (properties) necessary for the screen.
+- Defines user operations as Commands or methods.
+- Updates state in coordination with Model / Domain.
 
 ### ● Model
 
-- ドメインモデルやデータアクセス層
+- Domain model and data access layer.
 
-MVVM のキモ：
+Key points of MVVM:
 
-- UI フレームワークの **データバインディング機能** を前提に設計する
-- ViewModel はフレームワーク非依存に近い形で記述できる（理想形）
+- Designed with the **data binding features** of the UI framework as a prerequisite.
+- ViewModel can be written in a form close to framework-independent (ideal form).
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-- WPF / UWP / MAUI など XAML 系
-- SwiftUI / Jetpack Compose など宣言的 UI
-- Vue / React + 状態管理ライブラリ も思想的には近い
+- XAML-based systems like WPF / UWP / MAUI.
+- Declarative UIs like SwiftUI / Jetpack Compose.
+- Vue / React + State Management libraries are also ideologically close.
 
-特徴：
+Characteristics:
 
-- 画面ごとの ViewModel が自然な単位になりやすい
-- UI 状態のテストがしやすい
-- データフローを整理しやすい
+- Per-screen ViewModels tend to be natural units.
+- Easy to test UI state.
+- Easy to organize data flow.
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-- バインディング機構が弱い or 存在しない UI フレームワーク
-- ごく簡単な画面だけの小規模ツール（MVVM の構成コストが高い）
+- UI frameworks with weak or non-existent binding mechanisms.
+- Small-scale tools with only very simple screens (high configuration cost of MVVM).
 
-また、実務では：
+Also, in practice:
 
-- ViewModel が肥大化しやすい
-- どこまでを ViewModel に持たせるか線引きが難しい
+- ViewModels tend to become bloated.
+- It is difficult to draw the line on how much the ViewModel should hold.
 
-といった課題もある。
+These are some of the challenges.
 
-## ✅ 歴史（系譜・親スタイル）
+## ✅ History (Genealogy / Parent Styles)
 
-- WPF の登場とともに注目されたパターン
-- MVP からの発展として、データバインディングに最適化
-- 現代の宣言的 UI フレームワークでも、似た思想が再発明されている
+- A pattern that gained attention with the advent of WPF.
+- Optimized for data binding as an evolution from MVP.
+- Similar ideas are reinvented in modern declarative UI frameworks.
 
-## ✅ 関連スタイル
+## ✅ Related Styles
 
-- **MVP**：View とロジック分離の前世代パターン
-- **MVU**：状態 + メッセージ + 更新関数という関数型的アプローチ
-- **Redux, Vuex などの状態管理**：グローバル状態と View の連携
+- **MVP**: Previous generation pattern for separating View and logic.
+- **MVU**: A functional approach with State + Message + Update function.
+- **State Management like Redux, Vuex**: Coordination between global state and View.
 
-## ✅ 代表的なフレームワーク
+## ✅ Representative Frameworks
 
-MVVM は、データバインディングを備えた UI フレームワークと特に相性が良いスタイルである。
+MVVM is a style that works particularly well with UI frameworks equipped with data binding.
 
-- **WPF / UWP / .NET MAUI（XAML 系）**  
-  XAML のデータバインディング機構と ViewModel の組み合わせは、MVVM の代表的実装として知られている。
+- **WPF / UWP / .NET MAUI (XAML-based)**  
+  The combination of XAML's data binding mechanism and ViewModel is known as a representative implementation of MVVM.
 
-- **Vue（Options API）**  
-  `data` / `computed` / `methods` を ViewModel として捉え、テンプレートとバインディングする構造は MVVM 的な性質を持つ。
+- **Vue (Options API)**  
+  The structure of treating `data` / `computed` / `methods` as ViewModel and binding with templates has MVVM-like characteristics.
 
 - **Angular**  
-  Component（ViewModel 的役割）とテンプレートのバインディングにより、MVVM に近い構造になる。
+  Becomes a structure close to MVVM through binding between Component (ViewModel role) and template.
 
-- **React + 状態管理（MobX など）**  
-  コンポーネントを View と捉え、状態管理ライブラリを ViewModel 的に扱う構成も MVVM に近い発想と言える。
+- **React + State Management (MobX, etc.)**  
+  A configuration that treats components as View and handles state management libraries like ViewModel can also be said to be an idea close to MVVM.
 
-## ✅ このスタイルを支えるデザインパターン
+## ✅ Design Patterns Supporting this Style
 
-MVVM の中核は「状態とバインディング」であり、それを支えるパターンは次の通りです。
+The core of MVVM is "State and Binding", and the patterns supporting it are as follows.
 
 - **Observer**  
-  ViewModel のプロパティ変更を View に通知し、自動的に再描画させる。
+  Notifies the View of property changes in the ViewModel, automatically triggering a redraw.
 
 - **State**  
-  画面の状態（表示モード、入力内容、エラー状態など）を ViewModel 内で明示的に管理する。
+  Explicitly manages screen state (display mode, input content, error state, etc.) within the ViewModel.
 
 - **Command**  
-  ユーザー操作（ボタンクリックなど）をコマンドとして定義し、View から ViewModel のロジックを呼び出す仕組み。
+  A mechanism to define user operations (button clicks, etc.) as commands and call ViewModel logic from the View.
 
 - **Mediator**  
-  複数の ViewModel や Model の間での調整役として使われることがある。
+  Sometimes used as a coordinator between multiple ViewModels or Models.
 
-## ✅ まとめ
+## ✅ Summary
 
-MVVM は、
+MVVM is a powerful style for balancing:
 
-- データバインディング
-- 宣言的 UI
-- テスト可能な UI ロジック
+- Data Binding
+- Declarative UI
+- Testable UI Logic
 
-を両立させるための強力なスタイルである。
-
-ただし、ViewModel の責務を適切に分割しないと肥大化しやすいため、  
-**「ViewModel に何を持たせるか？」という設計判断が重要になる。**
+However, since ViewModels tend to become bloated if responsibilities are not properly divided,  
+**the design decision of "What should the ViewModel hold?" becomes important.**

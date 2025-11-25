@@ -1,23 +1,23 @@
-# 🧩 SOA（Service-Oriented Architecture）
+# 🧩 SOA (Service-Oriented Architecture)
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-**企業システムを「サービス」の集合として構築する、マイクロサービス以前のサービス分割アプローチ。**
+**A service splitting approach prior to Microservices, building enterprise systems as a collection of "Services".**
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-- 企業内のシステムがサイロ化し連携できない
-- 統合基盤（ESB）なしでの連携が非常に困難
-- 重厚なエンタープライズ連携を標準化したい
+- Systems within an enterprise become silos and cannot cooperate.
+- Cooperation without integration infrastructure (ESB) is extremely difficult.
+- Want to standardize heavy enterprise integration.
 
-## ✅ 基本思想・ルール
+## ✅ Basic Philosophy & Rules
 
-- ESB（Enterprise Service Bus）による統合
-- SOAP / WSDL / XML による厳格な契約
-- サービスカタログ管理
-- ガバナンス重視の設計
+- Integration by ESB (Enterprise Service Bus).
+- Strict contract by SOAP / WSDL / XML.
+- Service catalog management.
+- Governance-oriented design.
 
-### 概念図（Conceptual Diagram）
+### Conceptual Diagram
 
 ```mermaid
 flowchart LR
@@ -35,54 +35,54 @@ flowchart LR
     ESB --> REG
 ```
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-- 大企業の基幹系統合
-- 業務プロセスの長期安定運用
-- 変更頻度が低く、ガバナンスが強い領域
+- Integration of mission-critical systems in large enterprises.
+- Long-term stable operation of business processes.
+- Areas with low change frequency and strong governance.
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-- 変化の速い Web プロダクト
-- 開発速度と柔軟性が重要な領域
-- 軽量 API（REST/gRPC）で十分な場合
+- Fast-changing Web products.
+- Areas where development speed and flexibility are important.
+- Cases where lightweight API (REST/gRPC) is sufficient.
 
-## ✅ 歴史
+## ✅ History
 
-- 2000 年代に企業 IT の中心として普及
-- REST / Microservices により軽量化が進み、現在は限定領域で継続
+- Spread as the center of enterprise IT in the 2000s.
+- Lightweighting advanced by REST / Microservices, currently continuing in limited areas.
 
-## ✅ 関連スタイル
+## ✅ Related Styles
 
-- Microservices：SOA の軽量版として発展
-- API Gateway：SOA の「入口」をモダン化したものとして対応
+- **Microservices**: Developed as a lightweight version of SOA.
+- **API Gateway**: Corresponds as a modern version of SOA's "Entrance".
 
-## ✅ 代表的なフレームワーク
+## ✅ Representative Frameworks
 
-- **Oracle SOA Suite / IBM WebSphere ESB**  
-  企業 IT で長く使われた SOA プラットフォーム。
+- **Oracle SOA Suite / IBM WebSphere ESB**
+  SOA platforms used for a long time in enterprise IT.
 
-- **WS-\*（SOAP / WSDL）対応ミドルウェア**  
-  当時の SOA 標準を支えた通信基盤。
+- **Middleware supporting WS-\* (SOAP / WSDL)**
+  Communication infrastructure supporting SOA standards at that time.
 
-- **BizTalk Server**  
-  エンタープライズ統合のための SOA 実装。
+- **BizTalk Server**
+  SOA implementation for enterprise integration.
 
-## ✅ このスタイルを支えるデザインパターン
+## ✅ Design Patterns Supporting This Style
 
-- **Facade**  
-  ESB がサービス全体の入り口として機能。
+- **Facade**
+  ESB functions as the entrance of the entire service.
 
-- **Mediator**  
-  ESB が複数システム間の連携を調停。
+- **Mediator**
+  ESB mediates cooperation between multiple systems.
 
-- **Adapter**  
-  レガシーシステムを SOAP/WSDL で包む際に必須。
+- **Adapter**
+  Essential when wrapping legacy systems with SOAP/WSDL.
 
-- **Proxy**  
-  メッセージのバリデーション／セキュリティ適用。
+- **Proxy**
+  Message validation / Security application.
 
-## ✅ まとめ
+## ✅ Summary
 
-SOA はエンタープライズ IT の文脈では依然重要で、  
-**金融・基幹系など高ガバナンス領域に特化したアーキテクチャ** である。
+SOA remains important in the context of Enterprise IT,
+and is an **architecture specialized for high-governance areas such as finance and mission-critical systems.**

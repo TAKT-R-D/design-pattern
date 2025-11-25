@@ -1,74 +1,69 @@
 # 🧩 Team Topologies
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-**チーム構造とその協働パターンを体系化し、ソフトウェアアーキテクチャと組織設計を結びつけるためのアプローチ。**
+**Approach to systematize team structure and collaboration patterns, and link software architecture with organization design.**
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-- チーム境界とシステム境界が一致せず、変更コストが高い
-- コミュニケーション負荷が増大し、開発速度が低下
-- プラットフォームや共通基盤が分散し、運用管理がカオス化
-- 「チームの形」が、アーキテクチャを阻害する構造的問題となる
+- Team boundaries and system boundaries do not match, high change cost.
+- Communication load increases, development speed decreases.
+- Platform and common infrastructure are scattered, operation management becomes chaotic.
+- "Shape of team" becomes structural problem hindering architecture.
 
-Team Topologies はこれらに対し、  
-**「チーム構造そのものをアーキテクチャ要素として扱う」**  
-という視点を提供する。
+Team Topologies provides a perspective to **"Treat team structure itself as an architecture element"** for these.
 
-## ✅ 基本思想・ルール
+## ✅ Basic Philosophy & Rules
 
-### ● 4 つのチームタイプ
+### ● 4 Team Types
 
-1. **Stream-aligned Team（プロダクト／ドメイン担当）**
-   - ビジネス価値のストリームに沿って継続開発
+1. **Stream-aligned Team (Product / Domain charge)**
+   - Continuous development along the stream of business value.
 2. **Platform Team**
-   - 内部開発者向けに“内部プラットフォーム”を提供
+   - Provide "Internal Platform" for internal developers.
 3. **Enabling Team**
-   - 他チームを支援し技術的能力を育てる
+   - Support other teams and nurture technical capability.
 4. **Complicated Subsystem Team**
-   - 特殊な専門領域（最適化／ML／動画処理など）を担当
+   - Charge of special expert area (Optimization / ML / Video processing etc.).
 
-### ● 3 つの協働モード
+### ● 3 Collaboration Modes
 
-- **Collaboration**：短期的に密に連携
-- **X-as-a-Service**：サービスとして提供・利用する
-- **Facilitating**：能力支援・コーチング
+- **Collaboration**: Cooperate closely in short term.
+- **X-as-a-Service**: Provide / Use as service.
+- **Facilitating**: Capability support / Coaching.
 
-### ● チーム境界とアーキテクチャ境界の一致
+### ● Matching Team Boundary and Architecture Boundary
 
-- コンウェイの法則に基づき、組織構造とシステム構造を合わせる
-- 障害の少ない協調パターンを設計する
+- Match organization structure and system structure based on Conway's Law.
+- Design collaboration patterns with less friction.
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-- ドメインの分割が明確なプロダクト
-- マイクロサービスやモジュラーモノリスを採用する組織
-- プラットフォーム／基盤の整備が必要な環境
-- 複数チームで継続開発するサービス
+- Products with clear domain division.
+- Organizations adopting Microservices or Modular Monolith.
+- Environments requiring maintenance of Platform / Infrastructure.
+- Services developed continuously by multiple teams.
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-- 少人数で運用できる小規模プロダクト
-- 組織変更が難しい企業文化（硬直的な組織構造）
-- プラットフォームの成熟が不十分で、サービス提供が負荷になる場合
+- Small-scale products operable by small number of people.
+- Corporate culture where organization change is difficult (Rigid organization structure).
+- When platform maturity is insufficient and service provision becomes a burden.
 
-## ✅ 歴史（系譜・親スタイル）
+## ✅ History (Genealogy / Parent Styles)
 
-- DevOps 文脈から進化した組織アーキテクチャ手法
-- コンウェイの法則、SRE、プラットフォームエンジニアリングの影響を受けて体系化
-- 近年、モダン組織設計の標準的フレームワークとして普及している
+- Organizational architecture method evolved from DevOps context.
+- Systematized under influence of Conway's Law, SRE, Platform Engineering.
+- Recently spreading as standard framework for modern organization design.
 
-## ✅ 関連スタイル
+## ✅ Related Styles
 
-- **DevOps**：開発と運用の境界をなくす文化的・技術的アプローチ
-- **SRE / SLO**：運用品質の標準化
-- **Platform Engineering**：プラットフォームチームの実践形
-- **Microservices / Modular Monolith**：チーム境界とサービス境界の一致
+- **DevOps**: Cultural/Technical approach eliminating boundary between Dev and Ops.
+- **SRE / SLO**: Standardization of operational quality.
+- **Platform Engineering**: Practical form of Platform Team.
+- **Microservices / Modular Monolith**: Matching of team boundary and service boundary.
 
-## ✅ まとめ
+## ✅ Summary
 
-Team Topologies は  
-**「組織構造こそアーキテクチャ」**  
-というメッセージを明確にし、  
-チーム配置・協働モード・境界設計を通して  
-開発速度と組織の健全性を両立させるための理論と実践を提供する。
+Team Topologies clarifies the message **"Organization structure is architecture"**,
+and provides theory and practice to balance development speed and organizational health through team placement, collaboration modes, and boundary design.

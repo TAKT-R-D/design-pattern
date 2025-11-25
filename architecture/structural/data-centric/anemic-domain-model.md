@@ -1,125 +1,119 @@
-# 🧩 Anemic Domain Model（貧血モデル）
+# 🧩 Anemic Domain Model
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-**データ（プロパティ）だけを持ち、ビジネスロジック（振る舞い）がサービス層に分散してしまった「貧血状態」のドメインモデル。**  
-DDD では典型的なアンチパターンとして扱われる。
+A **"Anemic" domain model where domain objects hold only data (properties) and business logic (behavior) is scattered in the service layer.**
+Treated as a typical anti-pattern in DDD.
 
-## ✅ 解決しようとした問題（表向きの理由）
+## ✅ Problems Addressed (Surface Reasons)
 
-Anemic Domain Model は、以下のような“分かりやすさ”を求めた結果として生まれます：
+Anemic Domain Model is born as a result of seeking "simplicity" like:
 
-- ドメインオブジェクトは **純粋なデータ構造** にしたい
-- ビジネスロジックは **サービスクラスにまとめたい**
-- DTO のようにシンプルなオブジェクトを扱いたい
-- ORM やフレームワークと相性がよい（POJO/POCO のまま扱える）
+- Want domain objects to be **pure data structures**.
+- Want to **group business logic in service classes**.
+- Want to handle simple objects like DTOs.
+- Good compatibility with ORMs and frameworks (can be handled as POJO/POCO).
 
-**しかし**、これらのメリットは往々にして以下の問題を生みます：
+**However**, these merits often create the following problems:
 
-- ビジネスルールが複数サービスに分散してしまう
-- 不変条件の保証が困難
-- 「どのサービスが何の責務なのか」が曖昧になる
+- Business rules scatter across multiple services.
+- Guaranteeing invariants is difficult.
+- "Which service is responsible for what" becomes ambiguous.
 
-## ✅ 基本思想・実態
+## ✅ Basic Philosophy & Reality
 
-典型的な Anemic Domain Model は以下の構造です：
+Typical Anemic Domain Model structure:
 
-### ● ドメインクラス（Entity / Value Object）
+### ● Domain Class (Entity / Value Object)
 
-- プロパティだけを保持
-- メソッドは getter/setter 程度
-- 状態遷移ロジック・ルールは持たない
+- Holds only properties.
+- Methods are only getter/setter level.
+- Does not hold state transition logic or rules.
 
-### ● サービスクラス（Domain Service / Application Service）
+### ● Service Class (Domain Service / Application Service)
 
-- ドメインモデルを引数に取り、状態を変更
-- 不変条件・ルール・計算ロジックが散らばる
-- サービス間でロジックが重複しがち
+- Takes domain model as argument and changes state.
+- Invariants, rules, and calculation logic are scattered.
+- Logic tends to duplicate between services.
 
-結果として **ドメインモデルが“ただのデータ”になり、整合性が崩れやすい**。
+As a result, **the domain model becomes "just data", and consistency is easily broken.**
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-「アンチパターン」ではあるものの、次のような場面では現実的な選択になり得ます：
+Although an "anti-pattern", it can be a realistic choice in scenes like:
 
-- ドメインルールが単純で、複雑な状態遷移が存在しない
-- ほぼ CRUD 中心のミニマムな業務アプリ
-- 期限が短く、素早く動く機能が必要な場合
-- フレームワークがデータ中心設計を強く前提にしている場合（Rails など）
+- Domain rules are simple and no complex state transitions exist.
+- Minimum business apps centered almost entirely on CRUD.
+- Short deadlines, need features working quickly.
+- Framework strongly assumes data-centric design (e.g., Rails).
 
-→ **複雑さが低いことが前提条件**。
+→ **Low complexity is a prerequisite.**
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-以下のようなアプリでは確実に破綻します：
+It surely breaks down in apps like:
 
-- 状態遷移や不変条件が重要なドメイン
-- 高い整合性が求められる領域（金融・決済・在庫管理・物流など）
-- 再利用される複雑なビジネスロジックが多い
-- 長期運用で仕様変更が頻繁に発生するプロダクト
+- Domains where state transitions and invariants are important.
+- Areas requiring high consistency (Finance, Payment, Inventory Management, Logistics, etc.).
+- Many reusable complex business logics.
+- Products with frequent specification changes in long-term operation.
 
-典型的な問題：
+Typical problems:
 
-- どこにロジックを書いたか分からない
-- テストが書きづらい（サービス層が膨張）
-- バグが再発しやすく、修正範囲が読みにくい
+- Don't know where logic is written.
+- Hard to write tests (Service layer bloats).
+- Bugs recur easily, scope of fix is hard to read.
 
-## ✅ 歴史（系譜・親スタイル）
+## ✅ History (Genealogy / Parent Styles)
 
-- データ中心志向（Active Record / Table Module）的な設計から自然発生した構造
-- DDD の文脈で、Evans が「貧血モデル」として問題提起
-- Rich Domain Model（リッチドメイン）や DDD のアプローチは、この問題への対抗として発展
+- Structure naturally generated from Data-centric (Active Record / Table Module) designs.
+- Evans raised the issue as "Anemic Model" in the context of DDD.
+- Rich Domain Model and DDD approaches evolved as countermeasures to this problem.
 
-## ✅ 関連スタイル
+## ✅ Related Styles
 
-- **Active Record / Table Module**  
-  データ中心の親戚スタイルで、貧血モデル化しやすい
-- **Domain Model（リッチドメイン）**  
-  貧血モデルの問題を解決する“対極”のアプローチ
-- **Service Layer**  
-  貧血モデルと密接な関係がある（ロジック過剰集中の原因にもなる）
+- **Active Record / Table Module**
+  Data-centric relative styles, prone to becoming Anemic Models.
+- **Domain Model (Rich Domain)**
+  "Opposite" approach solving the Anemic Model problem.
+- **Service Layer**
+  Closely related to Anemic Model (also a cause of excessive logic concentration).
 
-## ✅ 代表的なフレームワーク
+## ✅ Representative Frameworks
 
-Anemic Domain Model は “特定フレームワークで採用される” というより、  
-**データ中心設計が強いフレームワークで“自然発生”しやすい構造**。
+Anemic Domain Model is not "adopted by specific frameworks", but is a **structure that "naturally occurs" easily in frameworks with strong data-centric design.**
 
-- **Rails / Laravel（Active Record 中心）**  
-  モデルにロジックを載せきれず、サービス層に散りがちな構造が生まれやすい。
+- **Rails / Laravel (Active Record centric)**
+  Logic cannot be fully loaded on models and tends to scatter to the service layer.
 
-- **Django**  
-  MVT 構造でドメインロジックが view/service に寄りやすい。
+- **Django**
+  With MVT structure, domain logic tends to lean towards view/service.
 
-- **ORM が POJO/POCO を前提にする環境（Java/.NET）**  
-  Entity がデータ保持だけになりがちで、ドメインロジックが外へ逃げるケースが多い。
+- **Environments where ORM assumes POJO/POCO (Java/.NET)**
+  Entities tend to become data holders only, and domain logic often escapes outside.
 
-## ✅ このスタイルを支えるデザインパターン
+## ✅ Design Patterns Supporting This Style
 
-Anemic Domain Model はパターンとして“推奨される構造”ではないが、  
-補助的に次のパターンが登場する。
+Anemic Domain Model is not a "recommended structure" as a pattern, but the following patterns appear auxiliarily.
 
-- **Command**  
-  複雑なロジックがサービス層に溜まった際、操作単位で整理するために使われる。
+- **Command**
+  Used to organize by operation unit when complex logic accumulates in the service layer.
 
-- **Strategy**  
-  ドメインロジックがサービス側に集まるため、差し替え可能なロジック整理に使われる。
+- **Strategy**
+  Used to organize replaceable logic since domain logic gathers on the service side.
 
-- **Template Method**  
-  複数サービスで重複する処理ステップを統一する必要が生じたときに使われる。
+- **Template Method**
+  Used when there is a need to unify overlapping processing steps in multiple services.
 
-## ✅ まとめ
+## ✅ Summary
 
-Anemic Domain Model は、  
-「分かりやすい」「実装しやすい」という理由で採用されがちだが、  
-**複雑なドメインには決して向かず、構造の崩壊を加速させる危険がある。**
+Anemic Domain Model is often adopted because it is "easy to understand" and "easy to implement", but
+**It is never suitable for complex domains and risks accelerating structural collapse.**
 
-重要なのは：
+Important thing is:
 
-> 「このアプリのドメインの複雑度は、  
->  Anemic Model のシンプルさで済むのか？」
+> Always ask the question:
+> "Is the complexity of this app's domain low enough for the simplicity of Anemic Model?"
 
-という問いを常に投げかけること。
-
-複雑さが少しでも増える兆候があるなら、  
-Domain Model / DDD / Layered / Hexagonal など、  
-より本格的な構造スタイルを検討すべきだ。
+If there is any sign of increasing complexity,
+more serious structural styles like Domain Model / DDD / Layered / Hexagonal should be considered.

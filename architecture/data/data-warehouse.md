@@ -1,74 +1,73 @@
-# 🧩 Data Warehouse（DWH）
+# 🧩 Data Warehouse (DWH)
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-**組織全体のデータを統合し、分析用途に最適化して保存する集中型データストア。**
+**Centralized data store integrating organization-wide data and storing it optimized for analysis use.**
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-- 業務システムごとにデータがサイロ化している
-- 分析のたびに複雑な JOIN や前処理が必要
-- レポートや分析が属人化し、再現性が低い
+- Data is siloed per business system.
+- Complex JOINs and pre-processing are required for every analysis.
+- Reporting and analysis become personalized and reproducibility is low.
 
-Data Warehouse はこれらに対し、
-**「統合」「正規化」「履歴管理」** を軸とした集中基盤を提供する。
+Data Warehouse provides a centralized infrastructure centered on **"Integration", "Normalization", and "History Management"** for these.
 
-## ✅ 基本思想・ルール
+## ✅ Basic Philosophy & Rules
 
-- ETL（Extract → Transform → Load）でデータを整形し DWH に格納
-- スキーマ設計はスター／スノーフレークスキーマなど分析に最適化
-- 時系列データの保持（SCD など）で履歴も管理
+- Format data with ETL (Extract → Transform → Load) and store in DWH.
+- Schema design is optimized for analysis like Star / Snowflake schema.
+- History is also managed by retaining time-series data (SCD etc.).
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-- 統合レポート、BI ダッシュボード
-- 企業全体の KPI を一元管理
-- 監査・法規制対応のための確定データストア
+- Integrated reports, BI dashboards.
+- Centralized management of company-wide KPIs.
+- Definitive data store for audit and regulatory compliance.
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-- 生データを柔軟に扱いたい探索的分析（Data Lake の方が適）
-- ストリーミングなどリアルタイム性が重要なケース
+- Exploratory analysis wanting to handle raw data flexibly (Data Lake is more suitable).
+- Cases where real-time nature is important like streaming.
 
-## ✅ 歴史（系譜・親スタイル）
+## ✅ History (Genealogy / Parent Styles)
 
-- 1990 年代から続く定番アプローチ
-- Kimball / Inmon 方式など複数流派が存在
+- Standard approach continuing since 1990s.
+- Multiple schools exist like Kimball / Inmon methods.
 
-## ✅ 関連スタイル
+## ✅ Related Styles
 
-- Data Lake / Lakehouse：より柔軟なデータ保持
-- Lambda / Kappa Architecture：DWH をバッチレイヤーとして利用
+- Data Lake / Lakehouse: More flexible data retention.
+- Lambda / Kappa Architecture: Use DWH as batch layer.
 
-## ✅ 代表的なフレームワーク
+## ✅ Representative Frameworks
 
-- **Amazon Redshift**  
-  クラウド DWH の先駆。大規模分析処理を提供。
+- **Amazon Redshift**
+  Pioneer of cloud DWH. Provides large-scale analysis processing.
 
-- **Google BigQuery**  
-  サーバレス DWH として、スケール・クエリ高速化を実現。
+- **Google BigQuery**
+  Serverless DWH realizing scale and query acceleration.
 
-- **Snowflake**  
-  仮想ウェアハウス構造とコンピュート分離アーキテクチャが特徴。
+- **Snowflake**
+  Characterized by virtual warehouse structure and compute separation architecture.
 
-- **Teradata / Oracle Exadata**  
-  伝統的なオンプレミス DWH で高性能分析処理の基盤。
+- **Teradata / Oracle Exadata**
+  Traditional on-premise DWH, infrastructure for high-performance analysis processing.
 
-## ✅ このスタイルを支えるデザインパターン
+## ✅ Design Patterns Supporting This Style
 
-- **Template Method**  
-  ETL の手順（抽出 → 整形 → 格納）を統一する。
+- **Template Method**
+  Unifies ETL procedures (Extract → Transform → Load).
 
-- **Strategy**  
-  最適化戦略（インデックス／パーティション）を切り替える。
+- **Strategy**
+  Switching optimization strategies (Index / Partition).
 
-- **Iterator**  
-  大量データを逐次処理する際に使用。
+- **Iterator**
+  Used when processing massive data sequentially.
 
-- **Facade**  
-  統合レイヤ（BI ツールやメタデータ管理）が内部の複雑さを隠蔽。
+- **Facade**
+  Integration layer (BI tools and metadata management) hides internal complexity.
 
-## ✅ まとめ
+## ✅ Summary
 
-DWH は **定型レポート・確定データ分析の王道** で、  
-安定した業務分析基盤として今も広く使われている。
+DWH is the **royal road for standard reports and definitive data analysis**,
+and is still widely used as a stable business analysis platform.

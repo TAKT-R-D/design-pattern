@@ -1,60 +1,57 @@
-# 🧩 E. Flow / Pipeline 系（処理フロー・パイプライン構造）
+# 🧩 E. Flow / Pipeline Structural Styles
 
-## ✅ 概要
+## ✅ Overview
 
-この系統は、アプリケーション内部の処理を **一連のステップ（パイプライン）としてどのように構成するか** を扱うスタイル群を対象とする。
+This family covers styles that deal with **how to configure processing inside an application as a series of steps (pipeline).**
 
-- データやメッセージが「段階を追って」処理されていく
-- 各ステージ（フィルタ）は単一責務で構成され、組み合わせで機能を実現する
-- バッチ処理やストリーミング処理など、データフロー中心のアーキテクチャで重要
+- Data or messages are processed "step-by-step".
+- Each stage (filter) is composed of a single responsibility, and functions are realized by combining them.
+- Important in data flow-centric architectures like batch processing and streaming processing.
 
-代表的なスタイル：
+Representative Styles:
 
 - Pipe & Filter
 - Batch Pipeline
 - Streaming Pipeline
 
-## ✅ なぜこの系統が生まれたか（歴史・背景）
+## ✅ Why This Family Emerged (History & Background)
 
-- Unix 文化の「小さなプログラムをパイプ（`|`）でつなぐ」発想
-- ETL（Extract-Transform-Load）処理など、データ加工の分野でのニーズ
-- ログ処理、イベント処理、ストリーミング分析などの増加
+- Idea of "connecting small programs with pipes (`|`)" from Unix culture.
+- Needs in data processing fields like ETL (Extract-Transform-Load).
+- Increase in log processing, event processing, streaming analytics, etc.
 
-> 「1 つの巨大な処理ではなく、シンプルな処理を組み合わせて複雑さを扱いたい」
+Flow / Pipeline styles emerged from the need:
 
-というニーズから、Flow / Pipeline 系のスタイルが生まれてきた。
+> "To handle complexity by combining simple processes rather than one huge process."
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-- 巨大な一枚岩の処理関数（複雑な if/for の塊）
-- バッチ処理・ETL がスパゲッティ化して再利用不能
-- 処理の一部だけ差し替えたり並列化したりするのが難しい
+- Huge monolithic processing functions (chunks of complex if/for loops).
+- Batch processing / ETL becoming spaghetti code and reusable.
+- Difficulty in replacing or parallelizing only parts of the process.
 
-Flow / Pipeline 系は、処理を
+Flow / Pipeline styles aim to **"treat the processing flow as a design object"** by:
 
-- 分割し
-- 並べ
-- 組み替え可能にし
+- Splitting
+- Arranging
+- Making re-combinable
 
-**「処理フローを設計対象として扱う」** ことを狙う。
+## ✅ Styles Belonging to This Family
 
-## ✅ この系統に属するスタイル
+- **Pipe & Filter**: Classic style connecting processing with filters (processing stages) and pipes (data flow).
+- **Batch Pipeline**: Pipeline structure as batch processing (ETL jobs, batch workflows, etc.).
+- **Streaming Pipeline**: Pipeline processing streaming data continuously.
 
-- **Pipe & Filter**：フィルタ（処理ステージ）とパイプ（データの流れ）で処理をつなぐ古典的スタイル
-- **Batch Pipeline**：バッチ処理としてのパイプライン構造（ETL ジョブ、バッチワークフロー等）
-- **Streaming Pipeline**：ストリーミングデータを継続的に処理するパイプライン
+## ✅ Relationship with Other Families
 
-## ✅ 他の系統との関係
+- Very compatible with **Data Architecture** (Lambda / Kappa / Data Pipeline).
+- Often combined with **Integration Styles** (Messaging / EDA) to configure distributed pipelines.
+- High affinity with **Reactive / Actor** families, used as internal structure for event stream processing.
 
-- **Data Architecture**（Lambda / Kappa / Data Pipeline）と非常に相性が良い
-- **Integration Styles**（メッセージング／EDA）と組み合わせて、分散パイプラインを構成することが多い
-- **Reactive / Actor 系** とも親和性が高く、イベントストリーム処理の内部構造として利用される
+## ✅ When to Reference
 
-## ✅ どんな時に参考になるか
+- Data flow-centric systems like Batch processing, ETL, Log processing, Streaming analytics.
+- When you want to organize processing that is "transformed step-by-step".
+- When considering responsibility division, reuse, and parallel execution for each processing stage.
 
-- バッチ処理・ETL・ログ処理・ストリーミング分析など、データフロー中心のシステム
-- 「段階を追って変換される」処理を整理したいとき
-- 処理ステージごとの責務分担・再利用・並列実行などを考えたいとき
-
-この系統を押さえておくと、
-**「処理フローそのものをアーキテクチャとして設計する」** 観点が得られる。
+Understanding this family gives you the perspective of **"designing the processing flow itself as architecture"**.

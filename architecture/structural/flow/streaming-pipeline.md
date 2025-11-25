@@ -1,47 +1,47 @@
 # 🧩 Streaming Pipeline
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-**連続して流れてくるデータ／イベントを、途切れさせずにパイプラインで処理し続けるスタイル。**
+**A style that continues to process continuously flowing data/events with a pipeline without interruption.**
 
-- 常にデータが「流れている」ことを前提としたパイプライン
-- ほぼリアルタイムでの集計・検知・変換に強い
-- バッチではなく **ストリーム（流れ）** を設計対象とする
+- Pipeline assuming data is always "flowing".
+- Strong in almost real-time aggregation, detection, and transformation.
+- Targets **Stream (Flow)** as design object, not Batch.
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-バッチ処理や単発の ETL では対応しきれない、次のような課題を解決したいときに Streaming Pipeline が登場する。
+Streaming Pipeline appears when you want to solve challenges that cannot be handled by batch processing or one-off ETL, such as:
 
-- イベント数が多く、**1 回ごとのバッチ処理が重くなりすぎる**
-- 「1 時間ごとのバッチ」では遅く、**ほぼリアルタイムで検知・反応したい**
-- 同じデータを複数チームや複数システムが **継続的に利用したい**
-- ログ／センサー／トランザクションデータなどが **絶えず増え続ける**
+- Number of events is large, and **each batch processing becomes too heavy**.
+- "Hourly batch" is slow, want to **detect/react almost in real-time**.
+- Multiple teams or systems want to **continuously use** the same data.
+- Logs / Sensors / Transaction data **keep increasing constantly**.
 
-> 「結果だけでなく、データが流れていくプロセス自体を、継続的に動くパイプラインとして設計したい」
+It answers the need:
 
-というニーズに応えるスタイルである。
+> "Want to design not only the result but the process of data flowing as a continuously moving pipeline."
 
-## ✅ 基本構造と考え方
+## ✅ Basic Structure & Concept
 
-Streaming Pipeline では、データは以下のようなステップで流れていく。
+In Streaming Pipeline, data flows in steps like:
 
-1. **Source（ソース）**
-   - Kafka Topic / Kinesis Stream / Pub/Sub 等からイベントを受け取る
-2. **Transform（変換）**
-   - フィルタリング、マッピング、結合、ウィンドウ集計などを行う
-3. **Enrich（補強）**
-   - 他のストリームや参照データを使って情報を付加する
-4. **Sink（シンク）**
-   - ストレージ（DWH / Data Lake）や下流システム、ダッシュボードなどに出力する
+1. **Source**
+   - Receive events from Kafka Topic / Kinesis Stream / Pub/Sub etc.
+2. **Transform**
+   - Perform filtering, mapping, joining, window aggregation, etc.
+3. **Enrich**
+   - Add information using other streams or reference data.
+4. **Sink**
+   - Output to storage (DWH / Data Lake), downstream systems, dashboards, etc.
 
-特徴的な要素：
+Characteristic elements:
 
-- **Immutable Event / Append-only**：過去のイベントを上書きせず、「流れた事実」として扱う
-- **Windowing（時間窓）**：一定時間ごとの集計・検知（例：直近 5 分のエラー数）
-- **Stateful Processing**：ストリーム処理の途中で状態を持ち、継続的に更新する
-- **Backpressure / Rate Control**：大量の入力に対して、処理能力を超えないよう制御する
+- **Immutable Event / Append-only**: Do not overwrite past events, treat as "facts that flowed".
+- **Windowing**: Aggregation / detection per certain time (e.g., number of errors in last 5 mins).
+- **Stateful Processing**: Hold state in the middle of stream processing and update continuously.
+- **Backpressure / Rate Control**: Control not to exceed processing capacity against large input.
 
-### 概念図（Conceptual Diagram）
+### Conceptual Diagram
 
 ```mermaid
 flowchart LR
@@ -53,111 +53,110 @@ flowchart LR
     SRC --> TF --> EN --> SNK
 ```
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-Streaming Pipeline が特に威力を発揮するのは、次のような領域である。
+Streaming Pipeline is particularly powerful in areas like:
 
-- **ログ・メトリクス処理**  
-  アクセスログ、アプリケーションログ、メトリクスのリアルタイム集計・アラート。
+- **Log / Metrics Processing**
+  Real-time aggregation and alerting of access logs, application logs, metrics.
 
-- **イベント駆動サービス**  
-  ユーザー行動イベントをもとにしたレコメンド、パーソナライズ、フィード生成。
+- **Event-driven Services**
+  Recommendation, personalization, feed generation based on user behavior events.
 
-- **IoT / センサー系**  
-  センサーデータやデバイスからのテレメトリの連続監視、異常検知。
+- **IoT / Sensor Systems**
+  Continuous monitoring and anomaly detection of telemetry from sensors and devices.
 
-- **決済・トランザクションモニタリング**  
-  不正検知、リアルタイムのリスク評価など。
+- **Payment / Transaction Monitoring**
+  Fraud detection, real-time risk assessment, etc.
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-Streaming Pipeline は「何でもストリーミングでやればよい」わけではない。
+Streaming Pipeline does not mean "Everything should be done with streaming".
 
-- **1 回きりの集計やマイグレーション**  
-  単発の重い処理はバッチの方がシンプルなことが多い。
+- **One-off Aggregation or Migration**
+  One-off heavy processing is often simpler with Batch.
 
-- **厳密な一括整合性が必要な処理**  
-  すべてのデータが揃ってから一度に判断する方が安全なケース（例：期末バッチ決算）。
+- **Processing requiring strict batch consistency**
+  Cases where it is safer to judge at once after all data is gathered (e.g., end-of-term batch settlement).
 
-- **シンプルな CRUD 中心の業務システム**  
-  そもそもストリームとして設計する必要がない場合も多い。
+- **Simple CRUD-centric Business Systems**
+  Often there is no need to design as a stream in the first place.
 
-## ✅ 歴史（系譜・親スタイル）
+## ✅ History (Genealogy / Parent Styles)
 
-Streaming Pipeline は、次の文脈から発展してきた。
+Streaming Pipeline evolved from the following contexts:
 
-- **Pipe & Filter** や **Batch Pipeline** の考え方を、リアルタイム処理に拡張したもの
-- **ログ集計基盤**（Hadoop 時代）から、Kafka などの分散ログ基盤 + ストリーム処理エンジンへと進化
-- Lambda / Kappa アーキテクチャにおける「スピードレイヤ」「ストリームレイヤ」として定式化
+- Extended ideas of **Pipe & Filter** and **Batch Pipeline** to real-time processing.
+- Evolved from **Log Aggregation Platform** (Hadoop era) to Distributed Log Platform like Kafka + Stream Processing Engine.
+- Formulated as "Speed Layer" / "Stream Layer" in Lambda / Kappa Architecture.
 
-> 「バッチの限界を超え、データが到着するたびに処理し続ける」
+It is a pipeline style swinging in the direction of:
 
-という方向に振り切ったパイプラインスタイルである。
+> "Exceeding limits of batch, continuing to process every time data arrives."
 
-## ✅ 関連スタイルとの関係
+## ✅ Relationship with Related Styles
 
-- **Pipe & Filter**  
-  モデルとしては同じくステージの連結だが、Streaming は「常に流れている」ことが前提。
+- **Pipe & Filter**
+  Model is the same connection of stages, but Streaming assumes "always flowing".
 
-- **Batch Pipeline**  
-  処理単位が「ジョブごと」「日次・時間ごと」か、「イベント単位／時間窓単位」かの違い。
+- **Batch Pipeline**
+  Difference is whether processing unit is "per Job / Daily / Hourly" or "per Event / Time Window".
 
-- **Event-driven Architecture / EDA**  
-  イベントの流れがシステム境界をまたぐ場合、その内部処理として Streaming Pipeline が登場する。
+- **Event-driven Architecture / EDA**
+  When event flow crosses system boundaries, Streaming Pipeline appears as its internal processing.
 
-- **Lambda / Kappa Architecture（Data 系）**  
-  ストリーム処理と DWH / Data Lake をどう組み合わせるかの文脈でよく登場する。
+- **Lambda / Kappa Architecture (Data)**
+  Often appears in the context of how to combine stream processing and DWH / Data Lake.
 
-## ✅ 代表的なフレームワーク
+## ✅ Representative Frameworks
 
-Streaming Pipeline を実現する代表的な基盤・フレームワークには次のようなものがある。
+Representative platforms/frameworks realizing Streaming Pipeline include:
 
-- **Apache Kafka Streams / ksqlDB**  
-  Kafka 上のストリーム処理専用ライブラリ。トピック間のストリーム変換・結合・集計を記述できる。
+- **Apache Kafka Streams / ksqlDB**
+  Stream processing dedicated library on Kafka. Can describe stream transformation, join, and aggregation between topics.
 
-- **Apache Flink**  
-  ストリーム処理に強い分散処理エンジン。複雑なウィンドウ処理・状態管理が可能。
+- **Apache Flink**
+  Distributed processing engine strong in stream processing. Capable of complex window processing and state management.
 
-- **Apache Beam（ストリーミングモード）**  
-  Batch / Streaming を同一モデルで記述でき、Dataflow など複数ランタイムにポータブル。
+- **Apache Beam (Streaming Mode)**
+  Can describe Batch / Streaming with the same model, portable to multiple runtimes like Dataflow.
 
-- **Amazon Kinesis / Google Cloud Pub/Sub + Dataflow など**  
-  マネージドサービスとしてストリーミングパイプラインを構築できる。
+- **Amazon Kinesis / Google Cloud Pub/Sub + Dataflow etc.**
+  Can build streaming pipelines as managed services.
 
-## ✅ このスタイルを支えるデザインパターン
+## ✅ Design Patterns Supporting This Style
 
-Streaming Pipeline は、オブジェクト指向のデザインパターンで見ると次のような組み合わせになっている。
+Streaming Pipeline is a combination of the following object-oriented design patterns:
 
-- **Iterator**  
-  ストリームを「次の要素を順に取り出す」抽象として扱う。
+- **Iterator**
+  Treats stream as an abstraction to "take out next element in order".
 
-- **Observer**  
-  新しいイベントの到着を購読し、処理をトリガーする。
+- **Observer**
+  Subscribes to arrival of new events and triggers processing.
 
-- **Chain of Responsibility**  
-  複数の処理ステージをつなぎ、イベントを段階的に処理していく。
+- **Chain of Responsibility**
+  Connects multiple processing stages and processes events stepwise.
 
-- **Mediator**  
-  複数のストリームやステージが絡むとき、ルーティングや結合を一箇所に集約する。
+- **Mediator**
+  Aggregates routing and joining in one place when multiple streams or stages are involved.
 
-- **Strategy**  
-  ステージごとの処理ロジック（集計アルゴリズムやフィルタ条件）を差し替え可能にする。
+- **Strategy**
+  Makes processing logic (aggregation algorithm or filter condition) per stage replaceable.
 
-## ✅ まとめ
+## ✅ Summary
 
-Streaming Pipeline は、
+Streaming Pipeline is a pipeline style for:
 
-- データが絶えず流れ続ける前提で
-- ステージを組み合わせて
-- ほぼリアルタイムに処理・集計・検知する
+- Assuming data continues to flow constantly
+- Combining stages
+- Processing / Aggregating / Detecting almost in real-time
 
-ためのパイプラインスタイルである。
+While being in the same genealogy as Pipe & Filter / Batch Pipeline,
+its biggest feature is making:
 
-Pipe & Filter / Batch Pipeline と同じ系譜にありながら、
+> **"Processing flow that continues to move every time data comes"**
 
-> **「データが来るたびに動き続ける処理フロー」**
+The protagonist of design.
 
-を設計の主役にする点が最大の特徴である。
-
-データ量・リアルタイム性・拡張性の要件が高いシステムでは、
-Streaming Pipeline を意識した設計が、アーキテクチャ上の重要な選択肢となる。
+In systems with high requirements for data volume, real-time performance, and scalability,
+design conscious of Streaming Pipeline becomes an important architectural option.

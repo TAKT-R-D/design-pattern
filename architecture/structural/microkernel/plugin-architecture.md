@@ -1,98 +1,94 @@
 # 🧩 Plugin Architecture
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-アプリケーションが **明示的な拡張ポイント（Extension Point）を提供し、  
-そこにプラグインを差し込むことで機能追加・カスタマイズを可能にする構造スタイル。**
+**A structural style where the application provides explicit Extension Points, and enables feature addition/customization by inserting plugins there.**
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-- 顧客やプロジェクトごとに必要な機能が異なる
-- 追加機能のたびに本体をフォーク・改造するのはコストが高い
-- サードパーティによるエコシステム（プラグインマーケット）を構築したい
+- Necessary features differ for each customer or project.
+- Forking/modifying the main body every time a feature is added has high cost.
+- Want to build an ecosystem (plugin market) by third parties.
 
-Plugin Architecture は、
+Plugin Architecture supports ease of change and ecosystem construction by:
 
-> 「本体はコア機能を提供し、拡張はプラグインとして後付けする」
+> "Main body provides core functions, and extensions are added later as plugins."
 
-ことで、変更容易性とエコシステム構築を支える。
+## ✅ Basic Philosophy & Rules
 
-## ✅ 基本思想・ルール
+### ● Extension Point
 
-### ● Extension Point（拡張ポイント）
+- Core defines slots saying "Plugins can be inserted here".
+- Expressed by interfaces, events, or configuration files.
 
-- コアが「ここにプラグインを差し込める」というスロットを定義
-- インターフェースやイベント、設定ファイルによって表現される
+### ● Plugin
 
-### ● Plugin（プラグイン）
+- Implements the contract (interface) of the extension point.
+- Adds / Replaces / Filters functions.
+- Often enabled/disabled via configuration or marketplace.
 
-- 拡張ポイントの契約（インターフェース）を実装
-- 機能を追加／置き換え／フィルタリングする
-- 設定やマーケットプレイス経由で有効化・無効化されることが多い
+### ● Implementation Patterns
 
-### ● 実装パターン
+- Classpath Scan / Reflection
+- Registration by DI Container
+- Declaration by Configuration File / Manifest
 
-- クラスパススキャン / リフレクション
-- DI コンテナによる登録
-- 設定ファイル・マニフェストによる宣言
+## ✅ Suitable Applications
 
-## ✅ 得意なアプリケーション
+- Editor / IDE (Extensions for Lint, Formatter, Language Support, etc.)
+- CI/CD Tools (Add supported services with various plugins)
+- CMS / EC Platforms (Themes, Add-ons)
+- SaaS Platforms (Those providing Webhook / App mechanisms)
 
-- エディタ / IDE（Lint, Formatter, Language Support 等の拡張）
-- CI/CD ツール（各種プラグインで対応サービスを追加）
-- CMS / EC プラットフォーム（テーマ・アドオン）
-- SaaS プラットフォーム（Webhook / App 機構を提供するもの）
+## ❌ Unsuitable Cases
 
-## ❌ 不向きなケース
+- Single-purpose apps with almost no variation in features.
+- Cases where security requirements are extremely strict and execution of external code is to be avoided.
+- Designs where plugin boundaries are ambiguous and end up tightly coupled with the core.
 
-- 機能のバリエーションがほとんどない単一用途のアプリ
-- セキュリティ要件が極端に厳しく、外部コード実行を避けたいケース
-- プラグイン境界が曖昧で、結局コアと強く結合してしまうような設計
-- といった問題も起こりえる。
+## ✅ History (Genealogy / Parent Styles)
 
-## ✅ 歴史（系譜・親スタイル）
+- Style that concretized Microkernel ideas at a more application level.
+- Spread in many tools including IDEs like Eclipse / VSCode / IntelliJ.
+- Applied to Web platforms (Browser extensions, SaaS app integration).
 
-- Microkernel 的な発想を、よりアプリケーションレベルで具体化したスタイル
-- Eclipse / VSCode / IntelliJ などの IDE をはじめ、多くのツールで普及
-- Web プラットフォーム（ブラウザ拡張・SaaS のアプリ連携）にも応用されている
+## ✅ Related Styles
 
-## ✅ 関連スタイル
+- **Microkernel Architecture**: Almost same family in terms of separation of core and plugins.
+- **Event-Driven Architecture**: Easy to combine as event subscription type extension points.
+- **Layered Architecture**: Can be used as a plugin for specific layers (e.g., replacing authentication method).
 
-- **Microkernel Architecture**：コアとプラグインの分離という観点でほぼ同系統
-- **Event-Driven Architecture**：イベント購読型の拡張ポイントとして組み合わせやすい
-- **Layered Architecture**：特定レイヤーに対するプラグイン（例：認証方式の差し替え）としても利用可能
+## ✅ Representative Frameworks
 
-## ✅ 代表的なフレームワーク
+Plugin Architecture is widely spread as a Microkernel-like structure at the application level.
 
-Plugin Architecture はアプリケーションレベルでの Microkernel 的構造として広く普及している。
+- **VSCode / IntelliJ**
+  Language servers, formatters, debuggers, etc. are all added via plugins.
 
-- **VSCode / IntelliJ**  
-  言語サーバ・フォーマッタ・デバッガなど、すべてプラグイン経由で追加。
+- **WordPress / Shopify / Joomla**
+  Themes, add-ons, and apps are added as plugins for CMS / EC feature extension.
 
-- **WordPress / Shopify / Joomla**  
-  CMS / EC の機能拡張としてテーマ・アドオン・アプリをプラグインとして追加。
+- **CI/CD Tools (Jenkins, GitHub Actions)**
+  Processing steps like build, deploy, notification are separated as plugins.
 
-- **CI/CD ツール（Jenkins・GitHub Actions）**  
-  ビルド・デプロイ・通知など、各処理ステップをプラグインとして分離。
+- **External Integration of Modern SaaS (Webhook / App)**
+  Structure where external services are "inserted into extension points as apps".
 
-- **モダン SaaS の外部連携（Webhook / App）**  
-  外部サービスが“アプリとして拡張ポイントに差し込まれる”構造。
+## ✅ Design Patterns Supporting This Style
 
-## ✅ このスタイルを支えるデザインパターン
+Plugin Architecture is more application-oriented compared to Microkernel, but the essence of patterns used is the same.
 
-Plugin Architecture は、Microkernel と比べるとアプリケーション寄りだが、用いられるパターンの本質は同じである。
+- **Strategy**
+  Central pattern to naturally express implementation replacement of plugins.
 
-- **Strategy**  
-  プラグインの実装差し替えを自然に表現するための中心的パターン。
+- **Abstract Factory**
+  Used to unify how plugins are loaded (configuration, metadata).
 
-- **Abstract Factory**  
-  プラグインのロード方法（設定・メタデータ）を統一するために利用。
+- **Proxy**
+  Adds control like logging, authorization, caching to plugin calls.
 
-- **Proxy**  
-  プラグインの呼び出しに対して、ログ・認可・キャッシュなどの制御を追加する。
+- **Mediator**
+  Aggregates coordination between plugins or Plugin ⇔ Core in one place.
 
-- **Mediator**  
-  プラグイン間やプラグイン ⇔ コアの調整を一箇所に集約する。
-
-- **Decorator**  
-  プラグインの機能を追加でラップして拡張する場面が多い。
+- **Decorator**
+  Often used to wrap plugin functions and extend them.

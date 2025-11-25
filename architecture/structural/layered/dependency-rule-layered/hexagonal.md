@@ -1,117 +1,114 @@
-# 🧩 Hexagonal Architecture（Ports & Adapters）
+# 🧩 Hexagonal Architecture (Ports & Adapters)
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-アプリケーションの中心に **ドメインとユースケース** を置き、
-その周囲を **ポート（抽象）とアダプタ（実装）** で囲む構造スタイル。  
-“六角形”はあくまで比喩であり、本質は **依存の向きと境界設計** にある。
+A structural style that places **Domain and Use Cases** at the center of the application and surrounds them with **Ports (Abstractions) and Adapters (Implementations)**.
+The "Hexagon" is just a metaphor; the essence lies in **dependency direction and boundary design**.
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-Hexagonal は主に次のような課題に対する回答です：
+Hexagonal is primarily an answer to challenges such as:
 
-- ドメインロジックが Web フレームワークや ORM に引きずられる
-- テストで外部システムを毎回立ち上げる必要がある
-- 同じドメインロジックを複数の I/O（REST / CLI / Batch / Message）から使いたい
+- Domain logic getting dragged by Web frameworks or ORMs.
+- Need to launch external systems every time for testing.
+- Wanting to use the same domain logic from multiple I/Os (REST / CLI / Batch / Message).
 
-> 「ドメインを中心に据え、それ以外は取り替え可能な“アダプタ”にする」
+It attempts to separate the domain from technical details with the idea:
 
-という発想で、ドメインを技術的詳細から切り離そうとする。
+> "Place the domain at the center and make everything else replaceable 'adapters'."
 
-## ✅ 基本思想・ルール
+## ✅ Basic Philosophy & Rules
 
-- **ドメイン / アプリケーションコア** は外界について知らない
-- コアは **ポート（インターフェース）** を持つだけ
-  - 例：`UserRepository`, `NotificationSender` など
-- 外側に **アダプタ（実装）** を配置
-  - DB アダプタ（RDB / NoSQL / InMemory）
-  - UI アダプタ（Web, CLI, Batch）
-  - 外部サービスアダプタ（REST クライアントなど）
-- 依存方向は常に「アダプタ → ポート → コア」へ向かう
+- **Domain / Application Core** knows nothing about the outside world.
+- The Core only holds **Ports (Interfaces)**.
+  - e.g., `UserRepository`, `NotificationSender`
+- **Adapters (Implementations)** are placed on the outside.
+  - DB Adapters (RDB / NoSQL / InMemory)
+  - UI Adapters (Web, CLI, Batch)
+  - External Service Adapters (REST Clients, etc.)
+- Dependency direction always points "Adapter → Port → Core".
 
-結果として：
+As a result:
 
-- ドメインはインフラに依存せず、抽象にのみ依存する
-- テストではアダプタを差し替えるだけでコアを検証できる
+- The Domain does not depend on infrastructure but only on abstractions.
+- In testing, the core can be verified just by swapping adapters.
 
-### 概念図（Conceptual Diagram）
+### Conceptual Diagram
 
 ![Hexagonal Architecture diagram](./hexagonal.png)
 
-> 出典: Alistair Cockburn, “Hexagonal Architecture”, 2005–2013.  
+> Source: Alistair Cockburn, “Hexagonal Architecture”, 2005–2013.
 > https://alistair.cockburn.us/hexagonal-architecture
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-- 複数の I/O チャネルを持つバックエンド
-  - REST API + バッチ + 管理 CLI + メッセージコンシューマ
-- 外部サービス・DB が将来的に変更される可能性が高いシステム
-- テストファースト・自動テスト重視のプロジェクト
+- Backends with multiple I/O channels.
+  - REST API + Batch + Admin CLI + Message Consumer
+- Systems where external services/DBs are highly likely to change in the future.
+- Projects prioritizing Test-First / Automated Testing.
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-- ごく小さな CRUD アプリ（構造コストがオーバーヘッドになる）
-- 将来的な拡張や I/O の増加がほぼ見込まれないシステム
+- Very small CRUD apps (structural cost becomes overhead).
+- Systems where future expansion or increase in I/O is hardly expected.
 
-過剰に適用すると、
+If applied excessively:
 
-- インターフェース・アダプタが増えすぎて見通しが悪くなる
-- 小さなチーム／短期間プロジェクトでは重く感じられる
+- Interfaces and adapters increase too much, making visibility poor.
+- Feels heavy for small teams / short-term projects.
 
-## ✅ 歴史（系譜・親スタイル）
+## ✅ History (Genealogy / Parent Styles)
 
-- Alistair Cockburn によって提唱
-- Layered / Domain Model 系からの発展として位置づけられる
-- Ports & Adapters という名前でも知られる
-- Onion / Clean などの後続スタイルに強い影響を与えた
+- Proposed by Alistair Cockburn.
+- Positioned as an evolution from Layered / Domain Model families.
+- Also known as Ports & Adapters.
+- Strongly influenced subsequent styles like Onion / Clean.
 
-## ✅ 関連スタイル
+## ✅ Related Styles
 
-- **Onion Architecture**：六角形ではなく“層”として同じ思想を図示
-- **Clean Architecture**：ユースケース層を明示した整理版
-- **DDD（戦術パターン）**：ドメインモデルの表現に使われる
+- **Onion Architecture**: Illustrates the same philosophy as "layers" instead of a hexagon.
+- **Clean Architecture**: An organized version clarifying the Use Case layer.
+- **DDD (Tactical Patterns)**: Used for expressing the domain model.
 
-## ✅ 代表的なフレームワーク
+## ✅ Representative Frameworks
 
-Hexagonal Architecture は考え方（Ports & Adapters）であり、特定のフレームワーク専用ではないが、次のような環境で実践例が多い。
+Hexagonal Architecture is a concept (Ports & Adapters) and not specific to any framework, but there are many practice examples in environments like:
 
-- **Spring Boot（Java）**  
-  Controller / Service / Repository を Port / Adapter にマッピングしやすく、Hexagonal のサンプルが非常に多い。
+- **Spring Boot (Java)**
+  Easy to map Controller / Service / Repository to Port / Adapter, with very many Hexagonal samples.
 
-- **ASP.NET Core / .NET**  
-  Clean / Hexagonal をテーマにしたテンプレートやリファレンス実装が豊富。
+- **ASP.NET Core / .NET**
+  Abundant templates and reference implementations themed on Clean / Hexagonal.
 
-- **NestJS（Node.js）**  
-  Module / Provider / Controller の構成が Ports & Adapters を表現しやすく、Node.js 界隈で Hexagonal 実践例が多い。
+- **NestJS (Node.js)**
+  Configuration of Module / Provider / Controller makes it easy to express Ports & Adapters, with many Hexagonal practice examples in the Node.js community.
 
-## ✅ このスタイルを支えるデザインパターン
+## ✅ Design Patterns Supporting This Style
 
-Hexagonal の「ポートとアダプタ」構造は、複数のデザインパターンの組み合わせで実現される。
+The "Ports and Adapters" structure of Hexagonal is realized by a combination of multiple design patterns.
 
-- **Adapter**  
-  外部の I/O・データ形式をポートが定義する抽象インターフェースに合わせる、中心的なパターン。
+- **Adapter**
+  The central pattern that adapts external I/O and data formats to the abstract interface defined by the port.
 
-- **Strategy**  
-  ポートの実装（DB の種類、外部サービスの差し替えなど）を切り替えるときに利用される。
+- **Strategy**
+  Used when switching port implementations (DB types, swapping external services, etc.).
 
-- **Command**  
-  ユースケース（アプリケーションサービス）を操作オブジェクトとして表現し、テストや構成管理をしやすくする。
+- **Command**
+  Expresses Use Cases (Application Services) as operation objects, making testing and configuration management easier.
 
-- **Proxy**  
-  外部サービスへのアクセスに対して、キャッシュ・リトライ・サーキットブレーカーなどの制御を追加する。
+- **Proxy**
+  Adds controls like caching, retries, and circuit breakers to access to external services.
 
-- **Abstract Factory**  
-  実行環境（本番／テスト）や設定に応じて、適切なアダプタ実装を組み立てるために利用される。
+- **Abstract Factory**
+  Used to assemble appropriate adapter implementations according to the execution environment (Production / Test) or configuration.
 
-## ✅ まとめ
+## ✅ Summary
 
-Hexagonal Architecture は、
+Hexagonal Architecture is a powerful choice for projects that prioritize:
 
-- ドメイン中心設計
-- 依存方向の制御
-- インフラの取り替え可能性
+- Domain-centric design
+- Control of dependency direction
+- Replaceability of infrastructure
 
-を重視するプロジェクトにとっての強力な選択肢である。
-
-“六角形の見た目”に囚われるのではなく、
-**「ポートとアダプタの境界をどこに引くか？」** という観点で設計することが重要だ。
+It is important not to be trapped by the "hexagonal look" but to design from the perspective of:
+**"Where to draw the boundary between ports and adapters?"**

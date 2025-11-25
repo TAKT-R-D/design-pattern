@@ -1,52 +1,51 @@
-# 🧩 Change Data Capture（CDC）
+# 🧩 Change Data Capture (CDC)
 
-CDC（Change Data Capture）は、**データベースの変更をリアルタイムに検知し、イベントとして外部へ配信する構造** を提供する仕組みである。
+CDC (Change Data Capture) is a mechanism providing **structure to detect database changes in real-time and deliver them as events to outside.**
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-DB の変更（INSERT / UPDATE / DELETE）をログレベルで取得し、  
-アプリケーションを経由せずにストリームへ反映する。
+Acquires DB changes (INSERT / UPDATE / DELETE) at log level, and reflects them to stream without going through application.
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-- DB を変更したのに、アプリ側がイベントを発火し忘れる
-- アプリが関与するフローが複雑化し、整合性が保てない
-- 高スループットのイベント生成にアプリが耐えられない
+- App forgot to fire event even though DB was changed.
+- Flow involving app became complex and consistency cannot be maintained.
+- App cannot withstand high throughput event generation.
 
-CDC により、**アプリを介さず DB の変更が確実にイベント化される。**
+By CDC, **DB changes are reliably turned into events without going through app.**
 
-## ✅ 基本思想・構造
+## ✅ Basic Philosophy & Structure
 
 ```mermaid
 graph TD
   A[(DB)] --> B[Write-Ahead Log / Redo Log]
-  B --> C["CDC Connector<br>(Debezium 等)"]
+  B --> C["CDC Connector<br>(Debezium etc.)"]
   C --> D["Event Stream<br>(Kafka / PubSub)"]
   D --> E[Downstream Services]
 ```
 
-- DB のログ（WAL・binlog）を読み取る
-- 変更差分をイベントとして配信
-- アプリへの変更は不要（DB が唯一の truth source）
+- Read DB logs (WAL / binlog).
+- Deliver change difference as event.
+- Change to app is unnecessary (DB is sole truth source).
 
-## ✅ 得意なケース
+## ✅ Suitable Cases
 
-- 大量データの非同期複製
-- イベント生成をアプリに書きたくない
-- データパイプライン／分析基盤への即時反映
+- Asynchronous replication of massive data.
+- Don't want to write event generation in app.
+- Immediate reflection to data pipeline / analysis platform.
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-- DB のスキーマ変更が頻繁にあり不安定
-- 強整合で同期処理すべてを制御したい場合
+- DB schema changes frequently and is unstable.
+- Want to control all synchronous processing with strong consistency.
 
-## ✅ 関連スタイル
+## ✅ Related Styles
 
-- Outbox Pattern（アプリ経由 vs DB 経由の違い）
-- Event Sourcing（イベントをデータの真実とする思想）
-- EDA（Event-driven 全般）
+- Outbox Pattern (Difference of App via vs DB via).
+- Event Sourcing (Philosophy treating event as truth of data).
+- EDA (Event-driven in general).
 
-## ✅ まとめ
+## ✅ Summary
 
-CDC は **DB 主導のイベント生成** により、整合性とスケールを両立する仕組みである。  
-アプリケーションが複雑になりがちなイベント生成を DB にオフロードできる点で、現代的データアーキテクチャの中心技法となっている。
+CDC is a mechanism balancing consistency and scale by **DB-driven event generation**.
+It is a central technique of modern data architecture in that it can offload event generation, which tends to become complex in applications, to DB.

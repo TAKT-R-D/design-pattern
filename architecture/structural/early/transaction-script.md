@@ -1,115 +1,110 @@
 # 🧩 Transaction Script
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-**1 つの処理（トランザクション）を 1 つの関数・スクリプトとして実装する構造スタイル。**  
-画面や API の「1 ユースケース＝ 1 関数」というシンプルな設計で、小規模システムに向く。
+**A structural style implementing one process (transaction) as one function/script.**
+Simple design of "1 Use Case = 1 Function" for screens or APIs, suitable for small systems.
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-Transaction Script は Big Ball of Mud のような混沌よりは秩序があり、  
-次のような現実的課題を解決するために採用されることが多い。
+Transaction Script has more order than chaos like Big Ball of Mud,
+and is often adopted to solve realistic challenges like:
 
-- まずは動くものを作りたい
-- 要件が複雑でない
-- ドメインルールが軽く、ビジネスロジックは“処理の直列手続き”で済む
-- データ構造も単純で、アプリ内部の “表現” と “DB 構造” がほぼ一致している
-- 設計コストを最小にしたい（開発期間が短い）
+- Want to make something working first.
+- Requirements are not complex.
+- Domain rules are light, and business logic can be done with "serial procedures".
+- Data structure is simple, and internal app "representation" and "DB structure" almost match.
+- Want to minimize design cost (short development period).
 
-## ✅ 基本思想・ルール
+## ✅ Basic Philosophy & Rules
 
-Transaction Script は次のような特徴を持つ：
+Transaction Script has the following characteristics:
 
-- 各処理単位（Use Case / API Handler / バッチジョブ）ごとに関数を作る
-- ビジネスロジックはその関数内部に “直列で” 書かれる
-- データアクセスも関数内で直接呼ばれることが多い
-- Domain Model のような複雑なオブジェクトは不要
-- 他の関数との共有ロジックはできるだけ減らされる（または増やしてはいけない）
+- Create a function for each processing unit (Use Case / API Handler / Batch Job).
+- Business logic is written "serially" inside that function.
+- Data access is also often called directly within the function.
+- Complex objects like Domain Model are unnecessary.
+- Shared logic with other functions is minimized (or should not be increased).
 
-実装例のイメージ：
+Image of implementation:
 
 ```
 processOrder()
-   → 入力チェック
-   → 在庫確認
-   → 決済呼び出し
-   → 注文レコードの保存
-   → 完了レスポンス
+   → Input Check
+   → Inventory Check
+   → Payment Call
+   → Save Order Record
+   → Completion Response
 ```
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-- CRUD 中心のシンプルアプリ
-- 小規模な管理画面
-- 数週間〜数ヶ月の短命プロダクト
-- データモデルと UI がほぼ一致する Web アプリ
-- 小規模スタートアップの MVP（最小実用製品）
+- CRUD-centric simple apps.
+- Small admin screens.
+- Short-lived products of a few weeks to months.
+- Web apps where data model and UI almost match.
+- MVP (Minimum Viable Product) for small startups.
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-- ビジネスロジックが複雑で “手続き列” では表現しきれない
-- 読み取り・書き込みロジックが大量に分散していく
-- 同じ処理のバリエーションが増える
-- ステートや不変条件の制御が必要（DDD が向く領域）
-- 長期運用・機能追加が継続的に発生するプロダクト
+- Business logic is complex and cannot be expressed by "procedure sequences".
+- Read/Write logic scatters massively.
+- Variations of the same process increase.
+- State and invariant control is necessary (area where DDD is suitable).
+- Products with long-term operation and continuous feature additions.
 
-## ✅ 歴史（系譜・親スタイル）
+## ✅ History (Genealogy / Parent Styles)
 
-- Fowler の _Patterns of Enterprise Application Architecture_ によって明確化された
-- Big Ball of Mud → Transaction Script → Layered Architecture と発展
-- 小規模 → 中規模へスケールさせる際に「限界」が現れ、  
-  Domain Model / Layered などが登場した
+- Clarified by Fowler's _Patterns of Enterprise Application Architecture_.
+- Evolved: Big Ball of Mud → Transaction Script → Layered Architecture.
+- "Limits" appeared when scaling from small to medium scale, leading to the emergence of Domain Model / Layered etc.
 
-## ✅ 関連スタイル
+## ✅ Related Styles
 
-- **Big Ball of Mud**（さらに初期の混沌）
-- **Active Record**（データ中心系での「Transaction Script の進化形」）
-- **Classic Layered Architecture**（Transaction Script の負債を解消するアプローチ）
-- **Domain Model / DDD**（複雑領域ではこちらが有効）
+- **Big Ball of Mud** (Even earlier chaos)
+- **Active Record** ("Evolved form of Transaction Script" in data-centric family)
+- **Classic Layered Architecture** (Approach to resolve debts of Transaction Script)
+- **Domain Model / DDD** (Effective in complex areas)
 
-## ✅ 代表的なフレームワーク
+## ✅ Representative Frameworks
 
-Transaction Script は特定のフレームワークに依存しないが、  
-**“1 ユースケース＝ 1 関数”** の構造を自然に誘導する場面が多い。
+Transaction Script does not depend on specific frameworks, but
+often naturally induces the structure of **"1 Use Case = 1 Function"**.
 
-- **Next.js / Node.js（API Routes / Route Handlers）**
+- **Next.js / Node.js (API Routes / Route Handlers)**
+  - Easy to complete Request → Response with a single function.
+  - Suitable for small APIs centered on procedural processing.
 
-  - 単一関数でリクエスト → レスポンスを完結させやすい
-  - 手続き的処理が中心の小規模 API に向く
+- **Laravel / Rails (Procedural processing in Controller)**
+  - In small CRUD, processing tends to gather in Controller and become Transaction Script.
 
-- **Laravel / Rails（Controller 内の手続き的処理）**
+- **Serverless (AWS Lambda / Cloud Functions)**
+  - Since 1 Function = 1 Process, compatibility with Transaction Script is very good.
 
-  - 小規模 CRUD では Controller 内に処理が集まりやすく Transaction Script 化しやすい
+## ✅ Design Patterns Supporting This Style
 
-- **サーバレス系（AWS Lambda / Cloud Functions）**
-  - 1 関数 = 1 処理となるため、Transaction Script と非常に相性が良い
-
-## ✅ このスタイルを支えるデザインパターン
-
-Transaction Script 自体は “パターンをほぼ必要としないシンプル構造” だが、  
-以下のパターンが部分的に補助的役割を果たす。
+Transaction Script itself is a "simple structure requiring almost no patterns", but
+the following patterns play partial auxiliary roles.
 
 - **Command**
-
-  - 処理単位（Use Case）を操作オブジェクトとして表現する際に利用される
-  - トランザクション処理の「操作」を明確化できる
+  - Used when expressing a processing unit (Use Case) as an operation object.
+  - Can clarify the "operation" of transaction processing.
 
 - **Template Method**
-
-  - 複数の Transaction Script 間で処理ステップが似ている場合の抽象化に向く
-  - 例：共通の前処理・後処理を統一化する
+  - Suitable for abstraction when processing steps are similar between multiple Transaction Scripts.
+  - Example: Unifying common pre-processing / post-processing.
 
 - **Strategy**
-  - 処理の“差し替え点”が発生した場合に使用されることがある
-  - 基本的には TS の守備範囲外だが、成長時に補助として現れる
+  - Sometimes used when "replacement points" of processing occur.
+  - Basically outside the scope of TS, but appears as assistance during growth.
 
-## ✅ まとめ
+## ✅ Summary
 
-Transaction Script は、  
-**簡単なアプリケーションに最適な「現実的・実用的な」構造スタイル** です。
+Transaction Script is
+**The optimal "realistic and practical" structural style for simple applications.**
 
-しかし成長し続けるプロダクトでは、  
-ロジックの重複・肥大化・変更困難・テスト困難が急速に拡大します。
+However, in products that continue to grow,
+logic duplication, bloating, difficulty in change, and difficulty in testing expand rapidly.
 
-そのため、  
-「スケールしない」ことを理解したうえで使うべきスタイルと言える。
+Therefore,
+it can be said to be a style that should be used with the understanding that it "does not scale".

@@ -1,133 +1,126 @@
-# 🧩 Event-driven Architecture（イベント駆動アーキテクチャ）
+# 🧩 Event-driven Architecture (EDA)
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-**イベント（事象）の発生をトリガーとしてサービス間をゆるく結合する統合スタイル。**  
-「何かが起きた」という事実をイベントとして発行し、それを購読するサービスが反応する。
+**An integration style loosely coupling services triggered by the occurrence of events.**
+Publishes the fact that "something happened" as an event, and services subscribing to it react.
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-同期リクエスト型の連携（REST/gRPC など）だけでは、次のような課題があります：
+Synchronous request type cooperation (REST/gRPC etc.) alone has challenges like:
 
-- 一つの処理に関わるサービスが多いと、連鎖的な同期呼び出しが発生しやすい
-- 呼び出し元が、呼び出し先すべてを知っている必要がある（強い結合）
-- 一部サービスの遅延・障害が、呼び出し元のレスポンスに直結する
+- Chain of synchronous calls tends to occur when many services are involved in one process.
+- Caller needs to know all callees (Strong coupling).
+- Delay/Failure of some services directly connects to caller's response.
 
-Event-driven Architecture（EDA）はこれに対して：
+Event-driven Architecture (EDA) tries to enhance flexibility and fault tolerance by:
 
-> 「状態の変化（イベント）を発行し、  
->  誰がそれを処理するかは疎結合にする」
+> "Publishing change of state (event) and making 'who processes it' loosely coupled."
 
-ことで、柔軟性と耐障害性を高めようとする。
+## ✅ Basic Philosophy & Rules
 
-## ✅ 基本思想・ルール
+### ● Event
 
-### ● Event（イベント）
-
-- 「注文が作成された」「在庫が引き当てられた」など、**過去に起きた事実**
-- 不変であり、原則として“取り消さない”
+- **Fact that happened in the past** like "Order created", "Inventory allocated".
+- Immutable, and in principle "not cancelled".
 
 ### ● Event Producer / Consumer
 
-- Producer：イベントを発行するサービス
-- Consumer：イベントを購読して反応するサービス
-- 両者はメッセージブローカー（Kafka, RabbitMQ など）を介して疎結合につながる
+- Producer: Service publishing the event.
+- Consumer: Service subscribing to the event and reacting.
+- Both are connected loosely via message broker (Kafka, RabbitMQ etc.).
 
-### ● Pub/Sub モデル
+### ● Pub/Sub Model
 
-- 発行側は「誰が購読しているか」を知らない
-- 購読側は「誰が発行したか」を気にせず、自分の関心のあるイベントだけを見る
+- Publisher does not know "who is subscribing".
+- Subscriber does not care "who published", only looks at events of interest.
 
-### 概念図（Conceptual Diagram）
+### Conceptual Diagram
 
 ![Event-Driven Architecture diagram](./event-driven.png)
 
-> 出典: Microsoft, “Asynchronous messaging patterns – Azure Architecture Center”.  
+> Source: Microsoft, “Asynchronous messaging patterns – Azure Architecture Center”.  
 > https://learn.microsoft.com/en-us/azure/architecture/patterns/async-request-reply
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-- マイクロサービス間の連携が多いドメイン
-- 「何かが起きたこと」に反応して追加処理を行うシステム（通知、集計、非同期バッチ）
-- 高スループットなイベント処理基盤（ログ／トラッキング／IoT）
+- Domains with many interactions between microservices.
+- Systems performing additional processing reacting to "something happened" (Notification, Aggregation, Asynchronous Batch).
+- High throughput event processing platforms (Log / Tracking / IoT).
 
-特徴：
+Features:
 
-- 新しいサービスを「既存イベントの購読者として追加」しやすい
-- 非同期処理へ自然に移行できる
+- Easy to "add new service as subscriber of existing event".
+- Natural transition to asynchronous processing.
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-- 強い一貫性が必要で、「結果がすぐ分からないと困る」操作
-- 処理フローがシンプルで、同期呼び出しだけで十分なシステム
-- イベント設計・スキーマ管理のコストをかけられないチーム
+- Operations requiring strong consistency where "it is troublesome if result is not known immediately".
+- Systems where processing flow is simple and synchronous call is sufficient.
+- Teams that cannot afford cost of event design and schema management.
 
-また、EDA の乱用は：
+Also, abuse of EDA creates problems like:
 
-- イベントの氾濫
-- 依存関係の見えづらさ（どこで何がトリガーされるか分かりにくい）
+- Flood of events.
+- Poor visibility of dependencies (Hard to understand where and what is triggered).
 
-といった問題を生む。
+## ✅ History (Genealogy / Parent Styles)
 
-## ✅ 歴史（系譜・親スタイル）
+- Development from GUI event-driven model (reacting to clicks etc.).
+- Spread of messaging systems (MQ) and Pub/Sub.
+- Spread in earnest by Log + Stream platforms like Kafka.
 
-- GUI のイベント駆動モデル（クリックに反応するなど）からの発展
-- メッセージングシステム（MQ）や Pub/Sub の普及
-- Kafka などのログ＋ストリームプラットフォームにより本格的に広まった
+## ✅ Related Styles
 
-## ✅ 関連スタイル
+- **Saga Pattern**: Performs distributed transaction control with events.
+- **Streaming Pipeline**: Continuously processes event streams.
+- **CQRS / Event Sourcing**: Style treating events as data model.
 
-- **Saga パターン**：分散トランザクション制御をイベントで行う
-- **Streaming Pipeline**：イベントストリームを継続的に処理する
-- **CQRS / Event Sourcing**：イベントをデータモデルとして扱うスタイル
+## ✅ Representative Frameworks
 
-## ✅ 代表的なフレームワーク
+Event-driven Architecture is realized on messaging infrastructure or event platforms.
 
-Event-driven Architecture は、メッセージング基盤やイベントプラットフォームの上で実現される。
+- **Apache Kafka**
+  High throughput distributed log / stream platform. Representative implementation of EDA.
 
-- **Apache Kafka**  
-  高スループットな分散ログ／ストリームプラットフォーム。EDA の代表的実装。
+- **RabbitMQ**
+  Used as message broker in both Queuing type and Pub/Sub type.
 
-- **RabbitMQ**  
-  メッセージブローカーとして、キューイング型・Pub/Sub 型の両方で利用される。
+- **Amazon SNS / SQS / EventBridge**
+  Major components of event-driven integration on AWS.
 
-- **Amazon SNS / SQS / EventBridge**  
-  AWS 上でのイベント駆動統合の主要コンポーネント。
+- **Google Cloud Pub/Sub**
+  Global Pub/Sub service in GCP.
 
-- **Google Cloud Pub/Sub**  
-  GCP におけるグローバルな Pub/Sub サービス。
+- **NATS / Pulsar etc.**
+  Increasing adoption as lightweight and high-performance messaging infrastructure.
 
-- **NATS / Pulsar など**  
-  軽量・高性能なメッセージング基盤として採用例が増えている。
+## ✅ Design Patterns Supporting This Style
 
-## ✅ このスタイルを支えるデザインパターン
+Internal structure of Event-driven can be decomposed into object-oriented patterns as follows:
 
-Event-driven の内部構造は、オブジェクト指向パターンで見ると次のように分解できる。
+- **Observer**
+  Model of Event Publishing (Subject) and Subscription (Observer) itself.
 
-- **Observer**  
-  イベントの発行（Subject）と購読（Observer）のモデルそのもの。
+- **Mediator**
+  Message broker functions as a mediator between Producer and Consumer.
 
-- **Mediator**  
-  メッセージブローカーが、Producer と Consumer の仲介役として機能する。
+- **Command**
+  Treats event as "operation object", and Consumer side interprets its meaning.
 
-- **Command**  
-  イベントを「操作オブジェクト」として扱い、その意味を Consumer 側で解釈する。
+- **Chain of Responsibility**
+  Appears in structure where multiple handlers/consumers take over processing in order.
 
-- **Chain of Responsibility**  
-  複数のハンドラ／コンシューマが順に処理を引き継ぐ構造に現れる。
+- **Iterator**
+  Used as abstraction when processing event streams sequentially.
 
-- **Iterator**  
-  イベントストリームを順次処理する際の抽象として利用される。
+## ✅ Summary
 
-## ✅ まとめ
+Event-driven Architecture is an integration style emphasizing:
 
-Event-driven Architecture は、
+- Loose Coupling
+- Asynchronous Processing
+- Extensibility
 
-- 疎結合
-- 非同期処理
-- 拡張性
-
-を重視する統合スタイルである。
-
-すべてをイベント駆動にするのではなく、  
-**同期呼び出しと組み合わせながら「どこをイベント化すると価値が高いか」を見極める** ことが重要である。
+It is important not to make everything event-driven, but to
+**Identify "where event-driven brings high value" while combining with synchronous calls.**

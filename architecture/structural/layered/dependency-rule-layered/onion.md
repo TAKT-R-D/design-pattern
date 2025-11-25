@@ -1,115 +1,109 @@
 # 🧩 Onion Architecture
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-ドメインモデルを“玉ねぎの中心”に置き、  
-外側の層にアプリケーションサービス・インフラ・UI を配置するスタイル。  
-Hexagonal と同じ思想を **「同心円の層」** として表現したもの。
+A style that places the Domain Model at the "center of the onion" and places Application Services, Infrastructure, and UI in the outer layers.
+It expresses the same philosophy as Hexagonal as **"concentric layers"**.
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-Onion Architecture は、
+Onion Architecture can be said to be a style aiming to:
 
-- Hexagonal の「六角形とポート」の図が直感的でない人にも、
-- 依存方向とドメイン中心設計の考え方を分かりやすく説明する
+- Explain the concepts of dependency direction and domain-centric design in an easy-to-understand way,
+- Even for those who find the "Hexagon and Ports" diagram of Hexagonal unintuitive.
 
-ことを目的にしたと言ってよいスタイルといえる。
+The specific challenges it wanted to solve are common with Hexagonal:
 
-解決したかった具体的な課題は Hexagonal と共通です：
+- Domain becomes dependent on frameworks.
+- Tests get dragged by infrastructure.
+- Cannot naturally handle multiple UIs / I/Os.
 
-- ドメインがフレームワーク依存になる
-- テストがインフラに引きずられる
-- 複数の UI / I/O を自然に扱えない
+## ✅ Basic Philosophy & Rules
 
-## ✅ 基本思想・ルール
+As layers of an onion, generally the following structure is taken:
 
-玉ねぎの層として、一般的には以下のような構造が取られます：
+- Innermost: Domain Model (Entities, Value Objects, Domain Services)
+- Outer: Application Services (Coordination of Use Cases)
+- Further Outer: Infrastructure (DB / External API / Messaging)
+- Outermost: UI / Frameworks
 
-- 最内側：Domain Model（エンティティ・値オブジェクト・ドメインサービス）
-- その外側：Application Services（ユースケースの調整）
-- さらに外側：Infrastructure（DB / 外部 API / メッセージング）
-- 一番外側：UI / Frameworks
+Rules are similar to Hexagonal:
 
-ルールは Hexagonal と同様：
+- Dependencies point only to inner layers.
+- The Domain does not know technical details of the outside.
+- The Outside depends on inner abstractions (interfaces).
 
-- 依存は内側の層にのみ向かう
-- ドメインは外側の技術詳細を知らない
-- 外側は内側の抽象（インターフェース）に依存する
+It is characterized by visually conveying the image that "the closer to the center, the purer" and "the outer, the more technical details".
 
-視覚的に「中心に行くほど純粋」「外側ほど技術詳細」というイメージが伝わりやすいのが特徴である。
-
-### 概念図（Conceptual Diagram）
+### Conceptual Diagram
 
 ![Onion Architecture diagram](./onion.webp)
 
-> 出典: Jeffrey Palermo, “The Onion Architecture (Part 1)”, 2008.  
+> Source: Jeffrey Palermo, “The Onion Architecture (Part 1)”, 2008.
 > https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-- DDD を採用している中〜大規模システム
-- ドメインモデルを“核”として長期運用したいプロダクト
-- チーム内でレイヤーの責務と依存ルールを共有したいとき
+- Medium to large systems adopting DDD.
+- Products wanting to operate for a long term with the domain model as the "core".
+- When you want to share layer responsibilities and dependency rules within the team.
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-- Hexagonal と同じく、ごく小さな CRUD アプリ
-- チームがまだレイヤーの概念や DDD に慣れていない場合
+- Very small CRUD apps, same as Hexagonal.
+- When the team is not yet accustomed to layer concepts or DDD.
 
-図だけ真似して層を増やすと、
+If you increase layers just by imitating the diagram, there is a risk that:
 
-- 実態は変わらないのに構造だけ複雑になる
-  リスクがある。
+- The structure becomes complex while the reality remains unchanged.
 
-## ✅ 歴史（系譜・親スタイル）
+## ✅ History (Genealogy / Parent Styles)
 
-- Jeffrey Palermo によって紹介されたアーキテクチャスタイル
-- Hexagonal と同時期〜後期の文脈で広まり、
-  .NET コミュニティなどで特に有名
-- Clean Architecture の図示にも強い影響を与えた
+- Architectural style introduced by Jeffrey Palermo.
+- Spread in the context of the same period to later period as Hexagonal, particularly famous in the .NET community.
+- Strongly influenced the illustration of Clean Architecture.
 
-## ✅ 関連スタイル
+## ✅ Related Styles
 
-- **Hexagonal Architecture**：同じ思想をポート＆アダプタとして説明
-- **Clean Architecture**：層をより細分化し、ユースケース層を強調
-- **Domain Model Layered**：Onion の前段階となるレイヤードスタイル
+- **Hexagonal Architecture**: Explains the same philosophy as Ports & Adapters.
+- **Clean Architecture**: Subdivides layers more and emphasizes the Use Case layer.
+- **Domain Model Layered**: Layered style serving as a precursor to Onion.
 
-## ✅ 代表的なフレームワーク
+## ✅ Representative Frameworks
 
-Onion Architecture も Hexagonal 同様フレームワーク非依存だが、特に .NET / Java 系で多く採用されている。
+Onion Architecture is also framework-independent like Hexagonal, but is adopted particularly often in .NET / Java systems.
 
-- **ASP.NET Core / .NET**  
-  ドメインを中心に据えた同心円構造のサンプルが多数あり、Onion の代表的な実践例となっている。
+- **ASP.NET Core / .NET**
+  There are many samples of concentric structures centered on the domain, making it a representative practice example of Onion.
 
-- **Spring Boot（Java）**  
-  Domain / Application / Infrastructure を“層”として整理し、Onion 的な構造に寄せたプロジェクト構成がよく見られる。
+- **Spring Boot (Java)**
+  Project configurations organizing Domain / Application / Infrastructure as "layers" and leaning towards Onion-like structure are often seen.
 
-## ✅ このスタイルを支えるデザインパターン
+## ✅ Design Patterns Supporting This Style
 
-Onion Architecture は Hexagonal と同じ思想を「層」で表現したものであり、使われるパターンも近い。
+Onion Architecture expresses the same philosophy as Hexagonal with "layers", and the patterns used are close.
 
-- **Strategy**  
-  ドメイン中心の構造の中で、ドメインサービスやポリシーの差し替えを表現する。
+- **Strategy**
+  Expresses replacement of domain services and policies within the domain-centric structure.
 
-- **Command**  
-  アプリケーションサービス（ユースケース）の処理を操作オブジェクトとして表し、テストしやすくする。
+- **Command**
+  Expresses processing of Application Services (Use Cases) as operation objects, making them easier to test.
 
-- **Adapter**  
-  外側の層（Infrastructure / UI）が、内側の抽象インターフェースに従うための接着として機能する。
+- **Adapter**
+  Functions as glue for outer layers (Infrastructure / UI) to follow inner abstract interfaces.
 
-- **Proxy**  
-  外側の層で、外部サービスへのアクセスや技術的関心事（キャッシュ・リトライ）を包み込む。
+- **Proxy**
+  Wraps access to external services and technical concerns (cache, retry) in outer layers.
 
-- （用語としての）**Repository**  
-  ドメインモデルと永続化の間の境界を明確にするための概念的パターンとして用いられる。
+- **Repository** (as a term)
+  Used as a conceptual pattern to clarify the boundary between domain model and persistence.
 
-## ✅ まとめ
+## ✅ Summary
 
-Onion Architecture は、
+Onion Architecture is a style that:
 
-- ドメインモデルを中心に据え、
-- 依存方向と責務分離を視覚的に表現するスタイルである。
+- Centers on the Domain Model, and
+- Visually expresses dependency direction and separation of responsibilities.
 
-Hexagonal と思想的にはほぼ同じだが、  
-**「層構造の図が馴染みやすいチーム」** にとっては、  
-Onion の方が導入しやすい場合も多い。
+While philosophically almost the same as Hexagonal,
+For **"teams comfortable with layer structure diagrams"**, Onion is often easier to introduce.

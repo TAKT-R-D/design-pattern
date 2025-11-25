@@ -1,135 +1,127 @@
 # 🧩 Clean Architecture
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-Hexagonal / Onion などの考え方を整理し直し、
+A style that reorganized concepts from Hexagonal / Onion and summarized them as **clear layer structures and dependency rules**:
 
-- Entities（エンタープライズビジネスルール）
-- Use Cases（アプリケーションビジネスルール）
+- Entities (Enterprise Business Rules)
+- Use Cases (Application Business Rules)
 - Interface Adapters
 - Frameworks & Drivers
 
-という **明確な層構造と依存ルール** としてまとめ直したスタイル。
+## ✅ Problems Addressed
 
-## ✅ 解決しようとした問題
+- Concepts like Hexagonal / Onion / Layered / DDD were proliferating, making differences hard to understand.
+- Wanted to organize the common idea of "Dependencies point inward" and "Domain centric".
+- Wanted more guidance on specifically what to write in which layer.
 
-- Hexagonal / Onion / Layered / DDD などの概念が乱立し、違いが分かりづらい
-- 「依存は内向き」「ドメイン中心」という共通の考え方を整理したい
-- 具体的にどの層に何を書くのか、もう少しガイドが欲しい
+Clean Architecture can be understood as:
 
-Clean Architecture はこれに対して：
+> A unified diagram reorganizing existing styles by "Dependency Rules" and "Layers".
 
-> 既存のスタイルを「依存ルール」と「層」によって再整理した統一図
+## ✅ Basic Philosophy & Rules
 
-として提示された、と捉えると理解しやすい。
-
-## ✅ 基本思想・ルール
-
-### ● 層構造
+### ● Layer Structure
 
 - **Entities**
-
-  - システムをまたいで有効なビジネスルール
-  - DDD でいうエンティティ・値オブジェクトに近い
+  - Business rules valid across systems.
+  - Close to Entities / Value Objects in DDD.
 
 - **Use Cases**
-
-  - アプリケーション固有のユースケース
-  - 入出力の制御、トランザクション境界など
+  - Application-specific use cases.
+  - Input/output control, transaction boundaries, etc.
 
 - **Interface Adapters**
-
-  - Presenter / Controller / Repository 実装など
-  - 外部のデータ形式を内側のモデルに変換
+  - Presenter / Controller / Repository implementations, etc.
+  - Convert external data formats to inner models.
 
 - **Frameworks & Drivers**
-  - Web フレームワーク / DB / メッセージングなど
+  - Web Frameworks / DB / Messaging, etc.
 
-### ● 依存ルール
+### ● Dependency Rule
 
-- 依存は内側（Entities）に向かうのみ
-- 内側は外側のことを知らない
-- 外側が内側のインターフェースに依存する
+- Dependencies point only inward (to Entities).
+- The inside does not know about the outside.
+- The outside depends on the inside's interface.
 
-### 概念図（Conceptual Diagram）
+### Conceptual Diagram
 
 ![The Clean Architecture diagram](./clean.jpg)
 
-> 出典: Robert C. Martin, “The Clean Architecture”, 2012.  
+> Source: Robert C. Martin, “The Clean Architecture”, 2012.
 > https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-- ドメインが中〜高の複雑さを持つ業務システム
-- 長期運用・複数チーム開発を前提としたプロダクト
-- フレームワークに縛られたくないバックエンド
-- 自動テスト・ユースケース単位のテストを重視する開発
+- Business systems with medium to high domain complexity.
+- Products assuming long-term operation and multi-team development.
+- Backends that do not want to be tied to frameworks.
+- Development prioritizing automated tests and use-case unit tests.
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-- 短命な小規模 CRUD アプリ
-- チームの経験値が低く、層構造を維持するコストの方が高い場合
+- Short-lived small CRUD apps.
+- When the team's experience level is low and the cost of maintaining the layer structure is higher.
 
-層を形だけ導入すると：
+If layers are introduced only in form:
 
-- クラス数・フォルダ階層が増えるだけ
-- 実際には依存ルールが守られない
+- Only the number of classes and folder hierarchy increases.
+- Dependency rules are not actually observed.
 
-という危険もある。
+There is a danger of this happening.
 
-## ✅ 歴史（系譜・親スタイル）
+## ✅ History (Genealogy / Parent Styles)
 
-- Robert C. Martin（Uncle Bob）によって提唱
-- Hexagonal / Onion / DDD / Layered などの流れを整理・総括したスタイル
-- 書籍『Clean Architecture』として広く普及
+- Proposed by Robert C. Martin (Uncle Bob).
+- A style that organized and summarized flows like Hexagonal / Onion / DDD / Layered.
+- Widely popularized as the book "Clean Architecture".
 
-## ✅ 関連スタイル
+## ✅ Related Styles
 
-- **Hexagonal Architecture**：ポート＆アダプタの考え方
-- **Onion Architecture**：同心円上の層構造
-- **DDD**：Entities / Use Cases の具体的な表現方法として
+- **Hexagonal Architecture**: Concept of Ports & Adapters.
+- **Onion Architecture**: Layer structure on concentric circles.
+- **DDD**: As a concrete expression method for Entities / Use Cases.
 
-## ✅ 代表的なフレームワーク
+## ✅ Representative Frameworks
 
-Clean Architecture もフレームワークから独立した考え方だが、実際には次のような技術スタックで多く実践されている。
+Clean Architecture is also a concept independent of frameworks, but in practice, it is often practiced in the following technology stacks.
 
-- **ASP.NET Core / .NET**  
-  “Clean Architecture Template” のような公式／コミュニティ製テンプレートが多数存在する。
+- **ASP.NET Core / .NET**
+  Many official/community templates like "Clean Architecture Template" exist.
 
-- **Spring Boot（Java）**  
-  Entities / Use Cases / Interface Adapters / Frameworks & Drivers を明確に分けた構成が紹介されている。
+- **Spring Boot (Java)**
+  Configurations clearly separating Entities / Use Cases / Interface Adapters / Frameworks & Drivers are introduced.
 
-- **NestJS（Node.js）**  
-  UseCase / Repository Interface / Adapter 実装といった分割がしやすく、Clean 的な構造に寄せやすい。
+- **NestJS (Node.js)**
+  Easy to split into UseCase / Repository Interface / Adapter Implementation, making it easy to align with Clean-like structure.
 
-## ✅ このスタイルを支えるデザインパターン
+## ✅ Design Patterns Supporting This Style
 
-Clean Architecture では、依存ルールとユースケース中心設計を支えるために複数のパターンが組み合わされる。
+In Clean Architecture, multiple patterns are combined to support dependency rules and use-case centric design.
 
-- **Adapter**  
-  Interface Adapters 層において、外部の I/O と内部モデルの橋渡し役として機能する。
+- **Adapter**
+  Functions as a bridge between external I/O and internal models in the Interface Adapters layer.
 
-- **Strategy**  
-  ビジネスルールやユースケースのバリエーションを、差し替え可能な形で表現する。
+- **Strategy**
+  Expresses variations of business rules and use cases in a replaceable form.
 
-- **Command**  
-  Use Case を「1 操作」としてオブジェクト化し、入力・出力・トランザクション境界をはっきりさせる。
+- **Command**
+  Objectifies a Use Case as "one operation", clarifying input/output and transaction boundaries.
 
-- **Facade**  
-  外側（UI / API）から見たときに、複数ユースケースを統一されたインターフェースとして提供する。
+- **Facade**
+  Provides multiple use cases as a unified interface when viewed from the outside (UI / API).
 
-- **Abstract Factory**  
-  実行時に適切な実装（本番用 / テスト用）のアダプタを組み立てる際に利用される。
+- **Abstract Factory**
+  Used to assemble appropriate implementation adapters (for production / test) at runtime.
 
-## ✅ まとめ
+## ✅ Summary
 
-Clean Architecture は、
+Clean Architecture is a style that summarizes modern architectural key ideas:
 
-- ドメイン中心設計
-- 依存ルールの徹底
-- フレームワーク非依存
+- Domain-centric design
+- Thorough dependency rules
+- Framework independence
 
-というモダンアーキテクチャの key idea を、シンプルな図とルールセットにまとめたスタイルだ。
+Into a simple diagram and rule set.
 
-「完璧に守る」ことよりも、  
-**「依存を内向きに保つ」という原則をチームで共有するための共通言語** として使うのが現実的だ。
+Rather than "observing it perfectly", it is realistic to use it as a **common language for the team to share the principle of keeping dependencies inward.**

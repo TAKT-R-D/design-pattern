@@ -1,65 +1,60 @@
-# 🧩 D. UI Interaction / Presentation 系（UI 構造スタイル）
+# 🧩 D. UI Interaction / Presentation Styles (UI Structural Styles)
 
-## ✅ 概要
+## ✅ Overview
 
-この系統は、**UI とドメイン／アプリケーションロジックの間をどのように分割し、やりとりさせるか** を扱うスタイル群を対象とする。
+This family covers styles that deal with **how to divide and coordinate between UI and Domain/Application Logic**.
 
-- 画面（View）・状態（ViewModel / Presenter / Model）・イベント（Controller / Update）の責務分担
-- どこに画面ロジックを書くか
-- どこまでを UI 側で持ち、どこからをドメイン側に任せるか
+- Division of responsibilities between Screen (View), State (ViewModel / Presenter / Model), and Events (Controller / Update).
+- Where to write screen logic.
+- How much should be handled by the UI side and where the Domain side should take over.
 
-代表的なスタイル：
+Representative Styles:
 
-- MVC（Model-View-Controller）
-- MVP（Model-View-Presenter）
-- MVVM（Model-View-ViewModel）
-- MVU（Model-View-Update / Elm Architecture）
+- MVC (Model-View-Controller)
+- MVP (Model-View-Presenter)
+- MVVM (Model-View-ViewModel)
+- MVU (Model-View-Update / Elm Architecture)
 
-## ✅ なぜこの系統が生まれたか（歴史・背景）
+## ✅ Why this Family Emerged (History/Background)
 
-- 画面ロジック・状態管理・ビジネスロジックが 1 ファイルに混ざると保守不能になる
-- GUI アプリケーションの登場により、イベント駆動の構造が必要になった
-- Web フロントエンドの複雑化（SPA, 双方向バインディング）によって、
-  UI 側だけで完結しないロジックが増えた
+- Mixing screen logic, state management, and business logic in a single file makes maintenance impossible.
+- The advent of GUI applications necessitated event-driven structures.
+- The increasing complexity of Web front-ends (SPA, two-way binding) increased logic that cannot be completed solely on the UI side.
 
-その結果、
+As a result, various styles have been proposed for the problem of:
 
-> 「UI とそれ以外をどう分けるか」
+> "How to separate UI from everything else."
 
-という問題に対して、様々なスタイルが提案されてきた。
+## ✅ Problems Solved
 
-## ✅ 解決しようとした問題
+UI styles primarily target the following:
 
-UI 系スタイルは主に次をターゲットにしています：
+- Screen state management becoming spaghetti code.
+- Business logic being written directly in event handlers.
+- Difficulty in testing (dependency on UI frameworks).
+- UI changes easily breaking other logic.
 
-- 画面の状態管理がスパゲッティ化する
-- イベントハンドラにビジネスロジックが直接書かれる
-- テストが難しい（UI フレームワーク依存）
-- UI の変更がその他のロジックを壊しやすい
+As styles evolved from MVC → MVP → MVVM → MVU, the direction has been to:
 
-MVC → MVP → MVVM → MVU と進むにつれ、
+- Decouple logic from UI frameworks.
+- Enhance compatibility with Declarative UI / Data Binding.
 
-- UI フレームワークからロジックを切り離す
-- 宣言的 UI / データバインディングとの相性を高める
+## ✅ Styles Belonging to this Family
 
-といった方向で進化していった。
+- **MVC**: The oldest UI structural pattern. Divided into Model / View / Controller.
+- **MVP**: Presenter handles screen logic to improve testability.
+- **MVVM**: A style premised on data binding, bundling state and behavior using ViewModel.
+- **MVU**: A functional style that expresses UI through a loop of State + Message + Update function.
 
-## ✅ この系統に属するスタイル
+## ✅ Relationship with Other Families
 
-- **MVC**：最古参の UI 構造パターン。Model / View / Controller に分割
-- **MVP**：Presenter が画面ロジックを担当し、テスト容易性を高める
-- **MVVM**：ViewModel を用いて状態と振る舞いを束ね、データバインディングを前提にしたスタイル
-- **MVU**：状態 + メッセージ + 更新関数のループで UI を表現する、関数型的スタイル
+- Often used as the internal structure of the "Presentation Layer" within **Layered / Domain Model Families**.
+- Sometimes combined with **Reactive / Flow Families** to build event streams or reactive UIs.
 
-## ✅ 他の系統との関係
+## ✅ When to Reference
 
-- **Layered / Domain Model 系** の中の「Presentation 層」の内部構造として使われることが多い
-- **Reactive / Flow 系** と組み合わせて、イベントストリームやリアクティブな UI を構築することもある
+- When UI-side code is becoming bloated or spaghetti-like.
+- When you want to consider a testable UI structure.
+- When you want to think about design across UI frameworks like Web / Mobile / Desktop.
 
-## ✅ どんな時に参考になるか
-
-- UI 側のコードが肥大化・スパゲッティ化しているとき
-- テスト可能な UI 構造を検討したいとき
-- Web / モバイル / デスクトップなど、UI フレームワークをまたいだ設計を考えたいとき
-
-この系統のスタイルは、**「表示」と「状態／ロジック」の境界をどこに引くか** を考える上での、重要な比較対象となる。
+Styles in this family serve as important comparisons when considering **where to draw the boundary between "Display" and "State/Logic"**.

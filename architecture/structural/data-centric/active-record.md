@@ -1,137 +1,136 @@
 # 🧩 Active Record
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-**「1 テーブル = 1 クラス、1 行 = 1 インスタンス」**  
-という極めて直感的で実装しやすい**データ中心スタイル**。  
-データベース構造をアプリケーションのモデルとしてそのまま利用する。
+A **data-centric style** that is extremely intuitive and easy to implement:
+**"1 Table = 1 Class, 1 Row = 1 Instance"**.
+Uses the database structure directly as the application model.
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-Active Record が解決したかったのは、主に次のような実務的課題です。
+Active Record primarily wanted to solve practical challenges such as:
 
-- O/R マッピング（テーブル ⇄ オブジェクト）の手間を減らしたい
-- CRUD の典型的なパターンを自動化／抽象化したい
-- モデルクラスのメソッドとしてデータ操作できるようにしたい
-- フレームワークを使って高速に開発したい
+- Reducing the effort of O/R Mapping (Table ⇄ Object).
+- Automating/Abstracting typical CRUD patterns.
+- Enabling data manipulation as methods of model classes.
+- Developing fast using frameworks.
 
-特に Rails における ActiveRecord の成功によって、  
-**高速開発のデファクトスタンダード** になった。
+Especially with the success of ActiveRecord in Rails,
+it became the **de facto standard for rapid development**.
 
-## ✅ 基本思想・ルール
+## ✅ Basic Philosophy & Rules
 
-### ● テーブルとクラスの 1:1 対応
+### ● 1:1 Correspondence between Table and Class
 
-- クラス名 → テーブル名
-- プロパティ → カラム
-- インスタンス → 行
+- Class Name → Table Name
+- Property → Column
+- Instance → Row
 
-### ● 行単位の操作（インスタンスメソッド）
+### ● Row-level Operations (Instance Methods)
 
 - `save`
 - `update`
 - `destroy`
 
-### ● 集合単位の操作（クラスメソッド）
+### ● Set-level Operations (Class Methods)
 
 - `find`
 - `where`
 - `order`
 
-### ● 軽量なビジネスロジックの集約
+### ● Aggregation of Lightweight Business Logic
 
-- バリデーション
-- 簡単な状態チェック
-- 単純な条件分岐
+- Validation
+- Simple state checks
+- Simple conditional branching
 
-**結果として：**  
-データ構造・永続化・簡単な振る舞いが **1 クラスに集約** される。
+**As a result:**
+Data structure, persistence, and simple behaviors are **aggregated in 1 class**.
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-Active Record が輝くケースは以下のようなシナリオです：
+Active Record shines in scenarios like:
 
-- CRUD 中心のアプリ
-- 管理画面
-- 管理系ダッシュボード
-- 在庫管理など「状態がシンプルな」業務系
-- フロントエンドと DB 構造が素直に対応している Web アプリ
-- MVP（最小実用プロダクト）
+- CRUD-centric apps
+- Admin screens
+- Management dashboards
+- Business systems with "simple states" like inventory management
+- Web apps where frontend and DB structure correspond straightforwardly
+- MVP (Minimum Viable Product)
 
-高速性・学習コストの低さは非常に大きな強みである。
+High speed and low learning cost are very significant strengths.
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-次のようなアプリでは Active Record は破綻しやすい：
+Active Record tends to break down in apps like:
 
-- **複雑なビジネスルール**が存在するドメイン
-- 1 つのテーブルが複数文脈（コンテキスト）で異なる意味を持つ場合
-- 振る舞い（ビジネスロジック）が大量に増えてくる場合
-- 外部サービスや複数データソースと連携する複雑なアプリ
-- 不変条件・状態遷移を厳密に管理する必要がある場合
+- Domains with **complex business rules**.
+- When one table has different meanings in multiple contexts.
+- When behaviors (business logic) increase massively.
+- Complex apps integrating with external services or multiple data sources.
+- When invariants and state transitions need strict management.
 
-→ サービス層やコントローラーにロジックが散乱し、  
-**Anemic Domain Model（貧血モデル）** になりがち。
+→ Logic scatters into service layers and controllers,
+tending to become an **Anemic Domain Model**.
 
-## ✅ 歴史（系譜・親スタイル）
+## ✅ History (Genealogy / Parent Styles)
 
-- Fowler の _Patterns of Enterprise Application Architecture_ にてパターン化
-- Rails の ActiveRecord 実装により世界的に普及
-- Transaction Script スタイルの自然な発展系
-- データ中心設計の象徴的存在
+- Patternized in Fowler's _Patterns of Enterprise Application Architecture_.
+- Spread globally with Rails' ActiveRecord implementation.
+- Natural evolution of Transaction Script style.
+- Iconic existence of data-centric design.
 
-## ✅ 関連スタイル
+## ✅ Related Styles
 
-- **Table Module**  
-  集合（テーブル全体）に対する操作をまとめるスタイル
-- **Anemic Domain Model**  
-  データ中心スタイルが行き過ぎると発生するアンチパターン
-- **Domain Model / DDD**  
-  複雑なドメイン向けの対極的スタイル
+- **Table Module**
+  Style grouping operations on sets (entire tables).
+- **Anemic Domain Model**
+  Anti-pattern that occurs when data-centric style goes too far.
+- **Domain Model / DDD**
+  Opposite style for complex domains.
 
-## ✅ 代表的なフレームワーク
+## ✅ Representative Frameworks
 
-- **Ruby on Rails（ActiveRecord）**  
-  Active Record パターンのもっとも有名な実装。  
-  1 クラス＝ 1 テーブル、1 インスタンス＝ 1 行 の思想がそのまま形になる。
+- **Ruby on Rails (ActiveRecord)**
+  The most famous implementation of the Active Record pattern.
+  The philosophy of 1 Class = 1 Table, 1 Instance = 1 Row takes shape directly.
 
-- **Laravel（Eloquent ORM）**  
-  Rails に近い Active Record 実装。  
-  データ中心・高速開発に最適化されており、構造的特徴は Rails と同様。
+- **Laravel (Eloquent ORM)**
+  Active Record implementation close to Rails.
+  Optimized for data-centric / rapid development, structural features are similar to Rails.
 
-- **Django（部分的に類似）**  
-  Django ORM は Data Mapper 寄りだが、軽量ロジックや簡易 CRUD では  
-  Active Record 的な使われ方をすることが多い。
+- **Django (Partially similar)**
+  Django ORM leans towards Data Mapper, but for lightweight logic and simple CRUD, it is often used in an Active Record way.
 
-## ✅ このスタイルを支えるデザインパターン
+## ✅ Design Patterns Supporting This Style
 
-Active Record そのものが Fowler のパターンだが、内部では以下が補助的に利用される。
+Active Record itself is a Fowler pattern, but internally the following are used auxiliarily.
 
-- **Template Method**  
-  永続化処理のステップ（バリデーション → 保存 → コールバック）を統一化する。
+- **Template Method**
+  Unifies persistence processing steps (Validation → Save → Callback).
 
-- **Strategy**  
-  バリデーションや簡易ビジネスルールを差し替える場面で利用される。
+- **Strategy**
+  Used when switching validation or simple business rules.
 
-- **Proxy**  
-  遅延ロード（lazy loading）や関連読み込みに現れる。
+- **Proxy**
+  Appears in lazy loading and association loading.
 
-- **Observer**  
-  モデルの変更時にフック（コールバック）を発火させる仕組み。
+- **Observer**
+  Mechanism to fire hooks (callbacks) upon model changes.
 
-- **Command**  
-  トランザクションスクリプト的な「単一の操作」を表現する場面で使われる。
+- **Command**
+  Used when expressing "single operations" like Transaction Scripts.
 
-## ✅ まとめ
+## ✅ Summary
 
-Active Record は次のように評価できる：
+Active Record can be evaluated as:
 
-- **シンプルな CRUD アプリには非常に生産的で現実的**
-- **複雑なドメインにはスケールせず破綻しやすい**
+- **Very productive and realistic for simple CRUD apps.**
+- **Does not scale and easily breaks down for complex domains.**
 
-したがって最も重要な問いは：
+Therefore, the most important question is:
 
-> このアプリは「Active Record の限界」を超えるほど複雑か？
+> Is this app complex enough to exceed the "limits of Active Record"?
 
-もし複雑性の兆候が見え始めたら、  
-Domain Model・Layered・Hexagonal などへの移行を検討すべきだ。
+If signs of complexity begin to appear,
+migration to Domain Model, Layered, Hexagonal, etc. should be considered.

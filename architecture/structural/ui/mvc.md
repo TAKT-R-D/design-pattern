@@ -1,110 +1,109 @@
-# 🧩 MVC（Model-View-Controller）
+# 🧩 MVC (Model-View-Controller)
 
-## ✅ このスタイルの概要
+## ✅ Overview of this Style
 
-GUI / Web アプリケーションにおける **Model / View / Controller の責務分割** を定義した、最古参の UI 構造スタイル。
+One of the oldest UI structural styles, defining the **separation of responsibilities into Model / View / Controller** in GUI / Web applications.
 
-## ✅ 解決しようとした問題
+## ✅ Problems Solved
 
-MVC が生まれた背景には、次のような課題があった：
+The background of MVC's emergence involved the following challenges:
 
-- 画面操作のコードとデータロジックが混ざり、再利用・変更が困難
-- 同じデータを複数の表示（View）で共有したい
-- ユーザー操作（イベント）を整理して扱いたい
+- Code for screen operations and data logic were mixed, making reuse and modification difficult.
+- Wanting to share the same data across multiple displays (Views).
+- Wanting to organize and handle user operations (events).
 
-> 「見た目（View）とデータ（Model）、操作（Controller）を分離する」
+MVC attempted to organize the UI structure by:
 
-ことで、UI 構造を整理しようとしたのが MVC である。
+> "Separating appearance (View), data (Model), and operation (Controller)."
 
-## ✅ 基本思想・ルール
+## ✅ Basic Philosophy and Rules
 
 ### ● Model
 
-- アプリケーションのデータとビジネスロジックを表現
-- 状態を保持し、変更されたら View に通知する（Observer パターンなど）
+- Represents the application's data and business logic.
+- Holds state and notifies the View when changed (Observer pattern, etc.).
 
 ### ● View
 
-- Model の状態を画面に表示
-- 可能な限りロジックを持たない（単なる描画）ことが理想
+- Displays the state of the Model on the screen.
+- Ideally should have as little logic as possible (pure rendering).
 
 ### ● Controller
 
-- ユーザー入力（クリック、キー操作など）を受け取り、Model を更新したり View を切り替える
+- Receives user input (clicks, key operations, etc.) and updates the Model or switches the View.
 
-### 基本ルール（古典的な MVC）
+### Basic Rules (Classic MVC)
 
-- View は Model を監視し、変更があれば再描画
-- Controller は View からのイベントを受け取り、Model に働きかける
+- The View observes the Model and redraws if there are changes.
+- The Controller receives events from the View and acts on the Model.
 
-Web フレームワークにおける「MVC」は、
-本来の Smalltalk MVC とは解釈が異なることが多い点に注意（Controller=Router 的な役割など）。
+Note that "MVC" in Web frameworks often differs in interpretation from the original Smalltalk MVC (e.g., Controller = Router role).
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-- 単純な画面遷移とフォーム中心の Web アプリ
-- わかりやすい責務分割を導入したい既存 GUI アプリ
-- 小〜中規模の UI で、「とりあえず View と Model を分ける」ことが主目的のケース
+- Simple screen transitions and form-centric Web apps.
+- Existing GUI apps that want to introduce clear separation of responsibilities.
+- Small to medium-scale UIs where the main purpose is "separating View and Model for now".
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-- 複雑な状態管理を伴う SPA / モダンフロントエンド
-- 双方向バインディングやリアクティブプログラミングを多用する場合
-- Controller の役割が肥大化しがちで、テストしづらくなるプロジェクト
+- SPA / Modern front-end involving complex state management.
+- Cases that make heavy use of two-way binding or reactive programming.
+- Projects where the Controller's role tends to become bloated, making testing difficult.
 
-今日の Web / モバイル開発では、
-MVC の発想をベースにしたより洗練されたスタイル（MVP / MVVM / MVU）が採用されることが多くなっている。
+In today's Web / Mobile development,
+more sophisticated styles based on the MVC concept (MVP / MVVM / MVU) are often adopted.
 
-## ✅ 歴史（系譜・親スタイル）
+## ✅ History (Genealogy / Parent Styles)
 
-- 1970〜80 年代の Smalltalk から生まれた GUI アプリケーション向けパターン
-- 多くのフレームワーク（Rails, ASP.NET MVC など）の思想的ベース
-- MVP / MVVM / MVU など後継スタイルの“祖先”
+- A pattern for GUI applications born from Smalltalk in the 1970s-80s.
+- The ideological base for many frameworks (Rails, ASP.NET MVC, etc.).
+- The "ancestor" of successor styles like MVP / MVVM / MVU.
 
-## ✅ 関連スタイル
+## ✅ Related Styles
 
-- **MVP**：Presenter に画面ロジックを集約した発展系
-- **MVVM**：データバインディングを前提としたモダンな UI パターン
-- **MVU**：関数型の発想で状態と更新を扱うスタイル
+- **MVP**: An evolution that aggregates screen logic in the Presenter.
+- **MVVM**: A modern UI pattern premised on data binding.
+- **MVU**: A style that handles state and updates with functional concepts.
 
-## ✅ 代表的なフレームワーク
+## ✅ Representative Frameworks
 
-MVC は歴史的にもっとも広く知られた UI 構造スタイルのひとつで、多くの Web / GUI フレームワークが何らかの形で採用・影響を受けている。
+MVC is historically one of the most widely known UI structural styles, and many Web / GUI frameworks adopt or are influenced by it in some form.
 
 - **Ruby on Rails**  
-  「MVC フレームワーク」の代表格。Controller と View の責務分担はあるものの、実装によって解釈がやや異なる。
+  A representative "MVC framework". Although there is a division of responsibilities between Controller and View, the interpretation differs slightly depending on the implementation.
 
-- **Django（Python）**  
-  MVT（Model-Template-View）と呼んでいるが、構造上は MVC に近い。
+- **Django (Python)**  
+  Calls it MVT (Model-Template-View), but structurally it is close to MVC.
 
 - **ASP.NET MVC / ASP.NET Core MVC**  
-  Web アプリ用の典型的な MVC 実装。Controller を中心にルーティングとアクションを構成する。
+  Typical MVC implementation for Web apps. Configures routing and actions centered on the Controller.
 
-- **各種 GUI フレームワークの初期実装**  
-  Smalltalk 系や古いデスクトップ UI フレームワークは、MVC の直接的な影響下にある。
+- **Initial implementations of various GUI frameworks**  
+  Smalltalk-based and older desktop UI frameworks are under the direct influence of MVC.
 
-## ✅ このスタイルを支えるデザインパターン
+## ✅ Design Patterns Supporting this Style
 
-MVC そのものは構造スタイルですが、その内部では次のようなデザインパターンがよく使われます。
+MVC itself is a structural style, but the following design patterns are often used within it.
 
 - **Observer**  
-  Model の状態変化を View に通知し、再描画させる仕組みを実現する。
+  Realizes the mechanism to notify the View of Model state changes and trigger redraws.
 
 - **State**  
-  Model 内の状態に応じて振る舞いを変える場合に使われる。UI 状態の管理にも関与する。
+  Used when changing behavior according to the state within the Model. Also involved in UI state management.
 
 - **Command**  
-  ユーザー操作（アクション）をオブジェクトとして表現し、Controller から Model への処理を整理する。
+  Represents user operations (actions) as objects and organizes processing from Controller to Model.
 
 - **Mediator**  
-  複数の View や Model が絡む複雑な画面で、Controller がそれらの調停役として振る舞う。
+  In complex screens involving multiple Views and Models, the Controller acts as a mediator for them.
 
-## ✅ まとめ
+## ✅ Summary
 
-MVC は、
+MVC is:
 
-- UI とロジックを分離するという思想の起点となったスタイルであり、
-- 多くのモダン UI パターンのベースになっている。
+- The style that became the starting point for the idea of separating UI and logic.
+- The base for many modern UI patterns.
 
-現在のフロントエンド開発でそのまま採用されることは減りましたが、
-**UI 構造を考えるときの原点** として知っておく価値がある。
+Although it is less frequently adopted as-is in current front-end development,
+it is worth knowing as the **origin when thinking about UI structure**.

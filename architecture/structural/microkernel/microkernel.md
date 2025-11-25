@@ -1,125 +1,118 @@
 # 🧩 Microkernel Architecture
 
-## ✅ このスタイルの概要
+## ✅ Overview of this Style
 
-**最小限のコア（Microkernel）が土台になり、その上にプラグインや拡張機能を載せるアーキテクチャ。**
-OS・IDE・言語処理系など、拡張性重視のシステムでよく使われる。
+**An architecture where a minimal core (Microkernel) serves as the foundation, and plugins or extensions are built on top of it.**
+It is often used in systems that prioritize extensibility, such as OSs, IDEs, and language processing systems.
 
-## ✅ 解決しようとした問題
+## ✅ Problems Solved
 
-- コア機能と拡張機能が混ざり合い、変更コストが高い
-- カスタム機能やサードパーティ拡張を追加すると、コアがどんどん複雑になる
-- 一部機能の障害がシステム全体の安定性に直結してしまう
+- Core functions and extensions are mixed, resulting in high change costs.
+- Adding custom features or third-party extensions makes the core increasingly complex.
+- Failures in some features directly affect the stability of the entire system.
 
-Microkernel は、
+Microkernel attempts to balance structural stability and extensibility by:
 
-> 「安定していて滅多に変わらないコア」と
-> 「追加・変更されやすいプラグイン」を分離する
+> Separating the "stable core that rarely changes" from
+> "plugins that are easily added or changed".
 
-ことで、構造的な安定性と拡張性を両立しようとする。
+## ✅ Basic Philosophy and Rules
 
-## ✅ 基本思想・ルール
+### ● Microkernel (Core)
 
-### ● Microkernel（コア）
+- Provides only minimal functionality.
+  - Plugin lifecycle management.
+  - Definition of Extension Points.
+  - Basic resource management and messaging.
+- Assumes that it is not changed frequently.
 
-- 最小限の機能のみを提供
-  - プラグインのライフサイクル管理
-  - 拡張ポイント（Extension Point）の定義
-  - 基本的なリソース管理・メッセージング
-- 頻繁に変更されないことが前提
+### ● Plugin
 
-### ● Plugin（プラグイン）
+- Implements interfaces defined by the core.
+- Provides specific features and variations.
+- Often capable of dynamic loading/unloading.
 
-- コアが定めたインターフェースを実装
-- 具体的な機能やバリエーションを提供
-- 動的ロード／アンロードが可能なことも多い
+### ● Communication and Coordination
 
-### ● 通信・連携
+- Plugins communicate with each other primarily via the core.
+- Controls coupling by avoiding direct dependencies.
 
-- プラグイン同士は原則としてコア経由で連携
-- 直接依存を増やさないことで結合を制御
+## ✅ Suitable Applications
 
-## ✅ 得意なアプリケーション
+- OS (File system drivers, device drivers, etc.)
+- IDE / Editors (Plugins for language support, linting, refactoring features, etc.)
+- Language processing systems (Compiler backends, optimization passes)
+- Rule engines and workflow engines
 
-- OS（ファイルシステムドライバ、デバイスドライバなど）
-- IDE / エディタ（言語サポート、Lint、リファクタリング機能などのプラグイン）
-- 言語処理系（コンパイラのバックエンド、最適化パス）
-- ルールエンジンやワークフローエンジン
+Characteristics:
 
-特徴：
+- Balancing core stability and extensibility.
+- Independent development and distribution of plugins.
 
-- コアの安定性と拡張性の両立
-- プラグイン単位での独立開発・配布
+## ❌ Unsuitable Cases
 
-## ❌ 不向きなケース
+- Frequency of feature additions is low, and the cost of establishing extension points is not justified.
+- Simple CRUD applications.
+- Domains where the domain itself changes frequently and significantly (core design cannot keep up).
 
-- 機能追加の頻度が低く、拡張ポイントを設けるコストが見合わない
-- シンプルな CRUD アプリケーション
-- ドメイン自体が頻繁に大きく変わる領域（コアの設計が追いつかない）
+Over-engineering Microkernel can lead to:
 
-Microkernel を過剰に設計すると：
+- Initial design costs being too high.
+- Proliferation of unused extension points.
 
-- 初期設計コストが高すぎる
-- 実際には使われない拡張ポイントが乱立する
+## ✅ History (Genealogy / Parent Styles)
 
-といった問題も起こりえる。
+- Emerged in the OS world as an approach against monolithic kernels.
+- Adopted in enterprise applications as pluggable platforms.
+- Sometimes treated synonymously with Plugin Architecture depending on the context.
 
-## ✅ 歴史（系譜・親スタイル）
+## ✅ Related Styles
 
-- OS の世界で、モノリシックカーネルに対するアプローチとして登場
-- エンタープライズアプリケーションでは、プラグイン可能なプラットフォームとして採用
-- Plugin Architecture という名前でも文脈によっては同義的に扱われることがある
+- **Plugin Architecture**: A more application-oriented plugin structure.
+- **Layered Architecture**: The core may be implemented as part of the infrastructure layer.
+- **Microservices**: A different lineage for functional division, but shares the goal of extensibility.
 
-## ✅ 関連スタイル
+## ✅ Representative Frameworks
 
-- **Plugin Architecture**：よりアプリケーション寄りのプラグイン構造
-- **Layered Architecture**：コアがインフラストラクチャレイヤの一部として実装されることも
-- **Microservices**：機能分割のアプローチとしては別系統だが、拡張性というゴールは共有
+Microkernel Architecture is adopted not only in OSs but also in many "products centered on extensibility".
 
-## ✅ 代表的なフレームワーク
+- **VSCode / IntelliJ / Eclipse (IDE)**  
+  Language support, linting, search extensions, etc., are all provided as plugins.  
+  Representative examples of Microkernel + Plugin Architecture.
 
-Microkernel Architecture は OS だけでなく、多くの「拡張性を核とするプロダクト」で採用されている。
+- **Linux / BSD (OS Kernel)**  
+  Device drivers and file systems can be loaded as modules.
 
-- **VSCode / IntelliJ / Eclipse（IDE）**  
-  言語サポート・Lint・検索拡張など、すべてプラグインとして提供される。  
-  Microkernel + Plugin Architecture の代表例。
+- **Browser (Chrome / Firefox) Extensions**  
+  The core (rendering, security) is stable, and extensions are added in a separate layer.
 
-- **Linux / BSD（OS カーネル）**  
-  デバイスドライバやファイルシステムをモジュールとしてロード可能。
+- **Workflow Engines (Camunda, JBPM, etc.)**  
+  Pluggable processing steps and components can be added on top of the execution core.
 
-- **ブラウザ（Chrome / Firefox）拡張**  
-  コア（レンダリング・セキュリティ）は安定、拡張機能は別レイヤで追加される。
+## ✅ Design Patterns Supporting this Style
 
-- **ワークフローエンジン（Camunda・JBPM など）**  
-  実行コアの上に、プラグイン可能な処理ステップやコンポーネントを追加可能。
-
-## ✅ このスタイルを支えるデザインパターン
-
-Microkernel は明確に複数パターンの組み合わせによって成立しているスタイルである。
+Microkernel is a style clearly established by a combination of multiple patterns.
 
 - **Strategy**  
-  プラグインの振る舞いを“差し替え可能な実装”として扱う。
+  Treats plugin behavior as "replaceable implementations".
 
 - **Abstract Factory**  
-  プラグインの生成方法（ロード方式・設定）を統一し、実装の切り替えを容易にする。
+  Unifies plugin creation methods (loading methods, configuration) to facilitate implementation switching.
 
 - **Proxy**  
-  プラグインアクセスの制御（監査・キャッシュ・メトリクス）を追加する際に利用。
+  Used when adding control over plugin access (auditing, caching, metrics).
 
 - **Mediator**  
-  プラグイン間の通信をコアに集約し、プラグイン同士の直接依存を避ける。
+  Aggregates communication between plugins into the core to avoid direct dependencies between plugins.
 
 - **Facade**  
-  コアシステムの外観 API として、プラグインや外部システムからの利用を統一する役割を果たす。
+  Serves as the external API of the core system, unifying usage from plugins and external systems.
 
-## ✅ まとめ
+## ✅ Summary
 
-Microkernel Architecture は、
+Microkernel Architecture is a **powerful style for structurally separating "unchanging parts" from "changing parts"** in:
 
-- 長期運用されるプラットフォーム
-- サードパーティ拡張やバリエーションを前提としたシステム
+- Long-running platforms.
+- Systems that assume third-party extensions and variations.
 
-において、**「変わらない部分」と「変わる部分」を構造的に分離するための強力なスタイル** である。
-
-ただし、小規模なアプリに無理に適用するとオーバーエンジニアリングになりやすいため、
-適用範囲と寿命を見極めて採用することが重要である。
+However, forcing it onto small-scale apps tends to result in over-engineering, so it is important to assess the scope of application and lifespan before adoption.

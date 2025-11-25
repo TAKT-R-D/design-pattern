@@ -1,119 +1,118 @@
 # 🧩 Lambda / Kappa Architecture
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-**大量データ処理のためのアーキテクチャスタイルで、バッチ＋ストリーミングの二層構造（Lambda）と、ストリーミング単層構造（Kappa）の 2 つを対比させたもの。**
+**Architecture styles for massive data processing, contrasting two-layer structure of Batch + Streaming (Lambda) and single-layer structure of Streaming (Kappa).**
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-### Lambda Architecture が解決したかったこと
+### What Lambda Architecture wanted to solve
 
-- バッチ処理は「正確だが遅い」
-- ストリーミング処理は「速いが不正確になりやすい」
-- どちらかだけでは大規模データ分析の要求を満たせない
+- Batch processing is "accurate but slow".
+- Streaming processing is "fast but tends to be inaccurate".
+- Neither alone can satisfy requirements of large-scale data analysis.
 
-→ 解決策：  
-**「バッチレイヤ」と「スピードレイヤ」を併用することで、正確さと即時性を両立する」**
+→ Solution:
+**"Balance accuracy and immediacy by using 'Batch Layer' and 'Speed Layer' together."**
 
-### Kappa Architecture が解決したかったこと
+### What Kappa Architecture wanted to solve
 
-- Lambda Architecture の 2 系統メンテナンスが大変（コード重複、モデル二重管理）
-- ストリーミング技術の進化により「バッチ不要では？」という議論が登場
+- Maintenance of 2 systems in Lambda Architecture is hard (Code duplication, Model double management).
+- Discussion "Is batch unnecessary?" emerged due to evolution of streaming technology.
 
-→ 解決策：  
-**「全処理をストリーミングとして統一する」**
+→ Solution:
+**"Unify all processing as streaming."**
 
-## ✅ 基本思想・ルール
+## ✅ Basic Philosophy & Rules
 
-### Lambda Architecture の三層
+### Three Layers of Lambda Architecture
 
-1. **Batch Layer**  
-   生データ（immutable）を蓄積し、定期的にバッチ再計算して真値を作る
-2. **Speed Layer（Streaming Layer）**  
-   バッチが来るまでの間を補完するための近リアルタイム処理
-3. **Serving Layer**  
-   バッチ結果 + ストリーミング結果をマージして提供する
+1. **Batch Layer**
+   Accumulates raw data (immutable) and creates true value by periodic batch recalculation.
+2. **Speed Layer (Streaming Layer)**
+   Near real-time processing to complement the gap until batch comes.
+3. **Serving Layer**
+   Merges and provides batch result + streaming result.
 
-### Kappa Architecture の思想
+### Philosophy of Kappa Architecture
 
-- 「バッチ処理もストリームの再生で表現できる」
-- バッチレイヤを廃止し、**ストリーム処理一本**で構成する
-- 状態の再計算はストリームの Replay で実現
+- "Batch processing can also be expressed by replay of stream."
+- Abolish batch layer and configure with **single stream processing**.
+- Recalculation of state is realized by Replay of stream.
 
-## ✅ 得意なアプリケーション
-
-### Lambda
-
-- 正確な集計が必要な DWH 系分析
-- バッチ ETL とリアルタイム分析の両方が必要なケース
-- 大規模組織での段階的移行（既存バッチの継続利用）
-
-### Kappa
-
-- リアルタイム処理が中心のビジネス（監視、検知、IoT）
-- ストリームを中心としたシンプルなパイプラインを構築したい場合
-- 再計算ニーズがあるが、バッチを持ちたくない環境
-
-## ❌ 不向きなケース
+## ✅ Suitable Applications
 
 ### Lambda
 
-- 開発・運用が複雑（2 つのレイヤー管理）
-- 小〜中規模データでは過剰設計
+- DWH-type analysis requiring accurate aggregation.
+- Cases requiring both batch ETL and real-time analysis.
+- Phased migration in large organizations (Continued use of existing batch).
 
 ### Kappa
 
-- DWH 的な正確な集計が強く求められるケース
-- ストリーミング基盤が整備されていない環境
+- Business centered on real-time processing (Monitoring, Detection, IoT).
+- When wanting to build simple pipeline centered on stream.
+- Environment with recalculation needs but don't want to hold batch.
 
-## ✅ 歴史（系譜・親スタイル）
+## ❌ Unsuitable Cases
 
-- Lambda Architecture（Nathan Marz）がバッチ＋ストリームの二重構造を提唱
-- その後、Kafka Streams / Flink / Beam などの進化で Kappa Architecture が広まる
-- 現代では Lakehouse + Streaming との組み合わせが一般的になりつつある
+### Lambda
 
-## ✅ 関連スタイル
+- Development and operation are complex (Management of 2 layers).
+- Over-engineering for small to medium scale data.
 
-- **Batch Pipeline**：Lambda の Batch Layer の原型
-- **Streaming Pipeline**：Kappa の中心モデル
-- **Data Lake / Lakehouse**：生データの蓄積と再計算の土台
-- **Event Sourcing**：Replay による状態再構築という発想に近い
+### Kappa
 
-## ✅ 代表的なフレームワーク
+- Cases where DWH-like accurate aggregation is strongly required.
+- Environment where streaming infrastructure is not established.
 
-- **Apache Spark**  
-  Lambda Architecture の Batch Layer を構築する中心技術。
+## ✅ History (Genealogy / Parent Styles)
 
-- **Kafka Streams / Apache Flink**  
-  Kappa Architecture のストリーミング処理基盤として代表的。
+- Lambda Architecture (Nathan Marz) proposed double structure of Batch + Stream.
+- Later, Kappa Architecture spread with evolution of Kafka Streams / Flink / Beam etc.
+- Nowadays, combination with Lakehouse + Streaming is becoming common.
 
-- **Apache Beam**  
-  Batch / Streaming を統合したパイプラインを構築でき、Lambda/Kappa のどちらにも対応。
+## ✅ Related Styles
 
-- **Delta Lake / Iceberg / Hudi**  
-  再計算や Replay を前提とした Lakehouse と相性が良い。
+- **Batch Pipeline**: Prototype of Batch Layer of Lambda.
+- **Streaming Pipeline**: Central model of Kappa.
+- **Data Lake / Lakehouse**: Foundation for raw data accumulation and recalculation.
+- **Event Sourcing**: Close to idea of state reconstruction by Replay.
 
-## ✅ このスタイルを支えるデザインパターン
+## ✅ Representative Frameworks
 
-- **Iterator**  
-  ストリーム／大規模データの逐次処理に利用。
+- **Apache Spark**
+  Central technology constructing Batch Layer of Lambda Architecture.
 
-- **Observer**  
-  ストリームイベントの到着をトリガーに処理する。
+- **Kafka Streams / Apache Flink**
+  Representative streaming processing infrastructure of Kappa Architecture.
 
-- **Strategy**  
-  バッチ処理／ストリーミング処理のアルゴリズムを切り替える。
+- **Apache Beam**
+  Can construct pipeline integrating Batch / Streaming, supporting both Lambda/Kappa.
 
-- **Template Method**  
-  ETL / パイプライン構築の共通フローを統一する。
+- **Delta Lake / Iceberg / Hudi**
+  Good compatibility with Lakehouse assuming recalculation and Replay.
 
-## ✅ まとめ
+## ✅ Design Patterns Supporting This Style
 
-Lambda / Kappa Architecture は、  
-**大量データを「正確さ」「即時性」「再計算可能性」でどう扱うか**  
-という観点で生まれたデータ処理構造である。
+- **Iterator**
+  Used for sequential processing of stream / massive data.
 
-- 正確性 + 即時性が両方必要 → **Lambda**
-- ストリーミング中心でシンプルにしたい → **Kappa**
+- **Observer**
+  Process triggered by arrival of stream event.
 
-という住み分けが実務ではよく使われる。
+- **Strategy**
+  Switching algorithms of batch processing / streaming processing.
+
+- **Template Method**
+  Unifies common flow of ETL / Pipeline construction.
+
+## ✅ Summary
+
+Lambda / Kappa Architecture are data processing structures born from the perspective of:
+**How to handle massive data with "Accuracy", "Immediacy", and "Recalculability".**
+
+- Both Accuracy + Immediacy needed → **Lambda**
+- Want to simplify with Streaming center → **Kappa**
+
+This segregation is often used in practice.

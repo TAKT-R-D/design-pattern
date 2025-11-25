@@ -1,124 +1,122 @@
-# 🧩 Architecture Decision Guide（アーキテクチャ選定ガイド）
+# 🧩 Architecture Decision Guide
 
-ソフトウェアアーキテクチャは「流行」ではなく、**目的と制約に応じて選択する技術** である。本ガイドでは、どのスタイル・トップロジー・統合方式を選ぶべきかを判断するための観点を整理する。
+Software architecture is not a "trend" but a **technology selected according to purpose and constraints**. This guide organizes perspectives for judging which style, topology, or integration method to choose.
 
-## ✅ まず最初に判断すべき 3 つの軸
+## ✅ Three Axes to Decide First
 
-アーキテクチャ選定の核心は次の 3 軸である。
+The core of architecture selection lies in the following three axes:
 
-### 1. 変更容易性（Changeability）
+### 1. Changeability
 
-- 変更頻度は高いか？
-- 変更の影響範囲は広いか？
-- ドメインルールの複雑さは大きいか？
+- Is the frequency of change high?
+- Is the scope of change wide?
+- Is the complexity of domain rules high?
 
-→ 高い場合は **依存方向ルール（Clean / Hexagonal / Onion）** が有力。
+→ If high, **Dependency Rule (Clean / Hexagonal / Onion)** is a strong candidate.
 
-### 2. スケール要求（Scalability）
+### 2. Scalability Requirements
 
-- ユーザ数 / トラフィックは急増するか？
-- 物理的にスケールさせる必要があるか？
+- Will the number of users/traffic increase rapidly?
+- Is there a need to scale physically?
 
-→ 高い場合は **Microservices / Serverless / Edge** が候補。
+→ If high, **Microservices / Serverless / Edge** are candidates.
 
-### 3. データ整合性（Consistency）
+### 3. Data Consistency
 
-- 強整合性が必須か？
-- 遅延を許容できるか？
+- Is strong consistency mandatory?
+- Can latency be tolerated?
 
-→ 最終的整合性を許容するなら **Event-driven / CQRS / Event Sourcing** が有効。
+→ If eventual consistency is acceptable, **Event-driven / CQRS / Event Sourcing** are effective.
 
-## ✅ Topologies 選定（Monolith / Modular Monolith / Microservices）
+## ✅ Topologies Selection (Monolith / Modular Monolith / Microservices)
 
-### ◎ Monolith を選ぶべきケース
+### ◎ Case for Monolith
 
-- 初期フェーズ
-- 小規模チーム
-- 変更範囲が明確である
+- Initial phase
+- Small team
+- Scope of change is clear
 
-### ◎ Modular Monolith を選ぶべきケース
+### ◎ Case for Modular Monolith
 
-- チームが 2〜5 つ程度
-- コンテキスト境界が明確
-- 将来マイクロサービス化を視野に入れる
+- Team size of about 2-5
+- Context boundaries are clear
+- Considering future migration to Microservices
 
-### ◎ Microservices を選ぶべきケース
+### ◎ Case for Microservices
 
-- チーム規模が大きい
-- 独立デプロイが強い要件
-- 境界が明確でドメインが複雑
+- Large team scale
+- Independent deployment is a strong requirement
+- Boundaries are clear and the domain is complex
 
-## ✅ Integration スタイル選定（REST / gRPC / Event-driven）
+## ✅ Integration Style Selection (REST / gRPC / Event-driven)
 
 ### REST
 
-- 公開 API
-- 使いやすさ重視
-- 汎用的な Web システム
+- Public API
+- Ease of use prioritized
+- General Web systems
 
 ### gRPC
 
-- サービス間通信（高速・型安全）
-- 内部 API
-- パフォーマンス要求が高い
+- Inter-service communication (High speed, Type safety)
+- Internal API
+- High performance requirements
 
 ### Event-driven
 
-- 疎結合化したい場合
-- 非同期処理が中心
-- レジリエンス要求が高い
+- Want to decouple
+- Asynchronous processing is central
+- High resilience requirements
 
-## ✅ Data アーキテクチャ選定
+## ✅ Data Architecture Selection
 
 ### Data Warehouse
 
-- 分析 BI
-- 構造化データ中心
+- Analytics BI
+- Structured data centric
 
 ### Data Lake / Lakehouse
 
-- 半構造化・非構造化データ
-- ML パイプライン
+- Semi-structured / Unstructured data
+- ML pipelines
 
 ### CQRS
 
-- 読み書き負荷の偏り
-- 読みモデルを最適化したい
+- Bias in read/write load
+- Want to optimize the read model
 
 ### Event Sourcing
 
-- 監査 / 履歴が必須
-- 時系列データが中心
+- Audit / History is mandatory
+- Time-series data is central
 
-## ✅ Cross-cutting の観点から決める
+## ✅ Deciding from Cross-cutting Perspectives
 
 ### DevOps / CI/CD
 
-- 部署横断でデプロイ頻度を高めたい
+- Want to increase deployment frequency across departments
 
 ### SRE / SLO
 
-- 可用性と信頼性を KPI として扱う必要がある
+- Need to treat availability and reliability as KPIs
 
 ### Team Topologies
 
-- 組織構造によりアーキテクチャは変化する（Conway’s Law）
+- Architecture changes depending on organizational structure (Conway’s Law)
 
-## 🧭 最終的な選定フロー（簡易チャート）
+## 🧭 Final Selection Flow (Simplified Chart)
 
 ```mermaid
 graph TD
-  A[要件の整理<br>変更容易性 / スケール / 整合性] --> B[Topologies 選定<br>Monolith / Modular / Microservices]
-  B --> C[Integration 選定<br>REST / gRPC / Event-driven]
-  C --> D[Data 選定<br>DWH / Lakehouse / CQRS / ES]
-  D --> E[Cross-cutting 適用<br>DevOps / SRE / Zero Trust]
-  E --> F[最終決定]
+  A[Requirements Clarification<br>Changeability / Scale / Consistency] --> B[Topologies Selection<br>Monolith / Modular / Microservices]
+  B --> C[Integration Selection<br>REST / gRPC / Event-driven]
+  C --> D[Data Selection<br>DWH / Lakehouse / CQRS / ES]
+  D --> E[Cross-cutting Application<br>DevOps / SRE / Zero Trust]
+  E --> F[Final Decision]
 ```
 
-## ✅ まとめ
+## ✅ Summary
 
-アーキテクチャ選定とは、  
-**「状況・要件・組織・制約」から逆算して構造を決めるプロセス** である。
+Architecture selection is a **process of determining structure by calculating backward from "Situation, Requirements, Organization, Constraints".**
 
-特定のスタイルに固執するのではなく、  
-**どの問題を解決するためにどの構造を選ぶのか** を明確にすることが重要である。
+It is important not to stick to a specific style, but to clarify **which structure is chosen to solve which problem.**

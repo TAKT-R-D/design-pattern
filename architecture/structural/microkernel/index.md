@@ -1,58 +1,56 @@
-# 🧩 F. Microkernel / Plugin 系（コア＋プラグイン構造）
+# 🧩 F. Microkernel / Plugin Structural Styles
 
-## ✅ 概要
+## ✅ Overview
 
-この系統は、システムを **最小限のコア（Microkernel）と、拡張可能なプラグイン群** に分割するスタイルを扱う。
+This family deals with styles that split the system into a **minimal core (Microkernel) and a group of extensible plugins.**
 
-- コアは最小限の機能だけを提供
-- プラグインが個別機能・拡張・バリエーションを提供
-- IDE / OS / ミドルウェアなど、拡張性が重要なソフトウェアでよく見られる構造
+- Core provides only minimal functions.
+- Plugins provide individual functions, extensions, and variations.
+- Structure often seen in software where extensibility is important, such as IDEs, OSs, and middleware.
 
-代表的なスタイル：
+Representative Styles:
 
 - Microkernel Architecture
 - Plugin Architecture
 
-## ✅ なぜこの系統が生まれたか（歴史・背景）
+## ✅ Why This Family Emerged (History & Background)
 
-- OS やコンパイラ、IDE など、長期にわたって機能拡張されるソフトウェアが増えた
-- コア機能と拡張機能の境界を明確にしないと、変更コストが爆発する
-- 一部機能だけを有効・無効にしたい、というニーズ
-- サードパーティに拡張の余地を開きたい（プラグインエコシステム）
+- Software that is extended over a long period, such as OSs, compilers, and IDEs, increased.
+- Cost of change explodes if the boundary between core functions and extension functions is not clear.
+- Need to enable/disable only some functions.
+- Want to open room for extension to third parties (Plugin Ecosystem).
 
-> 「変わりにくいコア」と「変わりやすい拡張」を分けて設計する
+Microkernel / Plugin styles emerged from the idea:
 
-という発想から、Microkernel / Plugin 系のスタイルが生まれてきた。
+> "Design by separating 'hard-to-change core' and 'easy-to-change extensions'."
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-- 機能追加のたびに既存コードへ大規模な変更が必要になる
-- 特定顧客向けのカスタマイズやオプション機能が増えるほど複雑化する
-- サードパーティ拡張を許容したいが、コアを壊されたくない
+- Large-scale changes to existing code are required every time a feature is added.
+- Complexity increases as customizations for specific customers or optional features increase.
+- Want to allow third-party extensions but don't want the core to be broken.
 
-コアとプラグインを分離することで：
+By separating core and plugins, the goal is a structure where:
 
-- 追加機能はプラグインとして実装
-- コアは安定化させ、インターフェースだけを維持
+- Additional features are implemented as plugins.
+- Core is stabilized, maintaining only interfaces.
 
-という構造を目指す。
+## ✅ Styles Belonging to This Family
 
-## ✅ この系統に属するスタイル
+- **Microkernel Architecture**: Basic structure of "Minimal Core + Plugins" used in OSs and IDEs.
+- **Plugin Architecture**: Style where the application provides extension points and adds features with external plugins.
 
-- **Microkernel Architecture**：OS や IDE などで使われる「最小コア＋プラグイン」の基本構造
-- **Plugin Architecture**：アプリケーションに拡張ポイントを用意し、外部プラグインで機能追加を行うスタイル
+## ✅ Relationship with Other Families
 
-## ✅ 他の系統との関係
+- Can be combined with **Layered / Domain Model** to replace domain services as plugins.
+- Form of inserting processing stages or handlers as plugins within **Flow / Reactive** families is also common.
+- Related to **Cross-cutting (Extensibility using Plugins, Third-party development)**.
 
-- **Layered / Domain Model 系** と組み合わせて、ドメインサービスをプラグインとして差し替える構成もあり得る
-- **Flow / Reactive 系** の中で、処理ステージやハンドラをプラグインとして差し込む形も一般的
-- **Cross-cutting（Plugin を用いた拡張性・サードパーティ開発）** とも関わる
+## ✅ When to Reference
 
-## ✅ どんな時に参考になるか
+- Platforms that are operated for a long time and continuous feature addition is expected.
+- Products where feature sets differ for each customer (Feature Flags + Plugins).
+- When you want to design extension points for third parties.
 
-- 長期運用され、継続的な機能追加が見込まれるプラットフォーム
-- 顧客ごとに機能セットが異なるプロダクト（機能フラグ＋プラグイン）
-- サードパーティ向けの拡張ポイントを設計したい場合
-
-「プロダクト」ではなく「プラットフォーム」を作るときに、
-この系統の発想が特に重要になる。
+When making a "Platform" rather than a "Product",
+the idea of this family becomes particularly important.

@@ -1,10 +1,10 @@
-# 🧩 Modular Monolith（モジュラーモノリス）
+# 🧩 Modular Monolith
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-**モノリスでありながら、内部を「明確に分割されたモジュール」で構成する構造スタイル。**
+**A structural style that is a Monolith but configured internally with "clearly separated modules".**
 
-### 概念図（Conceptual Diagram）
+### Conceptual Diagram
 
 ```mermaid
 flowchart LR
@@ -22,72 +22,72 @@ flowchart LR
     M3 --> Interfaces
 ```
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-- モノリスの密結合・変更衝突・境界の曖昧さ
-- Microservices の「運用コスト」や「複雑性」を避けたい
-- 内部構造だけはしっかり分離したい
+- Tight coupling, change collision, and ambiguous boundaries of Monolith.
+- Want to avoid "operational cost" and "complexity" of Microservices.
+- Want to separate only the internal structure firmly.
 
-## ✅ 基本思想・ルール
+## ✅ Basic Philosophy & Rules
 
-- 単一デプロイだが、内部は明確な境界で分割
-- モジュールは独立したドメイン・パッケージとして構成
-- モジュール間通信は公開インターフェース経由に限定
+- Single deployment, but internally split by clear boundaries.
+- Modules are configured as independent domains/packages.
+- Inter-module communication is limited to public interfaces.
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-- 中規模〜大規模のプロダクト初期
-- 明確なドメイン境界がある領域
-- 将来的にマイクロサービス化を検討したい場合の事前構造
+- Initial stage of medium to large-scale products.
+- Areas with clear domain boundaries.
+- Pre-structure when considering future microservices migration.
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-- 境界を守らず結局密結合になるチーム
-- 強い可用性要件（部分停止を許容できない）
-- サービスごとにスケール特性が極端に異なる
+- Teams that don't observe boundaries and end up tightly coupled.
+- Strong availability requirements (cannot tolerate partial outage).
+- Scale characteristics differ extremely per service.
 
-## ✅ 歴史
+## ✅ History
 
-- DDD の登場により注目される
-- Microservices の反動として再評価
+- Attracted attention with the emergence of DDD.
+- Re-evaluated as a reaction to Microservices.
 
-## ✅ 関連スタイル
+## ✅ Related Styles
 
-- Monolith：基盤となる概念
-- Microservices：成長後の移行先として相性が良い
+- **Monolith**: Base concept.
+- **Microservices**: Good compatibility as a migration destination after growth.
 
-## ✅ 代表的なフレームワーク
+## ✅ Representative Frameworks
 
-- **Spring Boot + Module Boundary（Package by Feature）**  
-  モデル境界を守るモジュラーモノリスの代表的構成。
+- **Spring Boot + Module Boundary (Package by Feature)**
+  Representative configuration of Modular Monolith protecting model boundaries.
 
-- **NestJS（Module 構造）**  
-  明確なモジュール境界をサポートし、モジュラーモノリスに適する。
+- **NestJS (Module Structure)**
+  Supports clear module boundaries, suitable for Modular Monolith.
 
-- **.NET（Modular Monolith Template）**  
-  DDD + モジュール境界を公式テンプレートで実現可能。
+- **.NET (Modular Monolith Template)**
+  Can realize DDD + Module boundaries with official templates.
 
-- **Laravel / Rails（Engine / Module パターン）**  
-  部分的にモジュールを切り出す構成が可能。
+- **Laravel / Rails (Engine / Module Pattern)**
+  Configuration to cut out modules partially is possible.
 
-## ✅ このスタイルを支えるデザインパターン
+## ✅ Design Patterns Supporting This Style
 
-- **Facade**  
-  モジュール外部に公開する API の入口として機能。
+- **Facade**
+  Functions as an entrance of API exposed to outside of the module.
 
-- **Mediator**  
-  モジュール間の調整ロジックを共通化。
+- **Mediator**
+  Commonizes coordination logic between modules.
 
-- **Adapter**  
-  モジュール間通信をインターフェース経由で行う際に利用。
+- **Adapter**
+  Used when performing inter-module communication via interfaces.
 
-- **Strategy**  
-  モジュール内部の振る舞いを切り替え可能にする。
+- **Strategy**
+  Makes behavior inside module switchable.
 
-- **Proxy**  
-  モジュールの境界保護・アクセス制御に役立つ。
+- **Proxy**
+  Useful for module boundary protection and access control.
 
-## ✅ まとめ
+## ✅ Summary
 
-Modular Monolith は  
-**「モノリスのシンプルさ」と「マイクロサービスの境界意識」** を両立させる構造スタイルである。
+Modular Monolith is a structural style that balances
+**"Simplicity of Monolith" and "Boundary awareness of Microservices".**

@@ -1,80 +1,79 @@
-# 🧩 CQRS（Command Query Responsibility Segregation）
+# 🧩 CQRS (Command Query Responsibility Segregation)
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-**読み取り（Query）と書き込み（Command）を分離するアーキテクチャスタイル。**
+**Architecture style separating Read (Query) and Write (Command).**
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-- 読み取り最適化 vs 書き込み整合性の両立
-- 大規模システムでのクエリ性能問題
-- 特定のデータアクセスパターンを汎用モデルが満たせない
+- Balancing read optimization vs write consistency.
+- Query performance problem in large-scale systems.
+- General-purpose model cannot satisfy specific data access patterns.
 
-## ✅ 基本思想・ルール
+## ✅ Basic Philosophy & Rules
 
-- Command Model と Query Model を別々に設計する
-- 読み取り用 DB（キャッシュ／検索専用）と書き込み用 DB を分けることも多い
-- Event Sourcing と併用されることが多い
+- Design Command Model and Query Model separately.
+- Often separate DB for reading (Cache / Search specific) and DB for writing.
+- Often used in combination with Event Sourcing.
 
-### 概念図（Conceptual Diagram）
+### Conceptual Diagram
 
 ![CQRS Architecture diagram](./cqrs.png)
 
-> 出典: Greg Young, “CQRS Documents”, 2010, Figure 12.  
+> Source: Greg Young, “CQRS Documents”, 2010, Figure 12.  
 > https://cqrs.files.wordpress.com/2010/11/cqrs_documents.pdf
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-- 書き込みと読み取りの負荷バランスが大きく異なるシステム
-- 高トラフィックでスケール要求が大きい API
-- 検索要件や集計要件が複雑なドメイン
+- Systems where load balance of write and read differs significantly.
+- API with high traffic and large scale requirements.
+- Domains with complex search or aggregation requirements.
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-- 小規模 CRUD アプリ（複雑性が上回る）
-- 分離により整合性や運用負荷が増える状況
+- Small-scale CRUD apps (Complexity outweighs benefits).
+- Situations where separation increases consistency and operational load.
 
-## ✅ 歴史
+## ✅ History
 
-- DDD 文脈で提案されたが、スケーラビリティの観点でも広く採用
+- Proposed in DDD context, but widely adopted also from scalability perspective.
 
-## ✅ 関連スタイル
+## ✅ Related Styles
 
-- Event Sourcing：状態をイベントで保持するスタイルと相性が良い
-- EDA：非同期更新に活用
+- Event Sourcing: Good compatibility with style holding state by events.
+- EDA: Utilized for asynchronous update.
 
-## ✅ 代表的なフレームワーク
+## ✅ Representative Frameworks
 
-- **EventStoreDB**  
-  Event Sourcing と組み合わせた CQRS 実装で広く採用される。
+- **EventStoreDB**
+  Widely adopted in CQRS implementation combined with Event Sourcing.
 
-- **Axon Framework（Java）**  
-  コマンド／クエリの分離と Event Sourcing を統合した実装が可能。
+- **Axon Framework (Java)**
+  Possible to implement integrating Command/Query separation and Event Sourcing.
 
-- **Lagom（Scala / Java）**  
-  CQRS + ES を前提としたマイクロサービスフレームワーク。
+- **Lagom (Scala / Java)**
+  Microservices framework premised on CQRS + ES.
 
-- **Kafka + Custom Command Processor**  
-  Kafka の Topic を通じて Command/Event をやり取りする CQRS 実装も一般的。
+- **Kafka + Custom Command Processor**
+  CQRS implementation exchanging Command/Event via Kafka Topic is also common.
 
-## ✅ このスタイルを支えるデザインパターン
+## ✅ Design Patterns Supporting This Style
 
-- **Command**  
-  書き込み操作を「意図を持つ操作」として扱う中心的パターン。
+- **Command**
+  Central pattern treating write operation as "operation with intent".
 
-- **Memento**  
-  状態管理の補助として、特定時点のスナップショットを扱う場合に使われる。
+- **Memento**
+  Used when handling snapshot at specific point as auxiliary of state management.
 
-- **Strategy**  
-  読み取り／書き込みモデルで異なるデータ取得方式を切り替える。
+- **Strategy**
+  Switching different data fetching methods in Read / Write models.
 
-- **Observer**  
-  書き込み結果のイベントを購読し、読み取りモデルを更新する際に利用。
+- **Observer**
+  Used when subscribing to write result events and updating read model.
 
-- **Mediator**  
-  Command Handler／Query Handler が疎結合で連携する構造に現れる。
+- **Mediator**
+  Appears in structure where Command Handler / Query Handler cooperate loosely.
 
-## ✅ まとめ
+## ✅ Summary
 
-CQRS は **読み書きの分離** というシンプルな概念で、  
-スケールと柔軟なモデル設計を実現する強力な手法である。
+CQRS is a powerful method realizing scale and flexible model design with the simple concept of **separation of reading and writing**.

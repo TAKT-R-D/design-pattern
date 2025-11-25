@@ -1,23 +1,23 @@
 # 🧩 Serverless Architecture
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-**サーバ管理を隠蔽し、イベント駆動の Functions（FaaS）を中心に構築するアーキテクチャ。**
+**An architecture that hides server management and is built around event-driven Functions (FaaS).**
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-- インフラ運用コストの削減
-- スケールの自動化
-- 不規則な負荷変動への対応
+- Reduction of infrastructure operation costs.
+- Automation of scaling.
+- Response to irregular load fluctuations.
 
-## ✅ 基本思想・ルール
+## ✅ Basic Philosophy & Rules
 
-- FaaS（Lambda / Cloud Functions など）によるイベント駆動
-- マネージドサービスを組み合わせた構成
-- スケールは自動、従量課金
-- ステートレス関数が基本
+- Event-driven by FaaS (Lambda / Cloud Functions etc.).
+- Configuration combining managed services.
+- Scale is automatic, pay-as-you-go.
+- Stateless functions are basic.
 
-### 概念図（Conceptual Diagram）
+### Conceptual Diagram
 
 ```mermaid
 flowchart LR
@@ -30,58 +30,57 @@ flowchart LR
     FN --> LOG
 ```
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-- イベント駆動処理（ログ・通知・変換）
-- バースト負荷が大きい業務
-- 小規模 API / BFF / バックオフィスツール
+- Event-driven processing (Log / Notification / Transformation).
+- Tasks with large burst loads.
+- Small-scale API / BFF / Back-office tools.
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-- 長時間実行のジョブ
-- ステートフル処理
-- 高頻度トラフィックの恒常的大規模サービス（コスト増）
+- Long-running jobs.
+- Stateful processing.
+- Constant large-scale services with high frequency traffic (Cost increase).
 
-## ✅ 歴史
+## ✅ History
 
-- AWS Lambda（2014）から普及
-- BaaS / FaaS 組み合わせのアーキテクチャへ発展
+- Spread from AWS Lambda (2014).
+- Developed into architecture combining BaaS / FaaS.
 
-## ✅ 関連スタイル
+## ✅ Related Styles
 
-- Microservices：粒度の小ささ・疎結合の思想は類似
-- Event-driven：FaaS の起点として強く連携
+- **Microservices**: Similar philosophy of small granularity and loose coupling.
+- **Event-driven**: Strongly linked as a starting point of FaaS.
 
-## ✅ 代表的なフレームワーク
+## ✅ Representative Frameworks
 
-- **AWS Lambda / API Gateway / DynamoDB / S3**  
-  最も普及している Serverless スタック。
+- **AWS Lambda / API Gateway / DynamoDB / S3**
+  Most popular Serverless stack.
 
-- **Google Cloud Functions / Cloud Run / Pub/Sub**  
-  管理不要な実行環境とイベント基盤。
+- **Google Cloud Functions / Cloud Run / Pub/Sub**
+  Execution environment and event infrastructure requiring no management.
 
-- **Azure Functions**  
-  .NET エコシステムとの相性が良い。
+- **Azure Functions**
+  Good compatibility with .NET ecosystem.
 
-- **Vercel Functions / Netlify Functions**  
-  Web フロントと近接した Serverless 構成。
+- **Vercel Functions / Netlify Functions**
+  Serverless configuration close to Web frontend.
 
-## ✅ このスタイルを支えるデザインパターン
+## ✅ Design Patterns Supporting This Style
 
-- **Observer**  
-  イベント（ファイル生成・メッセージ着信）を起点に処理。
+- **Observer**
+  Processing triggered by events (File generation / Message arrival).
 
-- **Command**  
-  関数ごとに“単一の操作”を表現。
+- **Command**
+  Expresses "single operation" per function.
 
-- **Proxy**  
-  API Gateway の認証・認可・スロットリング。
+- **Proxy**
+  Authentication / Authorization / Throttling by API Gateway.
 
-- **Strategy**  
-  イベントタイプごとの処理分岐。
+- **Strategy**
+  Processing branching per event type.
 
-## ✅ まとめ
+## ✅ Summary
 
-Serverless は  
-**「スケール自動化 × 運用最小化」** を実現する、  
-クラウド時代の強力な構造スタイルである。
+Serverless is a powerful structural style of the cloud era realizing
+**"Scale Automation × Operation Minimization"**.

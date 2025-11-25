@@ -1,23 +1,21 @@
-# 🧩 Outbox Pattern（Transactional Outbox）
+# 🧩 Outbox Pattern (Transactional Outbox)
 
-Outbox Pattern は、サービス間連携における **データ整合性とイベント配送の不整合** を解消するための代表的な Integration パターンである。
+Outbox Pattern is a representative Integration pattern to resolve **inconsistency between data consistency and event delivery** in inter-service coordination.
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-アプリケーションのローカルトランザクション内で  
-**（A）DB の更新 と （B）イベントの記録** を同時に行い、  
-その後バッファ（Outbox テーブル）からイベントを外部に配送する構造を取る。
+Takes a structure where **(A) DB Update and (B) Event Recording** are performed simultaneously within application's local transaction, and then events are delivered to outside from buffer (Outbox table).
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-- DB 更新は成功したがイベント送信が失敗する
-- イベントは送られたが DB 更新がロールバックされた
-- 分散トランザクション（2PC）を避けたい
-- マイクロサービス間で強整合性を保てない
+- DB update succeeded but event transmission failed.
+- Event was sent but DB update was rolled back.
+- Want to avoid distributed transaction (2PC).
+- Cannot maintain strong consistency between microservices.
 
-Outbox Pattern は **ローカル DB トランザクションにすべてを閉じ込める** ことでズレを防ぐ。
+Outbox Pattern prevents discrepancy by **confining everything in local DB transaction**.
 
-## ✅ 基本思想・構造
+## ✅ Basic Philosophy & Structure
 
 ```mermaid
 graph TD
@@ -28,28 +26,27 @@ graph TD
   E --> F[Message Broker / Event Bus]
 ```
 
-- Outbox テーブルは「未送信イベント」のバッファ
-- Dispatcher が定期的に Outbox を読み、Kafka / SNS / etc に送信する
-- 成功後に Outbox レコードを削除 or マーク済みにする
+- Outbox table is buffer for "unsent events".
+- Dispatcher reads Outbox periodically and sends to Kafka / SNS / etc.
+- Delete or mark Outbox record as done after success.
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-- マイクロサービス間のデータ整合性が重要
-- CRUD + イベント連携が中心の業務系
-- 監査・変更履歴を残したいケース
+- Data consistency between microservices is important.
+- Business systems centered on CRUD + Event coordination.
+- Cases wanting to leave audit / change history.
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-- 超高頻度でイベントを大量生成する場合（Outbox がボトルネック化）
-- 遅延が極めてシビアなワークロード
+- Generating massive events at ultra-high frequency (Outbox becomes bottleneck).
+- Workloads where latency is extremely severe.
 
-## ✅ 関連スタイル
+## ✅ Related Styles
 
-- Change Data Capture（CDC）
-- Event-driven Architecture（EDA）
-- Saga Pattern（特に Orchestration）
+- Change Data Capture (CDC)
+- Event-driven Architecture (EDA)
+- Saga Pattern (Especially Orchestration)
 
-## ✅ まとめ
+## ✅ Summary
 
-Outbox Pattern は、マイクロサービス時代の **最も実務的な整合性担保パターン** であり、  
-DB 更新とイベント配送のズレを避けるための標準的手法である。
+Outbox Pattern is the **most practical consistency assurance pattern** in microservices era, and is a standard method to avoid discrepancy between DB update and event delivery.

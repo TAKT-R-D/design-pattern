@@ -1,58 +1,57 @@
-# 🧩 A. 非構造〜初期系（Early Structural Styles）
+# 🧩 A. Non-structured / Early Structural Styles
 
-## ✅ 概要
+## ✅ Overview
 
-この系統は、ソフトウェアアーキテクチャという概念がまだ明確でなかった時代、  
-**「とりあえず動くものを作る」** ことを中心に生まれた初期の構造スタイルを扱う。
+This family deals with early structural styles born around **"making something that works for now"**, in an era when the concept of software architecture was not yet clear.
 
-ビジネスロジックやデータアクセス、UI の責務分離などは考慮されず、  
-コードはしばしばファイル間や関数間で入り乱れ、  
-構造化よりもスピードが優先されていました。
+Business logic, data access, and UI responsibility separation were not considered,
+code was often jumbled between files and functions,
+and speed was prioritized over structure.
 
-代表的なスタイル（またはアンチパターン）としては以下があります。
+Representative styles (or anti-patterns) include:
 
 - **Big Ball of Mud**
 - **Transaction Script**
 
-## ✅ なぜこの系統が生まれたか（歴史・背景）
+## ✅ Why This Family Emerged (History & Background)
 
-- 小規模なプログラムやスクリプトが中心で、長期保守や拡張の必要性が低かった
-- チーム開発よりも個人開発が多く、構造化の必然性がまだ弱かった
-- 設計パターンやレイヤードアーキテクチャが確立される前の時代
-- とにかく要件を満たす動くものを「最短」で作ることが重要だった
+- Small programs and scripts were central, and the need for long-term maintenance and expansion was low.
+- Individual development was more common than team development, and the necessity for structuring was still weak.
+- Era before design patterns and layered architectures were established.
+- It was important to create something working that met requirements in the "shortest" time.
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-初期系スタイルは、実は「解決したかった課題が多い」というより **制約条件に合わせた必然** でした。
+Early styles were actually **inevitabilities matching constraints** rather than "solving many challenges".
 
-- 設計に時間をかけられない（とにかく納期が短い）
-- アプリが小規模で複雑さが低い
-- 構造化よりも即時のアウトプットが求められた
+- Cannot spend time on design (deadlines are short).
+- App is small and complexity is low.
+- Immediate output was required rather than structuring.
 
-結果として、のちにアンチパターンとして扱われる構造につながった面もある。
+As a result, there is an aspect that led to structures later treated as anti-patterns.
 
-## ✅ この系統に属するスタイル
+## ✅ Styles Belonging to This Family
 
 ### ● Big Ball of Mud
 
-- 設計がほぼ存在せず、機能が場当たり的に追加された状態
-- 責務が入り乱れ、依存関係も混乱し、変更が極めて困難になる
-- アンチパターンとして代表的
+- State where design hardly exists and features are added haphazardly.
+- Responsibilities are jumbled, dependencies are confused, and changes become extremely difficult.
+- Representative anti-pattern.
 
 ### ● Transaction Script
 
-- 各処理（トランザクション）をスクリプトや関数として書き並べる
-- 小規模では有効だが、複雑化すると重複やロジック分散が急増する
-- Fowler による命名で有名
+- Writes each process (transaction) as a script or function.
+- Effective for small scale, but duplication and logic dispersion increase rapidly when complicated.
+- Famous for naming by Fowler.
 
-## ✅ 他の系統との関係
+## ✅ Relationship with Other Families
 
-- **B. データ中心系（Active Record など）** は Transaction Script の延長線上に発展
-- **C. レイヤード系** は Big Ball や Transaction Script の問題を解決するために登場
-- **全ての構造スタイルの“原始形態”** として理解できる
+- **B. Data-centric (Active Record, etc.)** developed as an extension of Transaction Script.
+- **C. Layered** appeared to solve problems of Big Ball and Transaction Script.
+- Can be understood as the **"primitive form" of all structural styles**.
 
-## ✅ どんな時に参考になるか
+## ✅ When to Reference
 
-- 小さなスクリプトや一時的なツールを作るとき
-- アンチパターンを避けるための「悪い例」
-- なぜレイヤードや DDD、Hexagonal が必要とされるのかを理解する土台として
+- When making small scripts or temporary tools.
+- As a "bad example" to avoid anti-patterns.
+- As a foundation to understand why Layered, DDD, and Hexagonal are needed.

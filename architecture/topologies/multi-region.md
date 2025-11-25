@@ -1,19 +1,19 @@
-# 🧩 Multi-region Architecture（マルチリージョン構成）
+# 🧩 Multi-region Architecture
 
-Multi-region Architecture は、サービスを複数リージョンに展開し、**可用性・レイテンシ・災害対策を同時に満たす** トポロジである。
+Multi-region Architecture is a topology that deploys services to multiple regions and **satisfies availability, latency, and disaster recovery simultaneously.**
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-アプリケーションとデータを複数リージョンに配置し、Active-active / Active-passive の構成で運用する。
+Deploys applications and data to multiple regions and operates in Active-active / Active-passive configuration.
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-- 単一リージョン障害による全体停止
-- グローバルユーザへの高レイテンシ
-- 災害対策（DR）／フェイルオーバーの遅延
-- データ整合性とスケールの両立
+- Total outage due to single region failure.
+- High latency for global users.
+- Delay in Disaster Recovery (DR) / Failover.
+- Balancing data consistency and scale.
 
-## ✅ 基本思想・構造
+## ✅ Basic Philosophy & Structure
 
 ```mermaid
 graph TD
@@ -23,35 +23,35 @@ graph TD
   B1 <---> B2
 ```
 
-- Global Load Balancing によりユーザを最適リージョンへルーティング
-- Strong / Eventual Consistency を選択
-- RPO/RTO 要件に応じて構成を決定
+- Routes users to optimal region by Global Load Balancing.
+- Select Strong / Eventual Consistency.
+- Decide configuration according to RPO/RTO requirements.
 
-## ✅ 代表的構成パターン
+## ✅ Representative Configuration Patterns
 
 ### ● Active-active
 
-- 全リージョンが同時に稼働
-- 高可用性・低レイテンシ
-- データ整合性の設計が難しい
+- All regions operate simultaneously.
+- High availability / Low latency.
+- Design of data consistency is difficult.
 
 ### ● Active-passive
 
-- 片側が待機し障害時に切替
-- シンプルで予測しやすい
-- フェイルオーバーに時間がかかる
+- One side stands by and switches at failure.
+- Simple and predictable.
+- Takes time for failover.
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-- 強整合性を絶対に崩せない単一 DB 中心アプリ
-- リージョン間通信コストを吸収できない規模
+- Apps centered on single DB where strong consistency cannot be broken absolutely.
+- Scale that cannot absorb inter-region communication cost.
 
-## ✅ 関連スタイル
+## ✅ Related Styles
 
 - Cell-based Architecture
-- Event-driven Architecture（非同期レプリケーション）
+- Event-driven Architecture (Asynchronous replication)
 - Global Caching / CDN
 
-## ✅ まとめ
+## ✅ Summary
 
-Multi-region Architecture はグローバルサービスに必須となる構成であり、可用性・災害耐性・レイテンシ改善を高いレベルで実現する。
+Multi-region Architecture is a configuration essential for global services, realizing availability, disaster tolerance, and latency improvement at a high level.

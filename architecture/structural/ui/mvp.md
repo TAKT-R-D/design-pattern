@@ -1,111 +1,107 @@
-# 🧩 MVP（Model-View-Presenter）
+# 🧩 MVP (Model-View-Presenter)
 
-## ✅ このスタイルの概要
+## ✅ Overview of this Style
 
-**Presenter が画面ロジックを担当し、View を極力「受け身」にする** UI 構造スタイル。  
-MVC を発展させ、テスト容易性を高めたものと捉えられる。
+A UI structural style where the **Presenter handles screen logic and the View is made as "passive" as possible**.  
+It can be seen as an evolution of MVC that enhances testability.
 
-## ✅ 解決しようとした問題
+## ✅ Problems Solved
 
-MVC では、実装によっては：
+In MVC, depending on the implementation, there were challenges such as:
 
-- View にロジックが入り込みやすい
-- Controller と View の責務が曖昧
-- テストで UI フレームワークに強く依存してしまう
+- Logic easily creeping into the View.
+- Ambiguity in responsibilities between Controller and View.
+- Strong dependency on UI frameworks in tests.
 
-という課題があった。
+MVP attempts to realize a **testable UI structure** by:
 
-MVP はこれに対し：
+- Treating the View as an **interface (contract)**.
+- Concentrating screen logic in the Presenter.
+- Routing interactions with the Model through the Presenter as well.
 
-- View を **インターフェース（契約）** としてとらえ
-- Presenter に画面ロジックを集中させ
-- Model とのやりとりも Presenter を経由させる
-
-ことで、**テストしやすい UI 構造** を実現しようとする。
-
-## ✅ 基本思想・ルール
+## ✅ Basic Philosophy and Rules
 
 ### ● View
 
-- UI コンポーネント（画面）
-- 入力と表示を担当
-- できるだけロジックを持たない
-- `IView` のようなインターフェースとして定義されることも多い
+- UI Component (Screen).
+- Responsible for input and display.
+- Holds as little logic as possible.
+- Often defined as an interface like `IView`.
 
 ### ● Presenter
 
-- View と Model の仲介役
-- ユーザー操作の解釈、画面状態の更新を担当
-- View に対して「こう表示して」と指示する
+- Mediator between View and Model.
+- Responsible for interpreting user operations and updating screen state.
+- Instructs the View "display this".
 
 ### ● Model
 
-- データやドメインロジック
+- Data and domain logic.
 
-MVP のバリエーション：
+Variations of MVP:
 
-- Passive View（View はほぼ描画のみ）
-- Supervising Controller（View に簡単なバインディングロジックを持たせる）
+- Passive View (View does almost only rendering).
+- Supervising Controller (View has simple binding logic).
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-- テスト容易性が重要なデスクトップアプリケーション（WinForms, WPF の一部など）
-- UI フレームワークへの依存を減らしたい環境
-- 画面ロジックが複雑で、Controller だけでは整理しきれないケース
+- Desktop applications where testability is important (WinForms, parts of WPF, etc.).
+- Environments where you want to reduce dependency on UI frameworks.
+- Cases where screen logic is complex and cannot be fully organized by Controller alone.
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-- UI が非常にシンプルで、MVP 導入コストが見合わない場合
-- 強力なデータバインディング機構（MVVM 的な仕組み）が前提のフレームワーク
+- Cases where the UI is very simple and the cost of introducing MVP is not justified.
+- Frameworks where powerful data binding mechanisms (MVVM-like mechanisms) are a prerequisite.
 
-## ✅ 歴史（系譜・親スタイル）
+## ✅ History (Genealogy / Parent Styles)
 
-- MVC の課題に対する発展スタイルとして登場
-- 特に .NET / Java などの GUI アプリケーション界隈で使われた
-- のちに MVVM のようなデータバインディング前提のスタイルにバトンを渡していく
+- Emerged as an evolutionary style addressing the challenges of MVC.
+- Used especially in the GUI application community such as .NET / Java.
+- Later passed the baton to styles premised on data binding like MVVM.
 
-## ✅ 関連スタイル
+## ✅ Related Styles
 
-- **MVC**：元となる UI 構造パターン
-- **MVVM**：データバインディングを活用したモダン UI パターン
-- **MVU**：状態と更新を明確に分ける関数型アプローチ
+- **MVC**: The original UI structural pattern.
+- **MVVM**: A modern UI pattern utilizing data binding.
+- **MVU**: A functional approach that clearly separates state and updates.
 
-## ✅ 代表的なフレームワーク
+## ✅ Representative Frameworks
 
-MVP は特定のフレームワーク専用ではなく、主に GUI アプリケーションやテスト容易性を重視するプロジェクトで使われてきた。
+MVP is not specific to a particular framework but has been used mainly in GUI applications and projects that emphasize testability.
 
-- **.NET（WinForms / 初期の WPF アプリ）**  
-  View をインターフェース化し、Presenter から操作する構成が採用されることが多かった。
+- **.NET (WinForms / Early WPF Apps)**  
+  A configuration where the View is made into an interface and operated from the Presenter was often adopted.
 
-- **Java GUI（Swing / SWT など）**  
-  UI コンポーネントが重い環境で、Presenter にロジックを寄せてテストを容易にする構成が選ばれることがあった。
+- **Java GUI (Swing / SWT, etc.)**  
+  In environments with heavy UI components, configurations were chosen to concentrate logic in the Presenter to facilitate testing.
 
-- **Android（古いアーキテクチャガイド）**  
-  MVVM が一般的になる前、Activity / Fragment を View とし、Presenter に画面ロジックを集約するパターンがよく使われた。
+- **Android (Old Architecture Guide)**  
+  Before MVVM became common, patterns where Activity / Fragment were treated as View and screen logic was aggregated in Presenter were often used.
 
-## ✅ このスタイルを支えるデザインパターン
+## ✅ Design Patterns Supporting this Style
 
-MVP では、Presenter が「画面ロジックの中心」となるため、次のパターンが重要になる。
+In MVP, since the Presenter becomes the "center of screen logic", the following patterns become important.
 
 - **Mediator**  
-  Presenter が View と Model の仲介役となり、両者のやりとりを一箇所に集約する。
+  The Presenter acts as a mediator between View and Model, aggregating interactions between them in one place.
 
 - **Observer**  
-  Model の変更を Presenter が検知し、View に反映させるパターンとして利用される。
+  Used as a pattern where the Presenter detects changes in the Model and reflects them in the View.
 
 - **State**  
-  画面状態（表示中のモードやバリデーション状態など）を明示的に管理する際に用いられる。
+  Used when explicitly managing screen state (display mode, validation state, etc.).
 
 - **Command**  
-  ユーザー操作（ボタンクリックなど）を操作オブジェクトとして扱い、Presenter 内の処理を整理する。
+  Treats user operations (button clicks, etc.) as operation objects and organizes processing within the Presenter.
 
-## ✅ まとめ
+## ✅ Summary
 
-MVP は、
+MVP is a style that:
 
-- UI フレームワーク依存を減らし
-- 画面ロジックを Presenter に集約することで
-- テストしやすい UI 構造を提供するスタイルである。
+- Reduces dependency on UI frameworks.
+- Aggregates screen logic in the Presenter.
+- Provides a testable UI structure.
 
-モダンな MVVM / MVU を理解するうえでも、  
-**「View とロジックの分離」を一歩推し進めた中間世代のスタイル** として押さえておく価値がある。
+Even for understanding modern MVVM / MVU,  
+it is worth noting as an **intermediate generation style that pushed "separation of View and Logic" one step further**.

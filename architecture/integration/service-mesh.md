@@ -1,127 +1,122 @@
 # 🧩 Service Mesh
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-**サービス間通信の「ネットワークまわりの責務」をアプリから切り離し、  
-Sidecar プロキシ＋コントロールプレーンで一元管理する構造スタイル。**
+**A structural style separating "network-related responsibilities" of inter-service communication from the app, and centrally managing them with Sidecar Proxy + Control Plane.**
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-マイクロサービスが増えると、各サービスは通信に関して次のような責務を抱えがちになる：
+As microservices increase, each service tends to hold responsibilities regarding communication like:
 
-- リトライ・タイムアウト・サーキットブレーカー
-- ロギング・トレーシング
-- mTLS による暗号化・認証
-- サービスディスカバリ・ロードバランシング
+- Retry / Timeout / Circuit Breaker
+- Logging / Tracing
+- Encryption / Authentication by mTLS
+- Service Discovery / Load Balancing
 
-これらをアプリケーションごとのライブラリ実装に任せると：
+If these are left to library implementation per application:
 
-- 言語／フレームワークごとに実装がバラバラ
-- ポリシー変更が全サービスのデプロイを伴う
+- Implementation varies per language / framework.
+- Policy change involves deployment of all services.
 
-Service Mesh はこれに対して：
+Service Mesh responds with a structure that:
 
-> 「通信制御は Sidecar プロキシに任せ、  
->  アプリはビジネスロジックに集中する」
+> "Leaves communication control to Sidecar Proxy, and lets app focus on business logic."
 
-という構造で応えます。
+## ✅ Basic Philosophy & Rules
 
-## ✅ 基本思想・ルール
+### ● Data Plane (Sidecar Proxy)
 
-### ● Data Plane（Sidecar プロキシ）
-
-- 各サービスインスタンスのそばにプロキシ（Sidecar）を配置
-- すべてのサービス間通信はこのプロキシを経由
-- リトライ・タイムアウト・暗号化などをここで実施
+- Place proxy (Sidecar) next to each service instance.
+- All inter-service communication goes through this proxy.
+- Perform retry, timeout, encryption, etc. here.
 
 ### ● Control Plane
 
-- ポリシー・ルーティング・証明書管理などを一元管理
-- Data Plane に設定を配布
+- Centrally manage policies, routing, certificate management, etc.
+- Distribute configuration to Data Plane.
 
-アプリケーションコードは：
+Application code:
 
-- 通常の HTTP/gRPC 呼び出しを行うだけ
-- ネットワーク制御の詳細は Mesh 側に任せる
+- Just performs normal HTTP/gRPC calls.
+- Leaves details of network control to Mesh side.
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-- マイクロサービス数が多い大規模システム
-- セキュリティポリシー（mTLS など）を一元的に適用したい環境
-- 可観測性（メトリクス・トレース・ログ）を統一したい組織
+- Large-scale systems with many microservices.
+- Environments wanting to apply security policies (mTLS etc.) centrally.
+- Organizations wanting to unify observability (metrics, traces, logs).
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-- サービス数が少ない小規模システム
-- インフラ／Ops の体制がなく、Mesh の運用コストを払えない場合
+- Small-scale systems with few services.
+- Cases where there is no Infrastructure / Ops structure and Mesh operation cost cannot be paid.
 
-Service Mesh を導入すると：
+Introducing Service Mesh has downsides like:
 
-- 学習コスト（Istio など）の高さ
-- デバッグポイントの増加
+- High learning cost (Istio etc.).
+- Increase in debug points.
 
-といったデメリットもあるため、規模と運用力に見合うかが重要である。
+So it is important whether it matches the scale and operational capability.
 
-## ✅ 歴史（系譜・親スタイル）
+## ✅ History (Genealogy / Parent Styles)
 
-- マイクロサービス / Kubernetes の普及とともに登場
-- Sidecar パターンをベースに、Envoy / Istio / Linkerd などが実装として広まる
-- API Gateway と並び、マイクロサービスの「ネットワークレイヤの標準構成要素」として認識されるようになった
+- Emerged with spread of Microservices / Kubernetes.
+- Spread as implementation like Envoy / Istio / Linkerd based on Sidecar pattern.
+- Recognized as "Standard component of network layer" for microservices alongside API Gateway.
 
-## ✅ 関連スタイル
+## ✅ Related Styles
 
-- **API Gateway / BFF**：外部への入り口。Service Mesh は主に内部トラフィックを扱う
-- **REST / gRPC**：Mesh 上で運ばれるプロトコル
-- **Zero Trust / セキュリティアーキテクチャ**：mTLS や認可ポリシーの適用ポイントとして
+- **API Gateway / BFF**: Entrance to outside. Service Mesh mainly handles internal traffic.
+- **REST / gRPC**: Protocols carried on Mesh.
+- **Zero Trust / Security Architecture**: As application point of mTLS and authorization policies.
 
-## ✅ 代表的なフレームワーク
+## ✅ Representative Frameworks
 
-Service Mesh はインフラレイヤのプロダクトとして実装されることが多い。
+Service Mesh is often implemented as infrastructure layer products.
 
-- **Istio**  
-  Envoy をデータプレーンとする代表的な Service Mesh。機能が豊富で Kubernetes 環境で広く使われる。
+- **Istio**
+  Representative Service Mesh using Envoy as data plane. Rich in features and widely used in Kubernetes environments.
 
-- **Linkerd**  
-  シンプルさと軽量さを重視した Service Mesh。メトリクスや mTLS を簡単に導入できる。
+- **Linkerd**
+  Service Mesh emphasizing simplicity and lightness. Metrics and mTLS can be introduced easily.
 
-- **Consul Connect**  
-  HashiCorp Consul によるサービスディスカバリ＋ Mesh の統合ソリューション。
+- **Consul Connect**
+  Integrated solution of Service Discovery + Mesh by HashiCorp Consul.
 
-- **AWS App Mesh / GCP Anthos Service Mesh**  
-  クラウドプロバイダが提供するマネージドな Mesh 基盤。
+- **AWS App Mesh / GCP Anthos Service Mesh**
+  Managed Mesh infrastructure provided by cloud providers.
 
-- **Envoy**  
-  多くの Service Mesh 実装でデータプレーンとして採用される高性能プロキシ。
+- **Envoy**
+  High-performance proxy adopted as data plane in many Service Mesh implementations.
 
-## ✅ このスタイルを支えるデザインパターン
+## ✅ Design Patterns Supporting This Style
 
-Service Mesh 自体はインフラ構造だが、設計の観点では以下のパターンと強く結びつく。
+Service Mesh itself is infrastructure structure, but strongly linked with following patterns in design perspective.
 
-- **Proxy**  
-  Sidecar 自体がプロキシとして、トラフィックの制御・監視・暗号化を行う。
+- **Proxy**
+  Sidecar itself acts as proxy, performing traffic control, monitoring, and encryption.
 
-- **Facade**  
-  Mesh が提供する統一された API（ポリシー・ルーティング設定）を通じて、複雑なネットワーク制御を隠蔽する。
+- **Facade**
+  Hides complex network control through unified API (Policy / Routing configuration) provided by Mesh.
 
-- **Mediator**  
-  コントロールプレーンが各データプレーン（Sidecar）との調停役として振る舞う。
+- **Mediator**
+  Control plane acts as mediator with each data plane (Sidecar).
 
-- **Observer**  
-  メトリクス・トレース・ログといった観測情報を集約する仕組みに現れる。
+- **Observer**
+  Appears in mechanism aggregating observation information like metrics, traces, and logs.
 
-- **Chain of Responsibility**  
-  リクエストが複数のフィルタ／ルール（認証 → ルーティング → リトライなど）を通過して処理される構造。
+- **Chain of Responsibility**
+  Structure where request is processed passing through multiple filters/rules (Authentication → Routing → Retry etc.).
 
-## ✅ まとめ
+## ✅ Summary
 
-Service Mesh は、
+Service Mesh is a structural style to handle concerns around network like:
 
-- 通信制御
-- セキュリティ
-- 可観測性
+- Communication Control
+- Security
+- Observability
 
-といったネットワーク周りの関心事を、  
-アプリケーションから切り離して扱うための構造スタイルである。
+Separately from the application.
 
-マイクロサービスの規模が一定以上になったとき、  
-**「ネットワークレイヤをアプリから分離するか？」** という選択肢として検討する価値がある。
+When the scale of microservices exceeds a certain level,
+it is worth considering as an option: **"Should we separate the network layer from the app?"**.

@@ -1,22 +1,22 @@
 # 🧩 Edge Architecture
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-**ユーザーに近い“エッジ”で処理を行い、レイテンシ削減や分散実行を実現する構造スタイル。**
+**A structural style that performs processing at the "Edge" close to the user, realizing latency reduction and distributed execution.**
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-- グローバルユーザーによるレイテンシ問題
-- 中央集権サーバの負荷集中
-- IoT / モバイルの増加によるデータ爆発
+- Latency problem by global users.
+- Load concentration on centralized servers.
+- Data explosion due to increase in IoT / Mobile.
 
-## ✅ 基本思想・ルール
+## ✅ Basic Philosophy & Rules
 
-- CDN / Edge Functions / Worker による分散実行
-- ユーザー近傍での認証・キャッシュ・計算
-- 中央サーバとの役割分担（オフロード）
+- Distributed execution by CDN / Edge Functions / Worker.
+- Authentication, caching, and calculation near the user.
+- Role division with central server (Offloading).
 
-### 概念図（Conceptual Diagram）
+### Conceptual Diagram
 
 ```mermaid
 flowchart LR
@@ -33,72 +33,70 @@ flowchart LR
     CACHE --> USER
 ```
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-- グローバルに展開する Web サービス
-- IoT デバイスのローカル前処理
-- 低レイテンシが重要なアプリケーション
+- Web services deploying globally.
+- Local pre-processing of IoT devices.
+- Applications where low latency is important.
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-- エッジに置く処理が多すぎる（複雑化）
-- 厳しいデータガバナンスがあり分散できない場合
+- Too much processing placed on the edge (Complication).
+- When there is strict data governance and cannot be distributed.
 
-## ✅ 歴史
+## ✅ History
 
-- CDN による配信最適化から発展
-- Cloudflare Workers / Vercel Edge Functions により急速に普及
+- Developed from delivery optimization by CDN.
+- Rapidly spread by Cloudflare Workers / Vercel Edge Functions.
 
-## ✅ 関連スタイル
+## ✅ Related Styles
 
-- Serverless：エッジ FaaS との共通部分
-- Microservices：分散処理の方向性として親和性あり
+- **Serverless**: Common part with Edge FaaS.
+- **Microservices**: Affinity as a direction of distributed processing.
 
-## ✅ 代表的なフレームワーク
+## ✅ Representative Frameworks
 
-- **Cloudflare Workers / D1 / KV / R2**  
-  代表的な Edge Computing 環境。
+- **Cloudflare Workers / D1 / KV / R2**
+  Representative Edge Computing environment.
 
-- **Vercel Edge Functions**  
-  SSR / Middleware をエッジに配置可能。
+- **Vercel Edge Functions**
+  Can place SSR / Middleware on the edge.
 
-- **Fastly Compute@Edge**  
-  高速 Web 配信とエッジ実行。
+- **Fastly Compute@Edge**
+  High-speed Web delivery and edge execution.
 
-- **Akamai EdgeWorkers**  
-  CDN から進化したエッジ処理基盤。
+- **Akamai EdgeWorkers**
+  Edge processing platform evolved from CDN.
 
-## ✅ このスタイルを支えるデザインパターン
+## ✅ Design Patterns Supporting This Style
 
-- **Proxy**  
-  エッジで認証・キャッシュ・フィルタリングを行う。
+- **Proxy**
+  Performs authentication, caching, and filtering at the edge.
 
-- **Facade**  
-  エッジ API がバックエンドを抽象化。
+- **Facade**
+  Edge API abstracts the backend.
 
-- **Strategy**  
-  地理・ユーザー種別ごとのルーティング戦略。
+- **Strategy**
+  Routing strategy per geography / user type.
 
-- **Observer**  
-  リクエストイベントをトリガーに処理。
+- **Observer**
+  Processing triggered by request events.
 
-## ✅ まとめ
+## ✅ Summary
 
-Edge Architecture は、
+Edge Architecture is a structural style aiming for:
 
-- レイテンシ削減
-- グローバル分散
-- 中央サーバの負荷分散
+- Latency reduction
+- Global distribution
+- Load balancing of central servers
 
-を同時に狙うための構造スタイルである。
+At the same time.
 
-一方で、
+On the other hand, new challenges arise such as:
 
-- デプロイ面での複雑さ
-- ログ・トレースの分散
-- データガバナンスやリージョン制約
+- Complexity in deployment
+- Dispersion of logs / traces
+- Data governance and region constraints
 
-といった新しい課題も生まれる。
-
-クラウドフロントエンドや API の設計時には、
-**どこまでをエッジに寄せ、どこからをオリジンに任せるか** を意識的に設計することが重要である。
+When designing cloud frontends or APIs,
+it is important to consciously design **how much to bring to the edge and from where to leave to the origin.**

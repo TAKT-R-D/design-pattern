@@ -1,48 +1,46 @@
 # 🧩 DevOps
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-**開発（Dev）と運用（Ops）の分断をなくし、継続的デリバリーを実現するための文化・プラクティス・自動化の総称。**
+**General term for culture, practices, and automation to eliminate the divide between Development (Dev) and Operations (Ops) and realize continuous delivery.**
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-- 開発と運用が分断し、デプロイが遅い・失敗しがち
-- インフラ変更が人手作業で、環境差異が頻発
-- リリースのたびにトラブルが起きる
-- 「開発は作るだけ、運用は火消し要員」という対立構造
+- Dev and Ops are divided, deployment is slow and prone to failure.
+- Infrastructure changes are manual, causing frequent environment discrepancies.
+- Troubles occur every release.
+- Conflict structure of "Dev just makes it, Ops is just firefighter".
 
-## ✅ 基本思想・ルール
+## ✅ Basic Philosophy & Rules
 
-- CI/CD による自動化されたデリバリーパイプライン
-- Infrastructure as Code（IaC）
-- 監視・テレメトリの標準化
-- 共通の責任範囲・共通の KPI（DORA 指標など）
-- 少量・高頻度・安全なリリース（Progressive Delivery）
+- Automated delivery pipeline by CI/CD.
+- Infrastructure as Code (IaC).
+- Standardization of monitoring / telemetry.
+- Shared responsibility scope / Shared KPIs (DORA metrics etc.).
+- Small, frequent, safe releases (Progressive Delivery).
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-- 継続改善が求められる SaaS
-- 高頻度デリバリーを行うプロダクト
-- マイクロサービスなど分散アーキテクチャの運用
+- SaaS requiring continuous improvement.
+- Products performing high frequency delivery.
+- Operation of distributed architectures like microservices.
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-- 厳密な手続き重視の基幹業務（文化変革が難しい場合）
-- 組織が小さすぎて Dev と Ops がそもそも分かれていない場合
+- Mission-critical operations emphasizing strict procedures (When cultural transformation is difficult).
+- When organization is too small and Dev and Ops are not separated in the first place.
 
-## ✅ 歴史
+## ✅ History
 
-- 2009 年頃の DevOps Days を起点に広まる
-- アジャイル開発・クラウドの普及に伴って標準化
+- Spread starting from DevOps Days around 2009.
+- Standardized with spread of Agile development and Cloud.
 
-## ✅ 関連スタイル
+## ✅ Related Styles
 
-- SRE：信頼性のための運用品質エンジニアリング
-- Observability：可観測性のプラクティス
-- Team Topologies：組織構造の観点から DevOps を支える
+- SRE: Operational quality engineering for reliability.
+- Observability: Practice of observability.
+- Team Topologies: Supports DevOps from organizational structure perspective.
 
-## ✅ まとめ
+## ✅ Summary
 
-DevOps は  
-**「自動化 × 文化 × 組織構造」** を通して、  
-安全で高速なリリースを継続的に届けるための実践体系である。
+DevOps is a practical system to deliver safe and fast releases continuously through **"Automation × Culture × Organization Structure"**.

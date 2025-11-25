@@ -1,49 +1,48 @@
 # 🧩 Pipe & Filter
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-**入力データが一連のフィルタ（処理ステージ）を通過しながら変換されていく構造スタイル。**  
-Unix の `cmd1 | cmd2 | cmd3` のような発想をプログラム内に適用するイメージ。
+**A structural style where input data is transformed while passing through a series of filters (processing stages).**
+Image of applying the idea of Unix `cmd1 | cmd2 | cmd3` inside a program.
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-- 1 つの巨大な処理関数にすべてのロジックが詰め込まれている
-- 特定ステップの差し替え・再利用・テストが難しい
-- 入出力が複雑に絡み合っており、処理フローが読みづらい
+- All logic is packed into one huge processing function.
+- Difficult to replace, reuse, or test specific steps.
+- Input/Output are intricately intertwined, making the processing flow hard to read.
 
-Pipe & Filter は、
+Pipe & Filter aims to make the processing flow:
 
-> 「処理を小さなフィルタに分割し、データをパイプでつなぐ」
+- Clear to see
+- Easy to replace
+- Easy to parallelize
 
-ことで、処理フローを
+By:
 
-- 見通し良く
-- 差し替えやすく
-- 並列化しやすく
-  することを狙う。
+> "Splitting processing into small filters and connecting data with pipes."
 
-## ✅ 基本思想・ルール
+## ✅ Basic Philosophy & Rules
 
-### ● Filter（フィルタ）
+### ● Filter
 
-- 単一責務の処理ステージ
-- 入力ストリームを受け取り、出力ストリームを返す
-- 副作用は最小限（理想的には純粋関数に近い）
+- Processing stage with single responsibility.
+- Receives input stream and returns output stream.
+- Side effects are minimal (ideally close to pure functions).
 
-### ● Pipe（パイプ）
+### ● Pipe
 
-- フィルタ同士をつなぐデータの流れ
-- メモリ内の関数呼び出し、キュー、メッセージングなど実装は様々
+- Data flow connecting filters.
+- Implementation varies: in-memory function calls, queues, messaging, etc.
 
-### ● 流れの例
+### ● Example Flow
 
 ```text
 Input → FilterA → FilterB → FilterC → Output
 ```
 
-- 途中で分岐・合流を行うこともできる
+- Branching and merging can also be done in between.
 
-### 概念図（Conceptual Diagram）
+### Conceptual Diagram
 
 ```mermaid
 flowchart LR
@@ -56,77 +55,72 @@ flowchart LR
     IN --> F1 --> F2 --> F3 --> OUT
 ```
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-- テキスト処理・ログ処理
-- 画像・音声・動画などの逐次変換
-- ETL 処理の一部（抽出 → 変換 → ロード）
-- 小さなツール群を組み合わせるバッチ処理
+- Text processing / Log processing.
+- Sequential conversion of Image / Audio / Video.
+- Part of ETL processing (Extract → Transform → Load).
+- Batch processing combining small tools.
 
-特に、
+Especially powerful when you can explain:
 
-> 「この処理フローは、この順番で A→B→C と通ります」
+> "This processing flow passes through A → B → C in this order."
 
-と説明できる場面で威力を発揮する。
+## ❌ Unsuitable Cases
 
-## ❌ 不向きなケース
+- Logic strongly involving stateful processing (Workflow centered on state transitions).
+- UI requiring bidirectional communication or complex interaction.
+- Simple CRUD apps (cost of connecting pipes is higher).
 
-- ステートフルな処理が強く絡むロジック（状態遷移中心のワークフローなど）
-- 双方向通信や複雑なインタラクションが必要な UI
-- 単純な CRUD アプリ（管をつなぐコストの方が高い）
+## ✅ History (Genealogy / Parent Styles)
 
-## ✅ 歴史（系譜・親スタイル）
+- Roots in Unix pipe mechanism.
+- Introduced as "Pipe & Filter" in early software architecture literature.
+- Influenced subsequent styles like Data Pipeline / Streaming Pipeline.
 
-- Unix のパイプ機構にルーツを持つ
-- 早期のソフトウェアアーキテクチャ文献でも「パイプ＆フィルタ」として紹介
-- Data Pipeline / Streaming Pipeline など、後続のスタイルに影響を与えた
+## ✅ Related Styles
 
-## ✅ 関連スタイル
+- **Batch Pipeline**: Pipeline structure as batch processing.
+- **Streaming Pipeline**: Evolution to real-time processing.
+- **Reactive / Actor**: Often combined with event stream processing.
 
-- **Batch Pipeline**：バッチ処理としてのパイプライン構造
-- **Streaming Pipeline**：ストリーミング処理への発展
-- **Reactive / Actor 系**：イベントストリーム処理と組み合わさることが多い
+## ✅ Representative Frameworks
 
-## ✅ 代表的なフレームワーク
+Pipe & Filter naturally appears in many environments as a lightweight processing pipeline.
 
-Pipe & Filter は軽量処理パイプラインとして、多くの環境で自然に登場する。
+- **Unix / Linux CLI (`cmd1 | cmd2 | cmd3`)**
+  Pipe structure itself. Can be called the prototype.
 
-- **Unix / Linux CLI（`cmd1 | cmd2 | cmd3`）**  
-  パイプ構造そのもの。原型と言える。
+- **Node.js Streams**
+  Structure of `Readable → Transform → Writable` is exactly Pipe & Filter.
 
-- **Node.js Streams**  
-  `Readable → Transform → Writable` の構造がまさに Pipe & Filter。
+- **Golang (io.Reader / io.Writer)**
+  Easy to connect unidirectional streams through interfaces.
 
-- **Golang（io.Reader / io.Writer）**  
-  インターフェースを通して単方向ストリームをつなぎやすい。
+- **Image / Video Processing Tools (FFmpeg etc.)**
+  Can build complex processing by connecting small conversion processes with pipes.
 
-- **画像・動画処理ツール（FFmpeg など）**  
-  小さな変換処理をパイプで連結して複雑な処理を構築できる。
+## ✅ Design Patterns Supporting This Style
 
-## ✅ このスタイルを支えるデザインパターン
+The internal structure of Pipe & Filter is established by a combination of multiple design patterns.
 
-Pipe & Filter の内部構造は、複数のデザインパターンの組み合わせで成立している。
+- **Chain of Responsibility**
+  Applies filters sequentially as a "processing chain".
 
-- **Chain of Responsibility**  
-  フィルタを“処理チェーン”として順番に適用する。
+- **Iterator**
+  Used when processing stream data sequentially.
 
-- **Iterator**  
-  ストリームデータを逐次処理する際に使われる。
+- **Strategy**
+  Expresses algorithms of each filter in a replaceable form.
 
-- **Strategy**  
-  各フィルタのアルゴリズムを差し替え可能な形で表現する。
+- **Mediator**
+  Appears when coordination between stages is necessary (Branching / Merging etc.).
 
-- **Mediator**  
-  ステージ間の調整が必要な場合に現れる（分岐／合流など）。
+## ✅ Summary
 
-## ✅ まとめ
+Pipe & Filter is a style handling complexity with the simple idea of:
 
-Pipe & Filter は、
+- Splitting processing into small stages.
+- Connecting stages with clear data flow.
 
-- 処理を小さなステージに分割し
-- ステージ間を明確なデータフローでつなぐ
-
-というシンプルな発想で複雑さを扱うスタイルである。
-
-「巨大な処理をどう分割するか？」に悩んだときの、  
-**最初の候補** として検討する価値がある。
+It is worth considering as the **first candidate** when wondering "How to split huge processing?".

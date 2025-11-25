@@ -1,74 +1,69 @@
-# 🧩 ソフトウェアアーキテクチャの地図
+# 🧩 The Map of Software Architecture
 
-このサイトは、ソフトウェアアーキテクチャを体系的に理解するための「地図」を提供することを目的とする。  
-アーキテクチャは単一の概念ではなく、複数の設計レイヤーが重なり合う領域であり、全体像を掴むことが難しい。本サイトでは、それらを整理し、相互関係を理解しやすくするための指針を示す。
+This site aims to provide a "map" for systematically understanding software architecture.
+Architecture is not a single concept but a domain where multiple design layers overlap, making it difficult to grasp the big picture. This site organizes them and provides guidelines for understanding their interrelationships.
 
-## ✅ なぜアーキテクチャは分かりにくいのか
+## ✅ Why Architecture is Confusing
 
-アーキテクチャの議論が混乱しやすい理由は、異なる次元の設計が同じ文脈で語られがちだからである。  
-以下は代表的なレイヤーであり、それぞれ独立した設計軸を持つ。
+The reason architectural discussions often become confusing is that designs of different dimensions are frequently discussed in the same context.
+The following are representative layers, each having independent design axes:
 
-- アプリ内部構造（Layered, MVC, Hexagonal など）
-- システム構成・粒度（Monolith, Microservices）
-- 通信方式（REST, gRPC, Event-driven）
-- データ構造・基盤（DWH, Data Lake, Event Sourcing）
-- 運用・組織（DevOps, SRE, Team Topologies）
+- **Internal Application Structure** (Layered, MVC, Hexagonal, etc.)
+- **System Topologies & Granularity** (Monolith, Microservices)
+- **Integration Styles** (REST, gRPC, Event-driven)
+- **Data Structure & Analytics** (DWH, Data Lake, Event Sourcing)
+- **Operations & Organization** (DevOps, SRE, Team Topologies)
 
-これらは「構造・配置・通信・データ・運用」というまったく別の設計レイヤーであり、ひとつの図や概念で統合的に説明することはできない。
+These are completely different design layers—"Structure, Deployment, Communication, Data, Operations"—and cannot be integrated into a single diagram or concept.
 
-## ✅ 本サイトの分類構成について
+## ✅ Categorization Structure of This Site
 
-本サイトの分類は、近年のアーキテクチャ議論の歴史的トレンドを踏まえて設計している。
+The categorization of this site is designed based on historical trends in recent architectural discussions.
 
-- Hexagonal / Onion / Clean Architecture のような  
-  **依存方向ルール（Dependency Rule）を前提としたスタイル** が実務で強く定着したこと
-- これらが 2000〜2010 年代にかけて  
-  **アプリ内部構造の主要トピックとして深化したこと**
-- 対して近年は、  
-  **Topologies（モノリス〜マイクロサービス）、Integration、Data、Socio-technical**  
-  といった “より外側のレイヤー” の進化が中心になっていること
+- **Dependency Rule-based styles** (Hexagonal / Onion / Clean Architecture) have become strongly established in practice.
+- These deepened as the **main topic of internal application structure** from the 2000s to the 2010s.
+- In contrast, recent evolution has centered on **"outer layers"** such as **Topologies (Monolith to Microservices), Integration, Data, and Socio-technical aspects**.
 
-こうした背景により、本サイトでは  
-**Structural Styles（アプリ内部構造）を細かく分類し、外側のレイヤーを別カテゴリとして整理する構成**  
-を採用している。
+Based on this background, this site adopts a structure that:
+**Finely categorizes Structural Styles (Internal Application Structure) and organizes the outer layers as separate categories.**
 
-### 1. Structural Styles（アプリ内部構造）
+### 1. Structural Styles (Internal Application Structure)
 
-近年の議論では、Hexagonal / Onion / Clean など **Dependency Rule** を中核としたスタイルが強く定着し、アプリ内部構造の中心的トピックとして扱われてきた。  
-そのため Structural Styles は他カテゴリより細かく分類している。
+In recent discussions, styles centered on the **Dependency Rule** (Hexagonal / Onion / Clean) have become strongly established and treated as the central topic of internal application structure.
+Therefore, Structural Styles are categorized more finely than other categories.
 
-なお、Vertical Slice / Feature-based などの実装手法は、既存スタイルの具体的な構成パターンとして補足的に位置づけている。
+Note that implementation techniques like Vertical Slice / Feature-based are positioned as supplementary specific configuration patterns of existing styles.
 
-### 2. System Topologies（システム構成・粒度）
+### 2. System Topologies (System Configuration & Granularity)
 
-モノリスからマイクロサービス、さらにサーバレスやエッジに至るまで、アプリケーションの配置戦略を扱う領域。近年の進化が最も顕著なカテゴリである。
+This area deals with deployment strategies, ranging from Monolith to Microservices, Serverless, and Edge. It is the category with the most significant evolution in recent years.
 
-### 3. Integration Styles（通信・連携方式）
+### 3. Integration Styles (Communication & Coordination)
 
-REST、gRPC、Event-driven、Service Mesh など、サービス間通信の方式と統合パターンを扱う。
+Deals with service-to-service communication methods and integration patterns, such as REST, gRPC, Event-driven, and Service Mesh.
 
-### 4. Data & Analytics Architecture（データ構造・分析基盤）
+### 4. Data & Analytics Architecture (Data Structure & Analytics Platform)
 
-従来の DWH や Data Lake から、CQRS・Event Sourcing による操作分離、Data Mesh による分散責務まで、データ設計の進化を整理している。
+Organizes the evolution of data design, from traditional DWH and Data Lakes to operation separation with CQRS/Event Sourcing and distributed responsibilities with Data Mesh.
 
-### 5. Cross-cutting & Socio-technical（運用・文化・品質）
+### 5. Cross-cutting & Socio-technical (Operations, Culture, Quality)
 
-DevOps、SRE、Observability、Zero Trust、Team Topologies など、技術基盤だけではなく組織・運用・文化が関わる領域を扱う。
+Deals with areas involving not just technical foundations but also organization, operations, and culture, such as DevOps, SRE, Observability, Zero Trust, and Team Topologies.
 
-## 🧩 ソフトウェアアーキテクチャ全体樹形図
+## 🧩 Overall Software Architecture Mindmap
 
 ```mermaid
 mindmap
   root((Software Architecture))
-    ("1. Structural Styles\n(アプリ内部構造)")
-      A["A. 非構造〜初期系"]
+    ("1. Structural Styles\n(Internal App Structure)")
+      A["A. Non-structured / Early"]
         A1["Big Ball of Mud"]
         A2["Transaction Script"]
-      B["B. データ／レコード中心系"]
+      B["B. Data / Record Centric"]
         B1["Active Record"]
         B2["Table Module"]
         B3["Anemic Domain Model"]
-      C["C. レイヤード／ドメインモデル系"]
+      C["C. Layered / Domain Model"]
         C1["Classic Layered"]
         C2["Domain Model Layered"]
         C3["Dependence-rule-based Layered\n(Hexagonal / Onion / Clean)"]
@@ -89,7 +84,7 @@ mindmap
         G2["Event Loop / Reactor"]
         G3["Reactive Streams / FRP"]
 
-    ("2. System Topologies\n(サービス構成・粒度)")
+    ("2. System Topologies\n(Service Config / Granularity)")
       T1["Monolith"]
       T2["Modular Monolith"]
       T3["Microservices"]
@@ -97,14 +92,14 @@ mindmap
       T5["Serverless / FaaS"]
       T6["Edge / Fog Architecture"]
 
-    ("3. Integration Styles\n(通信・インテグレーション)")
+    ("3. Integration Styles\n(Communication / Integration)")
       I1["REST / gRPC / GraphQL"]
       I2["Event-Driven Architecture"]
       I3["Saga Pattern\n(Orchestration / Choreography)"]
       I4["Service Mesh"]
       I5["API Gateway / BFF"]
 
-    ("4. Data & Analytics Architecture\n(データ構造・分析基盤)")
+    ("4. Data & Analytics Architecture\n(Data Structure / Analytics)")
       Dn1["Data Warehouse"]
       Dn2["Data Lake / Lakehouse"]
       Dn3["CQRS"]
@@ -112,7 +107,7 @@ mindmap
       Dn5["Data Mesh"]
       Dn6["Lambda / Kappa Architecture"]
 
-    ("5. Cross-cutting & Socio-technical\n(運用・文化・品質)")
+    ("5. Cross-cutting & Socio-technical\n(Ops / Culture / Quality)")
       S1["DevOps / CI/CD / 12-Factor"]
       S2["Team Topologies / Conway's Law"]
       S3["SLO-driven Architecture (SRE)"]
@@ -121,7 +116,7 @@ mindmap
       S6["Green Software / Sustainability"]
 ```
 
-## 🧩 カテゴリ間の関係図（横断エッジ）
+## 🧩 Relationship Diagram Between Categories (Cross-cutting Edges)
 
 ```mermaid
 graph LR
@@ -140,34 +135,34 @@ graph LR
   DA --- CT
 ```
 
-## 🧩 アーキテクチャ全体を理解するためのガイド
+## 🧩 Guide to Understanding the Overall Architecture
 
-アプリ内部構造・システム構成・通信方式・データ基盤といった個別カテゴリを読む前に、全体像を俯瞰するための補足ページを用意している。
+Before reading individual categories like internal structure, system configuration, communication methods, and data platforms, supplementary pages are provided to give an overview of the big picture.
 
-### ● Architecture Principles（アーキテクチャ原則）
+### ● Architecture Principles
 
-アーキテクチャに共通する基盤概念（依存方向・境界・結合度と凝集度・整合性モデル・同期／非同期など）を整理した。
+Organizes fundamental concepts common to architecture (Dependency Direction, Boundaries, Coupling & Cohesion, Consistency Models, Sync/Async, etc.).
 
-### ● Architecture Decision Guide（アーキテクチャ選定ガイド）
+### ● Architecture Decision Guide
 
-外側の構造（Topologies / Integration / Data / Cross-cutting）を、要件・制約・組織構造からどのように選ぶかを体系化したガイド。
+A systematic guide on how to select outer structures (Topologies / Integration / Data / Cross-cutting) based on requirements, constraints, and organizational structure.
 
-### ● Structural Styles Decision Guide（内部構造選定ガイド）
+### ● Structural Styles Decision Guide
 
-アプリ内部の構造（Layered / Clean / Hexagonal / MVC / MVVM / Transaction Script など）を、ドメイン複雑性・変更容易性・チーム構造などからどのように選ぶかを整理したガイド。
+A guide on how to select internal application structures (Layered / Clean / Hexagonal / MVC / MVVM / Transaction Script, etc.) based on domain complexity, changeability, and team structure.
 
-これらは各カテゴリの前提として読むことで、アーキテクチャ全体を俯瞰しながら、個々のスタイルを適切に位置づけるための助けとなる。
+Reading these as prerequisites for each category helps in appropriately positioning individual styles while overlooking the entire architecture.
 
-## 🧭 このあと読むべきページ
+## 🧭 Pages to Read Next
 
-- [**Structural Styles（アプリ内部構造）**](./structural/index.md)
-- [**System Topologies（サービス構成・粒度）**](./topologies/index.md)
-- [**Integration Styles（通信・連携方式）**](./integration/index.md)
-- [**Data Architecture（データ構造・分析基盤）**](./data/index.md)
-- [**Cross-cutting & Socio-technical（運用・文化・品質）**](./cross-cutting/index.md)
+- [**Structural Styles (Internal App Structure)**](./structural/index.md)
+- [**System Topologies (Service Config & Granularity)**](./topologies/index.md)
+- [**Integration Styles (Communication & Integration)**](./integration/index.md)
+- [**Data Architecture (Data Structure & Analytics)**](./data/index.md)
+- [**Cross-cutting & Socio-technical (Ops, Culture, Quality)**](./cross-cutting/index.md)
 
-各カテゴリでは、次の観点から説明する。
+Each category is explained from the following perspectives:
 
-- 解決しようとした問題
-- スタイルの思想・構造
-- 適するアプリケーション領域
+- Problems it attempts to solve
+- Philosophy and structure of the style
+- Suitable application areas

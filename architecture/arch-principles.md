@@ -1,78 +1,76 @@
-# 🧩 Architecture Principles（アーキテクチャ原則）
+# 🧩 Architecture Principles
 
-ソフトウェアアーキテクチャは個々のスタイルや技法の集合ではなく、基盤となる「原則（Principles）」によって支えられる。本ページでは、スタイルを横断して共通に働く主要なアーキテクチャ原則を体系的に整理する。
+Software architecture is not a collection of individual styles or techniques but is supported by foundational "Principles." This page systematically organizes the major architectural principles that work commonly across styles.
 
-## ✅ 依存方向の原則（Dependency Direction）
+## ✅ Dependency Direction
 
-アーキテクチャにおける最重要原則のひとつは、**依存がどちらの方向へ向くか** を意図的に設計することである。
+One of the most important principles in architecture is to intentionally design **which direction dependencies point**.
 
-- 上位レイヤ（Policy） → 下位レイヤ（Detail）への依存を避ける
-- 具体実装は抽象インターフェースに従う（DIP: Dependency Inversion Principle）
-- Hexagonal / Onion / Clean Architecture などはこの原則を中核に据える
+- Avoid dependencies from Higher Layers (Policy) → Lower Layers (Detail).
+- Concrete implementations should follow abstract interfaces (DIP: Dependency Inversion Principle).
+- Styles like Hexagonal, Onion, and Clean Architecture place this principle at their core.
 
-依存方向は、変更容易性・テスト容易性・モジュール性に直接影響する。
+Dependency direction directly affects changeability, testability, and modularity.
 
-## ✅ 結合度と凝集度（Coupling & Cohesion）
+## ✅ Coupling & Cohesion
 
-健全な設計の基本要素として次がある：
+Key elements of sound design include:
 
-- **低結合（Low Coupling）**：他コンポーネントへの依存を最小化する
-- **高凝集（High Cohesion）**：ひとつのモジュールが一貫した責務を持つ
+- **Low Coupling**: Minimizing dependencies on other components.
+- **High Cohesion**: A single module has consistent responsibilities.
 
-結合度・凝集度はすべての構造スタイルに関係し、トップロジー（Microservices / Modular Monolith）にも影響を与える。
+Coupling and cohesion relate to all structural styles and also influence topologies (Microservices / Modular Monolith).
 
-## ✅ 境界（Boundaries）とコンテキスト
+## ✅ Boundaries & Context
 
-アーキテクチャでは、どこに境界（Boundary）を引くかが最も重要な意思決定のひとつである。
+In architecture, defining where to draw **Boundaries** is one of the most critical decisions.
 
-- 境界づけられたコンテキスト（Bounded Context）
-- インターフェース / ポートによる境界定義
-- チーム境界との整合（Conway's Law）
+- Bounded Context
+- Boundary definition via Interfaces / Ports
+- Alignment with team boundaries (Conway's Law)
 
-境界の設計は、システムのスケール性と変更容易性を左右する。
+Boundary design determines the scalability and changeability of the system.
 
-## ✅ 同期 vs 非同期（Sync / Async）
+## ✅ Sync vs Async
 
-通信方式の違いは構造全体に影響を与える。
+The difference in communication methods affects the entire structure.
 
-- **同期**：REST/gRPC、リクエスト応答型
-- **非同期**：イベント駆動、ストリーム処理、メッセージング
+- **Synchronous**: REST/gRPC, Request-Response type.
+- **Asynchronous**: Event-driven, Stream processing, Messaging.
 
-可用性・待ち時間・整合性要求に応じて適切な方式を選択する必要がある。
+Appropriate methods must be selected based on availability, latency, and consistency requirements.
 
-## ✅ 整合性モデル（Consistency Models）
+## ✅ Consistency Models
 
-データ中心の設計で重要となるポイント：
+Key points in data-centric design:
 
-- **強整合（Strong Consistency）**
-- **最終的整合性（Eventual Consistency）**
-- **規模に応じたトレードオフ（CAP / PACELC）**
+- **Strong Consistency**
+- **Eventual Consistency**
+- **Trade-offs based on scale (CAP / PACELC)**
 
-CQRS や Event Sourcing、Microservices は整合性モデルの理解を前提とする。
+CQRS, Event Sourcing, and Microservices presuppose an understanding of consistency models.
 
-## ✅ Essential Complexity と Accidental Complexity
+## ✅ Essential Complexity vs Accidental Complexity
 
-システムの複雑性には 2 種類がある：
+There are two types of system complexity:
 
-- **本質的複雑性（Essential Complexity）**：ドメインそのものの複雑さ
-- **偶発的複雑性（Accidental Complexity）**：技術選定や設計によって増える不要な複雑さ
+- **Essential Complexity**: The complexity inherent in the domain itself.
+- **Accidental Complexity**: Unnecessary complexity added by technology choices or design.
 
-優れたアーキテクチャは偶発的複雑性を削減し、本質的価値に集中できる構造を実現する。
+Excellent architecture reduces accidental complexity and realizes a structure that allows focusing on essential value.
 
-## ✅ 設計の重心（Operational / Domain / Data）
+## ✅ Center of Gravity in Design (Operational / Domain / Data)
 
-アーキテクチャは次の重心のどれを優先するかで変化する：
+Architecture changes depending on which of the following centers of gravity is prioritized:
 
-- Operational（可用性・レジリエンス・監視）
-- Domain（ドメインモデル表現）
-- Data（データ中心・分析ワークロード）
+- **Operational** (Availability, Resilience, Monitoring)
+- **Domain** (Domain Model Expression)
+- **Data** (Data-centric, Analytics Workloads)
 
-どこに重心を置くかで、スタイル選定やトップロジーが自然に導かれる。
+Where you place the center of gravity naturally leads to style selection and topology.
 
-## ✅ まとめ
+## ✅ Summary
 
-アーキテクチャ原則は、スタイルやフレームワークよりも上位の概念であり、  
-**どのスタイルを採用しても一貫して適用される普遍的ルール** である。
+Architecture principles are concepts higher than styles or frameworks, and are **universal rules that apply consistently regardless of which style is adopted.**
 
-これらの原則を理解することで、個々のスタイルを「選ぶ」のではなく、  
-**目的に応じて設計意図を組み立てるための基盤** が身につく。
+By understanding these principles, you acquire the **foundation to assemble design intent according to purpose**, rather than just "choosing" individual styles.

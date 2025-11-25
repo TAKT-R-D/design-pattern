@@ -1,50 +1,45 @@
-# 🧩 Domain Model Layered（ドメインモデルレイヤード）
+# 🧩 Domain Model Layered
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-Classic Layered をベースにしつつ、
-**Domain 層にリッチなドメインモデル（集約・エンティティ・値オブジェクト）を中心に据えたスタイル。**
-DDD の考え方と相性が良いレイヤードアーキテクチャ。
+Based on Classic Layered, this style **centers on a rich Domain Model (Aggregates, Entities, Value Objects) in the Domain layer.**
+It is a layered architecture compatible with DDD concepts.
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-Classic Layered では、次のような問題が起こりがちです：
+In Classic Layered, the following problems tend to occur:
 
-- Domain 層が「DTO 置き場」や共通関数置き場になり、実質的に空洞化する
-- ビジネスルールが Application / Service 層に散らばる
-- ドメインの複雑さをコードから読み取りづらい
+- The Domain layer becomes a "DTO storage" or common function storage, effectively becoming hollow.
+- Business rules are scattered in the Application / Service layer.
+- It is difficult to read domain complexity from the code.
 
-Domain Model Layered はこれに対して、
+Domain Model Layered responds to this with the idea:
 
-> 「ドメインの概念をコード上のクラス・メソッドとして表現し、
-> ビジネスルールを Domain 層に集約する」
+> "Express domain concepts as classes and methods in code, and aggregate business rules in the Domain layer."
 
-という考え方で応える。
+## ✅ Basic Philosophy & Rules
 
-## ✅ 基本思想・ルール
+The layer structure itself is close to Classic Layered, but **the treatment of the Domain layer is decisively different.**
 
-レイヤー構造そのものは Classic Layered に近いですが、
-**Domain 層の扱いが決定的に異なります。**
+- In the Domain layer:
+  - Entities
+  - Value Objects
+  - Domain Services
+  - Aggregates
+    Place domain objects such as these.
+- Application-specific use case flows go to the Application layer.
+- Infrastructure dependencies (DB, External API) go to the Infrastructure layer.
 
-- Domain 層に：
-  - エンティティ
-  - 値オブジェクト
-  - ドメインサービス
-  - 集約
-    などのドメインオブジェクトを配置
-- アプリケーション固有のユースケースの流れは Application 層
-- インフラ依存（DB, 外部 API）は Infrastructure 層
-
-依存関係としては：
+As for dependencies:
 
 - Application → Domain
 - Infrastructure → Domain
 
-のような形が理想とされる（実際には完全分離は難しいが、方向性として）。
+Ideally, it should look like this (although complete separation is difficult in practice, this is the direction).
 
-現実の実装では、ORM（JPA / Hibernate など）のアノテーションをドメインモデルに直接付与するケースも多く、結果として Domain → Infrastructure の依存が残ることがある。この点が、依存方向をより厳密に分離しようとする Hexagonal / Clean Architecture などの“Dependency Rule 強化系”スタイルとの違いとなる。
+In actual implementation, ORM (JPA / Hibernate, etc.) annotations are often directly attached to the domain model, and as a result, Domain → Infrastructure dependencies may remain. This point distinguishes it from "Dependency Rule enhanced" styles like Hexagonal / Clean Architecture that try to separate dependency direction more strictly.
 
-### 概念図（Conceptual Diagram）
+### Conceptual Diagram
 
 ```mermaid
 flowchart TD
@@ -58,72 +53,68 @@ flowchart TD
     DOMAIN --> INFRA
 ```
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-- 業務ルールが複雑な B2B SaaS / エンタープライズシステム
-- 状態遷移・不変条件・計算ロジックが重要な領域（金融・在庫・料金計算など）
-- ドメインエキスパートと「ドメイン言語」で会話しながら開発するプロジェクト
+- B2B SaaS / Enterprise systems with complex business rules.
+- Areas where state transitions, invariants, and calculation logic are important (Finance, Inventory, Billing, etc.).
+- Projects developed while conversing with domain experts in "Domain Language".
 
-Domain Model Layered は、**ドメインの複雑さがビジネスのコア価値である** 場合に特に力を発揮する。
+Domain Model Layered is particularly effective when **domain complexity is the core value of the business.**
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-- CRUD が中心でドメインルールが単純なアプリ
-- DB スキーマ ≒ 画面項目、という構造で十分なシステム
-- チームのオブジェクト指向・DDD への習熟度が低く、むしろ複雑になる場合
+- Apps centered on CRUD where domain rules are simple.
+- Systems where "DB Schema ≒ Screen Items" structure is sufficient.
+- When the team's proficiency in Object-Oriented / DDD is low, and it rather becomes complex.
 
-ドメインモデルを無理に導入すると、
-「概念だけ複雑で実装が追いつかない」といった状態にもなり得る。
+Forcing the introduction of a domain model can lead to a state where "only the concepts are complex, but the implementation cannot keep up."
 
-## ✅ 歴史（系譜・親スタイル）
+## ✅ History (Genealogy / Parent Styles)
 
-- Classic Layered の発展形として登場
-- Fowler の PoEAA や Evans の DDD に大きく影響を受けたスタイル
-- のちに Hexagonal / Onion / Clean などの“依存ルール強化系”スタイルへとつながっていく
+- Emerged as an evolved form of Classic Layered.
+- A style heavily influenced by Fowler's PoEAA and Evans' DDD.
+- Later connects to "Dependency Rule enhanced" styles like Hexagonal / Onion / Clean.
 
-## ✅ 関連スタイル
+## ✅ Related Styles
 
-- **Classic Layered**：ドメインを薄く扱う原型スタイル
-- **Hexagonal / Onion / Clean**：ドメインをさらに強く保護しようとする発展系
-- **DDD（戦術パターン）**：エンティティ、値オブジェクト、集約などの具体的なモデル表現
+- **Classic Layered**: Prototype style treating the domain thinly.
+- **Hexagonal / Onion / Clean**: Evolved forms trying to protect the domain even more strongly.
+- **DDD (Tactical Patterns)**: Concrete model expressions like Entities, Value Objects, Aggregates.
 
-## ✅ 代表的なフレームワーク
+## ✅ Representative Frameworks
 
-Domain Model Layered はフレームワークに依存しないスタイルだが、次のような環境で採用されることが多い。
+Domain Model Layered is a framework-independent style, but is often adopted in environments like:
 
-- **Spring Boot（Java）**  
-  DDD + レイヤード構成のサンプルや書籍が非常に豊富で、Domain Model Layered の典型例として参照しやすい。
+- **Spring Boot (Java)**
+  Samples and books on DDD + Layered configuration are very abundant, making it easy to refer to as a typical example of Domain Model Layered.
 
-- **ASP.NET Core / .NET**  
-  DDD と組み合わせたレイヤード構成（Application / Domain / Infrastructure）が多くのテンプレートで採用されている。
+- **ASP.NET Core / .NET**
+  Layered configurations combined with DDD (Application / Domain / Infrastructure) are adopted in many templates.
 
-- **NestJS**  
-  Module / Provider 構造と TypeScript の相性の良さから、ドメインモデル中心のレイヤード構成に寄せやすい。
+- **NestJS**
+  Due to the good compatibility of Module / Provider structure with TypeScript, it is easy to align with a domain model-centric layered configuration.
 
-## ✅ このスタイルを支えるデザインパターン
+## ✅ Design Patterns Supporting This Style
 
-ドメインモデル（集約・エンティティ・値オブジェクト）を中心とした構造を支えるために、次のパターンがよく現れる。
+To support the structure centered on the domain model (Aggregates, Entities, Value Objects), the following patterns often appear.
 
-- **Strategy**  
-  ドメインオブジェクトの振る舞い（料金計算・割引・条件分岐など）を差し替え可能に表現する。
+- **Strategy**
+  Expresses the behavior of domain objects (billing calculation, discounts, conditional branching, etc.) in a replaceable way.
 
-- **Composite**  
-  階層構造を持つドメイン（ツリー状のカテゴリー、組織、構成品など）を一貫したインターフェースで扱う。
+- **Composite**
+  Handles domains with hierarchical structures (tree-like categories, organizations, components, etc.) with a consistent interface.
 
-- **Mediator**  
-  複数エンティティ間の複雑なやり取りを、一箇所に集約して調停する。
+- **Mediator**
+  Aggregates and mediates complex interactions between multiple entities in one place.
 
-- **Template Method**  
-  ドメインサービスや集約ルートが、似た処理の流れを持つ場合の共通化に使われる。
+- **Template Method**
+  Used for commonization when domain services or aggregate roots have similar processing flows.
 
-## ✅ まとめ
+## ✅ Summary
 
-Domain Model Layered は、
+Domain Model Layered is a style that attempts to balance:
 
-- レイヤードアーキテクチャの理解しやすさと、
-- DDD 的なドメインモデルの強さ
+- The ease of understanding of Layered Architecture
+- The strength of the domain model in DDD
 
-を両立しようとするスタイルである。
-
-ドメインの複雑さが増し始めたときに、
-**Classic Layered からの「次の一歩」として採用を検討する価値がある。**
+When domain complexity begins to increase, **it is worth considering adoption as the "next step" from Classic Layered.**

@@ -1,87 +1,87 @@
 # 🧩 Microservices Architecture
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-**アプリケーションを小さな独立サービスに分割し、独立デプロイ・独立スケールを可能にする構造スタイル。**
+**A structural style splitting the application into small independent services, enabling independent deployment and independent scale.**
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-- 巨大モノリスの開発速度低下
-- チーム規模増加による衝突
-- 機能ごとに異なるスケール特性への対応
+- Development speed slowdown of huge Monolith.
+- Collision due to team scale increase.
+- Response to different scale characteristics per feature.
 
-## ✅ 基本思想・ルール
+## ✅ Basic Philosophy & Rules
 
-- サービスごとに独立デプロイ
-- 独立したデータストア（Database per Service）
-- API（REST/gRPC/Event）による疎結合連携
-- DevOps / CI/CD / Observability の強い前提
+- Independent deployment per service.
+- Independent data store (Database per Service).
+- Loosely coupled coordination via API (REST/gRPC/Event).
+- Strong prerequisite of DevOps / CI/CD / Observability.
 
-### 概念図（Conceptual Diagram）
+### Conceptual Diagram
 
 ![Microservices Architecture diagram](./microservices.svg)
 
-> 出典: Microsoft, “Microservices architecture style – Azure Architecture Center”.  
+> Source: Microsoft, “Microservices architecture style – Azure Architecture Center”.  
 > https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/microservices
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-- 多チーム・多領域での開発
-- 可用性・スケール要件が高い Web サービス
-- 機能ごとに技術選択が異なる場合
+- Development in multi-team / multi-domain.
+- Web services with high availability / scale requirements.
+- When technology selection differs per feature.
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-- 小規模プロダクト（オーバーエンジニアリング）
-- 運用が重く、SRE 体制が不十分
-- 分散トランザクションが大量に発生するドメイン
+- Small-scale products (Over-engineering).
+- Heavy operation, insufficient SRE structure.
+- Domains where distributed transactions occur massively.
 
-## ✅ 歴史
+## ✅ History
 
-- Netflix / Amazon の成功により普及
-- SOA の思想をより軽量に実装した流派として発展
+- Spread by success of Netflix / Amazon.
+- Developed as a school implementing SOA ideas more lightly.
 
-## ✅ 関連スタイル
+## ✅ Related Styles
 
-- SOA：より重量級でエンタープライズ的な祖先
-- Modular Monolith：導入前の構造整理として有効
+- **SOA**: Heavier and enterprise-like ancestor.
+- **Modular Monolith**: Effective as structural organization before introduction.
 
-## ✅ 代表的なフレームワーク
+## ✅ Representative Frameworks
 
-- **Spring Cloud**  
-  Config / Gateway / Discovery / Circuit Breaker など、Micoservices の総合基盤。
+- **Spring Cloud**
+  Comprehensive foundation for Microservices like Config / Gateway / Discovery / Circuit Breaker.
 
-- **Go + gRPC + Kubernetes**  
-  軽量で高速なサービス構築に強い組み合わせ。
+- **Go + gRPC + Kubernetes**
+  Strong combination for building lightweight and fast services.
 
-- **Node.js / NestJS / Express**  
-  BFF や小粒サービスに適した構成。
+- **Node.js / NestJS / Express**
+  Configuration suitable for BFF and small-grained services.
 
-- **AWS（ECS / Lambda / API Gateway / EventBridge）**  
-  マネージドサービスによるマイクロサービス構築。
+- **AWS (ECS / Lambda / API Gateway / EventBridge)**
+  Microservices construction by managed services.
 
-- **Dapr**  
-  サイドカーでサービス間連携を提供するプラットフォーム。
+- **Dapr**
+  Platform providing service-to-service invocation via sidecar.
 
-## ✅ このスタイルを支えるデザインパターン
+## ✅ Design Patterns Supporting This Style
 
-- **Facade**  
-  API Gateway を通じた統一入口。
+- **Facade**
+  Unified entrance via API Gateway.
 
-- **Proxy**  
-  Service Mesh や Sidecar によるトラフィック制御。
+- **Proxy**
+  Traffic control by Service Mesh or Sidecar.
 
-- **Observer**  
-  イベント駆動連携やドメインイベント配信。
+- **Observer**
+  Event-driven coordination and domain event distribution.
 
-- **Mediator**  
-  Orchestrator（Workflow）による複数サービス調整。
+- **Mediator**
+  Coordination of multiple services by Orchestrator (Workflow).
 
-- **Strategy**  
-  サービスごとに異なるアルゴリズム／技術選択。
+- **Strategy**
+  Different algorithm / technology selection per service.
 
-## ✅ まとめ
+## ✅ Summary
 
-Microservices は  
-**「高速開発 × 高スケール × 高可用性」** のための強力な構造だが、  
-運用コストが高いため **組織規模とドメイン特性に依存する。**
+Microservices is a powerful structure for
+**"High Speed Development × High Scale × High Availability"**,
+but since operation cost is high, **it depends on organizational scale and domain characteristics.**

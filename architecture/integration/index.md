@@ -1,65 +1,65 @@
-# 🧩 Integration Styles（通信・インテグレーション）
+# 🧩 Integration Styles
 
-Integration Styles は、**サービス同士・外部システムとどのように通信し、連携するか** を定めるアーキテクチャ層を扱う。
+Integration Styles covers the architecture layer defining **how services communicate and cooperate with each other and external systems.**
 
-## ✅ このカテゴリが扱う問題
+## ✅ Problems Addressed by This Category
 
-- サービス同士の通信方式をどう選ぶか
-- 同期 API の遅延・スケール問題
-- イベント駆動の複雑さ
-- サーガによる分散トランザクションの扱い
-- API 境界の契約（Contract）管理
+- How to choose communication methods between services.
+- Latency and scale problems of synchronous APIs.
+- Complexity of event-driven architecture.
+- Handling distributed transactions with Saga.
+- Contract management of API boundaries.
 
-## ✅ Integration Styles の代表スタイル
+## ✅ Representative Styles of Integration Styles
 
 ### ● REST / gRPC / GraphQL
 
-- 同期通信の基本方式
-- REST：最も広く普及、CRUD 向け
-- gRPC：高速、型安全、マイクロサービス向け
-- GraphQL：フロントエンド最適化（BFF と相性が良い）
+- Basic methods of synchronous communication.
+- REST: Most widely spread, for CRUD.
+- gRPC: Fast, type-safe, for Microservices.
+- GraphQL: Frontend optimization (Good compatibility with BFF).
 
-### ● Event-Driven Architecture（EDA）
+### ● Event-Driven Architecture (EDA)
 
-- 非同期イベントで疎結合化
-- 高スケール／高可用構成に向く
-- ただし可観測性と整合性の複雑度は上がる
+- Loose coupling with asynchronous events.
+- Suitable for high scale / high availability configuration.
+- However, complexity of observability and consistency increases.
 
-### ● Saga Pattern（オーケストレーション／コレオグラフィ）
+### ● Saga Pattern (Orchestration / Choreography)
 
-- 分散トランザクションの制御
-- 決済・予約など「複数サービスをまたぐ整合性」に必須
+- Control of distributed transactions.
+- Essential for "consistency across multiple services" like payment and reservation.
 
 ### ● API Gateway / BFF
 
-- クライアント向け API の統合と最適化
-- 認証・ルーティング・レート制限を集約
+- Integration and optimization of APIs for clients.
+- Aggregates authentication, routing, and rate limiting.
 
 ### ● Service Mesh
 
-- 通信をアプリから分離し、ネットワークレイヤで制御
-- mTLS, リトライ, Circuit Breaker, トレーシングなどを自動化
+- Separates communication from app and controls it at network layer.
+- Automates mTLS, retry, Circuit Breaker, tracing, etc.
 
-### ● Outbox Pattern（Transactional Outbox）
+### ● Outbox Pattern (Transactional Outbox)
 
-- DB トランザクション内でイベントをバッファリング
-- アプリ更新とイベント配送の不整合を解消
-- マイクロサービスで最も実務的な整合性確保手法
+- Buffers events within DB transaction.
+- Resolves inconsistency between app update and event delivery.
+- Most practical consistency assurance method in Microservices.
 
-### ● Change Data Capture（CDC）
+### ● Change Data Capture (CDC)
 
-- DB の変更ログを直接ストリーム化
-- アプリを介さずイベントを生成
-- 高スループットのデータ複製やパイプラインに向く
+- Directly streams DB change logs.
+- Generates events without going through the app.
+- Suitable for high throughput data replication and pipelines.
 
-## ✅ このカテゴリの読み方
+## ✅ How to Read This Category
 
-1. 同期/非同期の使い分け
-2. “整合性”と“遅延”のトレードオフ
-3. BFF や Mesh による複雑さの吸収レイヤの役割
+1. Distinction between Synchronous / Asynchronous.
+2. Trade-off between "Consistency" and "Latency".
+3. Role of layers absorbing complexity like BFF and Mesh.
 
-## ✅ 他の階層との関係
+## ✅ Relationship with Other Layers
 
-- **System Topologies** と最も強く結びつく
-- **Data Architecture（CQRS, ES）** はほぼ EDA とセット
-- **Cross-cutting**（SLO/Observability）は通信可視化に直結
+- Most strongly linked with **System Topologies**.
+- **Data Architecture (CQRS, ES)** is almost a set with EDA.
+- **Cross-cutting** (SLO/Observability) is directly connected to communication visualization.

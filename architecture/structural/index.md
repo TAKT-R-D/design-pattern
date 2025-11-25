@@ -1,198 +1,164 @@
-# 🧩 Structural Styles（アプリ内部構造）
+# 🧩 Structural Styles (Internal Application Structure)
 
-ソフトウェアアーキテクチャの中でも、**Structural Styles** は
-「1 つのアプリケーション（1 プロセス／1 サービス）の **内部** をどう分割し、
-クラス／モジュール／レイヤー／コンポーネントが **どう依存し合うか**」を扱う領域です。
+Within software architecture, **Structural Styles** deal with:
+"How to divide the **inside** of a single application (1 process / 1 service), and how classes/modules/layers/components **depend on each other**."
 
-- 例：レイヤードアーキテクチャ、MVC、マイクロカーネル、パイプ＆フィルタ など
-- 対象：**単一サービスの“中身の構造”**（マイクロサービスにするかどうか、とは別の話）
+- Examples: Layered Architecture, MVC, Microkernel, Pipe & Filter, etc.
+- Scope: **"Internal structure" of a single service** (separate from whether it is a microservice or not).
 
-この章では、代表的な Structural Style を「系統（ファミリー）」ごとに整理し、
+In this chapter, representative Structural Styles are organized by "Family", explaining them from perspectives such as:
 
-- どんな歴史・背景から生まれたか
-- どんな問題を解決しようとしているか
-- どのようなアプリケーションに向いているか
+- History and background of their origin
+- Problems they attempt to solve
+- Applications they are suitable for
 
-といった観点で解説する。
+## ✅ Problems Addressed by This Category
 
-## ✅ このカテゴリが扱う問題
+Structural Styles primarily address problems such as:
 
-Structural Styles は、主に次のような問題に向き合います。
+- Business logic getting buried in UI or DB code, making changes difficult.
+- Ambiguous responsibilities of classes and modules leading to spaghetti dependencies.
+- Testing units being too large, making it hard to write automated tests.
+- Breaking existing code every time a new feature is added.
 
-- ビジネスロジックが UI や DB に埋もれてしまい、変更が難しくなる
-- クラスやモジュールの責務が曖昧で、依存関係がスパゲッティ化する
-- テストの単位が大きすぎて、自動テストが書きづらい
-- 機能追加のたびに既存コードを壊してしまう
+In other words, the various schools of Structural Styles are answers to the question:
 
-言い換えると、
+> **"How should structure and dependencies be organized within a single application?"**
 
-> **「1 つのアプリケーションの中で、構造と依存をどう整理するか？」**
+## ✅ Families of Structural Styles
 
-という問いに対する回答が、Structural Styles のさまざまな流派です。
+This site organizes representative styles into the following "Families":
 
-## ✅ Structural Styles の系統
+### A. Non-structured / Early
 
-このサイトでは、代表的なスタイルを次のような“系統（ファミリー）”に分けて整理する。
+- Big Ball of Mud (Anti-pattern)
+- Transaction Script, etc.
 
-### A. 非構造〜初期系
-
-- Big Ball of Mud（泥団子：アンチパターン）
-- Transaction Script など
-
-### B. データ／レコード中心系
+### B. Data / Record Centric
 
 - Active Record
 - Table Module
-- Anemic Domain Model など
+- Anemic Domain Model, etc.
 
-### C. レイヤード／ドメインモデル系
+### C. Layered / Domain Model
 
-- Classic Layered（3-tier / n-tier）
+- Classic Layered (3-tier / n-tier)
 - Domain Model Layered
-- Dependence-rule-based Layered ファミリー
-  - 依存方向やドメイン中心設計を強く意識したスタイル群
+- Dependence-rule-based Layered Family
+  - Styles that strongly emphasize dependency direction and domain-centric design.
 
-### D. UI Interaction / Presentation 系
+### D. UI Interaction / Presentation
 
-- MVC / MVP / MVVM / MVU など
+- MVC / MVP / MVVM / MVU, etc.
 
-これらの UI パターンは、プレゼンテーション層（画面まわり）の構造を扱うものであり、Classic Layered や Hexagonal のようなアプリ全体の内部構造スタイルとはレイヤが異なる。そのため、例えば「バックエンドは Hexagonal、UI は MVVM」といった形で組み合わせて利用することができる。
+These UI patterns deal with the structure of the presentation layer (screen related) and exist on a different layer from system-wide internal structural styles like Classic Layered or Hexagonal. Therefore, they can be used in combination, for example, "Backend is Hexagonal, UI is MVVM".
 
-### E. Flow / Pipeline 系
+### E. Flow / Pipeline
 
 - Pipe & Filter
 - Batch Pipeline
-- Streaming Pipeline など
+- Streaming Pipeline, etc.
 
-### F. Microkernel / Plugin 系
+### F. Microkernel / Plugin
 
 - Microkernel Architecture
-- Plugin / Extension Architecture など
+- Plugin / Extension Architecture, etc.
 
-### G. Reactive / Actor 系
+### G. Reactive / Actor
 
-- Actor Model ベース
+- Actor Model based
 - Event Loop / Reactor
-- Reactive Streams / FRP など
+- Reactive Streams / FRP, etc.
 
-各系統のページでは、そのファミリーに共通する思想と歴史を整理し、
-さらに個別スタイル（例：MVC, Classic Layered, Microkernel…）のページへと掘り下げていく。
+Each family page organizes the philosophy and history common to that family, and then delves into individual style pages (e.g., MVC, Classic Layered, Microkernel...).
 
-## ✅ このカテゴリの読み方
+## ✅ How to Read This Category
 
-このカテゴリは、次のような順序で読むことを想定する。
+It is assumed that you read this category in the following order:
 
-1. **系統レベルのページをざっと眺める**  
-   「どんなファミリーがあるか」「自分のアプリに関係しそうなのはどこか」を掴む。
+1. **Glance through the Family-level pages**
+   Grasp "what families exist" and "which ones seem relevant to your app".
 
-2. **気になるスタイルの詳細ページを読む**
+2. **Read the detailed pages of styles that interest you**
+   - Background/History (Where did it come from?)
+   - Problems it attempts to solve
+   - Basic Rules (Dependency direction, responsibility division, etc.)
+   - Suitable applications and unsuitable cases
 
-   - 背景・歴史（どこから来たのか）
-   - 解決しようとした問題
-   - 基本ルール（依存方向、責務分割など）
-   - 得意なアプリケーションと苦手なケース
+3. **Return to "How to Choose" in your context**
+   Use it as material to judge whether to use a style as is, combine it, or dare not to adopt it.
 
-3. **自分の文脈での“選び方”に戻る**  
-   どのスタイルをそのまま使うか／組み合わせるか／あえて採用しないか、
-   を判断するための材料として使う。
+## ✅ Relationship with Other Layers
 
-## ✅ 他の階層との関係
+Structural Styles are closely related to other architectural layers.
 
-Structural Styles は、他のアーキテクチャ階層とも密接に関係する。
+- **System Topologies (System Configuration)**
+  - Whether Monolith or Microservices, some Structural Style always exists inside each service.
 
-- **System Topologies（システム構成）**
+- **Integration Styles (Communication & Integration)**
+  - Styles like Hexagonal are strongly linked to Integration Styles like REST / gRPC / Messaging via Ports/Adapters.
 
-  - モノリスであっても、マイクロサービスであっても、  
-    各サービスの内部には必ず何らかの Structural Style が存在する。
+- **Data Architecture (Data & Analytics)**
+  - Some styles, like CQRS / Event Sourcing, integrate internal structure with data architecture.
 
-- **Integration Styles（通信・インテグレーション）**
+- **Cross-cutting & Socio-technical (Ops, Culture, Quality)**
+  - The choice of structure directly affects the development experience and operational costs, such as testability, changeability, and ease of team division.
 
-  - Hexagonal などのスタイルは、ポート／アダプタを通じて  
-    REST / gRPC / メッセージングなどの Integration Styles と強く結びつく。
+This chapter aims to be an entry point for **reviewing architecture from the perspective of internal application structure**, while being conscious of these relationships with "other layers".
 
-- **Data Architecture（データ・分析）**
+## ✅ Relationship between DDD and Structural Styles
 
-  - CQRS / Event Sourcing のように、内部構造とデータアーキテクチャが  
-    一体となっているスタイルもある。
+This site treats DDD (Domain-Driven Design) not as **"Architecture itself"**, but as a **"Perspective (Lens)" for thinking about internal application structure**.
 
-- **Cross-cutting & Socio-technical（運用・文化・品質）**
-  - テスト容易性、変更容易性、チーム分割のしやすさなど、  
-    構造の選択はそのまま開発体験や運用コストに影響する。
+DDD is related to multiple Structural Styles as follows:
 
-この章は、そうした「他の階層」との関係も意識しながら、**アプリケーション内部構造という視点からアーキテクチャを見直す** ための入り口になることを目指す。
+- **Layered / Domain Model Family (Family C)**
+  - DDD patterns like Entities / Value Objects / Domain Services have particularly high affinity with this family.
 
-## ✅ DDD と Structural Styles の関係
+- **Styles emphasizing Dependency Rule**
+  - Hexagonal / Onion / Clean Architecture naturally link with the DDD concept of "Domain-centric & Dependency Inversion".
 
-本サイトでは DDD（Domain-Driven Design）を
-**「アーキテクチャそのもの」ではなく、
-アプリ内部構造を考えるための“視点（レンズ）”** として扱う。
+- **CQRS / Event Sourcing (Data Architecture)**
+  - Often used together with concepts like "State Transition" and "Aggregates", influenced by the evolution of DDD.
 
-DDD は下記のように、複数の Structural Style と関係している。
+- **Modular Monolith / Microservices (Topologies)**
+  - "Bounded Context" is very compatible with service splitting and module splitting.
 
-- **レイヤード／ドメインモデル系（C 系統）**  
-  エンティティ／値オブジェクト／ドメインサービスなど、  
-  DDD のパターン群はこの系統と特に親和性が高い。
+Thus, DDD is involved in each family not as a technique that requires a specific style, but as:
 
-- **依存方向ルール（Dependency Rule）を重視したスタイル群**  
-  Hexagonal / Onion / Clean Architecture は、  
-  “ドメイン中心・依存逆転”という DDD 的な考え方と自然に結びつく。
+> **"Common patterns that appear when thinking about structure centered on the domain"**
 
-- **CQRS / Event Sourcing（Data Architecture）**  
-  DDD の発展に影響を受け、  
-  「状態遷移」「集約」などの考え方と共に用いられることが多い。
+This site adopts a policy of touching upon DDD only where it naturally relates within the explanation of each style, and does not cover detailed DDD introduction.
 
-- **Modular Monolith / Microservices（Topologies）**  
-  “境界づけられたコンテキスト（Bounded Context）”は、  
-  サービス分割やモジュール分割と非常に相性が良い。
+## ✅ "Architectural Flavors" Indicated by Frameworks
 
-このように DDD は、  
-特定のスタイルを必須とする技法ではなく、
+Modern frameworks do not **strictly enforce** a specific architectural style.
+However, React / Rails / Spring Boot / Node.js etc. each have a **"direction (flavor) where designing in a certain way feels natural"**.
 
-> **「ドメイン中心に構造を考えるときに現れる共通パターン」**
+Examples:
 
-として各系統に関わっている。
+- React / SwiftUI: UI structure like MVU (Elm Architecture)
+- Rails / Laravel: Data-centric centered on Active Record
+- Spring Boot / NestJS / .NET: Structure easy to align with Clean / Hexagonal
+- Node.js: Asynchronous / Event-driven centered on Event Loop
 
-本サイトでは、各スタイルの説明の中で
-DDD が自然に関係する箇所のみ触れる方針とし、
-詳細な DDD 入門は扱わない。
+Understanding these "flavors" allows you to intuitively grasp **which Structural Style your framework is close to**, deepening your understanding of each style.
 
-## ✅ フレームワークが示す“アーキテクチャ風味（Flavor）”
+👉 **[Table of Major Frameworks and Architectural Flavors](./framework-architecture-flavors.md)**
 
-モダンフレームワークは、特定のアーキテクチャスタイルを  
-**厳密に強制するわけではない**。  
-しかし、React / Rails / Spring Boot / Node.js などはそれぞれ、  
-**「自然とそう設計するとしっくりくる方向性（flavor）」** を持っている。
+## ✅ Design Patterns Supporting Structural Styles
 
-例：
+Internal Application Structure (Structural Styles) is often **established and strengthened by specific Design Patterns**.
 
-- React / SwiftUI：MVU（Elm Architecture）的な UI 構造
-- Rails / Laravel：Active Record を中心とした Data-centric
-- Spring Boot / NestJS / .NET：Clean / Hexagonal に寄せやすい構造
-- Node.js：Event Loop を核とする非同期・イベント駆動
+- **Adapter / Strategy / Command** are central to Clean / Hexagonal / Onion.
+- **Observer / State / Mediator** support UI updates in MVC / MVVM / MVU.
+- **Strategy / Abstract Factory / Proxy** realize the plugin mechanism in Microkernel.
+- **Chain of Responsibility / Iterator / Observer** become the basic structure for Pipeline / Reactive families.
 
-これらの“風味”を理解しておくと、
-**自分の使っているフレームワークがどの Structural Style に近いのか** を
-直感的に把握でき、各スタイルの理解が深まる。
+The relationship is not _1 Style = 1 Pattern_, but rather **architectural characteristics are born from the combination of multiple patterns**.
 
-👉 **[主要フレームワークとアーキテクチャ風味の対応表](./framework-architecture-flavors.md)**
+A detailed mapping table is summarized on the following page:
 
-## ✅ Structural Styles を支えるデザインパターン
+👉 **[Table of Structural Styles and Design Patterns](./design-pattern-support.md)**
 
-アプリケーション内部構造（Structural Styles）は、  
-しばしば特定の **デザインパターンによって成立・強化** される。
-
-- Clean / Hexagonal / Onion では **Adapter / Strategy / Command** が中核
-- MVC / MVVM / MVU は **Observer / State / Mediator** が UI 更新を支える
-- Microkernel では **Strategy / Abstract Factory / Proxy** がプラグイン機構を実現
-- Pipeline / Reactive 系は **Chain of Responsibility / Iterator / Observer** が基本構造になる
-
-これらは _1 つのスタイル = 1 つのパターン_ ではなく、  
-**複数のパターンの組み合わせによってアーキテクチャ特性が生まれる** という関係性だ。
-
-詳細なマッピング表は以下のページにまとめている：
-
-👉 **[Structural Styles とデザインパターン対応表](./design-pattern-support.md)**
-
-デザインパターン解説（アンチパターン含む）は  
-既存サイト _takt.dev/design-pattern/_ を基準としており、  
-本書でも同じ名称・語彙体系を採用している。
+Design pattern explanations (including anti-patterns) are based on the existing site _takt.dev/design-pattern/_, and this book adopts the same naming and vocabulary system.

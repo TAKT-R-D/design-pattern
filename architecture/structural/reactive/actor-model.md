@@ -1,121 +1,115 @@
 # 🧩 Actor Model
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-**「アクター」と呼ばれる軽量な並行オブジェクト同士が、メッセージの送受信だけでやり取りする並行計算モデル。**
+**A concurrent computation model where lightweight concurrent objects called "Actors" communicate only by sending and receiving messages.**
 
-スレッドやロックを直接扱わず、メッセージパッシングで状態をカプセル化する。
+Encapsulates state with message passing without handling threads or locks directly.
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-- 共有メモリ＋ロックベース並行処理の複雑さ
-- デッドロック／レースコンディションなどの典型的な並行バグ
-- 大量のクライアントを扱う高スループットサーバの設計
+- Complexity of shared memory + lock-based concurrency.
+- Typical concurrency bugs like deadlocks / race conditions.
+- Design of high throughput servers handling massive clients.
 
-Actor Model は、
+Actor Model tried to make concurrency easier to handle by:
 
-> 「状態をアクターごとに閉じ込め、  
->  共有メモリではなくメッセージでやり取りする」
+> "Confining state within each Actor and communicating via messages instead of shared memory."
 
-ことで、並行性を扱いやすくしようとしました。
+## ✅ Basic Philosophy & Rules
 
-## ✅ 基本思想・ルール
+### ● Actor
 
-### ● Actor（アクター）
+- Has its own state.
+- When receiving a message:
+  - Updates state.
+  - Sends messages to other Actors.
+  - Creates new Actors.
 
-- 自身の状態（state）を持つ
-- メッセージを受信すると：
-  - 状態を更新する
-  - 他のアクターにメッセージを送る
-  - 新しいアクターを生成する
+### ● Message Passing
 
-### ● メッセージパッシング
+- Interaction between Actors is done through message queues.
+- Message sending is asynchronous.
+- No direct access to shared memory.
 
-- アクター間のやり取りはメッセージキューを通じて行われる
-- メッセージ送信は非同期
-- 共有メモリへの直接アクセスは行わない
+### ● Supervision
 
-### ● スーパービジョン
+- In some Actor systems, parent Actors monitor child Actors' failures and manage restart policies.
 
-- 一部の Actor システムでは、親アクターが子アクターの障害を監視し、再起動ポリシーを管理する
+## ✅ Suitable Applications
 
-## ✅ 得意なアプリケーション
+- High throughput distributed systems.
+- Chat / Messaging services.
+- Online game servers (Players and Rooms expressed as Actors).
+- IoT and Event processing platforms.
 
-- 高スループットな分散システム
-- チャット／メッセージングサービス
-- オンラインゲームサーバ（プレイヤーやルームをアクターとして表現）
-- IoT やイベント処理基盤
+Features:
 
-特徴：
+- Can control concurrency at message level.
+- Clear recovery strategy (Supervision) at failure.
 
-- 並行性をメッセージレベルで制御できる
-- 障害時の復旧戦略（スーパービジョン）が明確
+## ❌ Unsuitable Cases
 
-## ❌ 不向きなケース
+- Simple CRUD-centric Web apps.
+- Business apps with low concurrency requirements.
 
-- 単純な CRUD 中心の Web アプリ
-- 並行性の要求が低い業務アプリ
+Also, in teams not used to Actor Model:
 
-また、アクターモデルに慣れていないチームでは：
+- Message design and flow become complex.
+- Confusion about differences in debugging methods.
+- Learning cost occurs.
 
-- メッセージの設計・フローが複雑化
-- デバッグ手法の違いに戸惑う
+## ✅ History (Genealogy / Parent Styles)
 
-といった学習コストも発生する。
+- Roots in computation model proposed in 1970s.
+- Adoption in practice advanced through implementations like Erlang / Akka.
+- Important position in context of Reactive Manifesto and Reactive Systems.
 
-## ✅ 歴史（系譜・親スタイル）
+## ✅ Related Styles
 
-- 1970 年代に提案された計算モデルにルーツ
-- Erlang / Akka などの実装を通じて実務での採用が進んだ
-- Reactive Manifesto やリアクティブシステムの文脈でも重要な位置づけ
+- **Event Loop based structure**: Close in terms of event-driven, but model is different.
+- **Reactive Streams**: Standard for event stream processing.
+- **EDA (Event-Driven Architecture)**: Event-driven structure of the entire system.
 
-## ✅ 関連スタイル
+## ✅ Representative Frameworks
 
-- **Event Loop ベース構造**：イベントドリブンという点で近いが、モデルは異なる
-- **Reactive Streams**：イベントストリーム処理のための標準
-- **EDA（Event-Driven Architecture）**：システム全体のイベント駆動構造
+Actor Model has many practical implementations especially in areas where concurrency is important.
 
-## 8. 代表的なフレームワーク
+- **Erlang / Elixir (BEAM VM)**
+  Original implementation by lightweight processes + message passing. Excellent fault tolerance.
 
-Actor Model は特に並行性が重要な領域で実用実装が多い。
+- **Akka (Scala / Java)**
+  Most famous Actor Framework on JVM. Rich in supervision, distribution, persistence, etc.
 
-- **Erlang / Elixir（BEAM VM）**  
-  軽量プロセス＋メッセージパッシングによる本家の実装。耐障害性に優れる。
+- **Orleans (.NET)**
+  Adopts "Virtual Actor" model, used in large-scale distributed systems.
 
-- **Akka（Scala / Java）**  
-  JVM 上での最も有名な Actor Framework。スーパービジョン、分散、永続化など充実。
+- **Ray (Python)**
+  Distributed Actor execution platform in AI / HPC field. Handles tasks and actors uniformly.
 
-- **Orleans（.NET）**  
-  “Virtual Actor” モデルを採用し、大規模分散システムで利用される。
+## ✅ Design Patterns Supporting This Style
 
-- **Ray（Python）**  
-  AI / HPC 分野での分散 Actor 実行基盤。タスク・アクターを統一的に扱う。
+When converted to object-oriented patterns, Actor Model corresponds to the following elements:
 
-## 9. このスタイルを支えるデザインパターン
+- **State**
+  Hides internal state of Actor from outside and updates it by its own message processing.
 
-Actor Model はオブジェクト指向パターンに変換すると、次の要素に該当する。
+- **Command**
+  Treats each message as an "operation", and Actor interprets and executes it.
 
-- **State**  
-  アクター内部の状態を外部から隠蔽し、自身のメッセージ処理で更新する。
+- **Observer**
+  Receives messages in event-driven manner and triggers next processing.
 
-- **Command**  
-  各メッセージを“操作”として扱い、アクターがそれを解釈して実行する。
+- **Mediator**
+  Appears when adjusting message routing or coordination between Actors.
 
-- **Observer**  
-  イベント駆動でメッセージを受け取り、次の処理をトリガーする。
+## ✅ Summary
 
-- **Mediator**  
-  メッセージルーティングやアクター同士の連携を調整する際に現れる。
+Actor Model is a structural style strongly conscious of:
 
-## ✅ まとめ
+- Concurrency
+- Message Passing
+- Fault Isolation
 
-Actor Model は、
-
-- 並行性
-- メッセージパッシング
-- 障害分離
-
-を強く意識した構造スタイルです。
-
-スレッドやロックを直接扱う代わりに、  
-**「アクターとメッセージ」という単位でシステムを設計する** 発想が特徴的である。
+Instead of handling threads and locks directly,
+it is characterized by the idea of **designing the system in units of "Actors and Messages"**.

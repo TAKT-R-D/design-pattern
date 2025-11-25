@@ -1,19 +1,19 @@
-# 🧩 Cell-based Architecture（セル構造アーキテクチャ）
+# 🧩 Cell-based Architecture
 
-Cell-based Architecture は、大規模分散システムにおいて **システムをセル（Cell）と呼ばれる独立した小さなクラスター単位で構成する** トポロジである。Slack、Netflix、Uber など大規模運用組織で採用されている。
+Cell-based Architecture is a topology that **configures the system in units of independent small clusters called Cells** in large-scale distributed systems. Adopted by large-scale operation organizations like Slack, Netflix, Uber.
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-同一機能を複数の Cell に複製し、ユーザを Cell にルーティングすることでスケールや障害分離を実現する構造。
+A structure that replicates the same function to multiple Cells and routes users to Cells to realize scale and fault isolation.
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-- 単一リージョン／単一クラスター構成の限界
-- マイクロサービスが巨大化し集中障害点となる問題
-- 全体再デプロイ時のリスク増大
-- 大規模トラフィックへのスケールの壁
+- Limits of single region / single cluster configuration.
+- Problem of Microservices becoming huge and becoming a centralized failure point.
+- Increased risk during total redeployment.
+- Wall of scale against massive traffic.
 
-## ✅ 基本思想・構造
+## ✅ Basic Philosophy & Structure
 
 ```mermaid
 graph TD
@@ -25,27 +25,27 @@ graph TD
   B3 --> C3[Service Cluster]
 ```
 
-- 各 Cell は独立したサービス群＋データストアを持つ
-- Cell 間は基本的に疎結合（Cross-Cell 呼び出しを最小化）
-- Cell の追加・削除でスケール
+- Each Cell has independent service group + data store.
+- Inter-Cell is basically loosely coupled (Minimize Cross-Cell calls).
+- Scale by adding/deleting Cells.
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-- 数百万〜数千万ユーザ規模
-- 強力なフォールトアイソレーションが必要
-- 柔軟にスケールしたい SaaS / Messaging 系
+- Scale of millions to tens of millions of users.
+- Strong fault isolation is required.
+- SaaS / Messaging systems that want to scale flexibly.
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-- 小規模〜中規模システム
-- 複製コストを支払う価値がない領域
+- Small to medium-scale systems.
+- Areas where paying replication cost is not worth it.
 
-## ✅ 関連スタイル
+## ✅ Related Styles
 
 - Microservices
 - Multi-region Architecture
-- Sharding（データ分割）
+- Sharding (Data splitting)
 
-## ✅ まとめ
+## ✅ Summary
 
-Cell-based Architecture は超大規模システムを安定運用するための構成であり、障害分離とスケールを高次元で両立するトップロジーである。
+Cell-based Architecture is a configuration for stable operation of ultra-large-scale systems, and is a topology balancing fault isolation and scale at a high dimension.

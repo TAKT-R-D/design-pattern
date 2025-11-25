@@ -1,45 +1,41 @@
-# 🧩 Batch Pipeline（バッチパイプライン）
+# 🧩 Batch Pipeline
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-**一定期間分のデータをまとめて処理する「バッチジョブ」を、複数ステージのパイプラインとして構成するスタイル。**
+**A style configuring "Batch Jobs" that process data for a certain period collectively as a multi-stage pipeline.**
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-- 1 つのバッチジョブが巨大化し、何をどの順番でやっているか分からない
-- 一部ステップだけ再実行したい／並列化したいのに難しい
-- 障害時のリカバリポイントが分かりにくい
+- One batch job becomes huge, and it's unclear what is done in what order.
+- Want to re-run / parallelize only some steps but it's difficult.
+- Recovery point at failure is hard to understand.
 
-Batch Pipeline は、
+Batch Pipeline makes operation, maintenance, and scaling easier by:
 
-> 「バッチ処理をステージごとに分解し、パイプラインとして設計する」
+> "Decomposing batch processing into stages and designing it as a pipeline."
 
-ことで、運用・保守・スケーリングを行いやすくする。
+## ✅ Basic Philosophy & Rules
 
-## ✅ 基本思想・ルール
+Example of typical batch pipeline stages:
 
-典型的なバッチパイプラインのステージ例：
+1. Extract
+2. Transform
+3. Load
+4. Aggregate / Report
 
-1. 抽出（Extract）
-2. 変換（Transform）
-3. ロード（Load）
-4. 集計・書き出し
+Each stage takes the structure of:
 
-各ステージは：
+- Receiving input dataset
+- Fulfilling its own responsibility
+- Passing to the next stage
 
-- 入力データセットを受け取り
-- 自身の責務を果たし
-- 次のステージに渡す
+Implementation forms:
 
-という構造を取る。
+- Sequential execution within one process.
+- Split into multiple jobs and connected by queue/scheduler.
+- Defined as DAG with workflow engine (Airflow, etc.).
 
-実装形態：
-
-- 1 つのプロセス内で順次実行
-- 複数ジョブに分けてキュー・スケジューラで連結
-- ワークフローエンジン（Airflow など）で DAG として定義
-
-### 概念図（Conceptual Diagram）
+### Conceptual Diagram
 
 ```mermaid
 flowchart LR
@@ -52,75 +48,75 @@ flowchart LR
     SRC --> EX --> TR --> LD --> AGG
 ```
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-- 日次／時間毎のバッチ処理
-- ETL ジョブ（データウェアハウスへのロード）
-- ログ集計・レポート生成
-- バルクインポート／エクスポート処理
+- Daily / Hourly batch processing.
+- ETL Jobs (Load to Data Warehouse).
+- Log aggregation / Report generation.
+- Bulk Import / Export processing.
 
-特徴：
+Features:
 
-- ステージ単位でのモニタリング・再実行がしやすい
-- ステージごとのスケール戦略を立てやすい
+- Easy to monitor and re-run per stage.
+- Easy to plan scaling strategy per stage.
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-- ほぼリアルタイムの応答が必要な処理
-- イベント駆動で常時動作すべきストリーミング処理
+- Processing requiring almost real-time response.
+- Streaming processing that should operate constantly in event-driven manner.
 
-そのようなケースでは、Streaming Pipeline や EDA の方が向く。
+In such cases, Streaming Pipeline or EDA is more suitable.
 
-## ✅ 歴史（系譜・親スタイル）
+## ✅ History (Genealogy / Parent Styles)
 
-- 古くから存在するバッチ処理の実務知見を、パイプラインという形で整理したもの
-- Data Warehouse / DWH 文脈の ETL パターンと密接
-- 近年はワークフローオーケストレーションツールと組み合わさることが多い
+- Organized practical knowledge of batch processing existing for a long time into the form of a pipeline.
+- Close to ETL patterns in Data Warehouse / DWH context.
+- Often combined with workflow orchestration tools in recent years.
 
-## ✅ 関連スタイル
+## ✅ Related Styles
 
-- **Pipe & Filter**：1 プロセス内のシンプルなパイプラインの原型
-- **Streaming Pipeline**：リアルタイム処理への発展
-- **Data Architecture（Lambda / Kappa）**：バッチレイヤーとしての位置づけ
+- **Pipe & Filter**: Prototype of simple pipeline within 1 process.
+- **Streaming Pipeline**: Evolution to real-time processing.
+- **Data Architecture (Lambda / Kappa)**: Positioning as Batch Layer.
 
-## ✅ 代表的なフレームワーク
+## ✅ Representative Frameworks
 
-Batch Pipeline はバッチワークフローを支える基盤として広く利用されている。
+Batch Pipeline is widely used as a foundation supporting batch workflows.
 
-- **Apache Airflow / Dagster / Argo Workflows**  
-  DAG（有向非巡回グラフ）でパイプラインを組み、ステージごとの再実行や依存管理を実現。
+- **Apache Airflow / Dagster / Argo Workflows**
+  Build pipelines with DAG (Directed Acyclic Graph) and realize re-execution and dependency management per stage.
 
-- **AWS Glue / Google Cloud Dataflow（バッチモード）**  
-  ETL / データ変換処理を段階的パイプラインとして構築できる。
+- **AWS Glue / Google Cloud Dataflow (Batch Mode)**
+  Can build ETL / data transformation processing as a stepwise pipeline.
 
-- **Spark（Batch Processing）**  
-  RDD / DataFrame によるステージ処理がパイプラインに相当する。
+- **Spark (Batch Processing)**
+  Stage processing by RDD / DataFrame corresponds to pipeline.
 
-- **Airbyte / Fivetran（ELT ツール）**  
-  Extract → Load → Transform のステップを明確に構造化。
+- **Airbyte / Fivetran (ELT Tools)**
+  Clearly structure steps of Extract → Load → Transform.
 
-## ✅ このスタイルを支えるデザインパターン
+## ✅ Design Patterns Supporting This Style
 
-Batch Pipeline の内部では、段階的処理と再利用を支えるために次のパターンが使われる。
+Inside Batch Pipeline, the following patterns are used to support stepwise processing and reuse.
 
-- **Chain of Responsibility**  
-  ステージを直列につなぎ、順番に処理していく。
+- **Chain of Responsibility**
+  Connects stages serially and processes them in order.
 
-- **Template Method**  
-  ジョブの前処理・後処理、共通フローを統一化する。
+- **Template Method**
+  Unifies pre-processing / post-processing of jobs and common flows.
 
-- **Iterator**  
-  大規模データを逐次的に処理する際の補助として。
+- **Iterator**
+  As assistance when processing large scale data sequentially.
 
-- **Strategy**  
-  ステージごとに異なるアルゴリズムを差し替え可能にする。
+- **Strategy**
+  Makes algorithms different per stage replaceable.
 
-## ✅ まとめ
+## ✅ Summary
 
-Batch Pipeline は、
+Batch Pipeline is a structural style that:
 
-- バッチ処理の複雑さをステージ分割で制御し
-- 運用面（監視・再実行・リカバリ）も意識した構造スタイルである。
+- Controls complexity of batch processing by stage division.
+- Is conscious of operational aspects (monitoring, re-execution, recovery).
 
-バッチが「1 つの巨大なブラックボックス」になりつつあるなら、
-**パイプラインとしての再設計** を検討するサインかもしれない。
+If a batch is becoming "one huge black box",
+it might be a sign to consider **redesigning as a pipeline**.

@@ -1,81 +1,80 @@
 # 🧩 Event Sourcing
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-**状態そのものではなく「状態を変化させたイベント」を蓄積し、それを再生して現在の状態を得るスタイル。**
+**Style obtaining current state by accumulating "events that changed state" instead of state itself, and replaying them.**
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-- 更新履歴の完全な保持（監査・再現）
-- 競合の検知や非同期処理との整合性確保
-- 状態変化の意味（なぜこの状態になったか）を後から把握しやすく
+- Complete retention of update history (Audit / Reproduction).
+- Detection of conflict and ensuring consistency with asynchronous processing.
+- Making it easy to grasp meaning of state change (why it became this state) later.
 
-## ✅ 基本思想・ルール
+## ✅ Basic Philosophy & Rules
 
-- 変更操作はすべてイベントとして保存
-- 現在状態 = 過去イベントの再生結果（Replay）
-- Event Store（イベント専用 DB）を利用することが多い
+- All change operations are saved as events.
+- Current State = Replay result of past events.
+- Often uses Event Store (DB dedicated to events).
 
-### 概念図（Conceptual Diagram）
+### Conceptual Diagram
 
 ![Event Sourcing Architecture diagram](./event-sourcing.png)
 
-> 出典: Microsoft, “Event Sourcing pattern – Azure Architecture Center”.  
+> Source: Microsoft, “Event Sourcing pattern – Azure Architecture Center”.  
 > https://learn.microsoft.com/en-us/azure/architecture/patterns/event-sourcing
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-- 金融・会計など履歴管理が必須の領域
-- DDD の Aggregate と相性の良いドメイン
-- 自動再処理・再演算が必要なシステム
+- Areas where history management is essential like Finance / Accounting.
+- Domains compatible with DDD Aggregate.
+- Systems requiring automatic reprocessing / recalculation.
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-- 履歴保持の必要が薄いシンプルな CRUD
-- イベント量が多すぎ、リプレイコストが問題になるケース
+- Simple CRUD where necessity of history retention is thin.
+- Cases where event volume is too large and replay cost becomes a problem.
 
-## ✅ 歴史
+## ✅ History
 
-- Actor Model などイベント中心の計算モデルに影響
-- CQRS との併用が一般的
+- Influenced event-centric calculation models like Actor Model.
+- Combination with CQRS is common.
 
-## ✅ 関連スタイル
+## ✅ Related Styles
 
-- CQRS：書き込み側のモデルとして利用されやすい
-- EDA：イベント駆動システムと自然に統合
+- CQRS: Easily used as model on write side.
+- EDA: Naturally integrated with event-driven systems.
 
-## ✅ 代表的なフレームワーク
+## ✅ Representative Frameworks
 
-- **EventStoreDB**  
-  Event Sourcing 専用の Event Store として最も広く使われる。
+- **EventStoreDB**
+  Most widely used Event Store dedicated to Event Sourcing.
 
-- **Kafka / Kinesis / Pub/Sub**  
-  Append-only ログとしてイベントを蓄積し、Replay で状態再構築を行う実装が可能。
+- **Kafka / Kinesis / Pub/Sub**
+  Implementation accumulating events as Append-only log and performing state reconstruction by Replay is possible.
 
-- **Axon Framework（Java）**  
-  Event Sourcing と CQRS を統合した実装が容易。
+- **Axon Framework (Java)**
+  Easy to implement integrating Event Sourcing and CQRS.
 
-- **Temporal / Cadence**  
-  長期間のイベント履歴管理とワークフローのリプレイをサポート。
+- **Temporal / Cadence**
+  Supports long-term event history management and workflow replay.
 
-## ✅ このスタイルを支えるデザインパターン
+## ✅ Design Patterns Supporting This Style
 
-- **Memento**  
-  スナップショットの保存・復元に利用される。
+- **Memento**
+  Used for saving / restoring snapshots.
 
-- **Command**  
-  イベントを生成する操作オブジェクトとして扱う。
+- **Command**
+  Treats event as operation object generating it.
 
-- **Observer**  
-  イベント購読者が状態変化を通知として受け取る構造。
+- **Observer**
+  Structure where event subscriber receives state change as notification.
 
-- **Iterator**  
-  Event Stream の順次再生に利用される。
+- **Iterator**
+  Used for sequential replay of Event Stream.
 
-- **State**  
-  Aggregate がイベントを適用しながら内部状態を更新する。
+- **State**
+  Aggregate updates internal state applying events.
 
-## ✅ まとめ
+## ✅ Summary
 
-Event Sourcing は **履歴を第一級データとして扱い、  
-意味のある状態管理を実現するアーキテクチャ** である。
+Event Sourcing is an **architecture realizing meaningful state management by treating history as first-class data.**

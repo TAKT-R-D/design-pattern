@@ -1,130 +1,123 @@
-# 🧩 Saga パターン（分散トランザクション調整）
+# 🧩 Saga Pattern (Distributed Transaction Coordination)
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-**複数サービスにまたがる一連の処理を、「ローカルトランザクション＋補償アクション」の組み合わせとして調整するパターン。**
+**A pattern coordinating a series of processes across multiple services as a combination of "Local Transaction + Compensating Action".**
 
-2PC（2 フェーズコミット）のような強い分散トランザクションではなく、  
-最終的な一貫性（Eventual Consistency）を前提とするアプローチである。
+Approach assuming **Eventual Consistency** rather than strong distributed transaction like 2PC (2-Phase Commit).
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-マイクロサービス化により、1 つのビジネス操作が：
+Due to microservices, one business operation came to span:
 
-- 複数のサービス
-- 複数のデータストア
+- Multiple services
+- Multiple data stores
 
-にまたがるようになりました。その結果：
+As a result:
 
-- どこか 1 箇所が失敗したときのロールバックが難しい
-- 分散トランザクション（XA, 2PC）は重く、クラウド・マイクロサービスと相性が悪い
+- Rollback when one place fails is difficult.
+- Distributed transactions (XA, 2PC) are heavy and incompatible with cloud / microservices.
 
-Saga はこれに対して：
+Saga tries to maintain consistency with the idea:
 
-> 「各サービスは自分の DB に対してローカルトランザクションを行い、  
->  失敗したら補償トランザクションで取り消す」
+> "Each service performs local transaction on its own DB, and cancels with compensating transaction if failed."
 
-という考え方で整合性を保とうとします。
+## ✅ Basic Philosophy & Rules
 
-## ✅ 基本思想・ルール
+### ● Local Transaction
 
-### ● ローカルトランザクション
+- Each service executes ACID transaction on its own DB.
+- Does not span global transaction.
 
-- 各サービスは、自身の DB に対して ACID トランザクションを実行
-- グローバルトランザクションは張らない
+### ● Compensating Transaction
 
-### ● 補償トランザクション
+- Processing to cancel "steps already succeeded" at failure.
+  - Example: Cancel reservation, revert inventory allocation, refund payment.
 
-- 失敗時に「既に成功したステップ」を取り消すための処理
-  - 例：予約を取り消す、在庫引き当てを戻す、支払いを返金する
+### ● Orchestration vs Choreography
 
-### ● オーケストレーション vs コレオグラフィ
+- Orchestration Type
+  - "Orchestrator" controlling Saga exists and calls each step in order.
 
-- オーケストレーション型
+- Choreography Type
+  - Each service subscribes to events and autonomously proceeds to next step.
 
-  - Saga を制御する「オーケストレーター」が存在し、各ステップを順に呼び出す
+## ✅ Suitable Applications
 
-- コレオグラフィ型
-  - 各サービスがイベントを購読し、自律的に次のステップを進める
+- EC Order Processing (Payment, Inventory, Delivery, Points, etc.).
+- Reservation System (Seat, Payment, Notification).
+- B2B processes assuming multiple service coordination.
 
-## ✅ 得意なアプリケーション
+Features:
 
-- EC の注文処理（決済・在庫・配送・ポイントなどの連携）
-- 予約システム（座席・支払い・通知）
-- 複数サービス連携が前提の B2B プロセス
+- Can maintain consistency to some extent without using strong distributed transactions.
+- Can explicitly design failure patterns (compensation scenarios).
 
-特徴：
+## ❌ Unsuitable Cases
 
-- 強い分散トランザクションを使わずに、一貫性をある程度保てる
-- 失敗パターン（補償シナリオ）を明示的に設計できる
+- Processing that absolutely cannot tolerate intermediate states (Some areas of finance etc.).
+- Processing flow is short and completes within single service.
 
-## ❌ 不向きなケース
+Also, if Saga design is wrong:
 
-- 絶対に中途半端な状態を許容できない処理（金融の一部領域など）
-- 処理フローが短く、単一サービス内で完結する場合
+- Compensation logic becomes complex.
+- Scenario at failure becomes hard to read.
 
-また、Saga の設計を誤ると：
+So domain understanding and identifying failure patterns are essential.
 
-- 補償ロジックが複雑化
-- 障害時のシナリオが読みにくくなる
+## ✅ History (Genealogy / Parent Styles)
 
-ため、ドメイン理解と失敗パターンの洗い出しが不可欠である。
+- Originally emerged from dissertation on database transaction management.
+- Re-focused in microservices era, treated as realistic solution for distributed transactions.
+- Often used in combination with EDA / CQRS / Event Sourcing.
 
-## ✅ 歴史（系譜・親スタイル）
+## ✅ Related Styles
 
-- 元々はデータベースのトランザクション管理に関する論文から登場
-- マイクロサービス時代に再注目され、分散トランザクションの現実解として扱われるように
-- EDA / CQRS / Event Sourcing などと組み合わせて使われることも多い
+- **Event-driven Architecture**: Choreography type Saga is built on EDA.
+- **REST / gRPC**: Used for step calls in Orchestration type.
+- **CQRS / Event Sourcing**: Good compatibility with tracking state transitions and implementing compensation logic.
 
-## ✅ 関連スタイル
+## ✅ Representative Frameworks
 
-- **Event-driven Architecture**：コレオグラフィ型 Saga は EDA 上に構築される
-- **REST / gRPC**：オーケストレーション型でのステップ呼び出しに使われる
-- **CQRS / Event Sourcing**：状態遷移の追跡や補償ロジックの実装と相性が良い
+Saga is a pattern, but frameworks and platforms supporting implementation exist.
 
-## ✅ 代表的なフレームワーク
+- **Workflow Engines like Camunda / Zeebe / JBPM**
+  Can orchestrate long-running business processes based on BPMN.
 
-Saga はパターンですが、実装を支援するフレームワークや基盤も存在します。
+- **Temporal / Cadence**
+  Platform to describe workflows in code and manage retry / compensation / timeout.
 
-- **Camunda / Zeebe / JBPM などのワークフローエンジン**  
-  BPMN ベースで長時間実行のビジネスプロセスをオーケストレーションできる。
+- **AWS Step Functions**
+  Can build Saga-like flows as orchestration infrastructure for distributed processing.
 
-- **Temporal / Cadence**  
-  コードでワークフローを記述し、リトライ／補償／タイムアウトを管理するプラットフォーム。
+- **Kafka + Custom Orchestrator**
+  Many implementations control Saga with application code while using events on Kafka.
 
-- **AWS Step Functions**  
-  分散処理のオーケストレーション基盤として、Saga 的なフローを構築できる。
+## ✅ Design Patterns Supporting This Style
 
-- **Kafka + カスタム Orchestrator**  
-  Kafka 上のイベントを使いながら、アプリケーションコードで Saga を制御する実装も多い。
+Saga itself is an architecture pattern, but multiple design patterns are active inside.
 
-## ✅ このスタイルを支えるデザインパターン
+- **Command**
+  Expresses processing of each step (Reservation, Billing, Inventory Allocation etc.) as operation object.
 
-Saga はそれ自体がアーキテクチャパターンですが、内部では複数のデザインパターンが活躍する。
+- **Memento**
+  Appears as idea when recording/restoring how far processing advanced and to which state to return.
 
-- **Command**  
-  各ステップの処理（予約・課金・在庫引き当てなど）を操作オブジェクトとして表現する。
+- **State**
+  Explicitly expresses state of entire Saga (In Progress / Success / Compensating / Failed etc.).
 
-- **Memento**  
-  どこまで処理が進んだか、どの状態に戻すべきかを記録・復元する際の考え方として現れる。
+- **Chain of Responsibility**
+  Structure tracing steps in order and switching to compensation flow if failed in between.
 
-- **State**  
-  Saga 全体の状態（進行中／成功／補償中／失敗など）を明示的に表現する。
+- **Mediator**
+  In Orchestration type Saga, Orchestrator itself acts as mediator between services.
 
-- **Chain of Responsibility**  
-  ステップを順に辿り、途中で失敗したら補償フローに切り替える構造。
+## ✅ Summary
 
-- **Mediator**  
-  オーケストレーション型 Saga では、オーケストレーター自体が各サービス間の調停役となる。
+Saga Pattern holds an important position as:
 
-## ✅ まとめ
+- Practical solution for distributed transaction problem in microservices era.
+- Design assuming "Eventual Consistency" instead of "Strong Consistency".
 
-Saga パターンは、
-
-- マイクロサービス時代の分散トランザクション問題に対する実践的な解決策
-- 「強い一貫性」ではなく「最終的な一貫性」を前提にした設計
-
-として重要な位置づけを持つ。
-
-導入する際は、  
-**「どのステップで失敗しうるか」「どう補償するか」** を丁寧に設計することが鍵になる。
+When introducing,
+**"At which step can it fail" and "How to compensate"** are keys to careful design.

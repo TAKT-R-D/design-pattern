@@ -1,111 +1,104 @@
-# 🧩 Event Loop ベース構造
+# 🧩 Event Loop Based Structure
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-**1 本（または少数）のイベントループが、非同期 I/O とコールバック／ハンドラを順に処理していく構造スタイル。**  
-Node.js やブラウザの JavaScript 実行環境などで代表的。
+**A structural style where one (or few) event loops process asynchronous I/O and callbacks/handlers in order.**
+Representative in Node.js and browser JavaScript execution environments.
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-- リクエストごとにスレッドを立てる同期 I/O モデルのスケーラビリティ限界
-- スレッドコンテキストスイッチやロックコスト
-- 大量接続（C10K 問題など）への対応
+- Scalability limit of synchronous I/O model creating threads per request.
+- Thread context switch and lock costs.
+- Handling massive connections (C10K problem, etc.).
 
-Event Loop モデルは、
+Event Loop model realizes high throughput by:
 
-> 「スレッドを増やす代わりに、  
->  非同期 I/O とイベントループで多くの接続をさばく」
+> "Handling many connections with asynchronous I/O and event loop instead of increasing threads."
 
-ことで、高スループットを実現する。
-
-## ✅ 基本思想・ルール
+## ✅ Basic Philosophy & Rules
 
 ### ● Event Loop
 
-- イベントキューからイベントを 1 つずつ取り出し、  
-  対応するハンドラを実行するループ
+- Loop that takes events one by one from the event queue and executes corresponding handlers.
 
-### ● 非同期 I/O
+### ● Asynchronous I/O
 
-- I/O 操作（ネットワーク、ファイルなど）は非同期で発行
-- 完了時にイベントがキューに積まれ、次のループで処理される
+- I/O operations (Network, File, etc.) are issued asynchronously.
+- Event is stacked in queue upon completion, and processed in the next loop.
 
-### ● 単一スレッドモデル（のことが多い）
+### ● Single Thread Model (Often)
 
-- ロックや共有メモリを極力使わない設計
-- 代わりにコールバック／Promise／async/await などで非同期を表現
+- Design that minimizes use of locks and shared memory.
+- Expresses asynchrony with Callback / Promise / async/await instead.
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-- 多数のクライアント接続を扱う Web サーバ
-- チャット・ゲーム・リアルタイム Web アプリ
-- 軽量な API サーバ
+- Web servers handling many client connections.
+- Chat / Game / Real-time Web apps.
+- Lightweight API servers.
 
-特徴：
+Features:
 
-- I/O バウンドな処理に強い
-- メモリ消費が少なく、少ないスレッドでスケールしやすい
+- Strong in I/O bound processing.
+- Low memory consumption, easy to scale with few threads.
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-- CPU バウンドな重い計算を多く含むアプリ
-- 長時間ブロッキングする処理（ループを塞いでしまう）
+- Apps containing many CPU bound heavy calculations.
+- Long blocking processing (blocks the loop).
 
-こうした処理は、ワーカー（別スレッド／プロセス）に逃がす必要がある。
+Such processing needs to be escaped to workers (separate threads/processes).
 
-## ✅ 歴史（系譜・親スタイル）
+## ✅ History (Genealogy / Parent Styles)
 
-- GUI イベントループ（メインスレッド）からの発展
-- 非同期 I/O モデル（epoll, kqueue 等）と組み合わせてサーバサイドへ
-- Node.js をはじめとするイベント駆動サーバプラットフォームで広く普及
+- Development from GUI event loop (main thread).
+- Combined with asynchronous I/O models (epoll, kqueue, etc.) to server side.
+- Widely spread with event-driven server platforms like Node.js.
 
-## ✅ 関連スタイル
+## ✅ Related Styles
 
-- **Actor Model**：メッセージ駆動だが、実装に Event Loop を利用することも多い
-- **Reactive Streams**：イベントストリーム処理の抽象化
-- **EDA / Pub-Sub**：システム全体でのイベント駆動構造
+- **Actor Model**: Message-driven, but often uses Event Loop for implementation.
+- **Reactive Streams**: Abstraction of event stream processing.
+- **EDA / Pub-Sub**: Event-driven structure of the entire system.
 
-## 8. 代表的なフレームワーク
+## ✅ Representative Frameworks
 
-Event Loop ベース構造は、非同期 I/O を中心としたプラットフォームで広く採用されている。
+Event Loop based structure is widely adopted in platforms centered on asynchronous I/O.
 
-- **Node.js**  
-  もっとも代表的な Event Loop 実装。単一スレッド＋非同期 I/O のモデルが中核。
+- **Node.js**
+  Most representative Event Loop implementation. Single thread + Asynchronous I/O model is core.
 
-- **ブラウザ（JavaScript ランタイム）**  
-  `setTimeout` / `Promise` / `fetch` などはすべて Event Loop の上で動作。
+- **Browser (JavaScript Runtime)**
+  `setTimeout` / `Promise` / `fetch` etc. all operate on Event Loop.
 
-- **Deno / Bun（JavaScript ランタイム）**  
-  Node.js と同様のイベントループモデルを採用。
+- **Deno / Bun (JavaScript Runtime)**
+  Adopts event loop model similar to Node.js.
 
-- **Nginx / Envoy などの高性能サーバ**  
-  コア内部でイベントループ＋非同期 I/O による高スループットを実現。
+- **High Performance Servers like Nginx / Envoy**
+  Realize high throughput by event loop + asynchronous I/O inside core.
 
-## 9. このスタイルを支えるデザインパターン
+## ✅ Design Patterns Supporting This Style
 
-Event Loop 自体は低レイヤの実行モデルだが、次のパターンと強く結びつく。
+Event Loop itself is a low-level execution model, but strongly linked with the following patterns.
 
-- **Observer**  
-  イベント発火 → ハンドラの実行という通知モデルの基本。
+- **Observer**
+  Basic of notification model: Event firing → Handler execution.
 
-- **Command**  
-  非同期コールバックや処理を“操作オブジェクト”として扱う場面で利用。
+- **Command**
+  Used when treating asynchronous callbacks or processing as "operation objects".
 
-- **Mediator**  
-  複数のイベント／ハンドラを調整する仕組みとして使われることがある。
+- **Mediator**
+  Sometimes used as a mechanism to coordinate multiple events/handlers.
 
-- **Iterator**  
-  非同期ストリームを逐次処理する際に役立つ（AsyncIterator など）。
+- **Iterator**
+  Useful when processing asynchronous streams sequentially (AsyncIterator etc.).
 
-## ✅ まとめ
+## ✅ Summary
 
-Event Loop ベース構造は、
+Event Loop based structure is a style realizing high throughput with simple ideas:
 
-- 非同期 I/O
-- イベントキュー
-- 単一（または少数）のループ
+- Asynchronous I/O
+- Event Queue
+- Single (or few) Loops
 
-というシンプルな考え方で高スループットを実現するスタイルである。
-
-I/O バウンドなサーバを設計するときの、  
-**“デフォルト候補” の一つとして検討するとよい。**
+It is good to consider as **one of the "default candidates"** when designing I/O bound servers.

@@ -1,117 +1,111 @@
 # 🧩 Reactive Streams
 
-## ✅ このスタイルの概要
+## ✅ Overview of this Style
 
-**非同期ストリーム（データの流れ）を扱う際の、「ストリーム処理＋バックプレッシャー」を標準化した仕様／スタイル。**
+**A specification/style that standardizes "stream processing + backpressure" when handling asynchronous streams (data flows).**
 
-## ✅ 解決しようとした問題
+## ✅ Problems Solved
 
-- 非同期ストリーム処理がライブラリごとにバラバラ（Observable / Future / Promise など）
-- 速いプロデューサーと遅いコンシューマーの速度差（バックプレッシャー問題）
-- ストリームの合成・エラー処理・キャンセルの扱いが複雑
+- Asynchronous stream processing varies between libraries (Observable / Future / Promise, etc.).
+- Speed difference between fast producers and slow consumers (backpressure problem).
+- Complexity in stream composition, error handling, and cancellation.
 
-Reactive Streams は、
+Reactive Streams was proposed as:
 
-> 「非同期ストリームを安全かつ一貫した形で扱うための共通プロトコル」
+> "A common protocol for handling asynchronous streams safely and consistently."
 
-として提案された。
-
-## ✅ 基本思想・ルール
+## ✅ Basic Philosophy and Rules
 
 ### ● Publisher / Subscriber / Subscription / Processor
 
-- **Publisher**：データを発行する側
-- **Subscriber**：データを購読する側
-- **Subscription**：購読関係の管理（リクエスト数量、キャンセルなど）
-- **Processor**：Publisher と Subscriber の両方として振る舞う中間処理
+- **Publisher**: The side that emits data.
+- **Subscriber**: The side that subscribes to data.
+- **Subscription**: Manages the subscription relationship (request quantity, cancellation, etc.).
+- **Processor**: Intermediate processing that behaves as both a Publisher and a Subscriber.
 
-### ● バックプレッシャー
+### ● Backpressure
 
-- Subscriber が `request(n)` のように、  
-  「今これだけ処理できる」と通知
-- Publisher はそれを超える量を一方的に送らない
+- The Subscriber notifies, for example via `request(n)`,  
+  "I can process this much right now."
+- The Publisher does not unilaterally send more than that amount.
 
-このプロトコルにより、
+This protocol makes it easier to ensure:
 
-- ストリーム処理の合成
-- 高負荷時の安定性
+- Composition of stream processing.
+- Stability under high load.
 
-が確保しやすくなる。
+## ✅ Suitable Applications
 
-## ✅ 得意なアプリケーション
+- Event stream processing (messaging, logs, sensor information).
+- Web / API servers that make heavy use of asynchronous processing.
+- Internal implementation of inter-microservice communication (asynchronous message-based).
 
-- イベントストリーム処理（メッセージング、ログ、センサー情報）
-- 非同期処理を多用する Web / API サーバ
-- マイクロサービス間通信（非同期メッセージベース）の内部実装
+## ❌ Unsuitable Cases
 
-## ❌ 不向きなケース
+- Applications where the processing flow is simple and normal synchronous processing is sufficient.
+- Small-scale systems where asynchronous streams rarely appear.
 
-- 処理フローが単純で、通常の同期処理で十分なアプリ
-- 非同期ストリームがほとんど登場しない小規模システム
+Adopting Reactive Streams increases the abstraction layer, so  
+its value emerges in domains where "streams are the main actor".
 
-Reactive Streams を採用すると抽象化レイヤが増えるため、  
-その価値が出るのは「ストリームが主役」の領域です。
+## ✅ History (Genealogy / Parent Styles)
 
-## ✅ 歴史（系譜・親スタイル）
+- Emerged from the context of Reactive Programming.
+- Reactive Streams specification for JVM, ReactiveX family, etc.
+- Often discussed in conjunction with the Reactive Manifesto and Reactive System design.
 
-- リアクティブプログラミングの文脈から登場
-- JVM の Reactive Streams 仕様、ReactiveX ファミリなど
-- Reactive Manifesto やリアクティブシステム設計と併せて語られることが多い
+## ✅ Related Styles
 
-## ✅ 関連スタイル
+- **Flow / Pipeline**: Combined with flow design of stream processing.
+- **Event Loop / Actor Model**: Used as a foundation for asynchronous execution.
+- **EDA / Pub-Sub**: Event-driven structure between systems.
 
-- **Flow / Pipeline 系**：ストリーム処理のフロー設計と組み合わせる
-- **Event Loop / Actor Model**：非同期実行の土台として使われる
-- **EDA / Pub-Sub**：システム間のイベント駆動構造
+## 8. Representative Frameworks
 
-## 8. 代表的なフレームワーク
+The Reactive Streams specification is widely adopted across multiple implementations.
 
-Reactive Streams 仕様は複数の実装で広く普及しています。
+- **Reactive Streams for JVM (Standard Specification)**  
+  A common protocol defining Publisher / Subscriber.
 
-- **Reactive Streams for JVM（標準仕様）**  
-  Publisher / Subscriber を定義した共通プロトコル。
+- **Project Reactor (Java)**  
+  The foundation of Spring WebFlux. Asynchronous streams using Mono / Flux.
 
-- **Project Reactor（Java）**  
-  Spring WebFlux の基盤。Mono / Flux による非同期ストリーム。
-
-- **RxJava / RxJS / ReactiveX ファミリ**  
-  Observable ベースのリアクティブストリームライブラリ。
+- **RxJava / RxJS / ReactiveX Family**  
+  Observable-based reactive stream libraries.
 
 - **Akka Streams**  
-  Actor System 上のストリーム処理エンジン。
+  Stream processing engine on top of Actor System.
 
-- **Vert.x（Java）**  
-  非同期アプリケーション基盤で Reactive Streams に対応。
+- **Vert.x (Java)**  
+  Supports Reactive Streams in an asynchronous application foundation.
 
-## 9. このスタイルを支えるデザインパターン
+## 9. Design Patterns Supporting this Style
 
-Reactive Streams の内部モデルは複数パターンの組み合わせで成り立っています。
+The internal model of Reactive Streams consists of a combination of multiple patterns.
 
 - **Iterator**  
-  ストリームを「逐次処理する抽象」として扱う。
+  Treats streams as an "abstraction for sequential processing".
 
 - **Observer**  
-  Publisher → Subscriber へのデータ通知の根幹構造。
+  The fundamental structure for data notification from Publisher → Subscriber.
 
 - **Mediator**  
-  Subscription が Publisher と Subscriber の調停役として働く。
+  Subscription acts as a mediator between Publisher and Subscriber.
 
 - **Chain of Responsibility**  
-  複数の Processor（map/filter/flatMap）が連鎖する構造。
+  A structure where multiple Processors (map/filter/flatMap) are chained.
 
 - **Strategy**  
-  バックプレッシャー処理（要求数管理など）のカスタム戦略を切り替える場面で使われる。
+  Used when switching custom strategies for backpressure processing (request count management, etc.).
 
-## ✅ まとめ
+## ✅ Summary
 
-Reactive Streams は、
+Reactive Streams is a style/specification with keywords:
 
-- 非同期ストリーム
-- バックプレッシャー
-- 安全な合成
+- Asynchronous Streams
+- Backpressure
+- Safe Composition
 
-をキーワードにしたスタイル／仕様です。
-
-イベント駆動・ストリーミングが前提のシステムでは、  
-**「非同期ストリームをどう安全に扱うか」** という観点で、  
-Flow / Pipeline 系スタイルとセットで検討するとよい。
+In systems where event-driven/streaming is a prerequisite,  
+it is good to consider it in conjunction with Flow / Pipeline styles,  
+from the perspective of **"how to handle asynchronous streams safely"**.

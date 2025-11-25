@@ -1,68 +1,67 @@
-# 🧩 Big Ball of Mud（泥団子アーキテクチャ）
+# 🧩 Big Ball of Mud
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-構造が崩壊し、**場当たり的な実装が積み重なった結果できあがる巨大なスパゲッティ構造**。  
-ソフトウェアアーキテクチャにおける代表的なアンチパターン。
+A **huge spaghetti structure resulting from the accumulation of haphazard implementations** where structure has collapsed.
+A representative anti-pattern in software architecture.
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-実は Big Ball of Mud は **問題を解決するために設計されたものではなく、状況の必然で生まれる構造である。**
+Actually, Big Ball of Mud is **not designed to solve problems, but is a structure born from the inevitability of circumstances.**
 
-典型的な背景には以下がある：
+Typical backgrounds include:
 
-- とにかく早く動くものを作る必要がある
-- 設計よりも実装が優先される文化
-- チーム間の調整がなく、誰でもコードをどこにでも書ける
-- 設計者不在、もしくは設計ルールが守られない
-- 機能追加が場当たり的で、リファクタリングが追いつかない
+- Need to make something working ASAP.
+- Culture prioritizing implementation over design.
+- No coordination between teams, anyone can write code anywhere.
+- Absence of architects, or design rules are not observed.
+- Feature additions are haphazard, refactoring cannot keep up.
 
-## ✅ 基本思想・特徴（＝アンチパターンの兆候）
+## ✅ Basic Philosophy & Characteristics (= Signs of Anti-pattern)
 
-Big Ball of Mud には以下の特徴がある：
+Big Ball of Mud has the following characteristics:
 
-- **責務が曖昧**：ビジネスロジック・データアクセス・UI が絡み合う
-- **依存関係が混乱**：モジュール間の依存方向が統一されていない
-- **重複コードの爆発**：コピー＆ペーストが頻発
-- **変更が困難**：小さな修正で別の場所が壊れる
-- **新規開発が恐怖**：既存構造を壊さずに機能を追加する手段がない
-- **テスト不可能**：テスト単位が巨大 or 密結合すぎて書けない
+- **Ambiguous Responsibilities**: Business logic, data access, and UI are intertwined.
+- **Confused Dependencies**: Dependency directions between modules are not unified.
+- **Explosion of Duplicate Code**: Copy & Paste occurs frequently.
+- **Difficult to Change**: Small fixes break other places.
+- **Fear of New Development**: No means to add features without breaking existing structure.
+- **Untestable**: Test units are huge or too tightly coupled to write.
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-“得意” というより、**成立してしまう状況がある：**
+Rather than "suitable", **there are situations where it holds up:**
 
-- 超小規模な一発スクリプト
-- 数日で捨てることが確定しているコード
-- 1 人の開発者だけで動く簡易ツール
+- Ultra-small one-off scripts.
+- Code guaranteed to be discarded in a few days.
+- Simple tools running with only one developer.
 
-## ❌ 不向きなケース
+## ❌ Unsuitable Cases
 
-ほぼすべての長期運用プロダクトで不向き：
+Unsuitable for almost all long-term operation products:
 
-- 中〜大規模システム
-- 仕様変更が頻繁に発生するアプリ
-- チーム開発が継続するプロダクト
-- 品質や可観測性が必要なプロダクト
-- 複数 UI・複数サービスから利用されるドメインを持つ場合
+- Medium to large systems.
+- Apps with frequent specification changes.
+- Products with continuous team development.
+- Products requiring quality or observability.
+- Domains used from multiple UIs / multiple services.
 
-## ✅ 歴史（系譜・親スタイル）
+## ✅ History (Genealogy / Parent Styles)
 
-- ソフトウェアアーキテクチャの黎明期に“自然発生的に”生まれた原始形態
-- Fowler や他の著者によりアンチパターンとして整理された
-- その後、レイヤードアーキテクチャや DDD などが “脱 Big Ball” を目指して発展していった
+- Primitive form born "naturally" in the dawn of software architecture.
+- Organized as an anti-pattern by Fowler and other authors.
+- Later, Layered Architecture and DDD evolved aiming for "De-Big Ball".
 
-## ✅ 関連スタイル
+## ✅ Related Styles
 
-- **Transaction Script**（同じ early 系統、より軽度の混沌）
-- **Classic Layered Architecture**（Big Ball の問題へ最初に体系的に対処した）
-- **Hexagonal / Onion / Clean Architecture**（外部依存からの分離を強く求めた発展系）
+- **Transaction Script** (Same early family, milder chaos)
+- **Classic Layered Architecture** (First systematic approach to Big Ball problems)
+- **Hexagonal / Onion / Clean Architecture** (Evolved forms strongly seeking separation from external dependencies)
 
-## ✅ まとめ
+## ✅ Summary
 
-Big Ball of Mud は「悪いコードの書き方」ではなく、  
-**設計が成り立たなかった状況を可視化した結果としての構造** である。
+Big Ball of Mud is not a "bad way of writing code", but
+**A structure as a result of visualizing situations where design did not hold up.**
 
-このスタイルを理解することは、  
-モダンアーキテクチャ（Layered / DDD / Hexagonal）が  
-なぜ存在し、何を解決しようとしたのかを理解するための土台になる。
+Understanding this style becomes the foundation for understanding
+why Modern Architectures (Layered / DDD / Hexagonal) exist and what they tried to solve.

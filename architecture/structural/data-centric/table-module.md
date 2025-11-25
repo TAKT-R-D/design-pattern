@@ -1,110 +1,106 @@
 # 🧩 Table Module
 
-## ✅ このスタイルの概要
+## ✅ Overview
 
-**「テーブル全体（集合）に対するロジックを 1 つのモジュールにまとめる」**  
-というデータ中心の構造スタイル。  
-Active Record が “1 行＝ 1 オブジェクト” を中心にするのに対し、  
-Table Module は “テーブル＝ 1 モジュール” を扱う。
+A data-centric structural style that **"groups logic for the entire table (set) into one module"**.
+While Active Record centers on "1 Row = 1 Object",
+Table Module handles "Table = 1 Module".
 
-## ✅ 解決しようとした問題
+## ✅ Problems Addressed
 
-Active Record では集合（複数行）を扱う際にロジックが散りがちです。
+In Active Record, logic tends to scatter when handling sets (multiple rows).
 
-- 集計処理を書く場所がバラバラになる
-- バッチ処理・レポート処理の置き場所に迷う
-- 1 行の状態より **データ集合全体に対する操作** が中心なのに表現しづらい
+- Places to write aggregation processing become scattered.
+- Confusion about where to place batch processing / reporting processing.
+- Hard to express operations centered on **data sets** rather than single row states.
 
-Table Module はこうした問題を整理し、  
-**「集合的なロジックはこのモジュールに全部置く」** という明確な置き場を作ります。
+Table Module organizes these problems and creates a clear place:
+**"Put all collective logic in this module."**
 
-## ✅ 基本思想・ルール
+## ✅ Basic Philosophy & Rules
 
-- テーブル 1 つにつき **モジュール/クラス 1 つ**
-- モジュールは **行ではなく集合（テーブル全体）** を扱う
-- 操作はテーブルに対する関数として定義する
-  - 例：
+- **1 Module/Class** per 1 Table.
+- The module handles **sets (entire table) not rows**.
+- Operations are defined as functions on the table.
+  - Examples:
     - `findByStatus(status)`
     - `calculateMonthlyTotals()`
     - `bulkUpdateFlags(ids)`
-- 主にクエリ・集計・一括更新など、データ処理寄りのロジックが対象
+- Mainly targets data processing logic like queries, aggregation, and bulk updates.
 
-### Active Record との役割分担イメージ
+### Image of Role Division with Active Record
 
-| ロジックの種類       | Active Record | Table Module |
-| -------------------- | ------------- | ------------ |
-| 行単位の属性操作     | ◎             | △            |
-| 集計・検索・集合処理 | △             | ◎            |
+| Logic Type | Active Record | Table Module |
+| :--- | :--- | :--- |
+| Row-level attribute operation | ◎ | △ |
+| Aggregation / Search / Set operation | △ | ◎ |
 
-## ✅ 得意なアプリケーション
+## ✅ Suitable Applications
 
-- レポートや集計処理が頻繁に存在する業務システム
-- バッチ処理が多いアプリケーション
-- データウェアハウスへのロード前処理
-- 大量データを前提とした集計／分析前処理
+- Business systems with frequent reporting and aggregation processing.
+- Applications with many batch processes.
+- Pre-processing for loading into Data Warehouses.
+- Aggregation / Analysis pre-processing assuming large amounts of data.
 
-特に：
+Especially effective when you want to create a state where:
 
-> 「このテーブルの集計処理はここを見れば全部分かる」
+> "If you look here, you understand all aggregation processing for this table."
 
-という状態を作りたい場面で非常に有効である。
+## ❌ Unsuitable Cases
 
-## ❌ 不向きなケース
+- When handling complex business rules centered on objects.
+- Apps centered on row-level behavior and state transitions.
+- Small CRUD apps where Active Record alone is sufficient.
 
-- オブジェクト中心で複雑なビジネスルールを扱う場合
-- 行単位での振る舞いや状態遷移が中心のアプリ
-- Active Record だけで十分な小規模 CRUD アプリ
+## ✅ History (Genealogy / Parent Styles)
 
-## ✅ 歴史（系譜・親スタイル）
+- Defined in Fowler's _Patterns of Enterprise Application Architecture_.
+- A type of "Table-centric" idea, sibling relationship with Active Record.
+- Practical pattern as a place for aggregate operations.
+- Different domain from Repository Pattern (DDD), but roles are similar in some scenes.
 
-- Fowler の _Patterns of Enterprise Application Architecture_ で定義
-- 「テーブル中心」発想の一種で、Active Record と兄弟関係
-- 集約オペレーションの置き場として実践的なパターン
-- Repository パターン（DDD）とは異なる領域だが、役割が似る場面もある
+## ✅ Related Styles
 
-## ✅ 関連スタイル
+- **Active Record**: Strong in row-level operations.
+- **Anemic Domain Model**: Often occurs concurrently in data-centric contexts.
+- **Repository Pattern**: Set operations in DDD. Philosophy differs but relationship is deep.
+- **Read Model of CQRS**: "Set processing for views" like Table Module appears.
 
-- **Active Record**：行単位の操作に強い
-- **Anemic Domain Model**：データ中心の文脈でよく併発
-- **Repository パターン**：DDD の集合操作。思想は異なるが関係性は深い
-- **CQRS の Read Model**：Table Module 的な“ビュー用集合処理”が登場する
+## ✅ Representative Frameworks
 
-## ✅ 代表的なフレームワーク
+Few frameworks adopt Table Module directly, but it appears naturally in contexts like:
 
-Table Module 自体を直接採用するフレームワークは少ないが、次のような文脈で自然に登場する。
+- **Django ORM (Set Operations)**
+  Django's QuerySet is rich in operations handling entire tables, making Table Module-like usage easy.
 
-- **Django ORM（集合操作）**  
-  Django の QuerySet はテーブル全体を扱う操作が豊富で、Table Module 的利用がしやすい。
+- **ETL / DWH Pre-processing (Airflow / Spark Pre-processing)**
+  Structure grouping set logic into one module matches Table Module design.
 
-- **ETL / DWH 前処理（Airflow / Spark 前処理）**  
-  集合ロジックを 1 モジュールにまとめる構造は Table Module 的設計に一致する。
+- **Batch Processing Systems (Java/Spring Batch, Node.js scripts)**
+  When writing aggregation / bulk update processing by table, it naturally becomes Table Module.
 
-- **バッチ処理系（Java/Spring Batch, Node.js scripts）**  
-  テーブル単位で集計・一括更新処理を書く場合、自然と Table Module になる。
+## ✅ Design Patterns Supporting This Style
 
-## ✅ このスタイルを支えるデザインパターン
+- **Facade**
+  Acts as an "entry point" for set processing (aggregation / search / bulk update).
 
-- **Facade**  
-  集合処理（集計・検索・一括更新）の“入口”として働く。
+- **Template Method**
+  Useful when unifying common steps in aggregation or reporting processing.
 
-- **Template Method**  
-  集計処理やレポート処理で共通ステップを統一するときに便利。
+- **Strategy**
+  Used when switching aggregation algorithms.
 
-- **Strategy**  
-  集計アルゴリズムを切り替える場面で使用される。
+- **Iterator**
+  Useful when processing large amounts of data in a stream-like manner.
 
-- **Iterator**  
-  大量データをストリーム的に処理する場合に役立つ。
+## ✅ Summary
 
-## ✅ まとめ
+Table Module is a **data-centric style for aggregating collective logic in one place.**
 
-Table Module は、  
-**集合的なロジックを一箇所に集約するためのデータ中心スタイル** である。
+Complementing Active Record:
 
-Active Record を補完する形で：
+- Single Row Operation → Active Record
+- Collective Operation → Table Module
 
-- 単一行の操作 → Active Record
-- 集合的な操作 → Table Module
-
-という分担がうまく機能するケースが多く、  
-実務の CRUD ＋集計系アプリで特に効果を発揮する。
+This division often functions well,
+and is particularly effective in practical CRUD + Aggregation apps.
