@@ -92,3 +92,16 @@ Plugin Architecture is more application-oriented compared to Microkernel, but th
 
 - **Decorator**  
   Often used to wrap plugin functions and extend them.
+
+## ✅ Summary
+
+Plugin Architecture is a style that:
+
+- Addresses diverse user needs
+- Enables ecosystem construction by third parties
+
+By **providing "Extension Points" in the application to allow features to be added or customized later**.
+
+It is widely adopted as an application-level implementation of Microkernel Architecture, commonly seen in IDEs, CMS, and SaaS platforms.  
+However, since designing extension points and managing security can become complex, it is important to balance the need for extensibility with the implementation costs.
+
