@@ -1,3 +1,7 @@
+---
+pagination_label: No Undo/Redo History Summary
+---
+
 # Summary
 
 ## Pattern Comparison

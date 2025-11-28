@@ -1,3 +1,7 @@
+---
+pagination_label: Scattered Concerns Summary
+---
+
 # Summary
 
 ## Pattern Comparison

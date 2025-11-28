@@ -1,5 +1,6 @@
 ---
 sidebar_label: はじめに
+pagination_label: 運用・文化・品質概要
 ---
 
 # Cross-cutting & Socio-technical（運用・文化・品質）

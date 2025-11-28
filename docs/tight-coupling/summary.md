@@ -1,3 +1,7 @@
+---
+pagination_label: Tight Coupling Summary
+---
+
 # Summary
 
 ## Pattern Comparison

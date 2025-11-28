@@ -1,5 +1,6 @@
 ---
 sidebar_label: Introduction
+pagination_label: Understanding the Differences Between Patterns
 ---
 
 # Understanding the Differences Between Patterns

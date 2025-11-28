@@ -1,5 +1,6 @@
 ---
 sidebar_label: はじめに
+pagination_label: サービス構成・粒度概要
 ---
 
 # System Topologies（サービス構成・粒度）

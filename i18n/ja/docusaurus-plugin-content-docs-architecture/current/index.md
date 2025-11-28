@@ -1,5 +1,6 @@
 ---
 sidebar_label: はじめに
+pagination_label: ソフトウェアアーキテクチャの地図
 ---
 
 # ソフトウェアアーキテクチャの地図

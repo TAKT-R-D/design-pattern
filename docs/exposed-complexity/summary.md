@@ -1,3 +1,7 @@
+---
+pagination_label: Exposed Complexity Summary
+---
+
 # Summary
 
 ## Pattern Comparison

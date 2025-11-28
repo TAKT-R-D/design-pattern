@@ -1,5 +1,6 @@
 ---
 sidebar_label: Introduction
+pagination_label: Expanding Design Power Through Combination
 ---
 
 # Expanding Design Power Through Combination

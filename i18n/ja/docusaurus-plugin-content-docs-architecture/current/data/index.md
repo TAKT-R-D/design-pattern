@@ -1,5 +1,6 @@
 ---
 sidebar_label: はじめに
+pagination_label: データ構造・分析基盤概要
 ---
 
 # Data Architecture（データ構造・分析基盤）

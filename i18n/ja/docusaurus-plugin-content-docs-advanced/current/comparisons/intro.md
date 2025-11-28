@@ -1,5 +1,6 @@
 ---
 sidebar_label: はじめに
+pagination_label: パターン同士の違いを整理する
 ---
 
 # パターン同士の違いを整理する

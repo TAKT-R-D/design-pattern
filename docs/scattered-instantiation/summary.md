@@ -1,3 +1,7 @@
+---
+pagination_label: Scattered Instantiation Summary
+---
+
 # Summary
 
 ## Pattern Comparison

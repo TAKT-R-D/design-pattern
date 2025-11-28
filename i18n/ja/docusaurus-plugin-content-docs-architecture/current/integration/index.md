@@ -1,5 +1,6 @@
 ---
 sidebar_label: はじめに
+pagination_label: 通信・連携方式概要
 ---
 
 # Integration Styles（通信・連携方式）

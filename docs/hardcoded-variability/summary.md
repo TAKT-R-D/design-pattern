@@ -1,3 +1,7 @@
+---
+pagination_label: Hardcoded Variability Summary
+---
+
 # Summary
 
 ## Pattern Comparison

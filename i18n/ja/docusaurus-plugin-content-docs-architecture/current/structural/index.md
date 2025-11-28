@@ -1,5 +1,6 @@
 ---
 sidebar_label: はじめに
+pagination_label: アプリ内部構造概要
 ---
 
 # Structural Styles（アプリ内部構造）

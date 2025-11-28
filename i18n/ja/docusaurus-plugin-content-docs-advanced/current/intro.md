@@ -1,5 +1,6 @@
 ---
 title: はじめに
+pagination_label: 応用設計編
 ---
 
 # 応用設計編
