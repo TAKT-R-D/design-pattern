@@ -1,3 +1,7 @@
+---
+sidebar_label: 🧩 CDC
+---
+
 # 🧩 Change Data Capture（CDC）
 
 CDC（Change Data Capture）は、**データベースの変更をリアルタイムに検知し、イベントとして外部へ配信する構造** を提供する仕組みである。
@@ -42,9 +46,9 @@ graph TD
 
 ## ✅ 関連スタイル
 
-- Outbox Pattern（アプリ経由 vs DB 経由の違い）
-- Event Sourcing（イベントをデータの真実とする思想）
-- EDA（Event-driven 全般）
+- [Outbox Pattern](./outbox-pattern.md)（アプリ経由 vs DB 経由の違い）
+- [Event Sourcing](../data/event-sourcing.md)（イベントをデータの真実とする思想）
+- [EDA](../integration/event-driven.md)（Event-driven 全般）
 
 ## ✅ まとめ
 

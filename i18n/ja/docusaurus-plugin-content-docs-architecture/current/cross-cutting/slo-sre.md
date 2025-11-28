@@ -1,3 +1,7 @@
+---
+sidebar_label: 🧩 SLO / SRE
+---
+
 # 🧩 SLO / SRE（Site Reliability Engineering）
 
 ## ✅ このスタイルの概要
@@ -38,9 +42,9 @@
 
 ## ✅ 関連スタイル
 
-- Observability：SLI 計測の基盤
-- DevOps：文化的背景と自動化
-- Team Topologies：On-call や運用責任の分配
+- [Observability](./observability.md)：SLI 計測の基盤
+- [DevOps](./devops.md)：文化的背景と自動化
+- [Team Topologies](./team-topologies.md)：On-call や運用責任の分配
 
 ## ✅ まとめ
 

@@ -1,4 +1,8 @@
-# 🧩 System Topologies（システム構成・サービス粒度）
+---
+sidebar_label: はじめに
+---
+
+# System Topologies（サービス構成・粒度）
 
 System Topologies は、**アプリケーションをどの粒度で分割し、どのように配置・デプロイするか** を扱うアーキテクチャ層を対象とする。
 
@@ -15,46 +19,46 @@ System Topologies は、**アプリケーションをどの粒度で分割し、
 
 ## ✅ System Topologies の代表スタイル
 
-### ● Monolith（モノリス）
+### ● [Monolith（モノリス）](./monolith.md)
 
 - 単一デプロイ、単一プロセス構成
 - 小〜中規模、密結合で問題ない範囲では最も効率的
 - 強い内的整合性・簡単なデプロイがメリット
 
-### ● Modular Monolith（モジュラーモノリス）
+### ● [Modular Monolith（モジュラーモノリス）](./modular-monolith.md)
 
 - 内部をモジュール化しつつ、デプロイは 1 つ
 - “将来のマイクロサービス化”を見据えるが、過度な分割はしない
 
-### ● Microservices（マイクロサービス）
+### ● [Microservices（マイクロサービス）](./microservices.md)
 
 - プロセス単位で独立デプロイ可能なサービス群
 - チーム単位で進化できる構成
 - ただし運用コスト・可観測性のハードルが高い
 
-### ● Service-Oriented Architecture（SOA）
+### ● [Service-Oriented Architecture（SOA）](./soa.md)
 
 - エンタープライズ統合の文脈で登場
 - ESB 中心の古典的 SOA と、API 中心のモダン SOA がある
 
-### ● Serverless / FaaS
+### ● [Serverless / FaaS](./serverless.md)
 
 - Function 単位でデプロイ
 - 機能単位のスケール／コスト効率を目的
 - きめ細かい分割が可能だが複雑にもなりやすい
 
-### ● Edge / Fog Architecture
+### ● [Edge / Fog Architecture](./edge.md)
 
 - クラウドに加え、エッジ（端末/ローカル拠点）で処理分散
 - IoT・低レイテンシ系のアプリで重要
 
-### ● Cell-based Architecture（セル構造）
+### ● [Cell-based Architecture（セル構造）](./cell-based.md)
 
 - 超大規模システムで採用される構成
 - Cell（小さな独立クラスター）単位で水平スケール
 - フォールトアイソレーションとスケールを両立
 
-### ● Multi-region Architecture（マルチリージョン構成）
+### ● [Multi-region Architecture（マルチリージョン構成）](./multi-region.md)
 
 - 複数リージョンにサービスを配置
 - 可用性・レイテンシ・DR を高水準で実現
@@ -68,7 +72,7 @@ System Topologies は、**アプリケーションをどの粒度で分割し、
 
 ## ✅ 他の階層との関係
 
-- **Integration Styles**：マイクロサービスでは通信方式が死活問題
-- **Structural Styles**：各サービス内部構造は別カテゴリ（Layered/Hex など）
-- **Cross-cutting**：Observability・SLO は特にマイクロサービスで必須
-- **Data Architecture**：分散データ整合性問題（CQRS / Event Sourcing）が登場
+- **[Integration Styles](../integration/index.md)**：マイクロサービスでは通信方式が死活問題
+- **[Structural Styles](../structural/index.md)**：各サービス内部構造は別カテゴリ（Layered/Hex など）
+- **[Cross-cutting](../cross-cutting/index.md)**：Observability・SLO は特にマイクロサービスで必須
+- **[Data Architecture](../data/index.md)**：分散データ整合性問題（CQRS / Event Sourcing）が登場

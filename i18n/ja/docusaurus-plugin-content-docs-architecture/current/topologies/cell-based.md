@@ -1,6 +1,10 @@
+---
+sidebar_label: 🧩 Cell-based
+---
+
 # 🧩 Cell-based Architecture（セル構造アーキテクチャ）
 
-Cell-based Architecture は、大規模分散システムにおいて **システムをセル（Cell）と呼ばれる独立した小さなクラスター単位で構成する** トポロジである。Slack、Netflix、Uber など大規模運用組織で採用されている。
+Cell-based Architecture は、大規模分散システムにおいて **システムをセル（Cell）と呼ばれる独立した小さなクラスター単位で構成する** トポロジーである。Slack、Netflix、Uber など大規模運用組織で採用されている。
 
 ## ✅ このスタイルの概要
 
@@ -42,10 +46,10 @@ graph TD
 
 ## ✅ 関連スタイル
 
-- Microservices
-- Multi-region Architecture
+- [Microservices](./microservices.md)
+- [Multi-region Architecture](./multi-region.md)
 - Sharding（データ分割）
 
 ## ✅ まとめ
 
-Cell-based Architecture は超大規模システムを安定運用するための構成であり、障害分離とスケールを高次元で両立するトップロジーである。
+Cell-based Architecture は超大規模システムを安定運用するための構成であり、障害分離とスケールを高次元で両立するトポロジーである。

@@ -50,7 +50,7 @@ Reactive Streams は、
 - 非同期ストリームがほとんど登場しない小規模システム
 
 Reactive Streams を採用すると抽象化レイヤが増えるため、  
-その価値が出るのは「ストリームが主役」の領域です。
+その価値が出るのは「ストリームが主役」の領域。
 
 ## ✅ 歴史（系譜・親スタイル）
 
@@ -60,13 +60,13 @@ Reactive Streams を採用すると抽象化レイヤが増えるため、
 
 ## ✅ 関連スタイル
 
-- **Flow / Pipeline 系**：ストリーム処理のフロー設計と組み合わせる
-- **Event Loop / Actor Model**：非同期実行の土台として使われる
-- **EDA / Pub-Sub**：システム間のイベント駆動構造
+- **[Flow / Pipeline 系](../flow/index.md)**：ストリーム処理のフロー設計と組み合わせる
+- **[Event Loop](./event-loop.md) / [Actor Model](./actor-model.md)**：非同期実行の土台として使われる
+- **[EDA](../../integration/event-driven.md) / Pub-Sub**：システム間のイベント駆動構造
 
 ## 8. 代表的なフレームワーク
 
-Reactive Streams 仕様は複数の実装で広く普及しています。
+Reactive Streams 仕様は複数の実装で広く普及している。
 
 - **Reactive Streams for JVM（標準仕様）**  
   Publisher / Subscriber を定義した共通プロトコル。
@@ -85,7 +85,7 @@ Reactive Streams 仕様は複数の実装で広く普及しています。
 
 ## 9. このスタイルを支えるデザインパターン
 
-Reactive Streams の内部モデルは複数パターンの組み合わせで成り立っています。
+Reactive Streams の内部モデルは複数パターンの組み合わせで成り立っている。
 
 - **Iterator**  
   ストリームを「逐次処理する抽象」として扱う。
@@ -110,8 +110,8 @@ Reactive Streams は、
 - バックプレッシャー
 - 安全な合成
 
-をキーワードにしたスタイル／仕様です。
+をキーワードにしたスタイル／仕様。
 
 イベント駆動・ストリーミングが前提のシステムでは、  
 **「非同期ストリームをどう安全に扱うか」** という観点で、  
-Flow / Pipeline 系スタイルとセットで検討するとよい。
+[Flow / Pipeline 系](../flow/index.md)スタイルとセットで検討するとよい。

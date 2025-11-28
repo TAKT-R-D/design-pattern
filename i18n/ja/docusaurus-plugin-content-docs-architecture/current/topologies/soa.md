@@ -1,3 +1,7 @@
+---
+sidebar_label: 🧩 SOA
+---
+
 # 🧩 SOA（Service-Oriented Architecture）
 
 ## ✅ このスタイルの概要
@@ -54,8 +58,8 @@ flowchart LR
 
 ## ✅ 関連スタイル
 
-- Microservices：SOA の軽量版として発展
-- API Gateway：SOA の「入口」をモダン化したものとして対応
+- [Microservices](./microservices.md)：SOA の軽量版として発展
+- [API Gateway](../integration/api-gateway-bff.md)：SOA の「入口」をモダン化したものとして対応
 
 ## ✅ 代表的なフレームワーク
 

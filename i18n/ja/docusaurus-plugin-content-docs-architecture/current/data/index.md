@@ -1,4 +1,8 @@
-# 🧩 Data & Analytics Architecture（データ構造・分析基盤）
+---
+sidebar_label: はじめに
+---
+
+# Data Architecture（データ構造・分析基盤）
 
 Data Architecture は、**データの流れ・保存・変換・分析** に関わるアーキテクチャ層を扱う。
 
@@ -18,33 +22,33 @@ Data Architecture は、**データの流れ・保存・変換・分析** に関
 
 ## ✅ Data Architecture の代表スタイル
 
-### ● Data Warehouse（DWH）
+### ● [Data Warehouse（DWH）](./data-warehouse.md)
 
 - 解析・レポート用の集約データベース
 - 企業内 BI の中心
 
-### ● Data Lake / Lakehouse
+### ● [Data Lake / Lakehouse](./data-lake-lakehouse.md)
 
 - 非構造／構造データをまとめて扱う大規模基盤
 - ML・大規模分析向け
 - Lakehouse は DWH + Lake の融合型
 
-### ● CQRS（Command Query Responsibility Segregation）
+### ● [CQRS（Command Query Responsibility Segregation）](./cqrs.md)
 
 - 書き込みモデルと読み取りモデルを分離
 - 高負荷分散・高速読み取りが必要な場面に有効
 
-### ● Event Sourcing
+### ● [Event Sourcing](./event-sourcing.md)
 
 - 状態を “イベントの履歴” で管理
 - 監査／再構築／スナップショットなど高度な要件に対応
 
-### ● Data Mesh
+### ● [Data Mesh](./data-mesh.md)
 
 - ドメイン単位でデータ製品を管理する
 - 組織構造とデータ責務の分散がポイント
 
-### ● Lambda / Kappa Architecture
+### ● [Lambda / Kappa Architecture](./lambda-kappa.md)
 
 - バッチ＋ストリーム（Lambda）
 - ストリーム単体の一本化（Kappa）
@@ -57,6 +61,6 @@ Data Architecture は、**データの流れ・保存・変換・分析** に関
 
 ## ✅ 他の階層との関係
 
-- **Integration**：イベント駆動がデータ構造に直結
-- **System Topologies**：分散サービスでは CQRS／ES が重要
-- **Cross-cutting**：データガバナンス・監査・SLO などと密接
+- **[Integration](../integration/index.md)**：イベント駆動がデータ構造に直結
+- **[System Topologies](../topologies/index.md)**：分散サービスでは CQRS／ES が重要
+- **[Cross-cutting](../cross-cutting/index.md)**：データガバナンス・監査・SLO などと密接

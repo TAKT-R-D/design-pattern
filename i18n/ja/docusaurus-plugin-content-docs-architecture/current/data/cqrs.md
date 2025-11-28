@@ -1,3 +1,7 @@
+---
+sidebar_label: 🧩 CQRS
+---
+
 # 🧩 CQRS（Command Query Responsibility Segregation）
 
 ## ✅ このスタイルの概要
@@ -14,7 +18,7 @@
 
 - Command Model と Query Model を別々に設計する
 - 読み取り用 DB（キャッシュ／検索専用）と書き込み用 DB を分けることも多い
-- Event Sourcing と併用されることが多い
+- [Event Sourcing](./event-sourcing.md) と併用されることが多い
 
 ### 概念図（Conceptual Diagram）
 
@@ -40,8 +44,8 @@
 
 ## ✅ 関連スタイル
 
-- Event Sourcing：状態をイベントで保持するスタイルと相性が良い
-- EDA：非同期更新に活用
+- [Event Sourcing](./event-sourcing.md)：状態をイベントで保持するスタイルと相性が良い
+- [EDA](../integration/event-driven.md)：非同期更新に活用
 
 ## ✅ 代表的なフレームワーク
 

@@ -1,3 +1,7 @@
+---
+sidebar_label: 🧩 DWH
+---
+
 # 🧩 Data Warehouse（DWH）
 
 ## ✅ このスタイルの概要
@@ -37,8 +41,8 @@ Data Warehouse はこれらに対し、
 
 ## ✅ 関連スタイル
 
-- Data Lake / Lakehouse：より柔軟なデータ保持
-- Lambda / Kappa Architecture：DWH をバッチレイヤーとして利用
+- [Data Lake / Lakehouse](./data-lake-lakehouse.md)：より柔軟なデータ保持
+- [Lambda / Kappa Architecture](./lambda-kappa.md)：DWH をバッチレイヤーとして利用
 
 ## ✅ 代表的なフレームワーク
 

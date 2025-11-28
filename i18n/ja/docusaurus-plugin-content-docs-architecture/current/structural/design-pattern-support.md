@@ -1,12 +1,12 @@
-# 🧩 Structural Styles とデザインパターン対応表
+---
+sidebar_label: ✨️ Design Pattern
+---
 
-（アーキテクチャを支えるデザインパターンの体系）
+# ✨️ アーキテクチャを支えるデザインパターンの体系
 
 本ページでは、各 Structural Style が **どのデザインパターンの組み合わせによって支えられているか** を一覧化する。
 
-※ パターン名称は _takt.dev/design-pattern/_ と完全に統一している。
-
-## ✅ Clean / Hexagonal / Onion（Dependency Rule 系）
+## ✅ [Clean / Hexagonal / Onion（Dependency Rule 系）](./layered/dependency-rule-layered/index.md)
 
 これらのスタイルは「依存方向の制御」「ポート・アダプタ構造」が中核であり、  
 次のデザインパターンが強く関与する。
@@ -21,7 +21,7 @@
 
 **主役パターン：Adapter / Strategy / Command**
 
-## ✅ Layered / Domain Model Layered
+## ✅ [Layered / Domain Model Layered](./layered/index.md)
 
 レイヤー境界の明確化と責務分離を支えるパターン。
 
@@ -31,7 +31,7 @@
 - **Composite**：集約内部の階層構造表現
 - **Proxy**：外部システム or 遅延アクセスの抽象化
 
-## ✅ UI 系（MVC / MVP / MVVM / MVU）
+## ✅ [UI 系（MVC / MVP / MVVM / MVU）](./ui/index.md)
 
 UI Interaction スタイルを支える主要パターン。
 
@@ -42,10 +42,10 @@ UI Interaction スタイルを支える主要パターン。
 - **Memento**：Undo/Redo などの状態復元
 - **Strategy**：描画戦略・入力制御の差し替え
 
-**MVU（React / SwiftUI / Jetpack Compose）では特に  
+**[MVU](./ui/mvu.md)（React / SwiftUI / Jetpack Compose）では特に  
 State + Command + Observer が強く現れる。**
 
-## ✅ Microkernel / Plugin Architecture
+## ✅ [Microkernel / Plugin Architecture](./microkernel/index.md)
 
 プラグインの拡張性・ホットスワップ性を支えるパターン群。
 
@@ -55,7 +55,7 @@ State + Command + Observer が強く現れる。**
 - **Mediator**：プラグイン間調整
 - **Facade**：コアシステムの外観 API
 
-## ✅ Reactive / Actor / Event Loop / Streams
+## ✅ [Reactive / Actor / Event Loop / Streams](./reactive/index.md)
 
 イベント駆動・非同期処理・アクターモデルを支えるパターン。
 
@@ -66,7 +66,7 @@ State + Command + Observer が強く現れる。**
 - **Iterator**：ストリーム処理の順次化
 - **Chain of Responsibility**：イベント処理の段階的伝搬
 
-## ✅ Flow / Pipeline（Pipe & Filter / Streaming / Batch）
+## ✅ [Flow / Pipeline（Pipe & Filter / Streaming / Batch）](./flow/index.md)
 
 段階的な処理フローを実現する構造。
 
@@ -75,7 +75,7 @@ State + Command + Observer が強く現れる。**
 - **Mediator**：ステップ間の調整
 - **Strategy**：各処理ステップの差し替え
 
-## ✅ Data-centric（Active Record / Table Module / Transaction Script）
+## ✅ [Data-centric（Active Record / Table Module / Transaction Script）](./data-centric/index.md)
 
 データ中心の構造は次のパターンの影響が大きい。
 
@@ -89,7 +89,6 @@ State + Command + Observer が強く現れる。**
 
 - Structural Style を選ぶ際に、**実装で必要になるパターンが自然に分かる**
 - 現在のコードベースがどのパターンを多用しているかから、**採用すべき構造スタイルを逆算できる**
-- 既存サイト（takt.dev/design-pattern）で詳細説明を補完できる
 
 > **アーキテクチャ（構造） ⇄ デザインパターン（実装）**  
 > の橋渡しとなるガイドページである。

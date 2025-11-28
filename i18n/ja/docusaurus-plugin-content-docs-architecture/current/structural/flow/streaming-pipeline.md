@@ -32,7 +32,7 @@ Streaming Pipeline では、データは以下のようなステップで流れ�
 3. **Enrich（補強）**
    - 他のストリームや参照データを使って情報を付加する
 4. **Sink（シンク）**
-   - ストレージ（DWH / Data Lake）や下流システム、ダッシュボードなどに出力する
+   - ストレージ（[DWH](../../data/data-warehouse.md) / [Data Lake](../../data/data-lake-lakehouse.md)）や下流システム、ダッシュボードなどに出力する
 
 特徴的な要素：
 
@@ -86,9 +86,9 @@ Streaming Pipeline は「何でもストリーミングでやればよい」わ�
 
 Streaming Pipeline は、次の文脈から発展してきた。
 
-- **Pipe & Filter** や **Batch Pipeline** の考え方を、リアルタイム処理に拡張したもの
+- **[Pipe & Filter](./pipe-and-filter.md)** や **[Batch Pipeline](./batch-pipeline.md)** の考え方を、リアルタイム処理に拡張したもの
 - **ログ集計基盤**（Hadoop 時代）から、Kafka などの分散ログ基盤 + ストリーム処理エンジンへと進化
-- Lambda / Kappa アーキテクチャにおける「スピードレイヤ」「ストリームレイヤ」として定式化
+- [Lambda / Kappa アーキテクチャ](../../data/lambda-kappa.md)における「スピードレイヤ」「ストリームレイヤ」として定式化
 
 > 「バッチの限界を超え、データが到着するたびに処理し続ける」
 
@@ -96,17 +96,17 @@ Streaming Pipeline は、次の文脈から発展してきた。
 
 ## ✅ 関連スタイルとの関係
 
-- **Pipe & Filter**  
+- **[Pipe & Filter](./pipe-and-filter.md)**  
   モデルとしては同じくステージの連結だが、Streaming は「常に流れている」ことが前提。
 
-- **Batch Pipeline**  
+- **[Batch Pipeline](./batch-pipeline.md)**  
   処理単位が「ジョブごと」「日次・時間ごと」か、「イベント単位／時間窓単位」かの違い。
 
-- **Event-driven Architecture / EDA**  
+- **[Event-driven Architecture / EDA](../../integration/event-driven.md)**  
   イベントの流れがシステム境界をまたぐ場合、その内部処理として Streaming Pipeline が登場する。
 
-- **Lambda / Kappa Architecture（Data 系）**  
-  ストリーム処理と DWH / Data Lake をどう組み合わせるかの文脈でよく登場する。
+- **[Lambda / Kappa Architecture（Data 系）](../../data/lambda-kappa.md)**  
+  ストリーム処理と [DWH](../../data/data-warehouse.md) / [Data Lake](../../data/data-lake-lakehouse.md) をどう組み合わせるかの文脈でよく登場する。
 
 ## ✅ 代表的なフレームワーク
 
@@ -153,11 +153,11 @@ Streaming Pipeline は、
 
 ためのパイプラインスタイルである。
 
-Pipe & Filter / Batch Pipeline と同じ系譜にありながら、
+[Pipe & Filter](./pipe-and-filter.md) / [Batch Pipeline](./batch-pipeline.md) と同じ系譜にありながら、
 
 > **「データが来るたびに動き続ける処理フロー」**
 
 を設計の主役にする点が最大の特徴である。
 
-データ量・リアルタイム性・拡張性の要件が高いシステムでは、
+データ量・リアルタイム性・拡張性の要件が高いシステムでは、  
 Streaming Pipeline を意識した設計が、アーキテクチャ上の重要な選択肢となる。

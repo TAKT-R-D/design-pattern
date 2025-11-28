@@ -13,7 +13,7 @@ Hexagonal / Onion などの考え方を整理し直し、
 
 ## ✅ 解決しようとした問題
 
-- Hexagonal / Onion / Layered / DDD などの概念が乱立し、違いが分かりづらい
+- [Hexagonal](./hexagonal.md) / [Onion](./onion.md) / Layered / DDD などの概念が乱立し、違いが分かりづらい
 - 「依存は内向き」「ドメイン中心」という共通の考え方を整理したい
 - 具体的にどの層に何を書くのか、もう少しガイドが欲しい
 
@@ -80,13 +80,13 @@ Clean Architecture はこれに対して：
 ## ✅ 歴史（系譜・親スタイル）
 
 - Robert C. Martin（Uncle Bob）によって提唱
-- Hexagonal / Onion / DDD / Layered などの流れを整理・総括したスタイル
+- [Hexagonal](./hexagonal.md) / [Onion](./onion.md) / DDD / Layered などの流れを整理・総括したスタイル
 - 書籍『Clean Architecture』として広く普及
 
 ## ✅ 関連スタイル
 
-- **Hexagonal Architecture**：ポート＆アダプタの考え方
-- **Onion Architecture**：同心円上の層構造
+- **[Hexagonal Architecture](./hexagonal.md)**：ポート＆アダプタの考え方
+- **[Onion Architecture](./onion.md)**：同心円上の層構造
 - **DDD**：Entities / Use Cases の具体的な表現方法として
 
 ## ✅ 代表的なフレームワーク

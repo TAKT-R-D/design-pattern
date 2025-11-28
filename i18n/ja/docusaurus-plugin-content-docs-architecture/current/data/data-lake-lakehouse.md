@@ -40,8 +40,8 @@
 
 ## ✅ 関連スタイル
 
-- DWH：強いスキーマと統合分析で補完
-- Lambda/Kappa：Lake をストリーミングレイヤーと統合
+- [DWH](./data-warehouse.md)：強いスキーマと統合分析で補完
+- [Lambda/Kappa](./lambda-kappa.md)：Lake をストリーミングレイヤーと統合
 
 ## ✅ 代表的なフレームワーク
 

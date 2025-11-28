@@ -1,4 +1,4 @@
-# 🧩 Batch Pipeline（バッチパイプライン）
+# 🧩 Batch Pipeline
 
 ## ✅ このスタイルの概要
 
@@ -69,19 +69,19 @@ flowchart LR
 - ほぼリアルタイムの応答が必要な処理
 - イベント駆動で常時動作すべきストリーミング処理
 
-そのようなケースでは、Streaming Pipeline や EDA の方が向く。
+そのようなケースでは、[Streaming Pipeline](./streaming-pipeline.md) や [EDA](../../integration/event-driven.md) の方が向く。
 
 ## ✅ 歴史（系譜・親スタイル）
 
 - 古くから存在するバッチ処理の実務知見を、パイプラインという形で整理したもの
-- Data Warehouse / DWH 文脈の ETL パターンと密接
+- [Data Warehouse / DWH](../../data/data-warehouse.md) 文脈の ETL パターンと密接
 - 近年はワークフローオーケストレーションツールと組み合わさることが多い
 
 ## ✅ 関連スタイル
 
-- **Pipe & Filter**：1 プロセス内のシンプルなパイプラインの原型
-- **Streaming Pipeline**：リアルタイム処理への発展
-- **Data Architecture（Lambda / Kappa）**：バッチレイヤーとしての位置づけ
+- **[Pipe & Filter](./pipe-and-filter.md)**：1 プロセス内のシンプルなパイプラインの原型
+- **[Streaming Pipeline](./streaming-pipeline.md)**：リアルタイム処理への発展
+- **[Data Architecture（Lambda / Kappa）](../../data/lambda-kappa.md)**：バッチレイヤーとしての位置づけ
 
 ## ✅ 代表的なフレームワーク
 
@@ -122,5 +122,5 @@ Batch Pipeline は、
 - バッチ処理の複雑さをステージ分割で制御し
 - 運用面（監視・再実行・リカバリ）も意識した構造スタイルである。
 
-バッチが「1 つの巨大なブラックボックス」になりつつあるなら、
+バッチが「1 つの巨大なブラックボックス」になりつつあるなら、  
 **パイプラインとしての再設計** を検討するサインかもしれない。

@@ -60,10 +60,10 @@ Team Topologies はこれらに対し、
 
 ## ✅ 関連スタイル
 
-- **DevOps**：開発と運用の境界をなくす文化的・技術的アプローチ
-- **SRE / SLO**：運用品質の標準化
+- **[DevOps](./devops.md)**：開発と運用の境界をなくす文化的・技術的アプローチ
+- **[SRE / SLO](./slo-sre.md)**：運用品質の標準化
 - **Platform Engineering**：プラットフォームチームの実践形
-- **Microservices / Modular Monolith**：チーム境界とサービス境界の一致
+- **[Microservices](../topologies/microservices.md) / [Modular Monolith](../topologies/modular-monolith.md)**：チーム境界とサービス境界の一致
 
 ## ✅ まとめ
 

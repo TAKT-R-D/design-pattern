@@ -61,9 +61,9 @@ Event Loop モデルは、
 
 ## ✅ 関連スタイル
 
-- **Actor Model**：メッセージ駆動だが、実装に Event Loop を利用することも多い
-- **Reactive Streams**：イベントストリーム処理の抽象化
-- **EDA / Pub-Sub**：システム全体でのイベント駆動構造
+- **[Actor Model](./actor-model.md)**：メッセージ駆動だが、実装に Event Loop を利用することも多い
+- **[Reactive Streams](./reactive-streams.md)**：イベントストリーム処理の抽象化
+- **[EDA](../../integration/event-driven.md) / Pub-Sub**：システム全体でのイベント駆動構造
 
 ## 8. 代表的なフレームワーク
 

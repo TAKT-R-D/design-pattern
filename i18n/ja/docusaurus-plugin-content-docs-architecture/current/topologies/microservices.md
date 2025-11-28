@@ -1,3 +1,7 @@
+---
+sidebar_label: 🧩 Microservices
+---
+
 # 🧩 Microservices Architecture
 
 ## ✅ このスタイルの概要
@@ -15,7 +19,7 @@
 - サービスごとに独立デプロイ
 - 独立したデータストア（Database per Service）
 - API（REST/gRPC/Event）による疎結合連携
-- DevOps / CI/CD / Observability の強い前提
+- [DevOps](../cross-cutting/devops.md) / CI/CD / [Observability](../cross-cutting/observability.md) の強い前提
 
 ### 概念図（Conceptual Diagram）
 
@@ -39,12 +43,12 @@
 ## ✅ 歴史
 
 - Netflix / Amazon の成功により普及
-- SOA の思想をより軽量に実装した流派として発展
+- [SOA](./soa.md) の思想をより軽量に実装した流派として発展
 
 ## ✅ 関連スタイル
 
-- SOA：より重量級でエンタープライズ的な祖先
-- Modular Monolith：導入前の構造整理として有効
+- [SOA](./soa.md)：より重量級でエンタープライズ的な祖先
+- [Modular Monolith](./modular-monolith.md)：導入前の構造整理として有効
 
 ## ✅ 代表的なフレームワーク
 

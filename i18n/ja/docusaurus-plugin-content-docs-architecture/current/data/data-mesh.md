@@ -6,7 +6,7 @@
 
 ## ✅ 解決しようとした問題
 
-- 中央集権型 DWH/湖のボトルネック
+- 中央集権型 DWH/Lake のボトルネック
 - データ基盤チームへの要求集中（データ要求が捌けない）
 - ドメイン知識不足によるデータ品質問題
 
@@ -35,8 +35,8 @@
 
 ## ✅ 関連スタイル
 
-- Data Lake / Lakehouse：データ保持レイヤの実装基盤
-- CQRS / EDA：プロダクト間連携の実装手段
+- [Data Lake / Lakehouse](./data-lake-lakehouse.md)：データ保持レイヤの実装基盤
+- [CQRS](./cqrs.md) / [EDA](../integration/event-driven.md)：プロダクト間連携の実装手段
 
 ## ✅ 代表的なフレームワーク
 

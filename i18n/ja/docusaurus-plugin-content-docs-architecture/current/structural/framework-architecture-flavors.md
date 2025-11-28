@@ -1,6 +1,8 @@
-# 🧩 Frameworks and Their Architectural Flavors
+---
+sidebar_label: ✨️ Framework Architecture Flavors
+---
 
-（主要フレームワークが持つ “アーキテクチャ風味” を読み解く）
+# ✨️ 主要フレームワークが持つ “アーキテクチャ風味” を読み解く
 
 ## ✅ はじめに：フレームワークはアーキテクチャではない
 
@@ -9,10 +11,10 @@
 
 例：
 
-- Rails は Active Record の思想が強い
-- React / SwiftUI は MVU（Elm Architecture）に近い
-- Spring Boot / NestJS は Clean / Hexagonal に寄せやすい
-- Node.js は Event Loop（非同期 I/O）中心の構造を誘導する
+- Rails は [Active Record](./data-centric/active-record.md) の思想が強い
+- React / SwiftUI は [MVU（Elm Architecture）](./ui/mvu.md)に近い
+- Spring Boot / NestJS は [Clean](./layered/dependency-rule-layered/clean.md) / [Hexagonal](./layered/dependency-rule-layered/hexagonal.md) に寄せやすい
+- Node.js は [Event Loop](./reactive/event-loop.md)（非同期 I/O）中心の構造を誘導する
 
 つまり、
 
@@ -25,7 +27,7 @@
 
 ### React
 
-- **分類：MVU（Model–View–Update）系 / Elm Architecture 影響下**
+- **分類：[MVU（Model–View–Update）系 / Elm Architecture](./ui/mvu.md) 影響下**
 - 単方向データフロー、immutability、宣言的 UI
 - Redux との組み合わせは MVU 色をさらに強める  
   **→ UI Structural Style の「MVU」の代表例として扱える**
@@ -43,19 +45,19 @@
 
 ### Vue.js（3.x）
 
-- Options API：MVVM に近い
+- Options API：[MVVM](./ui/mvvm.md) に近い
 - Composition API：React に寄った関数型要素も増加  
-  **→ 全体としては MVVM と MVU のハイブリッド**
+  **→ 全体としては [MVVM](./ui/mvvm.md) と [MVU](./ui/mvu.md) のハイブリッド**
 
 ### Angular
 
-- **明確な MVVM / Layered 構造**
+- **明確な [MVVM](./ui/mvvm.md) / Layered 構造**
 - Component（VM）・Template（View）・Service（Logic）  
   **→ UI 構造スタイルの典型例として扱いやすい**
 
 ### SwiftUI / Jetpack Compose
 
-- **完全に MVU 系**
+- **完全に [MVU](./ui/mvu.md) 系**
 - 状態の単一ソース、再計算、宣言的 UI  
   **→ 近年の Declarative UI の最も純粋な実装**
 
@@ -63,54 +65,54 @@
 
 ### Ruby on Rails
 
-- **Active Record をコアに据えた典型例**
-- MVC だが実質的に Fat Model / Transaction Script になりがち  
+- **[Active Record](./data-centric/active-record.md) をコアに据えた典型例**
+- [MVC](./ui/mvc.md) だが実質的に Fat Model / Transaction Script になりがち  
   **→ Structural Style の「Data-centric（Active Record）」の代表例**
 
 ### Laravel
 
-- Eloquent が Active Record 的
+- Eloquent が [Active Record](./data-centric/active-record.md) 的
 - 直観的だが、ドメインモデルの分割は開発者の工夫次第  
   **→ Data-centric の文脈で理解しやすい**
 
 ### Django
 
-- MVT（Model–View–Template）で MVC に近い
+- MVT（Model–View–Template）で [MVC](./ui/mvc.md) に近い
 - ORM は Data Mapper に寄る  
-  **→ Data-centric の中では「Table Module / Data Mapper」寄りの代表例**
+  **→ Data-centric の中では「[Table Module](./data-centric/table-module.md) / Data Mapper」寄りの代表例**
 
 ## ✅ Layered / Clean / Dependency Rule 系フレームワーク
 
 ### Spring Boot（Java）
 
-- **Clean / Hexagonal を作りやすい構造**
+- **[Clean](./layered/dependency-rule-layered/clean.md) / [Hexagonal](./layered/dependency-rule-layered/hexagonal.md) を作りやすい構造**
 - Controller → Service → Repository の分割が自然
 - DI による依存方向の制御がやりやすい  
-  **→ Clean Architecture 実装例が最も多いフレームワークの一つ**
+  **→ [Clean Architecture](./layered/dependency-rule-layered/clean.md) 実装例が最も多いフレームワークの一つ**
 
 ### NestJS（Node.js）
 
 - モジュール構造・DI・デコレータが Spring に酷似
 - Port / Adapter / UseCase の実装が明確に作れる  
-  **→ Node.js 界の Clean / Hexagonal の代表**
+  **→ Node.js 界の [Clean](./layered/dependency-rule-layered/clean.md) / [Hexagonal](./layered/dependency-rule-layered/hexagonal.md) の代表**
 
 ### .NET / ASP.NET Core
 
-- Clean Architecture テンプレートが標準化
-- DDD / CQRS / Hexagonal の文献・実例が非常に豊富  
+- [Clean Architecture](./layered/dependency-rule-layered/clean.md) テンプレートが標準化
+- DDD / [CQRS](../data/cqrs.md) / [Hexagonal](./layered/dependency-rule-layered/hexagonal.md) の文献・実例が非常に豊富  
   **→ Clean / Layered 系の“実務標準プラットフォーム”**
 
 ## ✅ Reactive / Actor 系フレームワーク
 
 ### Node.js
 
-- **Event Loop ベース構造そのもの**
+- **[Event Loop](./reactive/event-loop.md) ベース構造そのもの**
 - 非同期 I/O、コールバック、Promise、イベント駆動  
-  **→ Structural Style の「Event Loop」の代表例**
+  **→ Structural Style の「[Event Loop](./reactive/event-loop.md)」の代表例**
 
 ### Erlang / Elixir / Akka
 
-- **Actor Model のガチ実装**
+- **[Actor Model](./reactive/actor-model.md) のガチ実装**
 - メッセージパッシング・スーパービジョンが言語レベル  
   **→ Reactive 系 Structural Style の純粋なサンプル**
 

@@ -1,4 +1,8 @@
-# 🧩 Cross-cutting & Socio-technical（運用・文化・品質）
+---
+sidebar_label: はじめに
+---
+
+# Cross-cutting & Socio-technical（運用・文化・品質）
 
 Cross-cutting は、アーキテクチャの **すべての階層を横断して影響する領域** を扱う。  
 技術だけでなく、**運用・組織構造・文化・品質** といった “社会技術的要素” が中心となる。
@@ -13,31 +17,31 @@ Cross-cutting は、アーキテクチャの **すべての階層を横断して
 
 ## ✅ Cross-cutting の主要概念
 
-### ● DevOps / CI/CD / 12-Factor App
+### ● [DevOps / CI/CD / 12-Factor App](./devops.md)
 
 - デリバリーの高速化・自動化
 - 設計と運用を分離しない文化
 
-### ● Team Topologies / Conway’s Law
+### ● [Team Topologies / Conway’s Law](./team-topologies.md)
 
 - 組織構造がアーキテクチャに影響する
 - ストリームアラインドチーム / プラットフォームチーム など
 
-### ● SLO-driven Architecture（SRE）
+### ● [SLO-driven Architecture（SRE）](./slo-sre.md)
 
 - SLO / Error Budget による信頼性のコントロール
 - 依存サービスの可用性設計
 
-### ● Zero Trust Security
+### ● [Zero Trust Security](./zero-trust.md)
 
 - “内部ネットワーク＝安全” を捨て、常に検証する思想
 
-### ● Observability
+### ● [Observability](./observability.md)
 
 - Logs / Metrics / Traces でシステム全体の状態を可視化
 - マイクロサービスでは必須
 
-### ● Green Software / Sustainability
+### ● [Green Software / Sustainability](./green-software.md)
 
 - CO2 排出削減
 - クラウドリソースの適正化
@@ -51,7 +55,7 @@ Cross-cutting は、アーキテクチャの **すべての階層を横断して
 
 ## ✅ 他の階層との関係
 
-- **Structural Styles**：テスト容易性・変更容易性に影響
-- **Topologies**：マイクロサービス運用には SLO/Observability が必須
-- **Integration**：Mesh や Gateway でセキュリティ・可観測性を補強
-- **Data Architecture**：データガバナンスや監査と密接
+- **[Structural Styles](../structural/index.md)**：テスト容易性・変更容易性に影響
+- **[Topologies](../topologies/index.md)**：マイクロサービス運用には SLO/Observability が必須
+- **[Integration](../integration/index.md)**：Mesh や Gateway でセキュリティ・可観測性を補強
+- **[Data Architecture](../data/index.md)**：データガバナンスや監査と密接

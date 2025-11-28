@@ -62,10 +62,10 @@ processOrder()
 
 ## ✅ 関連スタイル
 
-- **Big Ball of Mud**（さらに初期の混沌）
-- **Active Record**（データ中心系での「Transaction Script の進化形」）
-- **Classic Layered Architecture**（Transaction Script の負債を解消するアプローチ）
-- **Domain Model / DDD**（複雑領域ではこちらが有効）
+- **[Big Ball of Mud](./big-ball-of-mud.md)**（さらに初期の混沌）
+- **[Active Record](../data-centric/active-record.md)**（データ中心系での「Transaction Script の進化形」）
+- **[Classic Layered Architecture](../layered/classic-layered.md)**（Transaction Script の負債を解消するアプローチ）
+- **[Domain Model](../layered/domain-model-layered.md) / DDD**（複雑領域ではこちらが有効）
 
 ## ✅ 代表的なフレームワーク
 
@@ -105,11 +105,8 @@ Transaction Script 自体は “パターンをほぼ必要としないシンプ
 
 ## ✅ まとめ
 
-Transaction Script は、  
-**簡単なアプリケーションに最適な「現実的・実用的な」構造スタイル** です。
+Transaction Script は、**簡単なアプリケーションに最適な「現実的・実用的な」構造スタイル**。
 
-しかし成長し続けるプロダクトでは、  
-ロジックの重複・肥大化・変更困難・テスト困難が急速に拡大します。
+しかし成長し続けるプロダクトでは、ロジックの重複・肥大化・変更困難・テスト困難が急速に拡大する。
 
-そのため、  
-「スケールしない」ことを理解したうえで使うべきスタイルと言える。
+そのため、「スケールしない」ことを理解したうえで使うべきスタイルと言える。

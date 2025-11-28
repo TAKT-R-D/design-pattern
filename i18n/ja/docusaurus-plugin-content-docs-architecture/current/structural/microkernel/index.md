@@ -1,4 +1,4 @@
-# 🧩 F. Microkernel / Plugin 系（コア＋プラグイン構造）
+# コア＋プラグイン構造系
 
 ## ✅ 概要
 
@@ -10,8 +10,8 @@
 
 代表的なスタイル：
 
-- Microkernel Architecture
-- Plugin Architecture
+- [Microkernel Architecture](./microkernel-architecture.md)
+- [Plugin Architecture](./plugin-architecture.md)
 
 ## ✅ なぜこの系統が生まれたか（歴史・背景）
 
@@ -39,14 +39,14 @@
 
 ## ✅ この系統に属するスタイル
 
-- **Microkernel Architecture**：OS や IDE などで使われる「最小コア＋プラグイン」の基本構造
-- **Plugin Architecture**：アプリケーションに拡張ポイントを用意し、外部プラグインで機能追加を行うスタイル
+- **[Microkernel Architecture](./microkernel-architecture.md)**：OS や IDE などで使われる「最小コア＋プラグイン」の基本構造
+- **[Plugin Architecture](./plugin-architecture.md)**：アプリケーションに拡張ポイントを用意し、外部プラグインで機能追加を行うスタイル
 
 ## ✅ 他の系統との関係
 
-- **Layered / Domain Model 系** と組み合わせて、ドメインサービスをプラグインとして差し替える構成もあり得る
-- **Flow / Reactive 系** の中で、処理ステージやハンドラをプラグインとして差し込む形も一般的
-- **Cross-cutting（Plugin を用いた拡張性・サードパーティ開発）** とも関わる
+- **[Layered / Domain Model 系](../layered/index.md)** と組み合わせて、ドメインサービスをプラグインとして差し替える構成もあり得る
+- **[Flow / Reactive 系](../flow/index.md)** の中で、処理ステージやハンドラをプラグインとして差し込む形も一般的
+- **[Cross-cutting（Plugin を用いた拡張性・サードパーティ開発）](../../cross-cutting/index.md)** とも関わる
 
 ## ✅ どんな時に参考になるか
 

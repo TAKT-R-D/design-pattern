@@ -70,9 +70,9 @@ Service Mesh を導入すると：
 
 ## ✅ 関連スタイル
 
-- **API Gateway / BFF**：外部への入り口。Service Mesh は主に内部トラフィックを扱う
-- **REST / gRPC**：Mesh 上で運ばれるプロトコル
-- **Zero Trust / セキュリティアーキテクチャ**：mTLS や認可ポリシーの適用ポイントとして
+- **[API Gateway / BFF](./api-gateway-bff.md)**：外部への入り口。Service Mesh は主に内部トラフィックを扱う
+- **[REST / gRPC](./rest-grpc-graphql.md)**：Mesh 上で運ばれるプロトコル
+- **[Zero Trust / セキュリティアーキテクチャ](../cross-cutting/zero-trust.md)**：mTLS や認可ポリシーの適用ポイントとして
 
 ## ✅ 代表的なフレームワーク
 

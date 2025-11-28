@@ -1,4 +1,4 @@
-# 🧩 D. UI Interaction / Presentation 系（UI 構造スタイル）
+# UI 構造スタイル系
 
 ## ✅ 概要
 
@@ -10,10 +10,10 @@
 
 代表的なスタイル：
 
-- MVC（Model-View-Controller）
-- MVP（Model-View-Presenter）
-- MVVM（Model-View-ViewModel）
-- MVU（Model-View-Update / Elm Architecture）
+- [MVC（Model-View-Controller）](./mvc.md)
+- [MVP（Model-View-Presenter）](./mvp.md)
+- [MVVM（Model-View-ViewModel）](./mvvm.md)
+- [MVU（Model-View-Update / Elm Architecture）](./mvu.md)
 
 ## ✅ なぜこの系統が生まれたか（歴史・背景）
 
@@ -30,14 +30,14 @@
 
 ## ✅ 解決しようとした問題
 
-UI 系スタイルは主に次をターゲットにしています：
+UI 系スタイルは主に次をターゲットにしている：
 
 - 画面の状態管理がスパゲッティ化する
 - イベントハンドラにビジネスロジックが直接書かれる
 - テストが難しい（UI フレームワーク依存）
 - UI の変更がその他のロジックを壊しやすい
 
-MVC → MVP → MVVM → MVU と進むにつれ、
+[MVC](./mvc.md) → [MVP](./mvp.md) → [MVVM](./mvvm.md) → [MVU](./mvu.md) と進むにつれ、
 
 - UI フレームワークからロジックを切り離す
 - 宣言的 UI / データバインディングとの相性を高める
@@ -46,15 +46,15 @@ MVC → MVP → MVVM → MVU と進むにつれ、
 
 ## ✅ この系統に属するスタイル
 
-- **MVC**：最古参の UI 構造パターン。Model / View / Controller に分割
-- **MVP**：Presenter が画面ロジックを担当し、テスト容易性を高める
-- **MVVM**：ViewModel を用いて状態と振る舞いを束ね、データバインディングを前提にしたスタイル
-- **MVU**：状態 + メッセージ + 更新関数のループで UI を表現する、関数型的スタイル
+- **[MVC](./mvc.md)**：最古参の UI 構造パターン。Model / View / Controller に分割
+- **[MVP](./mvp.md)**：Presenter が画面ロジックを担当し、テスト容易性を高める
+- **[MVVM](./mvvm.md)**：ViewModel を用いて状態と振る舞いを束ね、データバインディングを前提にしたスタイル
+- **[MVU](./mvu.md)**：状態 + メッセージ + 更新関数のループで UI を表現する、関数型的スタイル
 
 ## ✅ 他の系統との関係
 
-- **Layered / Domain Model 系** の中の「Presentation 層」の内部構造として使われることが多い
-- **Reactive / Flow 系** と組み合わせて、イベントストリームやリアクティブな UI を構築することもある
+- **[Layered / Domain Model 系](../layered/index.md)** の中の「Presentation 層」の内部構造として使われることが多い
+- **[Reactive / Flow 系](../reactive/index.md)** と組み合わせて、イベントストリームやリアクティブな UI を構築することもある
 
 ## ✅ どんな時に参考になるか
 

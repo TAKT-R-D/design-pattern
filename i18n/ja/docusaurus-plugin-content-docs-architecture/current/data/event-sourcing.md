@@ -36,13 +36,13 @@
 
 ## ✅ 歴史
 
-- Actor Model などイベント中心の計算モデルに影響
-- CQRS との併用が一般的
+- [Actor Model](../structural/reactive/actor-model.md) などイベント中心の計算モデルに影響
+- [CQRS](./cqrs.md) との併用が一般的
 
 ## ✅ 関連スタイル
 
-- CQRS：書き込み側のモデルとして利用されやすい
-- EDA：イベント駆動システムと自然に統合
+- [CQRS](./cqrs.md)：書き込み側のモデルとして利用されやすい
+- [EDA](../integration/event-driven.md)：イベント駆動システムと自然に統合
 
 ## ✅ 代表的なフレームワーク
 

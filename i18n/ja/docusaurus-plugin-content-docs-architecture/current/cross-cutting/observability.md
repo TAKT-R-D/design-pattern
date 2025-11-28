@@ -1,3 +1,7 @@
+---
+sidebar_label: 🧩 Observability
+---
+
 # 🧩 Observability（可観測性）
 
 ## ✅ このスタイルの概要
@@ -38,9 +42,9 @@
 
 ## ✅ 関連スタイル
 
-- SRE：可観測性は SRE プラクティスの基盤
-- DevOps：デリバリーの高速化を安全に行う前提
-- Service Mesh：トレース・メトリクス収集の自動化
+- [SRE](./slo-sre.md)：可観測性は SRE プラクティスの基盤
+- [DevOps](./devops.md)：デリバリーの高速化を安全に行う前提
+- [Service Mesh](../integration/service-mesh.md)：トレース・メトリクス収集の自動化
 
 ## ✅ まとめ
 

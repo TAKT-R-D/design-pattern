@@ -48,7 +48,8 @@ Plugin Architecture は、
 - 機能のバリエーションがほとんどない単一用途のアプリ
 - セキュリティ要件が極端に厳しく、外部コード実行を避けたいケース
 - プラグイン境界が曖昧で、結局コアと強く結合してしまうような設計
-- といった問題も起こりえる。
+
+といった問題も起こりえる。
 
 ## ✅ 歴史（系譜・親スタイル）
 
@@ -58,9 +59,9 @@ Plugin Architecture は、
 
 ## ✅ 関連スタイル
 
-- **Microkernel Architecture**：コアとプラグインの分離という観点でほぼ同系統
-- **Event-Driven Architecture**：イベント購読型の拡張ポイントとして組み合わせやすい
-- **Layered Architecture**：特定レイヤーに対するプラグイン（例：認証方式の差し替え）としても利用可能
+- **[Microkernel Architecture](./microkernel-architecture.md)**：コアとプラグインの分離という観点でほぼ同系統
+- **[Event-Driven Architecture](../../integration/event-driven.md)**：イベント購読型の拡張ポイントとして組み合わせやすい
+- **[Layered Architecture](../layered/index.md)**：特定レイヤーに対するプラグイン（例：認証方式の差し替え）としても利用可能
 
 ## ✅ 代表的なフレームワーク
 

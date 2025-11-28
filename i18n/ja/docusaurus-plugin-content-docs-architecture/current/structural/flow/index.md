@@ -1,4 +1,4 @@
-# 🧩 E. Flow / Pipeline 系（処理フロー・パイプライン構造）
+# 処理フロー・パイプライン構造系
 
 ## ✅ 概要
 
@@ -10,9 +10,9 @@
 
 代表的なスタイル：
 
-- Pipe & Filter
-- Batch Pipeline
-- Streaming Pipeline
+- [Pipe & Filter](./pipe-and-filter.md)
+- [Batch Pipeline](./batch-pipeline.md)
+- [Streaming Pipeline](./streaming-pipeline.md)
 
 ## ✅ なぜこの系統が生まれたか（歴史・背景）
 
@@ -40,15 +40,15 @@ Flow / Pipeline 系は、処理を
 
 ## ✅ この系統に属するスタイル
 
-- **Pipe & Filter**：フィルタ（処理ステージ）とパイプ（データの流れ）で処理をつなぐ古典的スタイル
-- **Batch Pipeline**：バッチ処理としてのパイプライン構造（ETL ジョブ、バッチワークフロー等）
-- **Streaming Pipeline**：ストリーミングデータを継続的に処理するパイプライン
+- **[Pipe & Filter](./pipe-and-filter.md)**：フィルタ（処理ステージ）とパイプ（データの流れ）で処理をつなぐ古典的スタイル
+- **[Batch Pipeline](./batch-pipeline.md)**：バッチ処理としてのパイプライン構造（ETL ジョブ、バッチワークフロー等）
+- **[Streaming Pipeline](./streaming-pipeline.md)**：ストリーミングデータを継続的に処理するパイプライン
 
 ## ✅ 他の系統との関係
 
-- **Data Architecture**（Lambda / Kappa / Data Pipeline）と非常に相性が良い
-- **Integration Styles**（メッセージング／EDA）と組み合わせて、分散パイプラインを構成することが多い
-- **Reactive / Actor 系** とも親和性が高く、イベントストリーム処理の内部構造として利用される
+- **[Data Architecture](../../data/index.md)**（Lambda / Kappa / Data Pipeline）と非常に相性が良い
+- **[Integration Styles](../../integration/index.md)**（メッセージング／EDA）と組み合わせて、分散パイプラインを構成することが多い
+- **[Reactive / Actor 系](../reactive/index.md)** とも親和性が高く、イベントストリーム処理の内部構造として利用される
 
 ## ✅ どんな時に参考になるか
 

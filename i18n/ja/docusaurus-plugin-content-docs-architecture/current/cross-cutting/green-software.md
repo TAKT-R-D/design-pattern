@@ -1,3 +1,7 @@
+---
+sidebar_label: 🧩 Green Software
+---
+
 # 🧩 Green Software / Sustainable Architecture
 
 ## ✅ このスタイルの概要
@@ -36,8 +40,8 @@
 
 ## ✅ 関連スタイル
 
-- Serverless：アイドル時リソース削減
-- Modular Monolith / Microservices：構造によるリソース効率の違い
+- [Serverless](../topologies/serverless.md)：アイドル時リソース削減
+- [Modular Monolith](../topologies/modular-monolith.md) / [Microservices](../topologies/microservices.md)：構造によるリソース効率の違い
 - FinOps：コスト最適化との親和性
 
 ## ✅ まとめ

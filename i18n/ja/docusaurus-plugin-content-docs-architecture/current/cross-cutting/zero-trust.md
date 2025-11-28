@@ -1,3 +1,7 @@
+---
+sidebar_label: 🧩 Zero Trust
+---
+
 # 🧩 Zero Trust Architecture
 
 ## ✅ このスタイルの概要
@@ -40,8 +44,8 @@
 
 ## ✅ 関連スタイル
 
-- Service Mesh：mTLS・ポリシー管理と相性が良い
-- DevOps / SRE：セキュリティ自動化の側面
+- [Service Mesh](../integration/service-mesh.md)：mTLS・ポリシー管理と相性が良い
+- [DevOps](./devops.md) / [SRE](./slo-sre.md)：セキュリティ自動化の側面
 - Identity & Access Management：中心的基盤
 
 ## ✅ まとめ

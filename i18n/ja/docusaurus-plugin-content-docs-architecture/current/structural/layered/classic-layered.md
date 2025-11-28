@@ -1,3 +1,7 @@
+---
+sidebar_label: 🧩 Classic Layered
+---
+
 # 🧩 Classic Layered Architecture（クラシックレイヤードアーキテクチャ）
 
 ## ✅ このスタイルの概要
@@ -83,13 +87,13 @@ Classic Layered は **“とりあえずこれで分割する” という標準
 
 ## ✅ 関連スタイル
 
-- **Domain Model Layered**：ドメイン層を厚くした発展系
-- **Hexagonal / Onion / Clean**：依存方向を厳しく管理するさらなる発展系
-- **MVC / MVVM**：UI 層内部の構造として組み合わせて利用される
+- **[Domain Model Layered](./domain-model-layered.md)**：ドメイン層を厚くした発展系
+- **[Hexagonal](./dependency-rule-layered/hexagonal.md) / [Onion](./dependency-rule-layered/onion.md) / [Clean](./dependency-rule-layered/clean.md)**：依存方向を厳しく管理するさらなる発展系
+- **[MVC](../ui/mvc.md) / [MVVM](../ui/mvvm.md)**：UI 層内部の構造として組み合わせて利用される
 
 ## ✅ 代表的なフレームワーク
 
-Classic Layered はもっとも一般的な構造スタイルのひとつであり、多くのフレームワークがこの形を前提にしているか、自然に誘導します。
+Classic Layered はもっとも一般的な構造スタイルのひとつであり、多くのフレームワークがこの形を前提にしているか、自然に誘導する。
 
 - **Spring Boot（Java）**  
   Controller / Service / Repository といった 3 層構造が標準的なサンプルとして提示される。

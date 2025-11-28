@@ -1,3 +1,7 @@
+---
+sidebar_label: 🧩 API Gateway / BFF
+---
+
 # 🧩 API Gateway / BFF（Backend for Frontend）
 
 ## ✅ このスタイルの概要
@@ -67,13 +71,13 @@ API Gateway / BFF はこれに対して：
 
 - API Gateway 自体は SOA 時代から存在（ESB ＋ Gateway 等）
 - スマートフォンの普及とともに BFF の考え方が生まれた
-- Microservices, REST/gRPC/GraphQL の普及とともに標準的な構成要素になった
+- [Microservices](../topologies/microservices.md), [REST/gRPC/GraphQL](./rest-grpc-graphql.md) の普及とともに標準的な構成要素になった
 
 ## ✅ 関連スタイル
 
-- **REST / gRPC / GraphQL**：Gateway/BFF が表側で提供する API スタイル
-- **Service Mesh**：サービス間通信の内部実装を担うレイヤー（Gateway より内側）
-- **Event-driven / Saga**：Gateway/BFF からトリガーされる非同期フローの構成要素
+- **[REST / gRPC / GraphQL](./rest-grpc-graphql.md)**：Gateway/BFF が表側で提供する API スタイル
+- **[Service Mesh](./service-mesh.md)**：サービス間通信の内部実装を担うレイヤー（Gateway より内側）
+- **[Event-driven](./event-driven.md) / [Saga](./saga.md)**：Gateway/BFF からトリガーされる非同期フローの構成要素
 
 ## ✅ 代表的なフレームワーク
 

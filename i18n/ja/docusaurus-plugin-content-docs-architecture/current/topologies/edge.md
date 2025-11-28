@@ -1,3 +1,7 @@
+---
+sidebar_label: 🧩 Edge
+---
+
 # 🧩 Edge Architecture
 
 ## ✅ このスタイルの概要
@@ -51,8 +55,8 @@ flowchart LR
 
 ## ✅ 関連スタイル
 
-- Serverless：エッジ FaaS との共通部分
-- Microservices：分散処理の方向性として親和性あり
+- [Serverless](./serverless.md)：エッジ FaaS との共通部分
+- [Microservices](./microservices.md)：分散処理の方向性として親和性あり
 
 ## ✅ 代表的なフレームワーク
 
@@ -100,5 +104,5 @@ Edge Architecture は、
 
 といった新しい課題も生まれる。
 
-クラウドフロントエンドや API の設計時には、
+クラウドフロントエンドや API の設計時には、  
 **どこまでをエッジに寄せ、どこからをオリジンに任せるか** を意識的に設計することが重要である。

@@ -1,6 +1,6 @@
-# 🧩 Architecture Decision Guide（アーキテクチャ選定ガイド）
+# 🌟 アーキテクチャ選定ガイド
 
-ソフトウェアアーキテクチャは「流行」ではなく、**目的と制約に応じて選択する技術** である。本ガイドでは、どのスタイル・トップロジー・統合方式を選ぶべきかを判断するための観点を整理する。
+ソフトウェアアーキテクチャは「流行」ではなく、**目的と制約に応じて選択する技術** である。本ガイドでは、どのスタイル・トポロジー・統合方式を選ぶべきかを判断するための観点を整理する。
 
 ## ✅ まず最初に判断すべき 3 つの軸
 
@@ -28,7 +28,7 @@
 
 → 最終的整合性を許容するなら **Event-driven / CQRS / Event Sourcing** が有効。
 
-## ✅ Topologies 選定（Monolith / Modular Monolith / Microservices）
+## ✅ トポロジー選定（Monolith / Modular Monolith / Microservices）
 
 ### ◎ Monolith を選ぶべきケース
 
@@ -108,7 +108,7 @@
 
 ```mermaid
 graph TD
-  A[要件の整理<br>変更容易性 / スケール / 整合性] --> B[Topologies 選定<br>Monolith / Modular / Microservices]
+  A[要件の整理<br>変更容易性 / スケール / 整合性] --> B[トポロジー選定<br>Monolith / Modular / Microservices]
   B --> C[Integration 選定<br>REST / gRPC / Event-driven]
   C --> D[Data 選定<br>DWH / Lakehouse / CQRS / ES]
   D --> E[Cross-cutting 適用<br>DevOps / SRE / Zero Trust]

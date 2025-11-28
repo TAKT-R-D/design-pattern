@@ -4,18 +4,18 @@
 
 ドメインモデルを“玉ねぎの中心”に置き、  
 外側の層にアプリケーションサービス・インフラ・UI を配置するスタイル。  
-Hexagonal と同じ思想を **「同心円の層」** として表現したもの。
+[Hexagonal](./hexagonal.md) と同じ思想を **「同心円の層」** として表現したもの。
 
 ## ✅ 解決しようとした問題
 
 Onion Architecture は、
 
-- Hexagonal の「六角形とポート」の図が直感的でない人にも、
+- [Hexagonal](./hexagonal.md) の「六角形とポート」の図が直感的でない人にも、
 - 依存方向とドメイン中心設計の考え方を分かりやすく説明する
 
 ことを目的にしたと言ってよいスタイルといえる。
 
-解決したかった具体的な課題は Hexagonal と共通です：
+解決したかった具体的な課題は [Hexagonal](./hexagonal.md) と共通である：
 
 - ドメインがフレームワーク依存になる
 - テストがインフラに引きずられる
@@ -23,14 +23,14 @@ Onion Architecture は、
 
 ## ✅ 基本思想・ルール
 
-玉ねぎの層として、一般的には以下のような構造が取られます：
+玉ねぎの層として、一般的には以下のような構造が取られる：
 
 - 最内側：Domain Model（エンティティ・値オブジェクト・ドメインサービス）
 - その外側：Application Services（ユースケースの調整）
 - さらに外側：Infrastructure（DB / 外部 API / メッセージング）
 - 一番外側：UI / Frameworks
 
-ルールは Hexagonal と同様：
+ルールは [Hexagonal](./hexagonal.md) と同様：
 
 - 依存は内側の層にのみ向かう
 - ドメインは外側の技術詳細を知らない
@@ -53,7 +53,7 @@ Onion Architecture は、
 
 ## ❌ 不向きなケース
 
-- Hexagonal と同じく、ごく小さな CRUD アプリ
+- [Hexagonal](./hexagonal.md) と同じく、ごく小さな CRUD アプリ
 - チームがまだレイヤーの概念や DDD に慣れていない場合
 
 図だけ真似して層を増やすと、
@@ -64,19 +64,19 @@ Onion Architecture は、
 ## ✅ 歴史（系譜・親スタイル）
 
 - Jeffrey Palermo によって紹介されたアーキテクチャスタイル
-- Hexagonal と同時期〜後期の文脈で広まり、
+- [Hexagonal](./hexagonal.md) と同時期〜後期の文脈で広まり、
   .NET コミュニティなどで特に有名
-- Clean Architecture の図示にも強い影響を与えた
+- [Clean Architecture](./clean.md) の図示にも強い影響を与えた
 
 ## ✅ 関連スタイル
 
-- **Hexagonal Architecture**：同じ思想をポート＆アダプタとして説明
-- **Clean Architecture**：層をより細分化し、ユースケース層を強調
-- **Domain Model Layered**：Onion の前段階となるレイヤードスタイル
+- **[Hexagonal Architecture](./hexagonal.md)**：同じ思想をポート＆アダプタとして説明
+- **[Clean Architecture](./clean.md)**：層をより細分化し、ユースケース層を強調
+- **[Domain Model Layered](../domain-model-layered.md)**：Onion の前段階となるレイヤードスタイル
 
 ## ✅ 代表的なフレームワーク
 
-Onion Architecture も Hexagonal 同様フレームワーク非依存だが、特に .NET / Java 系で多く採用されている。
+Onion Architecture も [Hexagonal](./hexagonal.md) 同様フレームワーク非依存だが、特に .NET / Java 系で多く採用されている。
 
 - **ASP.NET Core / .NET**  
   ドメインを中心に据えた同心円構造のサンプルが多数あり、Onion の代表的な実践例となっている。
@@ -86,7 +86,7 @@ Onion Architecture も Hexagonal 同様フレームワーク非依存だが、�
 
 ## ✅ このスタイルを支えるデザインパターン
 
-Onion Architecture は Hexagonal と同じ思想を「層」で表現したものであり、使われるパターンも近い。
+Onion Architecture は [Hexagonal](./hexagonal.md) と同じ思想を「層」で表現したものであり、使われるパターンも近い。
 
 - **Strategy**  
   ドメイン中心の構造の中で、ドメインサービスやポリシーの差し替えを表現する。
@@ -110,6 +110,6 @@ Onion Architecture は、
 - ドメインモデルを中心に据え、
 - 依存方向と責務分離を視覚的に表現するスタイルである。
 
-Hexagonal と思想的にはほぼ同じだが、  
+[Hexagonal](./hexagonal.md) と思想的にはほぼ同じだが、  
 **「層構造の図が馴染みやすいチーム」** にとっては、  
 Onion の方が導入しやすい場合も多い。

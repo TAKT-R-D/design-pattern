@@ -1,3 +1,7 @@
+---
+sidebar_label: 🧩 Lambda / Kappa
+---
+
 # 🧩 Lambda / Kappa Architecture
 
 ## ✅ このスタイルの概要
@@ -74,10 +78,10 @@
 
 ## ✅ 関連スタイル
 
-- **Batch Pipeline**：Lambda の Batch Layer の原型
-- **Streaming Pipeline**：Kappa の中心モデル
-- **Data Lake / Lakehouse**：生データの蓄積と再計算の土台
-- **Event Sourcing**：Replay による状態再構築という発想に近い
+- **[Batch Pipeline](../structural/flow/batch-pipeline.md)**：Lambda の Batch Layer の原型
+- **[Streaming Pipeline](../structural//flow/streaming-pipeline.md)**：Kappa の中心モデル
+- **[Data Lake / Lakehouse](./data-lake-lakehouse.md)**：生データの蓄積と再計算の土台
+- **[Event Sourcing](./event-sourcing.md)**：Replay による状態再構築という発想に近い
 
 ## ✅ 代表的なフレームワーク
 

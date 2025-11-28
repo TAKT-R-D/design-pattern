@@ -1,4 +1,4 @@
-# 🧩 G. Reactive / Event-driven 系（リアクティブ・イベント駆動構造）
+# リアクティブ・イベント駆動構造系
 
 ## ✅ 概要
 
@@ -10,9 +10,9 @@
 
 代表的なスタイル：
 
-- Actor Model
-- Event Loop ベース構造
-- Reactive Streams
+- [Actor Model](./actor-model.md)
+- [Event Loop ベース構造](./event-loop.md)
+- [Reactive Streams](./reactive-streams.md)
 
 ## ✅ なぜこの系統が生まれたか（歴史・背景）
 
@@ -42,15 +42,15 @@ Reactive 系は、
 
 ## ✅ この系統に属するスタイル
 
-- **Actor Model**：アクター同士がメッセージでやり取りする並行モデル
-- **Event Loop ベース構造**：1 本のイベントループで非同期 I/O をさばく構造（Node.js など）
-- **Reactive Streams**：非同期ストリームの処理・バックプレッシャーまで含めて標準化したモデル
+- **[Actor Model](./actor-model.md)**：アクター同士がメッセージでやり取りする並行モデル
+- **[Event Loop ベース構造](./event-loop.md)**：1 本のイベントループで非同期 I/O をさばく構造（Node.js など）
+- **[Reactive Streams](./reactive-streams.md)**：非同期ストリームの処理・バックプレッシャーまで含めて標準化したモデル
 
 ## ✅ 他の系統との関係
 
-- **Flow / Pipeline 系** と組み合わせて、イベントストリームの処理フローを構成する
-- **Integration Styles（EDA, メッセージング）** と密接に関連
-- **Layered / Domain Model 系** の内部実装としてこれらを採用することも多い
+- **[Flow / Pipeline 系](../flow/index.md)** と組み合わせて、イベントストリームの処理フローを構成する
+- **[Integration Styles](../../integration/index.md)（[EDA](../../integration/event-driven.md), メッセージング）** と密接に関連
+- **[Layered / Domain Model 系](../layered/index.md)** の内部実装としてこれらを採用することも多い
 
 ## ✅ どんな時に参考になるか
 
@@ -58,5 +58,5 @@ Reactive 系は、
 - 多数のクライアントや接続を扱うサーバ（チャット／ゲーム／IoT 等）
 - イベントドリブンなビジネスロジックを持つシステム
 
-この系統を理解することで、
+この系統を理解することで、  
 **「何がいつ起き、それにどう反応するか」という軸でアーキテクチャを捉える視点** が得られる。

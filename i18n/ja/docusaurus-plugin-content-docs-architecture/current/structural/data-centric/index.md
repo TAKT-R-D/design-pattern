@@ -1,4 +1,8 @@
-# 🧩 B. データ／レコード中心系（Data-centric Structural Styles）
+---
+sidebar_label: データ／レコード中心系
+---
+
+# データ／レコード中心系
 
 ## ✅ 概要
 
@@ -8,11 +12,11 @@
 - ビジネスロジックは主にデータ構造の近く、もしくはサービス関数に置かれる
 - オブジェクト指向のドメインモデルよりも、RDB のテーブル設計が強く前面に出る
 
-代表的なスタイルは次の 3 つです。
+代表的なスタイルは次の 3 つ。
 
-- **Active Record**
-- **Table Module**
-- **Anemic Domain Model（貧血モデル）**
+- **[Active Record](./active-record.md)**
+- **[Table Module](./table-module.md)**
+- **[Anemic Domain Model（貧血モデル）](./anemic-domain-model.md)**
 
 ## ✅ なぜこの系統が生まれたか（歴史・背景）
 
@@ -30,7 +34,7 @@
 
 ## ✅ この系統に属するスタイル
 
-### ● Active Record
+### ● [Active Record](./active-record.md)
 
 - テーブル 1 つにつきクラス 1 つを割り当て、
   - 行 = インスタンス
@@ -38,15 +42,15 @@
   - INSERT / UPDATE / DELETE / SELECT をメソッドとして持つ
 - Rails の `ActiveRecord` が典型例
 
-### ● Table Module
+### ● [Table Module](./table-module.md)
 
-- テーブル単位でロジックをまとめるモジュール。
-- 集合としてのテーブル（複数行）に対する操作をモジュール関数として表現する。
+- テーブル単位でロジックをまとめるモジュール
+- 集合としてのテーブル（複数行）に対する操作をモジュール関数として表現する
 
-### ● Anemic Domain Model（貧血モデル）
+### ● [Anemic Domain Model（貧血モデル）](./anemic-domain-model.md)
 
-- 「データクラス（プロパティのみ） + サービスクラス（振る舞い）」という構造。
-- データ中心スタイルの「行き過ぎた形」として、しばしばアンチパターン扱いされる。
+- 「データクラス（プロパティのみ） + サービスクラス（振る舞い）」という構造
+- データ中心スタイルの「行き過ぎた形」として、しばしばアンチパターン扱いされる
 
 ## ✅ 他の系統との関係
 

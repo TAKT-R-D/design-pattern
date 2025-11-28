@@ -37,9 +37,9 @@
 
 ## ✅ 関連スタイル
 
-- SRE：信頼性のための運用品質エンジニアリング
-- Observability：可観測性のプラクティス
-- Team Topologies：組織構造の観点から DevOps を支える
+- [SRE](./slo-sre.md)：信頼性のための運用品質エンジニアリング
+- [Observability](./observability.md)：可観測性のプラクティス
+- [Team Topologies](./team-topologies.md)：組織構造の観点から DevOps を支える
 
 ## ✅ まとめ
 

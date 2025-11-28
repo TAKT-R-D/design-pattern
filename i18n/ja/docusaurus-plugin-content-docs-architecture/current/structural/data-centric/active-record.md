@@ -8,7 +8,7 @@
 
 ## ✅ 解決しようとした問題
 
-Active Record が解決したかったのは、主に次のような実務的課題です。
+Active Record が解決したかったのは、主に次のような実務的課題。
 
 - O/R マッピング（テーブル ⇄ オブジェクト）の手間を減らしたい
 - CRUD の典型的なパターンを自動化／抽象化したい
@@ -49,7 +49,7 @@ Active Record が解決したかったのは、主に次のような実務的課
 
 ## ✅ 得意なアプリケーション
 
-Active Record が輝くケースは以下のようなシナリオです：
+Active Record が輝くケースは以下のようなシナリオ：
 
 - CRUD 中心のアプリ
 - 管理画面
@@ -82,11 +82,11 @@ Active Record が輝くケースは以下のようなシナリオです：
 
 ## ✅ 関連スタイル
 
-- **Table Module**  
+- **[Table Module](./table-module.md)**  
   集合（テーブル全体）に対する操作をまとめるスタイル
-- **Anemic Domain Model**  
+- **[Anemic Domain Model](./anemic-domain-model.md)**  
   データ中心スタイルが行き過ぎると発生するアンチパターン
-- **Domain Model / DDD**  
+- **[Domain Model](../layered/domain-model-layered.md) / DDD**  
   複雑なドメイン向けの対極的スタイル
 
 ## ✅ 代表的なフレームワーク

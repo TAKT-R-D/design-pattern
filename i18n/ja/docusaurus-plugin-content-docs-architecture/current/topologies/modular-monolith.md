@@ -1,4 +1,4 @@
-# 🧩 Modular Monolith（モジュラーモノリス）
+# 🧩 Modular Monolith
 
 ## ✅ このスタイルの概要
 
@@ -24,8 +24,8 @@ flowchart LR
 
 ## ✅ 解決しようとした問題
 
-- モノリスの密結合・変更衝突・境界の曖昧さ
-- Microservices の「運用コスト」や「複雑性」を避けたい
+- [モノリス](./monolith.md)の密結合・変更衝突・境界の曖昧さ
+- [Microservices](./microservices.md) の「運用コスト」や「複雑性」を避けたい
 - 内部構造だけはしっかり分離したい
 
 ## ✅ 基本思想・ルール
@@ -49,12 +49,12 @@ flowchart LR
 ## ✅ 歴史
 
 - DDD の登場により注目される
-- Microservices の反動として再評価
+- [Microservices](./microservices.md) の反動として再評価
 
 ## ✅ 関連スタイル
 
-- Monolith：基盤となる概念
-- Microservices：成長後の移行先として相性が良い
+- [Monolith](./monolith.md)：基盤となる概念
+- [Microservices](./microservices.md)：成長後の移行先として相性が良い
 
 ## ✅ 代表的なフレームワーク
 

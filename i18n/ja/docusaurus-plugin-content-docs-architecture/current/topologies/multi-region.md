@@ -1,6 +1,10 @@
+---
+sidebar_label: 🧩 Multi-region
+---
+
 # 🧩 Multi-region Architecture（マルチリージョン構成）
 
-Multi-region Architecture は、サービスを複数リージョンに展開し、**可用性・レイテンシ・災害対策を同時に満たす** トポロジである。
+Multi-region Architecture は、サービスを複数リージョンに展開し、**可用性・レイテンシ・災害対策を同時に満たす** トポロジーである。
 
 ## ✅ このスタイルの概要
 
@@ -48,8 +52,8 @@ graph TD
 
 ## ✅ 関連スタイル
 
-- Cell-based Architecture
-- Event-driven Architecture（非同期レプリケーション）
+- [Cell-based Architecture](./cell-based.md)
+- [Event-driven Architecture（非同期レプリケーション）](../integration/event-driven.md)
 - Global Caching / CDN
 
 ## ✅ まとめ

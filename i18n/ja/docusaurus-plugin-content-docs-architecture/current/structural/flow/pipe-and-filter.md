@@ -65,7 +65,7 @@ flowchart LR
 
 特に、
 
-> 「この処理フローは、この順番で A→B→C と通ります」
+> 「この処理フローは、この順番で A→B→C と通る」
 
 と説明できる場面で威力を発揮する。
 
@@ -83,9 +83,9 @@ flowchart LR
 
 ## ✅ 関連スタイル
 
-- **Batch Pipeline**：バッチ処理としてのパイプライン構造
-- **Streaming Pipeline**：ストリーミング処理への発展
-- **Reactive / Actor 系**：イベントストリーム処理と組み合わさることが多い
+- **[Batch Pipeline](./batch-pipeline.md)**：バッチ処理としてのパイプライン構造
+- **[Streaming Pipeline](./streaming-pipeline.md)**：ストリーミング処理への発展
+- **[Reactive / Actor 系](../reactive/index.md)**：イベントストリーム処理と組み合わさることが多い
 
 ## ✅ 代表的なフレームワーク
 

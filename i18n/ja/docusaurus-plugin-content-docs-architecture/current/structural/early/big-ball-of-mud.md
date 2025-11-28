@@ -1,3 +1,7 @@
+---
+sidebar_label: 🧩 Big Ball of Mud
+---
+
 # 🧩 Big Ball of Mud（泥団子アーキテクチャ）
 
 ## ✅ このスタイルの概要
@@ -54,9 +58,9 @@ Big Ball of Mud には以下の特徴がある：
 
 ## ✅ 関連スタイル
 
-- **Transaction Script**（同じ early 系統、より軽度の混沌）
-- **Classic Layered Architecture**（Big Ball の問題へ最初に体系的に対処した）
-- **Hexagonal / Onion / Clean Architecture**（外部依存からの分離を強く求めた発展系）
+- **[Transaction Script](./transaction-script.md)**（同じ early 系統、より軽度の混沌）
+- **[Classic Layered Architecture](../layered/classic-layered.md)**（Big Ball の問題へ最初に体系的に対処した）
+- **[Hexagonal](../layered/dependency-rule-layered/hexagonal.md) / [Onion](../layered/dependency-rule-layered/onion.md) / [Clean Architecture](../layered/dependency-rule-layered/clean.md)**（外部依存からの分離を強く求めた発展系）
 
 ## ✅ まとめ
 

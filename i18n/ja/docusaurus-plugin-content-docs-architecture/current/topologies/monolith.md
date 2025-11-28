@@ -1,4 +1,4 @@
-# 🧩 Monolith（モノリス）
+# 🧩 Monolith
 
 ## ✅ このスタイルの概要
 
@@ -43,12 +43,12 @@ flowchart TD
 ## ✅ 歴史
 
 - Web アプリケーション初期から一般的な構造
-- SOA → Microservices の台頭で役割が再定義された
+- [SOA](./soa.md) → [Microservices](./microservices.md) の台頭で役割が再定義された
 
 ## ✅ 関連スタイル
 
-- Modular Monolith：モノリスを構造的に整理した発展型
-- Microservices：デプロイ粒度が異なる対極的モデル
+- [Modular Monolith](./modular-monolith.md)：モノリスを構造的に整理した発展型
+- [Microservices](./microservices.md)：デプロイ粒度が異なる対極的モデル
 
 ## ✅ 代表的なフレームワーク
 

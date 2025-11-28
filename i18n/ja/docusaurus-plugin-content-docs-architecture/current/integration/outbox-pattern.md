@@ -1,3 +1,7 @@
+---
+sidebar_label: 🧩 Outbox Pattern
+---
+
 # 🧩 Outbox Pattern（Transactional Outbox）
 
 Outbox Pattern は、サービス間連携における **データ整合性とイベント配送の不整合** を解消するための代表的な Integration パターンである。
@@ -45,9 +49,9 @@ graph TD
 
 ## ✅ 関連スタイル
 
-- Change Data Capture（CDC）
-- Event-driven Architecture（EDA）
-- Saga Pattern（特に Orchestration）
+- [Change Data Capture（CDC）](./cdc.md)
+- [Event-driven Architecture（EDA）](./event-driven.md)
+- [Saga Pattern（特に Orchestration）](./saga.md)
 
 ## ✅ まとめ
 

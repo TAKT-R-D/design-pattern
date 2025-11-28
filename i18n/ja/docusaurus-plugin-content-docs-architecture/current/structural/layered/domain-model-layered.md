@@ -1,3 +1,7 @@
+---
+sidebar_label: 🧩 Domain Model Layered
+---
+
 # 🧩 Domain Model Layered（ドメインモデルレイヤード）
 
 ## ✅ このスタイルの概要
@@ -8,7 +12,7 @@ DDD の考え方と相性が良いレイヤードアーキテクチャ。
 
 ## ✅ 解決しようとした問題
 
-Classic Layered では、次のような問題が起こりがちです：
+[Classic Layered](./classic-layered.md) では、次のような問題が起こりがち：
 
 - Domain 層が「DTO 置き場」や共通関数置き場になり、実質的に空洞化する
 - ビジネスルールが Application / Service 層に散らばる
@@ -23,8 +27,8 @@ Domain Model Layered はこれに対して、
 
 ## ✅ 基本思想・ルール
 
-レイヤー構造そのものは Classic Layered に近いですが、
-**Domain 層の扱いが決定的に異なります。**
+レイヤー構造そのものは [Classic Layered](./classic-layered.md) に近いが、
+**Domain 層の扱いが決定的に異なる。**
 
 - Domain 層に：
   - エンティティ
@@ -42,7 +46,7 @@ Domain Model Layered はこれに対して、
 
 のような形が理想とされる（実際には完全分離は難しいが、方向性として）。
 
-現実の実装では、ORM（JPA / Hibernate など）のアノテーションをドメインモデルに直接付与するケースも多く、結果として Domain → Infrastructure の依存が残ることがある。この点が、依存方向をより厳密に分離しようとする Hexagonal / Clean Architecture などの“Dependency Rule 強化系”スタイルとの違いとなる。
+現実の実装では、ORM（JPA / Hibernate など）のアノテーションをドメインモデルに直接付与するケースも多く、結果として Domain → Infrastructure の依存が残ることがある。この点が、依存方向をより厳密に分離しようとする [Hexagonal](./dependency-rule-layered/hexagonal.md) / [Clean Architecture](./dependency-rule-layered/clean.md) などの“Dependency Rule 強化系”スタイルとの違いとなる。
 
 ### 概念図（Conceptual Diagram）
 
@@ -72,19 +76,19 @@ Domain Model Layered は、**ドメインの複雑さがビジネスのコア価
 - DB スキーマ ≒ 画面項目、という構造で十分なシステム
 - チームのオブジェクト指向・DDD への習熟度が低く、むしろ複雑になる場合
 
-ドメインモデルを無理に導入すると、
+ドメインモデルを無理に導入すると、  
 「概念だけ複雑で実装が追いつかない」といった状態にもなり得る。
 
 ## ✅ 歴史（系譜・親スタイル）
 
-- Classic Layered の発展形として登場
+- [Classic Layered](./classic-layered.md) の発展形として登場
 - Fowler の PoEAA や Evans の DDD に大きく影響を受けたスタイル
-- のちに Hexagonal / Onion / Clean などの“依存ルール強化系”スタイルへとつながっていく
+- のちに [Hexagonal](./dependency-rule-layered/hexagonal.md) / [Onion](./dependency-rule-layered/onion.md) / [Clean](./dependency-rule-layered/clean.md) などの“依存ルール強化系”スタイルへとつながっていく
 
 ## ✅ 関連スタイル
 
-- **Classic Layered**：ドメインを薄く扱う原型スタイル
-- **Hexagonal / Onion / Clean**：ドメインをさらに強く保護しようとする発展系
+- **[Classic Layered](./classic-layered.md)**：ドメインを薄く扱う原型スタイル
+- **[Hexagonal](./dependency-rule-layered/hexagonal.md) / [Onion](./dependency-rule-layered/onion.md) / [Clean](./dependency-rule-layered/clean.md)**：ドメインをさらに強く保護しようとする発展系
 - **DDD（戦術パターン）**：エンティティ、値オブジェクト、集約などの具体的なモデル表現
 
 ## ✅ 代表的なフレームワーク
@@ -126,4 +130,4 @@ Domain Model Layered は、
 を両立しようとするスタイルである。
 
 ドメインの複雑さが増し始めたときに、
-**Classic Layered からの「次の一歩」として採用を検討する価値がある。**
+**[Classic Layered](./classic-layered.md) からの「次の一歩」として採用を検討する価値がある。**

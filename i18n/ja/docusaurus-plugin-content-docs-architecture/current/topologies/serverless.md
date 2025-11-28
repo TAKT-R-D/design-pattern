@@ -1,3 +1,7 @@
+---
+sidebar_label: 🧩 Serverless
+---
+
 # 🧩 Serverless Architecture
 
 ## ✅ このスタイルの概要
@@ -49,8 +53,8 @@ flowchart LR
 
 ## ✅ 関連スタイル
 
-- Microservices：粒度の小ささ・疎結合の思想は類似
-- Event-driven：FaaS の起点として強く連携
+- [Microservices](./microservices.md)：粒度の小ささ・疎結合の思想は類似
+- [Event-driven](../integration/event-driven.md)：FaaS の起点として強く連携
 
 ## ✅ 代表的なフレームワーク
 
