@@ -1,0 +1,51 @@
+---
+sidebar_label: 🧩 Green Software
+---
+
+# 🧩 Green Software / Sustainable Architecture
+
+## ✅ このスタイルの概要
+
+**エネルギー効率・カーボン削減・資源最適化を意識したソフトウェア設計アプローチ。**
+
+## ✅ 解決しようとした問題
+
+- システム増大によるエネルギー消費の増加
+- クラウド利用に伴う CO2 排出の“見えにくさ”
+- 無駄なリソース利用（アイドル動作・オーバースケール）
+
+## ✅ 基本思想・ルール
+
+- カーボン効率の可視化（Carbon Intensity・GreenOps）
+- スケジューリングの最適化（低炭素時間帯）
+- サーバレス / オートスケールの活用
+- データ削減（不要データ保存の削減）
+- エネルギー効率の高いアルゴリズム選択
+
+## ✅ 得意なアプリケーション
+
+- 大規模データ処理基盤
+- 省電力が求められるモバイル・IoT
+- クラウド最適化が求められる企業
+
+## ❌ 不向きなケース
+
+- 環境データが取得できない環境
+- エネルギー効率の効果が小さい小規模システム
+
+## ✅ 歴史
+
+- Green Software Foundation の発足
+- Cloud Sustainability が業界テーマに
+
+## ✅ 関連スタイル
+
+- [Serverless](../topologies/serverless.md)：アイドル時リソース削減
+- [Modular Monolith](../topologies/modular-monolith.md) / [Microservices](../topologies/microservices.md)：構造によるリソース効率の違い
+- FinOps：コスト最適化との親和性
+
+## ✅ まとめ
+
+Green Software は  
+**持続可能なソフトウェア設計** のための考え方で、  
+エネルギー効率・CO2 削減を設計段階から考慮するアーキテクチャである。

@@ -1,5 +1,6 @@
 ---
 sidebar_label: はじめに
+pagination_label: 構造の掛け合わせで広がる設計力
 ---
 
 # 構造の掛け合わせで広がる設計力

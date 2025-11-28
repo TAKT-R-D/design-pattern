@@ -1,5 +1,6 @@
 ---
 sidebar_label: Introduction
+pagination_label: Advanced Design Patterns
 ---
 
 # Advanced Design Patterns

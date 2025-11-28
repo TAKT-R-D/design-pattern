@@ -1,3 +1,7 @@
+---
+pagination_label: Excessive Branching Summary
+---
+
 # Summary
 
 ## Pattern Comparison

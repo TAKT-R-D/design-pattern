@@ -1,0 +1,58 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.architectureSidebar.category.Structural Styles": {
+    "message": "アプリ内部構造",
+    "description": "The label for category Structural Styles in sidebar architectureSidebar"
+  },
+  "sidebar.architectureSidebar.category.A. Early": {
+    "message": "A. Early",
+    "description": "The label for category A. Early in sidebar architectureSidebar"
+  },
+  "sidebar.architectureSidebar.category.B. Data-centric": {
+    "message": "B. Data-centric",
+    "description": "The label for category Data-centric in sidebar architectureSidebar"
+  },
+  "sidebar.architectureSidebar.category.C. Layered / Domain": {
+    "message": "C. Layered / Domain",
+    "description": "The label for category Layered / Domain / Dependency Rule in sidebar architectureSidebar"
+  },
+  "sidebar.architectureSidebar.category.Dependency-rule-based": {
+    "message": "Dependency-rule-based",
+    "description": "The label for category Dependency-rule-based in sidebar architectureSidebar"
+  },
+  "sidebar.architectureSidebar.category.D. UI Interaction": {
+    "message": "D. UI Interaction",
+    "description": "The label for category UI Interaction / Presentation in sidebar architectureSidebar"
+  },
+  "sidebar.architectureSidebar.category.E. Flow / Pipeline": {
+    "message": "E. Flow / Pipeline",
+    "description": "The label for category Flow / Pipeline in sidebar architectureSidebar"
+  },
+  "sidebar.architectureSidebar.category.F. Microkernel": {
+    "message": "F. Microkernel",
+    "description": "The label for category Microkernel in sidebar architectureSidebar"
+  },
+  "sidebar.architectureSidebar.category.G. Reactive / Actor": {
+    "message": "G. Reactive / Actor",
+    "description": "The label for category Reactive / Actor in sidebar architectureSidebar"
+  },
+  "sidebar.architectureSidebar.category.System Topologies": {
+    "message": "システム構成・粒度",
+    "description": "The label for category System Topologies in sidebar architectureSidebar"
+  },
+  "sidebar.architectureSidebar.category.Integration Styles": {
+    "message": "通信方式",
+    "description": "The label for category Integration Styles in sidebar architectureSidebar"
+  },
+  "sidebar.architectureSidebar.category.Data Architecture": {
+    "message": "データ構造・基盤",
+    "description": "The label for category Data Architecture in sidebar architectureSidebar"
+  },
+  "sidebar.architectureSidebar.category.Cross-cutting": {
+    "message": "運用・組織",
+    "description": "The label for category Cross-cutting & Socio-technical in sidebar architectureSidebar"
+  }
+}

@@ -16,7 +16,6 @@ const config: Config = {
   projectName: "design-pattern",
 
   onBrokenLinks: "throw",
-  onBrokenMarkdownLinks: "warn",
 
   i18n: {
     defaultLocale: "en",
@@ -25,6 +24,9 @@ const config: Config = {
 
   markdown: {
     mermaid: true,
+    hooks: {
+      onBrokenMarkdownLinks: "warn",
+    },
   },
   themes: ["@docusaurus/theme-mermaid"],
 
@@ -73,6 +75,12 @@ const config: Config = {
           position: "left",
         },
         {
+          to: "/architecture/intro",
+          label: "Architecture",
+          activeBaseRegex: "/architecture/",
+          position: "left",
+        },
+        {
           type: "search",
           position: "right",
         },
@@ -95,6 +103,10 @@ const config: Config = {
             {
               label: "Advanced",
               to: "/advanced/intro",
+            },
+            {
+              label: "Architecture",
+              to: "/architecture/intro",
             },
           ],
         },
@@ -165,6 +177,17 @@ const config: Config = {
         path: "advanced",
         routeBasePath: "advanced",
         sidebarPath: require.resolve("./sidebars-advanced.ts"),
+        editUrl: "https://github.com/TAKT-R-D/design-pattern/edit/main/",
+        editLocalizedFiles: true,
+      },
+    ],
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "architecture",
+        path: "architecture",
+        routeBasePath: "architecture",
+        sidebarPath: require.resolve("./sidebars-architecture.ts"),
         editUrl: "https://github.com/TAKT-R-D/design-pattern/edit/main/",
         editLocalizedFiles: true,
       },

@@ -1,3 +1,7 @@
+---
+pagination_label: Duplicated Logic Summary
+---
+
 # Summary
 
 ## Pattern Comparison

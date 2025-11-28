@@ -22,5 +22,9 @@
   "item.label.Advanced": {
     "message": "Advanced",
     "description": "Navbar item with label Advanced"
+  },
+  "item.label.Architecture": {
+    "message": "Architecture",
+    "description": "Navbar item with label Architecture"
   }
 }

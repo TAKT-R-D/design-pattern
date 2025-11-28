@@ -1,3 +1,7 @@
+---
+pagination_label: Forced Compatibility Summary
+---
+
 # Summary
 
 ## Pattern Comparison

@@ -1,3 +1,7 @@
+---
+pagination_label: Single State Handling Summary
+---
+
 # Summary
 
 ## Pattern Comparison

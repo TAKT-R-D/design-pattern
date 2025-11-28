@@ -1,3 +1,7 @@
+---
+pagination_label: God Object Summary
+---
+
 # Summary
 
 ## Pattern Comparison
