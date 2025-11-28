@@ -2,6 +2,8 @@
 sidebar_label: 📚 References
 ---
 
+import IconExternalLink from '@theme/Icon/ExternalLink';
+
 # 📚 References & Further Reading
 
 本サイトのアーキテクチャ解説は、以下の書籍・論文・記事をベースに構成している。

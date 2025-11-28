@@ -75,7 +75,7 @@ const config: Config = {
           position: "left",
         },
         {
-          to: "/architecture",
+          to: "/architecture/intro",
           label: "Architecture",
           activeBaseRegex: "/architecture/",
           position: "left",
@@ -106,7 +106,7 @@ const config: Config = {
             },
             {
               label: "Architecture",
-              to: "/architecture",
+              to: "/architecture/intro",
             },
           ],
         },

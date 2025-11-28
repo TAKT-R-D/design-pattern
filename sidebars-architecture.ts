@@ -5,7 +5,7 @@ const sidebars: SidebarsConfig = {
     //
     // Top-level guides
     //
-    "index",
+    "intro",
     "arch-principles",
     "decision-guide",
     "structure-decision-guide",
