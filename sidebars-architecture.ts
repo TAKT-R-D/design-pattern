@@ -22,7 +22,7 @@ const sidebars: SidebarsConfig = {
         // Early
         {
           type: "category",
-          label: "Early / 初期構造",
+          label: "A. Early",
           items: [
             "structural/early/index",
             "structural/early/big-ball-of-mud",
@@ -33,7 +33,7 @@ const sidebars: SidebarsConfig = {
         // Data-centric
         {
           type: "category",
-          label: "Data-centric",
+          label: "B. Data-centric",
           items: [
             "structural/data-centric/index",
             "structural/data-centric/active-record",
@@ -45,7 +45,7 @@ const sidebars: SidebarsConfig = {
         // Layered / Domain / Dependency Rule
         {
           type: "category",
-          label: "Layered / Domain / Dependency Rule",
+          label: "C. Layered / Domain",
           items: [
             "structural/layered/index",
             "structural/layered/classic-layered",
@@ -66,7 +66,7 @@ const sidebars: SidebarsConfig = {
         // UI Patterns
         {
           type: "category",
-          label: "UI Interaction / Presentation",
+          label: "D. UI Interaction",
           items: [
             "structural/ui/index",
             "structural/ui/mvc",
@@ -79,7 +79,7 @@ const sidebars: SidebarsConfig = {
         // Flow / Pipeline
         {
           type: "category",
-          label: "Flow / Pipeline",
+          label: "E. Flow / Pipeline",
           items: [
             "structural/flow/index",
             "structural/flow/pipe-and-filter",
@@ -91,10 +91,10 @@ const sidebars: SidebarsConfig = {
         // Microkernel
         {
           type: "category",
-          label: "Microkernel",
+          label: "F. Microkernel",
           items: [
             "structural/microkernel/index",
-            "structural/microkernel/microkernel",
+            "structural/microkernel/microkernel-architecture",
             "structural/microkernel/plugin-architecture",
           ],
         },
@@ -102,7 +102,7 @@ const sidebars: SidebarsConfig = {
         // Reactive
         {
           type: "category",
-          label: "Reactive / Actor",
+          label: "G. Reactive / Actor",
           items: [
             "structural/reactive/index",
             "structural/reactive/actor-model",
@@ -176,7 +176,7 @@ const sidebars: SidebarsConfig = {
     //
     {
       type: "category",
-      label: "Cross-cutting & Socio-technical",
+      label: "Cross-cutting",
       items: [
         "cross-cutting/index",
         "cross-cutting/devops",

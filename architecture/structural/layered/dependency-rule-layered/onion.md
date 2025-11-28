@@ -61,41 +61,41 @@ If you increase layers just by imitating the diagram, there is a risk that:
 
 - Architectural style introduced by Jeffrey Palermo.
 - Spread in the context of the same period to later period as Hexagonal, particularly famous in the .NET community.
-- Strongly influenced the illustration of Clean Architecture.
+- Strongly influenced the illustration of [Clean Architecture](./clean.md).
 
 ## ✅ Related Styles
 
-- **Hexagonal Architecture**: Explains the same philosophy as Ports & Adapters.
-- **Clean Architecture**: Subdivides layers more and emphasizes the Use Case layer.
-- **Domain Model Layered**: Layered style serving as a precursor to Onion.
+- **[Hexagonal Architecture](./hexagonal.md)**: Explains the same philosophy as Ports & Adapters.
+- **[Clean Architecture](./clean.md)**: Subdivides layers more and emphasizes the Use Case layer.
+- **[Domain Model Layered](../domain-model-layered.md)**: Layered style serving as a precursor to Onion.
 
 ## ✅ Representative Frameworks
 
 Onion Architecture is also framework-independent like Hexagonal, but is adopted particularly often in .NET / Java systems.
 
-- **ASP.NET Core / .NET**
+- **ASP.NET Core / .NET**  
   There are many samples of concentric structures centered on the domain, making it a representative practice example of Onion.
 
-- **Spring Boot (Java)**
+- **Spring Boot (Java)**  
   Project configurations organizing Domain / Application / Infrastructure as "layers" and leaning towards Onion-like structure are often seen.
 
 ## ✅ Design Patterns Supporting This Style
 
 Onion Architecture expresses the same philosophy as Hexagonal with "layers", and the patterns used are close.
 
-- **Strategy**
+- **Strategy**  
   Expresses replacement of domain services and policies within the domain-centric structure.
 
-- **Command**
+- **Command**  
   Expresses processing of Application Services (Use Cases) as operation objects, making them easier to test.
 
-- **Adapter**
+- **Adapter**  
   Functions as glue for outer layers (Infrastructure / UI) to follow inner abstract interfaces.
 
-- **Proxy**
+- **Proxy**  
   Wraps access to external services and technical concerns (cache, retry) in outer layers.
 
-- **Repository** (as a term)
+- **Repository** (as a term)  
   Used as a conceptual pattern to clarify the boundary between domain model and persistence.
 
 ## ✅ Summary
@@ -105,5 +105,5 @@ Onion Architecture is a style that:
 - Centers on the Domain Model, and
 - Visually expresses dependency direction and separation of responsibilities.
 
-While philosophically almost the same as Hexagonal,
+While philosophically almost the same as Hexagonal,  
 For **"teams comfortable with layer structure diagrams"**, Onion is often easier to introduce.

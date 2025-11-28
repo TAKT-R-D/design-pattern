@@ -36,43 +36,43 @@
 
 ## ✅ History
 
-- Influenced event-centric calculation models like Actor Model.
-- Combination with CQRS is common.
+- Influenced event-centric calculation models like [Actor Model](../structural/reactive/actor-model.md).
+- Combination with [CQRS](./cqrs.md) is common.
 
 ## ✅ Related Styles
 
-- CQRS: Easily used as model on write side.
-- EDA: Naturally integrated with event-driven systems.
+- [CQRS](./cqrs.md): Easily used as model on write side.
+- [EDA](../integration/event-driven.md): Naturally integrated with event-driven systems.
 
 ## ✅ Representative Frameworks
 
-- **EventStoreDB**
+- **EventStoreDB**  
   Most widely used Event Store dedicated to Event Sourcing.
 
-- **Kafka / Kinesis / Pub/Sub**
+- **Kafka / Kinesis / Pub/Sub**  
   Implementation accumulating events as Append-only log and performing state reconstruction by Replay is possible.
 
-- **Axon Framework (Java)**
+- **Axon Framework (Java)**  
   Easy to implement integrating Event Sourcing and CQRS.
 
-- **Temporal / Cadence**
+- **Temporal / Cadence**  
   Supports long-term event history management and workflow replay.
 
 ## ✅ Design Patterns Supporting This Style
 
-- **Memento**
+- **Memento**  
   Used for saving / restoring snapshots.
 
-- **Command**
+- **Command**  
   Treats event as operation object generating it.
 
-- **Observer**
+- **Observer**  
   Structure where event subscriber receives state change as notification.
 
-- **Iterator**
+- **Iterator**  
   Used for sequential replay of Event Stream.
 
-- **State**
+- **State**  
   Aggregate updates internal state applying events.
 
 ## ✅ Summary

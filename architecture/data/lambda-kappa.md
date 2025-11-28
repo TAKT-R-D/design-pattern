@@ -1,3 +1,7 @@
+---
+sidebar_label: 🧩 Lambda / Kappa
+---
+
 # 🧩 Lambda / Kappa Architecture
 
 ## ✅ Overview
@@ -27,11 +31,11 @@
 
 ### Three Layers of Lambda Architecture
 
-1. **Batch Layer**
+1. **Batch Layer**  
    Accumulates raw data (immutable) and creates true value by periodic batch recalculation.
-2. **Speed Layer (Streaming Layer)**
+2. **Speed Layer (Streaming Layer)**  
    Near real-time processing to complement the gap until batch comes.
-3. **Serving Layer**
+3. **Serving Layer**  
    Merges and provides batch result + streaming result.
 
 ### Philosophy of Kappa Architecture
@@ -68,48 +72,48 @@
 
 ## ✅ History (Genealogy / Parent Styles)
 
-- Lambda Architecture (Nathan Marz) proposed double structure of Batch + Stream.
+- Lambda Architecture (Nathan Marz) proposed double structure of [Batch](../structural/flow/batch-pipeline.md) + [Stream](../structural/flow/streaming-pipeline.md).
 - Later, Kappa Architecture spread with evolution of Kafka Streams / Flink / Beam etc.
-- Nowadays, combination with Lakehouse + Streaming is becoming common.
+- Nowadays, combination with [Lakehouse](./data-lake-lakehouse.md) + [Streaming](../structural/flow/streaming-pipeline.md) is becoming common.
 
 ## ✅ Related Styles
 
-- **Batch Pipeline**: Prototype of Batch Layer of Lambda.
-- **Streaming Pipeline**: Central model of Kappa.
-- **Data Lake / Lakehouse**: Foundation for raw data accumulation and recalculation.
-- **Event Sourcing**: Close to idea of state reconstruction by Replay.
+- **[Batch Pipeline](../structural/flow/batch-pipeline.md)**: Prototype of Batch Layer of Lambda.
+- **[Streaming Pipeline](../structural/flow/streaming-pipeline.md)**: Central model of Kappa.
+- **[Data Lake / Lakehouse](./data-lake-lakehouse.md)**: Foundation for raw data accumulation and recalculation.
+- **[Event Sourcing](./event-sourcing.md)**: Close to idea of state reconstruction by Replay.
 
 ## ✅ Representative Frameworks
 
-- **Apache Spark**
+- **Apache Spark**  
   Central technology constructing Batch Layer of Lambda Architecture.
 
-- **Kafka Streams / Apache Flink**
+- **Kafka Streams / Apache Flink**  
   Representative streaming processing infrastructure of Kappa Architecture.
 
-- **Apache Beam**
+- **Apache Beam**  
   Can construct pipeline integrating Batch / Streaming, supporting both Lambda/Kappa.
 
-- **Delta Lake / Iceberg / Hudi**
+- **Delta Lake / Iceberg / Hudi**  
   Good compatibility with Lakehouse assuming recalculation and Replay.
 
 ## ✅ Design Patterns Supporting This Style
 
-- **Iterator**
+- **Iterator**  
   Used for sequential processing of stream / massive data.
 
-- **Observer**
+- **Observer**  
   Process triggered by arrival of stream event.
 
-- **Strategy**
+- **Strategy**  
   Switching algorithms of batch processing / streaming processing.
 
-- **Template Method**
+- **Template Method**  
   Unifies common flow of ETL / Pipeline construction.
 
 ## ✅ Summary
 
-Lambda / Kappa Architecture are data processing structures born from the perspective of:
+Lambda / Kappa Architecture are data processing structures born from the perspective of:  
 **How to handle massive data with "Accuracy", "Immediacy", and "Recalculability".**
 
 - Both Accuracy + Immediacy needed → **Lambda**

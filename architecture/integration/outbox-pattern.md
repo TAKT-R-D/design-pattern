@@ -1,3 +1,7 @@
+---
+sidebar_label: 🧩 Transactional Outbox
+---
+
 # 🧩 Outbox Pattern (Transactional Outbox)
 
 Outbox Pattern is a representative Integration pattern to resolve **inconsistency between data consistency and event delivery** in inter-service coordination.
@@ -43,9 +47,9 @@ graph TD
 
 ## ✅ Related Styles
 
-- Change Data Capture (CDC)
-- Event-driven Architecture (EDA)
-- Saga Pattern (Especially Orchestration)
+- [Change Data Capture (CDC)](./cdc.md)
+- [Event-driven Architecture (EDA)](../integration/event-driven.md)
+- [Saga Pattern (Especially Orchestration)](./saga.md)
 
 ## ✅ Summary
 

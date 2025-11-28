@@ -1,4 +1,4 @@
-# 🧩 G. Reactive / Event-driven Structural Styles
+# Reactive / Event-driven Structural Styles
 
 ## ✅ Overview
 
@@ -10,9 +10,9 @@ This family deals with styles that handle **structures reacting asynchronously c
 
 Representative Styles:
 
-- Actor Model
-- Event Loop based structure
-- Reactive Streams
+- [Actor Model](./actor-model.md)
+- [Event Loop based structure](./event-loop.md)
+- [Reactive Streams](./reactive-streams.md)
 
 ## ✅ Why This Family Emerged (History & Background)
 
@@ -39,15 +39,15 @@ Reactive family considers the design of the entire system from perspectives like
 
 ## ✅ Styles Belonging to This Family
 
-- **Actor Model**: Concurrency model where actors communicate with messages.
-- **Event Loop based structure**: Structure handling asynchronous I/O with a single event loop (Node.js etc.).
-- **Reactive Streams**: Standardized model including asynchronous stream processing and backpressure.
+- **[Actor Model](./actor-model.md)**: Concurrency model where actors communicate with messages.
+- **[Event Loop based structure](./event-loop.md)**: Structure handling asynchronous I/O with a single event loop (Node.js etc.).
+- **[Reactive Streams](./reactive-streams.md)**: Standardized model including asynchronous stream processing and backpressure.
 
 ## ✅ Relationship with Other Families
 
-- Combined with **Flow / Pipeline** to configure processing flow of event streams.
-- Closely related to **Integration Styles (EDA, Messaging)**.
-- Often adopted as internal implementation of **Layered / Domain Model**.
+- Combined with **[Flow / Pipeline](../flow/index.md)** to configure processing flow of event streams.
+- Closely related to **[Integration Styles (EDA, Messaging)](../../integration/index.md)**.
+- Often adopted as internal implementation of **[Layered / Domain Model](../layered/index.md)**.
 
 ## ✅ When to Reference
 

@@ -1,4 +1,4 @@
-# 🧩 E. Flow / Pipeline Structural Styles
+# Flow / Pipeline Structural Styles
 
 ## ✅ Overview
 
@@ -10,9 +10,9 @@ This family covers styles that deal with **how to configure processing inside an
 
 Representative Styles:
 
-- Pipe & Filter
-- Batch Pipeline
-- Streaming Pipeline
+- [Pipe & Filter](./pipe-and-filter.md)
+- [Batch Pipeline](./batch-pipeline.md)
+- [Streaming Pipeline](./streaming-pipeline.md)
 
 ## ✅ Why This Family Emerged (History & Background)
 
@@ -38,15 +38,15 @@ Flow / Pipeline styles aim to **"treat the processing flow as a design object"**
 
 ## ✅ Styles Belonging to This Family
 
-- **Pipe & Filter**: Classic style connecting processing with filters (processing stages) and pipes (data flow).
-- **Batch Pipeline**: Pipeline structure as batch processing (ETL jobs, batch workflows, etc.).
-- **Streaming Pipeline**: Pipeline processing streaming data continuously.
+- **[Pipe & Filter](./pipe-and-filter.md)**: Classic style connecting processing with filters (processing stages) and pipes (data flow).
+- **[Batch Pipeline](./batch-pipeline.md)**: Pipeline structure as batch processing (ETL jobs, batch workflows, etc.).
+- **[Streaming Pipeline](./streaming-pipeline.md)**: Pipeline processing streaming data continuously.
 
 ## ✅ Relationship with Other Families
 
-- Very compatible with **Data Architecture** (Lambda / Kappa / Data Pipeline).
-- Often combined with **Integration Styles** (Messaging / EDA) to configure distributed pipelines.
-- High affinity with **Reactive / Actor** families, used as internal structure for event stream processing.
+- Very compatible with **[Data Architecture](../../data/index.md)** (Lambda / Kappa / Data Pipeline).
+- Often combined with **[Integration Styles](../../integration/index.md)** (Messaging / EDA) to configure distributed pipelines.
+- High affinity with **[Reactive / Actor](../reactive/index.md)** families, used as internal structure for event stream processing.
 
 ## ✅ When to Reference
 

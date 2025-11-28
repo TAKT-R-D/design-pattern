@@ -1,4 +1,8 @@
-# 🧩 D. UI Interaction / Presentation Styles (UI Structural Styles)
+---
+sidebar_label: UI Interaction / Presentation Styles
+---
+
+# UI Interaction / Presentation Styles (UI Structural Styles)
 
 ## ✅ Overview
 
@@ -10,10 +14,10 @@ This family covers styles that deal with **how to divide and coordinate between 
 
 Representative Styles:
 
-- MVC (Model-View-Controller)
-- MVP (Model-View-Presenter)
-- MVVM (Model-View-ViewModel)
-- MVU (Model-View-Update / Elm Architecture)
+- [MVC (Model-View-Controller)](./mvc.md)
+- [MVP (Model-View-Presenter)](./mvp.md)
+- [MVVM (Model-View-ViewModel)](./mvvm.md)
+- [MVU (Model-View-Update / Elm Architecture)](./mvu.md)
 
 ## ✅ Why this Family Emerged (History/Background)
 
@@ -34,22 +38,22 @@ UI styles primarily target the following:
 - Difficulty in testing (dependency on UI frameworks).
 - UI changes easily breaking other logic.
 
-As styles evolved from MVC → MVP → MVVM → MVU, the direction has been to:
+As styles evolved from [MVC](./mvc.md) → [MVP](./mvp.md) → [MVVM](./mvvm.md) → [MVU](./mvu.md), the direction has been to:
 
 - Decouple logic from UI frameworks.
 - Enhance compatibility with Declarative UI / Data Binding.
 
 ## ✅ Styles Belonging to this Family
 
-- **MVC**: The oldest UI structural pattern. Divided into Model / View / Controller.
-- **MVP**: Presenter handles screen logic to improve testability.
-- **MVVM**: A style premised on data binding, bundling state and behavior using ViewModel.
-- **MVU**: A functional style that expresses UI through a loop of State + Message + Update function.
+- **[MVC](./mvc.md)**: The oldest UI structural pattern. Divided into Model / View / Controller.
+- **[MVP](./mvp.md)**: Presenter handles screen logic to improve testability.
+- **[MVVM](./mvvm.md)**: A style premised on data binding, bundling state and behavior using ViewModel.
+- **[MVU](./mvu.md)**: A functional style that expresses UI through a loop of State + Message + Update function.
 
 ## ✅ Relationship with Other Families
 
-- Often used as the internal structure of the "Presentation Layer" within **Layered / Domain Model Families**.
-- Sometimes combined with **Reactive / Flow Families** to build event streams or reactive UIs.
+- Often used as the internal structure of the "Presentation Layer" within **[Layered / Domain Model Families](../layered/index.md)**.
+- Sometimes combined with **[Reactive](../reactive/index.md) / [Flow](../flow/index.md) Families** to build event streams or reactive UIs.
 
 ## ✅ When to Reference
 

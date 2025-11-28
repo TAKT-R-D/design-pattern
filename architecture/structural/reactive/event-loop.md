@@ -57,40 +57,40 @@ Such processing needs to be escaped to workers (separate threads/processes).
 
 ## ✅ Related Styles
 
-- **Actor Model**: Message-driven, but often uses Event Loop for implementation.
-- **Reactive Streams**: Abstraction of event stream processing.
-- **EDA / Pub-Sub**: Event-driven structure of the entire system.
+- **[Actor Model](./actor-model.md)**: Message-driven, but often uses Event Loop for implementation.
+- **[Reactive Streams](./reactive-streams.md)**: Abstraction of event stream processing.
+- **[EDA / Pub-Sub](../../integration/event-driven.md)**: Event-driven structure of the entire system.
 
 ## ✅ Representative Frameworks
 
 Event Loop based structure is widely adopted in platforms centered on asynchronous I/O.
 
-- **Node.js**
+- **Node.js**  
   Most representative Event Loop implementation. Single thread + Asynchronous I/O model is core.
 
-- **Browser (JavaScript Runtime)**
+- **Browser (JavaScript Runtime)**  
   `setTimeout` / `Promise` / `fetch` etc. all operate on Event Loop.
 
-- **Deno / Bun (JavaScript Runtime)**
+- **Deno / Bun (JavaScript Runtime)**  
   Adopts event loop model similar to Node.js.
 
-- **High Performance Servers like Nginx / Envoy**
+- **High Performance Servers like Nginx / Envoy**  
   Realize high throughput by event loop + asynchronous I/O inside core.
 
 ## ✅ Design Patterns Supporting This Style
 
 Event Loop itself is a low-level execution model, but strongly linked with the following patterns.
 
-- **Observer**
+- **Observer**  
   Basic of notification model: Event firing → Handler execution.
 
-- **Command**
+- **Command**  
   Used when treating asynchronous callbacks or processing as "operation objects".
 
-- **Mediator**
+- **Mediator**  
   Sometimes used as a mechanism to coordinate multiple events/handlers.
 
-- **Iterator**
+- **Iterator**  
   Useful when processing asynchronous streams sequentially (AsyncIterator etc.).
 
 ## ✅ Summary

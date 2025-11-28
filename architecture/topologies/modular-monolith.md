@@ -24,8 +24,8 @@ flowchart LR
 
 ## ✅ Problems Addressed
 
-- Tight coupling, change collision, and ambiguous boundaries of Monolith.
-- Want to avoid "operational cost" and "complexity" of Microservices.
+- Tight coupling, change collision, and ambiguous boundaries of [Monolith](./monolith.md).
+- Want to avoid "operational cost" and "complexity" of [Microservices](./microservices.md).
 - Want to separate only the internal structure firmly.
 
 ## ✅ Basic Philosophy & Rules
@@ -49,45 +49,45 @@ flowchart LR
 ## ✅ History
 
 - Attracted attention with the emergence of DDD.
-- Re-evaluated as a reaction to Microservices.
+- Re-evaluated as a reaction to [Microservices](./microservices.md).
 
 ## ✅ Related Styles
 
-- **Monolith**: Base concept.
-- **Microservices**: Good compatibility as a migration destination after growth.
+- **[Monolith](./monolith.md)**: Base concept.
+- **[Microservices](./microservices.md)**: Good compatibility as a migration destination after growth.
 
 ## ✅ Representative Frameworks
 
-- **Spring Boot + Module Boundary (Package by Feature)**
+- **Spring Boot + Module Boundary (Package by Feature)**  
   Representative configuration of Modular Monolith protecting model boundaries.
 
-- **NestJS (Module Structure)**
+- **NestJS (Module Structure)**  
   Supports clear module boundaries, suitable for Modular Monolith.
 
-- **.NET (Modular Monolith Template)**
+- **.NET (Modular Monolith Template)**  
   Can realize DDD + Module boundaries with official templates.
 
-- **Laravel / Rails (Engine / Module Pattern)**
+- **Laravel / Rails (Engine / Module Pattern)**  
   Configuration to cut out modules partially is possible.
 
 ## ✅ Design Patterns Supporting This Style
 
-- **Facade**
+- **Facade**  
   Functions as an entrance of API exposed to outside of the module.
 
-- **Mediator**
+- **Mediator**  
   Commonizes coordination logic between modules.
 
-- **Adapter**
+- **Adapter**  
   Used when performing inter-module communication via interfaces.
 
-- **Strategy**
+- **Strategy**  
   Makes behavior inside module switchable.
 
-- **Proxy**
+- **Proxy**  
   Useful for module boundary protection and access control.
 
 ## ✅ Summary
 
-Modular Monolith is a structural style that balances
+Modular Monolith is a structural style that balances  
 **"Simplicity of Monolith" and "Boundary awareness of Microservices".**

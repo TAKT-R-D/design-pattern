@@ -37,9 +37,9 @@
 
 ## ✅ Related Styles
 
-- SRE: Operational quality engineering for reliability.
-- Observability: Practice of observability.
-- Team Topologies: Supports DevOps from organizational structure perspective.
+- [SRE](./slo-sre.md): Operational quality engineering for reliability.
+- [Observability](./observability.md): Practice of observability.
+- [Team Topologies](./team-topologies.md): Supports DevOps from organizational structure perspective.
 
 ## ✅ Summary
 

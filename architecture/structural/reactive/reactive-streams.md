@@ -56,9 +56,9 @@ its value emerges in domains where "streams are the main actor".
 
 ## ✅ Related Styles
 
-- **Flow / Pipeline**: Combined with flow design of stream processing.
-- **Event Loop / Actor Model**: Used as a foundation for asynchronous execution.
-- **EDA / Pub-Sub**: Event-driven structure between systems.
+- **[Flow / Pipeline](../flow/index.md)**: Combined with flow design of stream processing.
+- **[Event Loop](./event-loop.md) / [Actor Model](./actor-model.md)**: Used as a foundation for asynchronous execution.
+- **[EDA / Pub-Sub](../../integration/event-driven.md)**: Event-driven structure between systems.
 
 ## 8. Representative Frameworks
 

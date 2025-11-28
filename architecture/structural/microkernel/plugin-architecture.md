@@ -48,47 +48,47 @@ Plugin Architecture supports ease of change and ecosystem construction by:
 
 ## ✅ History (Genealogy / Parent Styles)
 
-- Style that concretized Microkernel ideas at a more application level.
+- Style that concretized [Microkernel](./microkernel-architecture.md) ideas at a more application level.
 - Spread in many tools including IDEs like Eclipse / VSCode / IntelliJ.
 - Applied to Web platforms (Browser extensions, SaaS app integration).
 
 ## ✅ Related Styles
 
-- **Microkernel Architecture**: Almost same family in terms of separation of core and plugins.
-- **Event-Driven Architecture**: Easy to combine as event subscription type extension points.
-- **Layered Architecture**: Can be used as a plugin for specific layers (e.g., replacing authentication method).
+- **[Microkernel Architecture](./microkernel-architecture.md)**: Almost same family in terms of separation of core and plugins.
+- **[Event-Driven Architecture](../../integration/event-driven.md)**: Easy to combine as event subscription type extension points.
+- **[Layered Architecture](../layered/index.md)**: Can be used as a plugin for specific layers (e.g., replacing authentication method).
 
 ## ✅ Representative Frameworks
 
 Plugin Architecture is widely spread as a Microkernel-like structure at the application level.
 
-- **VSCode / IntelliJ**
+- **VSCode / IntelliJ**  
   Language servers, formatters, debuggers, etc. are all added via plugins.
 
-- **WordPress / Shopify / Joomla**
+- **WordPress / Shopify / Joomla**  
   Themes, add-ons, and apps are added as plugins for CMS / EC feature extension.
 
-- **CI/CD Tools (Jenkins, GitHub Actions)**
+- **CI/CD Tools (Jenkins, GitHub Actions)**  
   Processing steps like build, deploy, notification are separated as plugins.
 
-- **External Integration of Modern SaaS (Webhook / App)**
+- **External Integration of Modern SaaS (Webhook / App)**  
   Structure where external services are "inserted into extension points as apps".
 
 ## ✅ Design Patterns Supporting This Style
 
 Plugin Architecture is more application-oriented compared to Microkernel, but the essence of patterns used is the same.
 
-- **Strategy**
+- **Strategy**  
   Central pattern to naturally express implementation replacement of plugins.
 
-- **Abstract Factory**
+- **Abstract Factory**  
   Used to unify how plugins are loaded (configuration, metadata).
 
-- **Proxy**
+- **Proxy**  
   Adds control like logging, authorization, caching to plugin calls.
 
-- **Mediator**
+- **Mediator**  
   Aggregates coordination between plugins or Plugin ⇔ Core in one place.
 
-- **Decorator**
+- **Decorator**  
   Often used to wrap plugin functions and extend them.

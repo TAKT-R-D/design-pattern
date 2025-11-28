@@ -1,4 +1,4 @@
-# 🧩 B. Data-centric Structural Styles
+# Data-centric Structural Styles
 
 ## ✅ Overview
 
@@ -10,9 +10,9 @@ This family deals with **styles that design applications centered on database ta
 
 Representative styles are the following three:
 
-- **Active Record**
-- **Table Module**
-- **Anemic Domain Model**
+- **[Active Record](./active-record.md)**
+- **[Table Module](./table-module.md)**
+- **[Anemic Domain Model](./anemic-domain-model.md)**
 
 ## ✅ Why This Family Emerged (History & Background)
 
@@ -30,7 +30,7 @@ Representative styles are the following three:
 
 ## ✅ Styles Belonging to This Family
 
-### ● Active Record
+### ● [Active Record](./active-record.md)
 
 - Assigns 1 class per 1 table.
   - Row = Instance
@@ -38,20 +38,20 @@ Representative styles are the following three:
   - Has INSERT / UPDATE / DELETE / SELECT as methods.
 - Rails' `ActiveRecord` is a typical example.
 
-### ● Table Module
+### ● [Table Module](./table-module.md)
 
 - A module that groups logic by table.
 - Expresses operations on tables as sets (multiple rows) as module functions.
 
-### ● Anemic Domain Model
+### ● [Anemic Domain Model](./anemic-domain-model.md)
 
 - Structure of "Data Class (Properties only) + Service Class (Behavior)".
 - Often treated as an anti-pattern as an "excessive form" of data-centric style.
 
 ## ✅ Relationship with Other Families
 
-- Styles that appeared as a natural evolution from **A. Non-structured / Early (Transaction Script)**.
-- Often contrasted with **C. Layered / Domain Model** (Data-centric vs. Domain-centric).
+- Styles that appeared as a natural evolution from **[A. Non-structured / Early (Transaction Script)](../early/index.md)**.
+- Often contrasted with **[C. Layered / Domain Model](../layered/index.md)** (Data-centric vs. Domain-centric).
 - Has limitations in areas requiring DDD or rich domains, but is a realistic option for CRUD-centric apps.
 
 ## ✅ When to Reference

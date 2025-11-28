@@ -1,3 +1,7 @@
+---
+sidebar_label: 🧩 Serverless
+---
+
 # 🧩 Serverless Architecture
 
 ## ✅ Overview
@@ -49,38 +53,38 @@ flowchart LR
 
 ## ✅ Related Styles
 
-- **Microservices**: Similar philosophy of small granularity and loose coupling.
-- **Event-driven**: Strongly linked as a starting point of FaaS.
+- **[Microservices](./microservices.md)**: Similar philosophy of small granularity and loose coupling.
+- **[Event-driven](../integration/event-driven.md)**: Strongly linked as a starting point of FaaS.
 
 ## ✅ Representative Frameworks
 
-- **AWS Lambda / API Gateway / DynamoDB / S3**
+- **AWS Lambda / API Gateway / DynamoDB / S3**  
   Most popular Serverless stack.
 
-- **Google Cloud Functions / Cloud Run / Pub/Sub**
+- **Google Cloud Functions / Cloud Run / Pub/Sub**  
   Execution environment and event infrastructure requiring no management.
 
-- **Azure Functions**
+- **Azure Functions**  
   Good compatibility with .NET ecosystem.
 
-- **Vercel Functions / Netlify Functions**
+- **Vercel Functions / Netlify Functions**  
   Serverless configuration close to Web frontend.
 
 ## ✅ Design Patterns Supporting This Style
 
-- **Observer**
+- **Observer**  
   Processing triggered by events (File generation / Message arrival).
 
-- **Command**
+- **Command**  
   Expresses "single operation" per function.
 
-- **Proxy**
+- **Proxy**  
   Authentication / Authorization / Throttling by API Gateway.
 
-- **Strategy**
+- **Strategy**  
   Processing branching per event type.
 
 ## ✅ Summary
 
-Serverless is a powerful structural style of the cloud era realizing
+Serverless is a powerful structural style of the cloud era realizing  
 **"Scale Automation × Operation Minimization"**.

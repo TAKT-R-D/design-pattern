@@ -1,4 +1,9 @@
-# 🧩 System Topologies (System Configuration & Service Granularity)
+---
+sidebar_label: Introduction
+pagination_label: System Topologies Overview
+---
+
+# System Topologies (System Configuration & Service Granularity)
 
 System Topologies covers the architecture layer dealing with **at what granularity to split the application and how to arrange/deploy it.**
 
@@ -15,46 +20,46 @@ System Topologies covers the architecture layer dealing with **at what granulari
 
 ## ✅ Representative Styles of System Topologies
 
-### ● Monolith
+### ● [Monolith](./monolith.md)
 
 - Single deployment, single process configuration.
 - Most efficient for small to medium scale where tight coupling is not an issue.
 - Merits are strong internal consistency and simple deployment.
 
-### ● Modular Monolith
+### ● [Modular Monolith](./modular-monolith.md)
 
 - Internally modularized, but deployment is one unit.
 - Anticipates "future microservices" but avoids excessive splitting.
 
-### ● Microservices
+### ● [Microservices](./microservices.md)
 
 - Group of services independently deployable per process.
 - Configuration allowing evolution per team.
 - However, hurdles for operation cost and observability are high.
 
-### ● Service-Oriented Architecture (SOA)
+### ● [Service-Oriented Architecture (SOA)](./soa.md)
 
 - Emerged in the context of enterprise integration.
 - Includes classic SOA centered on ESB and modern SOA centered on APIs.
 
-### ● Serverless / FaaS
+### ● [Serverless / FaaS](./serverless.md)
 
 - Deployed per Function.
 - Aimed at scaling/cost efficiency per feature unit.
 - Allows fine-grained splitting but can easily become complex.
 
-### ● Edge / Fog Architecture
+### ● [Edge / Fog Architecture](./edge.md)
 
 - Distributes processing to the edge (devices/local sites) in addition to the cloud.
 - Important for IoT and low-latency applications.
 
-### ● Cell-based Architecture
+### ● [Cell-based Architecture](./cell-based.md)
 
 - Configuration adopted in ultra-large-scale systems.
 - Horizontal scale per Cell (small independent cluster).
 - Balances fault isolation and scale.
 
-### ● Multi-region Architecture
+### ● [Multi-region Architecture](./multi-region.md)
 
 - Deploys services to multiple regions.
 - Realizes high standards of availability, latency, and DR.
@@ -68,7 +73,7 @@ System Topologies covers the architecture layer dealing with **at what granulari
 
 ## ✅ Relationship with Other Layers
 
-- **Integration Styles**: Communication method is a matter of life and death in Microservices.
-- **Structural Styles**: Internal structure of each service is a separate category (Layered/Hex etc.).
-- **Cross-cutting**: Observability / SLO is essential especially in Microservices.
-- **Data Architecture**: Distributed data consistency problems (CQRS / Event Sourcing) appear.
+- **[Integration Styles](../integration/index.md)**: Communication method is a matter of life and death in Microservices.
+- **[Structural Styles](../structural/index.md)**: Internal structure of each service is a separate category (Layered/Hex etc.).
+- **[Cross-cutting](../cross-cutting/index.md)**: Observability / SLO is essential especially in Microservices.
+- **[Data Architecture](../data/index.md)**: Distributed data consistency problems (CQRS / Event Sourcing) appear.

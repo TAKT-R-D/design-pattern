@@ -1,13 +1,17 @@
+---
+sidebar_label: 🧩 Event-driven
+---
+
 # 🧩 Event-driven Architecture (EDA)
 
 ## ✅ Overview
 
-**An integration style loosely coupling services triggered by the occurrence of events.**
+**An integration style loosely coupling services triggered by the occurrence of events.**  
 Publishes the fact that "something happened" as an event, and services subscribing to it react.
 
 ## ✅ Problems Addressed
 
-Synchronous request type cooperation (REST/gRPC etc.) alone has challenges like:
+Synchronous request type cooperation ([REST/gRPC](./rest-grpc-graphql.md) etc.) alone has challenges like:
 
 - Chain of synchronous calls tends to occur when many services are involved in one process.
 - Caller needs to know all callees (Strong coupling).
@@ -72,46 +76,46 @@ Also, abuse of EDA creates problems like:
 
 ## ✅ Related Styles
 
-- **Saga Pattern**: Performs distributed transaction control with events.
-- **Streaming Pipeline**: Continuously processes event streams.
-- **CQRS / Event Sourcing**: Style treating events as data model.
+- **[Saga Pattern](./saga.md)**: Performs distributed transaction control with events.
+- **[Streaming Pipeline](../structural/flow/streaming-pipeline.md)**: Continuously processes event streams.
+- **[CQRS](../data/cqrs.md) / [Event Sourcing](../data/event-sourcing.md)**: Style treating events as data model.
 
 ## ✅ Representative Frameworks
 
 Event-driven Architecture is realized on messaging infrastructure or event platforms.
 
-- **Apache Kafka**
+- **Apache Kafka**  
   High throughput distributed log / stream platform. Representative implementation of EDA.
 
-- **RabbitMQ**
+- **RabbitMQ**  
   Used as message broker in both Queuing type and Pub/Sub type.
 
-- **Amazon SNS / SQS / EventBridge**
+- **Amazon SNS / SQS / EventBridge**  
   Major components of event-driven integration on AWS.
 
-- **Google Cloud Pub/Sub**
+- **Google Cloud Pub/Sub**  
   Global Pub/Sub service in GCP.
 
-- **NATS / Pulsar etc.**
+- **NATS / Pulsar etc.**  
   Increasing adoption as lightweight and high-performance messaging infrastructure.
 
 ## ✅ Design Patterns Supporting This Style
 
 Internal structure of Event-driven can be decomposed into object-oriented patterns as follows:
 
-- **Observer**
+- **Observer**  
   Model of Event Publishing (Subject) and Subscription (Observer) itself.
 
-- **Mediator**
+- **Mediator**  
   Message broker functions as a mediator between Producer and Consumer.
 
-- **Command**
+- **Command**  
   Treats event as "operation object", and Consumer side interprets its meaning.
 
-- **Chain of Responsibility**
+- **Chain of Responsibility**  
   Appears in structure where multiple handlers/consumers take over processing in order.
 
-- **Iterator**
+- **Iterator**  
   Used as abstraction when processing event streams sequentially.
 
 ## ✅ Summary
@@ -122,5 +126,5 @@ Event-driven Architecture is an integration style emphasizing:
 - Asynchronous Processing
 - Extensibility
 
-It is important not to make everything event-driven, but to
+It is important not to make everything event-driven, but to  
 **Identify "where event-driven brings high value" while combining with synchronous calls.**

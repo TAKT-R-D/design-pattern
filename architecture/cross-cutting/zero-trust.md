@@ -1,3 +1,7 @@
+---
+sidebar_label: 🧩 Zero Trust
+---
+
 # 🧩 Zero Trust Architecture
 
 ## ✅ Overview
@@ -39,11 +43,11 @@
 
 ## ✅ Related Styles
 
-- Service Mesh: Good compatibility with mTLS / Policy management.
-- DevOps / SRE: Aspect of security automation.
+- [Service Mesh](../integration/service-mesh.md): Good compatibility with mTLS / Policy management.
+- [DevOps](./devops.md) / [SRE](./slo-sre.md): Aspect of security automation.
 - Identity & Access Management: Central infrastructure.
 
 ## ✅ Summary
 
-Zero Trust is the **standard form of modern security standing on the premise of 'Do not trust the network'**,
+Zero Trust is the **standard form of modern security standing on the premise of 'Do not trust the network'**,  
 and is built across all layers of App, Network, and Device.

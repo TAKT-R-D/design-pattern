@@ -56,15 +56,15 @@ Variations of MVP:
 
 ## ✅ History (Genealogy / Parent Styles)
 
-- Emerged as an evolutionary style addressing the challenges of MVC.
+- Emerged as an evolutionary style addressing the challenges of [MVC](./mvc.md).
 - Used especially in the GUI application community such as .NET / Java.
-- Later passed the baton to styles premised on data binding like MVVM.
+- Later passed the baton to styles premised on data binding like [MVVM](./mvvm.md).
 
 ## ✅ Related Styles
 
-- **MVC**: The original UI structural pattern.
-- **MVVM**: A modern UI pattern utilizing data binding.
-- **MVU**: A functional approach that clearly separates state and updates.
+- **[MVC](./mvc.md)**: The original UI structural pattern.
+- **[MVVM](./mvvm.md)**: A modern UI pattern utilizing data binding.
+- **[MVU](./mvu.md)**: A functional approach that clearly separates state and updates.
 
 ## ✅ Representative Frameworks
 
@@ -77,7 +77,7 @@ MVP is not specific to a particular framework but has been used mainly in GUI ap
   In environments with heavy UI components, configurations were chosen to concentrate logic in the Presenter to facilitate testing.
 
 - **Android (Old Architecture Guide)**  
-  Before MVVM became common, patterns where Activity / Fragment were treated as View and screen logic was aggregated in Presenter were often used.
+  Before [MVVM](./mvvm.md) became common, patterns where Activity / Fragment were treated as View and screen logic was aggregated in Presenter were often used.
 
 ## ✅ Design Patterns Supporting this Style
 
@@ -103,5 +103,5 @@ MVP is a style that:
 - Aggregates screen logic in the Presenter.
 - Provides a testable UI structure.
 
-Even for understanding modern MVVM / MVU,  
+Even for understanding modern [MVVM](./mvvm.md) / [MVU](./mvu.md),  
 it is worth noting as an **intermediate generation style that pushed "separation of View and Logic" one step further**.

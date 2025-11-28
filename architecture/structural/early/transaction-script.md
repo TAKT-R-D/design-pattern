@@ -61,10 +61,10 @@ processOrder()
 
 ## ✅ Related Styles
 
-- **Big Ball of Mud** (Even earlier chaos)
-- **Active Record** ("Evolved form of Transaction Script" in data-centric family)
-- **Classic Layered Architecture** (Approach to resolve debts of Transaction Script)
-- **Domain Model / DDD** (Effective in complex areas)
+- **[Big Ball of Mud](./big-ball-of-mud.md)** (Even earlier chaos)
+- **[Active Record](../data-centric/active-record.md)** ("Evolved form of Transaction Script" in data-centric family)
+- **[Classic Layered Architecture](../layered/classic-layered.md)** (Approach to resolve debts of Transaction Script)
+- **[Domain Model](../layered/domain-model-layered.md) / DDD** (Effective in complex areas)
 
 ## ✅ Representative Frameworks
 
@@ -72,10 +72,12 @@ Transaction Script does not depend on specific frameworks, but
 often naturally induces the structure of **"1 Use Case = 1 Function"**.
 
 - **Next.js / Node.js (API Routes / Route Handlers)**
+
   - Easy to complete Request → Response with a single function.
   - Suitable for small APIs centered on procedural processing.
 
 - **Laravel / Rails (Procedural processing in Controller)**
+
   - In small CRUD, processing tends to gather in Controller and become Transaction Script.
 
 - **Serverless (AWS Lambda / Cloud Functions)**
@@ -87,10 +89,12 @@ Transaction Script itself is a "simple structure requiring almost no patterns", 
 the following patterns play partial auxiliary roles.
 
 - **Command**
+
   - Used when expressing a processing unit (Use Case) as an operation object.
   - Can clarify the "operation" of transaction processing.
 
 - **Template Method**
+
   - Suitable for abstraction when processing steps are similar between multiple Transaction Scripts.
   - Example: Unifying common pre-processing / post-processing.
 
@@ -100,11 +104,10 @@ the following patterns play partial auxiliary roles.
 
 ## ✅ Summary
 
-Transaction Script is
+Transaction Script is  
 **The optimal "realistic and practical" structural style for simple applications.**
 
-However, in products that continue to grow,
+However, in products that continue to grow,  
 logic duplication, bloating, difficulty in change, and difficulty in testing expand rapidly.
 
-Therefore,
-it can be said to be a style that should be used with the understanding that it "does not scale".
+Therefore, it can be said to be a style that should be used with the understanding that it "does not scale".

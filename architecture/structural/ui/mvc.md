@@ -52,19 +52,19 @@ Note that "MVC" in Web frameworks often differs in interpretation from the origi
 - Projects where the Controller's role tends to become bloated, making testing difficult.
 
 In today's Web / Mobile development,
-more sophisticated styles based on the MVC concept (MVP / MVVM / MVU) are often adopted.
+more sophisticated styles based on the MVC concept ([MVP](./mvp.md) / [MVVM](./mvvm.md) / [MVU](./mvu.md)) are often adopted.
 
 ## ✅ History (Genealogy / Parent Styles)
 
 - A pattern for GUI applications born from Smalltalk in the 1970s-80s.
 - The ideological base for many frameworks (Rails, ASP.NET MVC, etc.).
-- The "ancestor" of successor styles like MVP / MVVM / MVU.
+- The "ancestor" of successor styles like [MVP](./mvp.md) / [MVVM](./mvvm.md) / [MVU](./mvu.md).
 
 ## ✅ Related Styles
 
-- **MVP**: An evolution that aggregates screen logic in the Presenter.
-- **MVVM**: A modern UI pattern premised on data binding.
-- **MVU**: A style that handles state and updates with functional concepts.
+- **[MVP](./mvp.md)**: An evolution that aggregates screen logic in the Presenter.
+- **[MVVM](./mvvm.md)**: A modern UI pattern premised on data binding.
+- **[MVU](./mvu.md)**: A style that handles state and updates with functional concepts.
 
 ## ✅ Representative Frameworks
 
@@ -105,5 +105,5 @@ MVC is:
 - The style that became the starting point for the idea of separating UI and logic.
 - The base for many modern UI patterns.
 
-Although it is less frequently adopted as-is in current front-end development,
+Although it is less frequently adopted as-is in current front-end development,  
 it is worth knowing as the **origin when thinking about UI structure**.

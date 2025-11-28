@@ -1,4 +1,4 @@
-# 🧩 Dependency-rule-based Layered
+# Dependency-rule-based Layered
 
 ## ✅ Overview
 
@@ -10,9 +10,9 @@ And prioritize **protecting the domain model from external technologies and infr
 
 Representative Styles:
 
-- Hexagonal Architecture (Ports & Adapters)
-- Onion Architecture
-- Clean Architecture
+- [Hexagonal Architecture (Ports & Adapters)](./hexagonal.md)
+- [Onion Architecture](./onion.md)
+- [Clean Architecture](./clean.md)
 
 ## ✅ Problems Addressed
 
@@ -40,20 +40,22 @@ Expressions differ between Hexagonal / Onion / Clean, but this philosophy is com
 
 ## ✅ Styles Belonging to This Family
 
-- **Hexagonal Architecture (Ports & Adapters)**
+- **[Hexagonal Architecture (Ports & Adapters)](./hexagonal.md)**
+
   - Hexagonal metaphor connecting domain and outside with ports and adapters.
 
-- **Onion Architecture**
+- **[Onion Architecture](./onion.md)**
+
   - Style visualizing the domain-centric layer structure as an "onion".
 
-- **Clean Architecture**
+- **[Clean Architecture](./clean.md)**
   - Clearly defines layers: Entities / Use Cases / Interface Adapters / Frameworks & Drivers.
   - Emphasizes dependency rules and the Use Case layer.
 
 ## ✅ Relationship with Other Families
 
-- **Evolved form** of Classic / Domain Model Layered.
-- In connection with Integration Styles (REST / gRPC / EDA), concepts like Ports & Adapters are particularly important.
+- **Evolved form** of [Classic](../classic-layered.md) / [Domain Model Layered](../domain-model-layered.md).
+- In connection with Integration Styles ([REST / gRPC](../../../integration/rest-grpc-graphql.md) / [EDA](../../../integration/event-driven.md)), concepts like Ports & Adapters are particularly important.
 - deeply involved with testing strategies (Unit / Integration).
 
 ## ✅ When to Reference
@@ -63,4 +65,4 @@ Expressions differ between Hexagonal / Onion / Clean, but this philosophy is com
 - Backends handling multiple I/O channels like UI / API / Batch / Messaging.
 - Development prioritizing automated tests and wanting to verify the domain independently from the outside.
 
-Under this directory, Hexagonal / Onion / Clean are taken up individually, organizing their characteristics and differences.
+Under this directory, [Hexagonal](./hexagonal.md) / [Onion](./onion.md) / [Clean](./clean.md) are taken up individually, organizing their characteristics and differences.

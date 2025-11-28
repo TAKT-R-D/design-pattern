@@ -40,7 +40,7 @@ Team Topologies provides a perspective to **"Treat team structure itself as an a
 ## ✅ Suitable Applications
 
 - Products with clear domain division.
-- Organizations adopting Microservices or Modular Monolith.
+- Organizations adopting [Microservices](../topologies/microservices.md) or [Modular Monolith](../topologies/modular-monolith.md).
 - Environments requiring maintenance of Platform / Infrastructure.
 - Services developed continuously by multiple teams.
 
@@ -52,18 +52,18 @@ Team Topologies provides a perspective to **"Treat team structure itself as an a
 
 ## ✅ History (Genealogy / Parent Styles)
 
-- Organizational architecture method evolved from DevOps context.
+- Organizational architecture method evolved from [DevOps](./devops.md) context.
 - Systematized under influence of Conway's Law, SRE, Platform Engineering.
 - Recently spreading as standard framework for modern organization design.
 
 ## ✅ Related Styles
 
-- **DevOps**: Cultural/Technical approach eliminating boundary between Dev and Ops.
-- **SRE / SLO**: Standardization of operational quality.
+- **[DevOps](./devops.md)**: Cultural/Technical approach eliminating boundary between Dev and Ops.
+- **[SRE / SLO](./slo-sre.md)**: Standardization of operational quality.
 - **Platform Engineering**: Practical form of Platform Team.
-- **Microservices / Modular Monolith**: Matching of team boundary and service boundary.
+- **[Microservices](../topologies/microservices.md) / [Modular Monolith](../topologies/modular-monolith.md)**: Matching of team boundary and service boundary.
 
 ## ✅ Summary
 
-Team Topologies clarifies the message **"Organization structure is architecture"**,
+Team Topologies clarifies the message **"Organization structure is architecture"**,  
 and provides theory and practice to balance development speed and organizational health through team placement, collaboration modes, and boundary design.

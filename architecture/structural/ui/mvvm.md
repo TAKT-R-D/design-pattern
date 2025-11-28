@@ -66,13 +66,13 @@ These are some of the challenges.
 ## ✅ History (Genealogy / Parent Styles)
 
 - A pattern that gained attention with the advent of WPF.
-- Optimized for data binding as an evolution from MVP.
+- Optimized for data binding as an evolution from [MVP](./mvp.md).
 - Similar ideas are reinvented in modern declarative UI frameworks.
 
 ## ✅ Related Styles
 
-- **MVP**: Previous generation pattern for separating View and logic.
-- **MVU**: A functional approach with State + Message + Update function.
+- **[MVP](./mvp.md)**: Previous generation pattern for separating View and logic.
+- **[MVU](./mvu.md)**: A functional approach with State + Message + Update function.
 - **State Management like Redux, Vuex**: Coordination between global state and View.
 
 ## ✅ Representative Frameworks

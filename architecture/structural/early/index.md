@@ -1,4 +1,9 @@
-# 🧩 A. Non-structured / Early Structural Styles
+---
+sidebar_label: Early Structual Styles
+pagination_label: Non-structured / Early Structural Styles
+---
+
+# Non-structured / Early Structural Styles
 
 ## ✅ Overview
 
@@ -10,8 +15,8 @@ and speed was prioritized over structure.
 
 Representative styles (or anti-patterns) include:
 
-- **Big Ball of Mud**
-- **Transaction Script**
+- **[Big Ball of Mud](./big-ball-of-mud.md)**
+- **[Transaction Script](./transaction-script.md)**
 
 ## ✅ Why This Family Emerged (History & Background)
 
@@ -32,13 +37,13 @@ As a result, there is an aspect that led to structures later treated as anti-pat
 
 ## ✅ Styles Belonging to This Family
 
-### ● Big Ball of Mud
+### ● [Big Ball of Mud](./big-ball-of-mud.md)
 
 - State where design hardly exists and features are added haphazardly.
 - Responsibilities are jumbled, dependencies are confused, and changes become extremely difficult.
 - Representative anti-pattern.
 
-### ● Transaction Script
+### ● [Transaction Script](./transaction-script.md)
 
 - Writes each process (transaction) as a script or function.
 - Effective for small scale, but duplication and logic dispersion increase rapidly when complicated.
@@ -46,8 +51,8 @@ As a result, there is an aspect that led to structures later treated as anti-pat
 
 ## ✅ Relationship with Other Families
 
-- **B. Data-centric (Active Record, etc.)** developed as an extension of Transaction Script.
-- **C. Layered** appeared to solve problems of Big Ball and Transaction Script.
+- **[B. Data-centric (Active Record, etc.)](../data-centric/index.md)** developed as an extension of Transaction Script.
+- **[C. Layered](../layered/index.md)** appeared to solve problems of Big Ball and Transaction Script.
 - Can be understood as the **"primitive form" of all structural styles**.
 
 ## ✅ When to Reference

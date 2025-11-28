@@ -40,42 +40,42 @@
 
 ## ✅ Related Styles
 
-- DWH: Complement with strong schema and integrated analysis.
-- Lambda/Kappa: Integrate Lake with streaming layer.
+- [DWH](./data-warehouse.md): Complement with strong schema and integrated analysis.
+- [Lambda/Kappa](./lambda-kappa.md): Integrate Lake with streaming layer.
 
 ## ✅ Representative Frameworks
 
 ### Data Lake
 
-- **AWS S3 / Google Cloud Storage / Azure Data Lake Storage**
+- **AWS S3 / Google Cloud Storage / Azure Data Lake Storage**  
   Central storage of Data Lake accumulating raw data on large scale.
 
-- **Apache Spark**
+- **Apache Spark**  
   Central existence of data processing on Lake.
 
-- **Trino / Presto**
+- **Trino / Presto**  
   SQL query execution engine for Data Lake.
 
 ### Lakehouse
 
-- **Delta Lake (Databricks)**
+- **Delta Lake (Databricks)**  
   Provision of ACID Table / Time Travel / Versioning.
 
-- **Apache Iceberg / Apache Hudi**
+- **Apache Iceberg / Apache Hudi**  
   Table formats to realize Lakehouse as OSS.
 
 ## ✅ Design Patterns Supporting This Style
 
-- **Iterator**
+- **Iterator**  
   Used when handling large-scale data in stream / chunk units.
 
-- **Strategy**
+- **Strategy**  
   Switching execution method per data processing engine (Spark / Presto).
 
-- **Template Method**
+- **Template Method**  
   Unifies common procedures of ETL / ELT.
 
-- **Facade**
+- **Facade**  
   Used in meta-layer hiding complex API of Data Lake / Lakehouse and handling uniformly.
 
 ## ✅ Summary

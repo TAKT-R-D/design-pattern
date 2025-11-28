@@ -1,4 +1,9 @@
-# 🧩 Cross-cutting & Socio-technical (Operation, Culture, Quality)
+---
+sidebar_label: Introduction
+pagination_label: Cross-cutting & Socio-technical Overview
+---
+
+# Cross-cutting & Socio-technical (Operation, Culture, Quality)
 
 Cross-cutting deals with areas that **affect all layers of architecture cross-sectionally.**
 It centers on "socio-technical elements" such as **Operation, Organization Structure, Culture, and Quality** in addition to technology.
@@ -13,31 +18,31 @@ It centers on "socio-technical elements" such as **Operation, Organization Struc
 
 ## ✅ Key Concepts of Cross-cutting
 
-### ● DevOps / CI/CD / 12-Factor App
+### ● [DevOps / CI/CD / 12-Factor App](./devops.md)
 
 - Acceleration and automation of delivery.
 - Culture not separating design and operation.
 
-### ● Team Topologies / Conway’s Law
+### ● [Team Topologies / Conway’s Law](./team-topologies.md)
 
 - Organizational structure affects architecture.
 - Stream-aligned teams / Platform teams etc.
 
-### ● SLO-driven Architecture (SRE)
+### ● [SLO-driven Architecture (SRE)](./slo-sre.md)
 
 - Control of reliability by SLO / Error Budget.
 - Availability design of dependent services.
 
-### ● Zero Trust Security
+### ● [Zero Trust Security](./slo-sre.md)
 
 - Philosophy abandoning "Internal network = Safe" and always verifying.
 
-### ● Observability
+### ● [Observability](./observability.md)
 
 - Visualize state of entire system with Logs / Metrics / Traces.
 - Essential for microservices.
 
-### ● Green Software / Sustainability
+### ● [Green Software / Sustainability](./green-software.md)
 
 - CO2 emission reduction.
 - Optimization of cloud resources.
@@ -51,7 +56,7 @@ It centers on "socio-technical elements" such as **Operation, Organization Struc
 
 ## ✅ Relationship with Other Layers
 
-- **Structural Styles**: Affects testability and changeability.
-- **Topologies**: SLO/Observability is essential for microservices operation.
-- **Integration**: Reinforce security/observability with Mesh and Gateway.
-- **Data Architecture**: Closely related to data governance and audit.
+- **[Structural Styles](../structural/index.md)**: Affects testability and changeability.
+- **[Topologies](../topologies/index.md)**: SLO/Observability is essential for microservices operation.
+- **[Integration](../integration/index.md)**: Reinforce security/observability with Mesh and Gateway.
+- **[Data Architecture](../data/index.md)**: Closely related to data governance and audit.

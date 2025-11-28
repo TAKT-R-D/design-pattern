@@ -54,14 +54,14 @@ Unsuitable for almost all long-term operation products:
 
 ## ✅ Related Styles
 
-- **Transaction Script** (Same early family, milder chaos)
-- **Classic Layered Architecture** (First systematic approach to Big Ball problems)
-- **Hexagonal / Onion / Clean Architecture** (Evolved forms strongly seeking separation from external dependencies)
+- **[Transaction Script](./transaction-script.md)** (Same early family, milder chaos)
+- **[Classic Layered Architecture](../layered/classic-layered.md)** (First systematic approach to Big Ball problems)
+- **[Hexagonal](../layered/dependency-rule-layered/hexagonal.md) / [Onion](../layered/dependency-rule-layered/onion.md) / [Clean Architecture](../layered/dependency-rule-layered/clean.md)** (Evolved forms strongly seeking separation from external dependencies)
 
 ## ✅ Summary
 
-Big Ball of Mud is not a "bad way of writing code", but
+Big Ball of Mud is not a "bad way of writing code", but  
 **A structure as a result of visualizing situations where design did not hold up.**
 
-Understanding this style becomes the foundation for understanding
+Understanding this style becomes the foundation for understanding  
 why Modern Architectures (Layered / DDD / Hexagonal) exist and what they tried to solve.

@@ -1,3 +1,7 @@
+---
+sidebar_label: 🧩 CDC
+---
+
 # 🧩 Change Data Capture (CDC)
 
 CDC (Change Data Capture) is a mechanism providing **structure to detect database changes in real-time and deliver them as events to outside.**
@@ -41,11 +45,11 @@ graph TD
 
 ## ✅ Related Styles
 
-- Outbox Pattern (Difference of App via vs DB via).
-- Event Sourcing (Philosophy treating event as truth of data).
-- EDA (Event-driven in general).
+- [Outbox Pattern](./outbox-pattern.md): Difference of App via vs DB via.
+- [Event Sourcing](../data/event-sourcing.md): Philosophy treating event as truth of data.
+- [EDA](./event-driven.md): Event-driven in general.
 
 ## ✅ Summary
 
-CDC is a mechanism balancing consistency and scale by **DB-driven event generation**.
+CDC is a mechanism balancing consistency and scale by **DB-driven event generation**.  
 It is a central technique of modern data architecture in that it can offload event generation, which tends to become complex in applications, to DB.

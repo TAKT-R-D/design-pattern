@@ -1,3 +1,7 @@
+---
+sidebar_label: 🧩 SOA
+---
+
 # 🧩 SOA (Service-Oriented Architecture)
 
 ## ✅ Overview
@@ -50,39 +54,39 @@ flowchart LR
 ## ✅ History
 
 - Spread as the center of enterprise IT in the 2000s.
-- Lightweighting advanced by REST / Microservices, currently continuing in limited areas.
+- Lightweighting advanced by [REST](../integration/rest-grpc-graphql.md) / [Microservices](./microservices.md), currently continuing in limited areas.
 
 ## ✅ Related Styles
 
-- **Microservices**: Developed as a lightweight version of SOA.
-- **API Gateway**: Corresponds as a modern version of SOA's "Entrance".
+- **[Microservices](./microservices.md)**: Developed as a lightweight version of SOA.
+- **[API Gateway](../integration/api-gateway-bff.md)**: Corresponds as a modern version of SOA's "Entrance".
 
 ## ✅ Representative Frameworks
 
-- **Oracle SOA Suite / IBM WebSphere ESB**
+- **Oracle SOA Suite / IBM WebSphere ESB**  
   SOA platforms used for a long time in enterprise IT.
 
-- **Middleware supporting WS-\* (SOAP / WSDL)**
+- **Middleware supporting WS-\* (SOAP / WSDL)**  
   Communication infrastructure supporting SOA standards at that time.
 
-- **BizTalk Server**
+- **BizTalk Server**  
   SOA implementation for enterprise integration.
 
 ## ✅ Design Patterns Supporting This Style
 
-- **Facade**
+- **Facade**  
   ESB functions as the entrance of the entire service.
 
-- **Mediator**
+- **Mediator**  
   ESB mediates cooperation between multiple systems.
 
-- **Adapter**
+- **Adapter**  
   Essential when wrapping legacy systems with SOAP/WSDL.
 
-- **Proxy**
+- **Proxy**  
   Message validation / Security application.
 
 ## ✅ Summary
 
-SOA remains important in the context of Enterprise IT,
+SOA remains important in the context of Enterprise IT,  
 and is an **architecture specialized for high-governance areas such as finance and mission-critical systems.**

@@ -31,41 +31,41 @@
 ## ✅ History
 
 - Proposed by Zhamak Dehghani.
-- Design philosophy approach to limits of Data Lake / Warehouse.
+- Design philosophy approach to limits of [Data Lake](./data-lake-lakehouse.md) / [Warehouse](./data-warehouse.md).
 
 ## ✅ Related Styles
 
-- Data Lake / Lakehouse: Implementation infrastructure of data retention layer.
-- CQRS / EDA: Implementation means of inter-product coordination.
+- [Data Lake / Lakehouse](./data-lake-lakehouse.md): Implementation infrastructure of data retention layer.
+- [CQRS](./cqrs.md) / [EDA](../integration/event-driven.md): Implementation means of inter-product coordination.
 
 ## ✅ Representative Frameworks
 
-- **Databricks / Lakehouse Platform**
+- **Databricks / Lakehouse Platform**  
   Platform suitable for management per data product unit.
 
-- **Snowflake + Data Marketplace**
+- **Snowflake + Data Marketplace**  
   Mesh-like operation premised on data sharing is possible.
 
-- **AWS Glue / Athena + Lake Formation**
+- **AWS Glue / Athena + Lake Formation**  
   Unified management of metadata and access rights of distributed data products.
 
-- **Data Catalog (Amundsen / DataHub / Collibra)**
+- **Data Catalog (Amundsen / DataHub / Collibra)**  
   Mesh essential component performing data search and ownership management.
 
 ## ✅ Design Patterns Supporting This Style
 
 Data Mesh is closer to organizational structure pattern, but technically related to:
 
-- **Facade**
+- **Facade**  
   Functions as "entrance" of Data API or Data Product.
 
-- **Mediator**
+- **Mediator**  
   Platform plays role of mediating between each data product.
 
-- **Strategy**
+- **Strategy**  
   Flexibility to select different processing method / retention format per domain.
 
-- **Iterator**
+- **Iterator**  
   Used for abstraction when handling distributed data cross-sectionally.
 
 ## ✅ Summary

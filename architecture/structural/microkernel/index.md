@@ -1,4 +1,4 @@
-# 🧩 F. Microkernel / Plugin Structural Styles
+# Microkernel / Plugin Structural Styles
 
 ## ✅ Overview
 
@@ -10,8 +10,8 @@ This family deals with styles that split the system into a **minimal core (Micro
 
 Representative Styles:
 
-- Microkernel Architecture
-- Plugin Architecture
+- [Microkernel Architecture](./microkernel-architecture.md)
+- [Plugin Architecture](./plugin-architecture.md)
 
 ## ✅ Why This Family Emerged (History & Background)
 
@@ -37,14 +37,14 @@ By separating core and plugins, the goal is a structure where:
 
 ## ✅ Styles Belonging to This Family
 
-- **Microkernel Architecture**: Basic structure of "Minimal Core + Plugins" used in OSs and IDEs.
-- **Plugin Architecture**: Style where the application provides extension points and adds features with external plugins.
+- **[Microkernel Architecture](./microkernel-architecture.md)**: Basic structure of "Minimal Core + Plugins" used in OSs and IDEs.
+- **[Plugin Architecture](./plugin-architecture.md)**: Style where the application provides extension points and adds features with external plugins.
 
 ## ✅ Relationship with Other Families
 
-- Can be combined with **Layered / Domain Model** to replace domain services as plugins.
-- Form of inserting processing stages or handlers as plugins within **Flow / Reactive** families is also common.
-- Related to **Cross-cutting (Extensibility using Plugins, Third-party development)**.
+- Can be combined with **[Layered / Domain Model](../layered/index.md)** to replace domain services as plugins.
+- Form of inserting processing stages or handlers as plugins within **[Flow](../flow/index.md) / [Reactive](../reactive/index.md)** families is also common.
+- Related to **[Cross-cutting](../../cross-cutting/index.md) (Extensibility using Plugins, Third-party development)**.
 
 ## ✅ When to Reference
 
@@ -52,5 +52,5 @@ By separating core and plugins, the goal is a structure where:
 - Products where feature sets differ for each customer (Feature Flags + Plugins).
 - When you want to design extension points for third parties.
 
-When making a "Platform" rather than a "Product",
+When making a "Platform" rather than a "Product",  
 the idea of this family becomes particularly important.

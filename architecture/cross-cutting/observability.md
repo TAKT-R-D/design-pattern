@@ -22,8 +22,8 @@
 
 ## ✅ Suitable Applications
 
-- Microservices.
-- Serverless + Event-driven systems.
+- [Microservices](../topologies/microservices.md).
+- [Serverless](../topologies/serverless.md) + [Event-driven](../integration/event-driven.md) systems.
 - Service operation based on SLA / SLO.
 
 ## ❌ Unsuitable Cases
@@ -38,11 +38,11 @@
 
 ## ✅ Related Styles
 
-- SRE: Observability is foundation of SRE practices.
-- DevOps: Prerequisite for safe acceleration of delivery.
-- Service Mesh: Automation of trace/metrics collection.
+- [SRE](./slo-sre.md): Observability is foundation of SRE practices.
+- [DevOps](./devops.md): Prerequisite for safe acceleration of delivery.
+- [Service Mesh](../integration/service-mesh.md): Automation of trace/metrics collection.
 
 ## ✅ Summary
 
-Observability is an **essential approach to keep complex systems in understandable state**,
+Observability is an **essential approach to keep complex systems in understandable state**,  
 and is indispensable for failure response, improvement, and rapid development.

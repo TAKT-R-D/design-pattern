@@ -80,40 +80,40 @@ Especially powerful when you can explain:
 
 ## ✅ Related Styles
 
-- **Batch Pipeline**: Pipeline structure as batch processing.
-- **Streaming Pipeline**: Evolution to real-time processing.
-- **Reactive / Actor**: Often combined with event stream processing.
+- **[Batch Pipeline](./batch-pipeline.md)**: Pipeline structure as batch processing.
+- **[Streaming Pipeline](./streaming-pipeline.md)**: Evolution to real-time processing.
+- **[Reactive / Actor](../reactive/index.md)**: Often combined with event stream processing.
 
 ## ✅ Representative Frameworks
 
 Pipe & Filter naturally appears in many environments as a lightweight processing pipeline.
 
-- **Unix / Linux CLI (`cmd1 | cmd2 | cmd3`)**
+- **Unix / Linux CLI (`cmd1 | cmd2 | cmd3`)**  
   Pipe structure itself. Can be called the prototype.
 
-- **Node.js Streams**
+- **Node.js Streams**  
   Structure of `Readable → Transform → Writable` is exactly Pipe & Filter.
 
-- **Golang (io.Reader / io.Writer)**
+- **Golang (io.Reader / io.Writer)**  
   Easy to connect unidirectional streams through interfaces.
 
-- **Image / Video Processing Tools (FFmpeg etc.)**
+- **Image / Video Processing Tools (FFmpeg etc.)**  
   Can build complex processing by connecting small conversion processes with pipes.
 
 ## ✅ Design Patterns Supporting This Style
 
 The internal structure of Pipe & Filter is established by a combination of multiple design patterns.
 
-- **Chain of Responsibility**
+- **Chain of Responsibility**  
   Applies filters sequentially as a "processing chain".
 
-- **Iterator**
+- **Iterator**  
   Used when processing stream data sequentially.
 
-- **Strategy**
+- **Strategy**  
   Expresses algorithms of each filter in a replaceable form.
 
-- **Mediator**
+- **Mediator**  
   Appears when coordination between stages is necessary (Branching / Merging etc.).
 
 ## ✅ Summary

@@ -37,7 +37,7 @@ As for dependencies:
 
 Ideally, it should look like this (although complete separation is difficult in practice, this is the direction).
 
-In actual implementation, ORM (JPA / Hibernate, etc.) annotations are often directly attached to the domain model, and as a result, Domain → Infrastructure dependencies may remain. This point distinguishes it from "Dependency Rule enhanced" styles like Hexagonal / Clean Architecture that try to separate dependency direction more strictly.
+In actual implementation, ORM (JPA / Hibernate, etc.) annotations are often directly attached to the domain model, and as a result, Domain → Infrastructure dependencies may remain. This point distinguishes it from "[Dependency Rule enhanced](./dependency-rule-layered/index.md)" styles like [Hexagonal](./dependency-rule-layered/hexagonal.md) / [Clean Architecture](./dependency-rule-layered/clean.md) that try to separate dependency direction more strictly.
 
 ### Conceptual Diagram
 
@@ -73,41 +73,41 @@ Forcing the introduction of a domain model can lead to a state where "only the c
 
 - Emerged as an evolved form of Classic Layered.
 - A style heavily influenced by Fowler's PoEAA and Evans' DDD.
-- Later connects to "Dependency Rule enhanced" styles like Hexagonal / Onion / Clean.
+- Later connects to "Dependency Rule enhanced" styles like [Hexagonal](./dependency-rule-layered/hexagonal.md) / [Onion](./dependency-rule-layered/onion.md) / [Clean](./dependency-rule-layered/clean.md).
 
 ## ✅ Related Styles
 
-- **Classic Layered**: Prototype style treating the domain thinly.
-- **Hexagonal / Onion / Clean**: Evolved forms trying to protect the domain even more strongly.
+- **[Classic Layered](./classic-layered.md)**: Prototype style treating the domain thinly.
+- **[Hexagonal](./dependency-rule-layered/hexagonal.md) / [Onion](./dependency-rule-layered/onion.md) / [Clean](./dependency-rule-layered/clean.md)**: Evolved forms trying to protect the domain even more strongly.
 - **DDD (Tactical Patterns)**: Concrete model expressions like Entities, Value Objects, Aggregates.
 
 ## ✅ Representative Frameworks
 
 Domain Model Layered is a framework-independent style, but is often adopted in environments like:
 
-- **Spring Boot (Java)**
+- **Spring Boot (Java)**  
   Samples and books on DDD + Layered configuration are very abundant, making it easy to refer to as a typical example of Domain Model Layered.
 
-- **ASP.NET Core / .NET**
+- **ASP.NET Core / .NET**  
   Layered configurations combined with DDD (Application / Domain / Infrastructure) are adopted in many templates.
 
-- **NestJS**
+- **NestJS**  
   Due to the good compatibility of Module / Provider structure with TypeScript, it is easy to align with a domain model-centric layered configuration.
 
 ## ✅ Design Patterns Supporting This Style
 
 To support the structure centered on the domain model (Aggregates, Entities, Value Objects), the following patterns often appear.
 
-- **Strategy**
+- **Strategy**  
   Expresses the behavior of domain objects (billing calculation, discounts, conditional branching, etc.) in a replaceable way.
 
-- **Composite**
+- **Composite**  
   Handles domains with hierarchical structures (tree-like categories, organizations, components, etc.) with a consistent interface.
 
-- **Mediator**
+- **Mediator**  
   Aggregates and mediates complex interactions between multiple entities in one place.
 
-- **Template Method**
+- **Template Method**  
   Used for commonization when domain services or aggregate roots have similar processing flows.
 
 ## ✅ Summary
@@ -117,4 +117,4 @@ Domain Model Layered is a style that attempts to balance:
 - The ease of understanding of Layered Architecture
 - The strength of the domain model in DDD
 
-When domain complexity begins to increase, **it is worth considering adoption as the "next step" from Classic Layered.**
+When domain complexity begins to increase, **it is worth considering adoption as the "next step" from [Classic Layered](./classic-layered.md).**

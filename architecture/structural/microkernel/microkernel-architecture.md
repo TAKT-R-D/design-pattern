@@ -68,9 +68,9 @@ Over-engineering Microkernel can lead to:
 
 ## ✅ Related Styles
 
-- **Plugin Architecture**: A more application-oriented plugin structure.
-- **Layered Architecture**: The core may be implemented as part of the infrastructure layer.
-- **Microservices**: A different lineage for functional division, but shares the goal of extensibility.
+- **[Plugin Architecture](./plugin-architecture.md)**: A more application-oriented plugin structure.
+- **[Layered Architecture](../layered/index.md)**: The core may be implemented as part of the infrastructure layer.
+- **[Microservices](../../topologies/microservices.md)**: A different lineage for functional division, but shares the goal of extensibility.
 
 ## ✅ Representative Frameworks
 

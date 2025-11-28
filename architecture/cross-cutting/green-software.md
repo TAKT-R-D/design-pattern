@@ -1,3 +1,7 @@
+---
+sidebar_label: 🧩 Green Software
+---
+
 # 🧩 Green Software / Sustainable Architecture
 
 ## ✅ Overview
@@ -36,11 +40,11 @@
 
 ## ✅ Related Styles
 
-- Serverless: Resource reduction during idle time.
-- Modular Monolith / Microservices: Difference in resource efficiency by structure.
+- [Serverless](../topologies/serverless.md): Resource reduction during idle time.
+- [Modular Monolith](../topologies/modular-monolith.md) / [Microservices](../topologies/microservices.md): Difference in resource efficiency by structure.
 - FinOps: Affinity with cost optimization.
 
 ## ✅ Summary
 
-Green Software is a concept for **Sustainable Software Design**,
+Green Software is a concept for **Sustainable Software Design**,  
 and is an architecture considering energy efficiency and CO2 reduction from design stage.

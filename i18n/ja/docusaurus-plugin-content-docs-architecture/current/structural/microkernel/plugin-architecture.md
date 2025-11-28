@@ -97,3 +97,5 @@ Plugin Architecture は、Microkernel と比べるとアプリケーション寄
 
 - **Decorator**  
   プラグインの機能を追加でラップして拡張する場面が多い。
+
+TODO: まとめがない

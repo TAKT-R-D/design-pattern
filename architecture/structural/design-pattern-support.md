@@ -1,12 +1,12 @@
-# 🧩 Table of Structural Styles and Design Patterns
+---
+sidebar_label: ✨️ Design Pattern Support
+---
 
-(System of Design Patterns supporting Architecture)
+# ✨️ Structural Styles and Design Patterns
 
 This page lists **which combination of design patterns supports** each Structural Style.
 
-*Note: Pattern names are completely unified with _takt.dev/design-pattern/_.*
-
-## ✅ Clean / Hexagonal / Onion (Dependency Rule Family)
+## ✅ [Dependency Rule Family](./layered/dependency-rule-layered/index.md) ([Clean](./layered/dependency-rule-layered/clean.md) / [Hexagonal](./layered/dependency-rule-layered/hexagonal.md) / [Onion](./layered/dependency-rule-layered/onion.md))
 
 These styles center on "Control of Dependency Direction" and "Port/Adapter Structure", and the following design patterns are strongly involved.
 
@@ -20,7 +20,7 @@ These styles center on "Control of Dependency Direction" and "Port/Adapter Struc
 
 **Main Patterns: Adapter / Strategy / Command**
 
-## ✅ Layered / Domain Model Layered
+## ✅ [Layered / Domain Model Layered](./layered/index.md)
 
 Patterns supporting clarification of layer boundaries and separation of responsibilities.
 
@@ -30,7 +30,7 @@ Patterns supporting clarification of layer boundaries and separation of responsi
 - **Composite**: Expression of hierarchical structure inside Aggregates.
 - **Proxy**: Abstraction of external systems or lazy access.
 
-## ✅ UI Family (MVC / MVP / MVVM / MVU)
+## ✅ [UI Family](./ui/index.md) ([MVC](./ui/mvc.md) / [MVP](./ui/mvp.md) / [MVVM](./ui/mvvm.md) / [MVU](./ui/mvu.md))
 
 Major patterns supporting UI Interaction styles.
 
@@ -41,10 +41,10 @@ Major patterns supporting UI Interaction styles.
 - **Memento**: State restoration like Undo/Redo.
 - **Strategy**: Switching drawing strategies / input control.
 
-**In MVU (React / SwiftUI / Jetpack Compose),  
+**In [MVU](./ui/mvu.md) (React / SwiftUI / Jetpack Compose),  
 State + Command + Observer appear particularly strongly.**
 
-## ✅ Microkernel / Plugin Architecture
+## ✅ [Microkernel / Plugin Architecture](./microkernel/index.md)
 
 Patterns supporting extensibility and hot-swappability of plugins.
 
@@ -54,7 +54,7 @@ Patterns supporting extensibility and hot-swappability of plugins.
 - **Mediator**: Coordination between plugins.
 - **Facade**: Appearance API of the core system.
 
-## ✅ Reactive / Actor / Event Loop / Streams
+## ✅ [Reactive](./reactive/index.md) ([Actor](./reactive/actor-model.md) / [Event Loop](./reactive/event-loop.md) / [Streams](./reactive/reactive-streams.md))
 
 Patterns supporting Event-driven, Asynchronous processing, and Actor Model.
 
@@ -65,7 +65,7 @@ Patterns supporting Event-driven, Asynchronous processing, and Actor Model.
 - **Iterator**: Sequentialization of stream processing.
 - **Chain of Responsibility**: Step-by-step propagation of event processing.
 
-## ✅ Flow / Pipeline (Pipe & Filter / Streaming / Batch)
+## ✅ [Flow / Pipeline](./flow/index.md) ([Pipe & Filter](./flow/pipe-and-filter.md) / [Streaming](./flow/streaming-pipeline.md) / [Batch](./flow/batch-pipeline.md))
 
 Structure realizing stepwise processing flow.
 
@@ -74,7 +74,7 @@ Structure realizing stepwise processing flow.
 - **Mediator**: Coordination between steps.
 - **Strategy**: Switching of each processing step.
 
-## ✅ Data-centric (Active Record / Table Module / Transaction Script)
+## ✅ [Data-centric](./data-centric/) ([Active Record](./data-centric/active-record.md) / [Table Module](./data-centric/table-module.md) / [Transaction Script](./early/transaction-script.md))
 
 Data-centric structures are heavily influenced by the following patterns.
 
@@ -88,7 +88,6 @@ Data-centric structures are heavily influenced by the following patterns.
 
 - When choosing a Structural Style, **naturally understand the patterns needed for implementation**.
 - From the patterns heavily used in the current codebase, **calculate backward to the structural style that should be adopted**.
-- Supplement detailed explanations with the existing site (takt.dev/design-pattern).
 
 > This is a guide page serving as a bridge between  
 > **Architecture (Structure) ⇄ Design Patterns (Implementation)**.

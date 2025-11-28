@@ -1,3 +1,7 @@
+---
+sidebar_label: 🧩 Microservice
+---
+
 # 🧩 Microservices Architecture
 
 ## ✅ Overview
@@ -6,7 +10,7 @@
 
 ## ✅ Problems Addressed
 
-- Development speed slowdown of huge Monolith.
+- Development speed slowdown of huge [Monolith](./monolith.md).
 - Collision due to team scale increase.
 - Response to different scale characteristics per feature.
 
@@ -14,8 +18,8 @@
 
 - Independent deployment per service.
 - Independent data store (Database per Service).
-- Loosely coupled coordination via API (REST/gRPC/Event).
-- Strong prerequisite of DevOps / CI/CD / Observability.
+- Loosely coupled coordination via API ([REST / gRPC](../integration/rest-grpc-graphql.md) / [Event](../integration/event-driven.md)).
+- Strong prerequisite of [DevOps / CI/CD](../cross-cutting/devops.md) / [Observability](../cross-cutting/observability.md).
 
 ### Conceptual Diagram
 
@@ -39,49 +43,49 @@
 ## ✅ History
 
 - Spread by success of Netflix / Amazon.
-- Developed as a school implementing SOA ideas more lightly.
+- Developed as a school implementing [SOA](./soa.md) ideas more lightly.
 
 ## ✅ Related Styles
 
-- **SOA**: Heavier and enterprise-like ancestor.
-- **Modular Monolith**: Effective as structural organization before introduction.
+- **[SOA](./soa.md)**: Heavier and enterprise-like ancestor.
+- **[Modular Monolith](./modular-monolith.md)**: Effective as structural organization before introduction.
 
 ## ✅ Representative Frameworks
 
-- **Spring Cloud**
+- **Spring Cloud**  
   Comprehensive foundation for Microservices like Config / Gateway / Discovery / Circuit Breaker.
 
-- **Go + gRPC + Kubernetes**
+- **Go + gRPC + Kubernetes**  
   Strong combination for building lightweight and fast services.
 
-- **Node.js / NestJS / Express**
+- **Node.js / NestJS / Express**  
   Configuration suitable for BFF and small-grained services.
 
-- **AWS (ECS / Lambda / API Gateway / EventBridge)**
+- **AWS (ECS / Lambda / API Gateway / EventBridge)**  
   Microservices construction by managed services.
 
-- **Dapr**
+- **Dapr**  
   Platform providing service-to-service invocation via sidecar.
 
 ## ✅ Design Patterns Supporting This Style
 
-- **Facade**
+- **Facade**  
   Unified entrance via API Gateway.
 
-- **Proxy**
+- **Proxy**  
   Traffic control by Service Mesh or Sidecar.
 
-- **Observer**
+- **Observer**  
   Event-driven coordination and domain event distribution.
 
-- **Mediator**
+- **Mediator**  
   Coordination of multiple services by Orchestrator (Workflow).
 
-- **Strategy**
+- **Strategy**  
   Different algorithm / technology selection per service.
 
 ## ✅ Summary
 
-Microservices is a powerful structure for
-**"High Speed Development × High Scale × High Availability"**,
+Microservices is a powerful structure for  
+**"High Speed Development × High Scale × High Availability"**,  
 but since operation cost is high, **it depends on organizational scale and domain characteristics.**

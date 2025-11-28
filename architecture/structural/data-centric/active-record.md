@@ -20,7 +20,7 @@ it became the **de facto standard for rapid development**.
 
 ## ✅ Basic Philosophy & Rules
 
-### ● 1:1 Correspondence between Table and Class
+### ● Correspondence between Table and Class
 
 - Class Name → Table Name
 - Property → Column
@@ -71,7 +71,7 @@ Active Record tends to break down in apps like:
 - When invariants and state transitions need strict management.
 
 → Logic scatters into service layers and controllers,
-tending to become an **Anemic Domain Model**.
+tending to become an **[Anemic Domain Model](./anemic-domain-model.md)**.
 
 ## ✅ History (Genealogy / Parent Styles)
 
@@ -82,11 +82,11 @@ tending to become an **Anemic Domain Model**.
 
 ## ✅ Related Styles
 
-- **Table Module**
+- **[Table Module](./table-module.md)**  
   Style grouping operations on sets (entire tables).
-- **Anemic Domain Model**
+- **[Anemic Domain Model](./anemic-domain-model.md)**  
   Anti-pattern that occurs when data-centric style goes too far.
-- **Domain Model / DDD**
+- **[Domain Model](../layered/domain-model-layered.md) / DDD**  
   Opposite style for complex domains.
 
 ## ✅ Representative Frameworks
@@ -133,4 +133,4 @@ Therefore, the most important question is:
 > Is this app complex enough to exceed the "limits of Active Record"?
 
 If signs of complexity begin to appear,
-migration to Domain Model, Layered, Hexagonal, etc. should be considered.
+migration to [Domain Model](../layered/domain-model-layered.md), [Layered](../layered/index.md), [Hexagonal](../layered/dependency-rule-layered/hexagonal.md), etc. should be considered.

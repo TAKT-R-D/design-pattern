@@ -1,3 +1,7 @@
+---
+sidebar_label: 🧩 DWH
+---
+
 # 🧩 Data Warehouse (DWH)
 
 ## ✅ Overview
@@ -26,7 +30,7 @@ Data Warehouse provides a centralized infrastructure centered on **"Integration"
 
 ## ❌ Unsuitable Cases
 
-- Exploratory analysis wanting to handle raw data flexibly (Data Lake is more suitable).
+- Exploratory analysis wanting to handle raw data flexibly ([Data Lake](./data-lake-lakehouse.md) is more suitable).
 - Cases where real-time nature is important like streaming.
 
 ## ✅ History (Genealogy / Parent Styles)
@@ -36,38 +40,38 @@ Data Warehouse provides a centralized infrastructure centered on **"Integration"
 
 ## ✅ Related Styles
 
-- Data Lake / Lakehouse: More flexible data retention.
-- Lambda / Kappa Architecture: Use DWH as batch layer.
+- [Data Lake / Lakehouse](./data-lake-lakehouse.md): More flexible data retention.
+- [Lambda / Kappa Architecture](./lambda-kappa.md): Use DWH as batch layer.
 
 ## ✅ Representative Frameworks
 
-- **Amazon Redshift**
+- **Amazon Redshift**  
   Pioneer of cloud DWH. Provides large-scale analysis processing.
 
-- **Google BigQuery**
+- **Google BigQuery**  
   Serverless DWH realizing scale and query acceleration.
 
-- **Snowflake**
+- **Snowflake**  
   Characterized by virtual warehouse structure and compute separation architecture.
 
-- **Teradata / Oracle Exadata**
+- **Teradata / Oracle Exadata**  
   Traditional on-premise DWH, infrastructure for high-performance analysis processing.
 
 ## ✅ Design Patterns Supporting This Style
 
-- **Template Method**
+- **Template Method**  
   Unifies ETL procedures (Extract → Transform → Load).
 
-- **Strategy**
+- **Strategy**  
   Switching optimization strategies (Index / Partition).
 
-- **Iterator**
+- **Iterator**  
   Used when processing massive data sequentially.
 
-- **Facade**
+- **Facade**  
   Integration layer (BI tools and metadata management) hides internal complexity.
 
 ## ✅ Summary
 
-DWH is the **royal road for standard reports and definitive data analysis**,
+DWH is the **royal road for standard reports and definitive data analysis**,  
 and is still widely used as a stable business analysis platform.

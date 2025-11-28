@@ -1,3 +1,7 @@
+---
+sidebar_label: 🧩 Cell-based
+---
+
 # 🧩 Cell-based Architecture
 
 Cell-based Architecture is a topology that **configures the system in units of independent small clusters called Cells** in large-scale distributed systems. Adopted by large-scale operation organizations like Slack, Netflix, Uber.
@@ -42,8 +46,8 @@ graph TD
 
 ## ✅ Related Styles
 
-- Microservices
-- Multi-region Architecture
+- [Microservices](./microservices.md)
+- [Multi-region Architecture](./multi-region.md)
 - Sharding (Data splitting)
 
 ## ✅ Summary

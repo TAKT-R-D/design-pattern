@@ -60,52 +60,52 @@ So it is important whether it matches the scale and operational capability.
 
 ## ✅ History (Genealogy / Parent Styles)
 
-- Emerged with spread of Microservices / Kubernetes.
+- Emerged with spread of [Microservices](../topologies/microservices.md) / Kubernetes.
 - Spread as implementation like Envoy / Istio / Linkerd based on Sidecar pattern.
 - Recognized as "Standard component of network layer" for microservices alongside API Gateway.
 
 ## ✅ Related Styles
 
-- **API Gateway / BFF**: Entrance to outside. Service Mesh mainly handles internal traffic.
-- **REST / gRPC**: Protocols carried on Mesh.
-- **Zero Trust / Security Architecture**: As application point of mTLS and authorization policies.
+- **[API Gateway / BFF](./api-gateway-bff.md)**: Entrance to outside. Service Mesh mainly handles internal traffic.
+- **[REST / gRPC](./rest-grpc-graphql.md)**: Protocols carried on Mesh.
+- **[Zero Trust / Security Architecture](../cross-cutting/zero-trust.md)**: As application point of mTLS and authorization policies.
 
 ## ✅ Representative Frameworks
 
 Service Mesh is often implemented as infrastructure layer products.
 
-- **Istio**
+- **Istio**  
   Representative Service Mesh using Envoy as data plane. Rich in features and widely used in Kubernetes environments.
 
-- **Linkerd**
+- **Linkerd**  
   Service Mesh emphasizing simplicity and lightness. Metrics and mTLS can be introduced easily.
 
-- **Consul Connect**
+- **Consul Connect**  
   Integrated solution of Service Discovery + Mesh by HashiCorp Consul.
 
-- **AWS App Mesh / GCP Anthos Service Mesh**
+- **AWS App Mesh / GCP Anthos Service Mesh**  
   Managed Mesh infrastructure provided by cloud providers.
 
-- **Envoy**
+- **Envoy**  
   High-performance proxy adopted as data plane in many Service Mesh implementations.
 
 ## ✅ Design Patterns Supporting This Style
 
 Service Mesh itself is infrastructure structure, but strongly linked with following patterns in design perspective.
 
-- **Proxy**
+- **Proxy**  
   Sidecar itself acts as proxy, performing traffic control, monitoring, and encryption.
 
-- **Facade**
+- **Facade**  
   Hides complex network control through unified API (Policy / Routing configuration) provided by Mesh.
 
-- **Mediator**
+- **Mediator**  
   Control plane acts as mediator with each data plane (Sidecar).
 
-- **Observer**
+- **Observer**  
   Appears in mechanism aggregating observation information like metrics, traces, and logs.
 
-- **Chain of Responsibility**
+- **Chain of Responsibility**  
   Structure where request is processed passing through multiple filters/rules (Authentication → Routing → Retry etc.).
 
 ## ✅ Summary
@@ -118,5 +118,5 @@ Service Mesh is a structural style to handle concerns around network like:
 
 Separately from the application.
 
-When the scale of microservices exceeds a certain level,
+When the scale of microservices exceeds a certain level,  
 it is worth considering as an option: **"Should we separate the network layer from the app?"**.

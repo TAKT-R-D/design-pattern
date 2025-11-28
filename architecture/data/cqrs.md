@@ -1,3 +1,7 @@
+---
+sidebar_label: 🧩 CQRS
+---
+
 # 🧩 CQRS (Command Query Responsibility Segregation)
 
 ## ✅ Overview
@@ -40,38 +44,38 @@
 
 ## ✅ Related Styles
 
-- Event Sourcing: Good compatibility with style holding state by events.
-- EDA: Utilized for asynchronous update.
+- [Event Sourcing](./event-sourcing.md): Good compatibility with style holding state by events.
+- [EDA](../integration/event-driven.md): Utilized for asynchronous update.
 
 ## ✅ Representative Frameworks
 
-- **EventStoreDB**
+- **EventStoreDB**  
   Widely adopted in CQRS implementation combined with Event Sourcing.
 
-- **Axon Framework (Java)**
+- **Axon Framework (Java)**  
   Possible to implement integrating Command/Query separation and Event Sourcing.
 
-- **Lagom (Scala / Java)**
+- **Lagom (Scala / Java)**  
   Microservices framework premised on CQRS + ES.
 
-- **Kafka + Custom Command Processor**
+- **Kafka + Custom Command Processor**  
   CQRS implementation exchanging Command/Event via Kafka Topic is also common.
 
 ## ✅ Design Patterns Supporting This Style
 
-- **Command**
+- **Command**  
   Central pattern treating write operation as "operation with intent".
 
-- **Memento**
+- **Memento**  
   Used when handling snapshot at specific point as auxiliary of state management.
 
-- **Strategy**
+- **Strategy**  
   Switching different data fetching methods in Read / Write models.
 
-- **Observer**
+- **Observer**  
   Used when subscribing to write result events and updating read model.
 
-- **Mediator**
+- **Mediator**  
   Appears in structure where Command Handler / Query Handler cooperate loosely.
 
 ## ✅ Summary

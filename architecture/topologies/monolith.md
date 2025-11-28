@@ -43,45 +43,45 @@ flowchart TD
 ## ✅ History
 
 - Common structure since the early days of Web applications.
-- Role redefined with the rise of SOA → Microservices.
+- Role redefined with the rise of [SOA](./soa.md) → [Microservices](./microservices.md).
 
 ## ✅ Related Styles
 
-- **Modular Monolith**: Advanced form organizing Monolith structurally.
-- **Microservices**: Opposite model with different deployment granularity.
+- **[Modular Monolith](./modular-monolith.md)**: Advanced form organizing Monolith structurally.
+- **[Microservices](./microservices.md)**: Opposite model with different deployment granularity.
 
 ## ✅ Representative Frameworks
 
-- **Ruby on Rails / Laravel / Django**
+- **Ruby on Rails / Laravel / Django**  
   Typical monolith configuring MVC in a single application.
 
-- **Spring Boot (Single WAR/JAR deployment)**
+- **Spring Boot (Single WAR/JAR deployment)**  
   Used in many enterprise systems as monolith configuration.
 
-- **Next.js (Monolith configuration)**
+- **Next.js (Monolith configuration)**  
   Structure aggregating API Routes + Web UI + SSR into 1 project.
 
-- **.NET MVC / ASP.NET Core**
+- **.NET MVC / ASP.NET Core**  
   Widely adopted in enterprise system monolith construction.
 
 ## ✅ Design Patterns Supporting This Style
 
-- **Facade**
+- **Facade**  
   Unifies the entrance (Controller) of the entire app.
 
-- **Template Method**
+- **Template Method**  
   Unifies common processing (Validation → Execution → Response).
 
-- **Strategy**
+- **Strategy**  
   When switching algorithms within a module.
 
-- **Composite**
+- **Composite**  
   Handles UI or domain structure hierarchically.
 
-- **Mediator**
+- **Mediator**  
   Adjusts coordination of multiple modules within a large monolith.
 
 ## ✅ Summary
 
-Monolith excels in simplicity, speed, and ease of change,
+Monolith excels in simplicity, speed, and ease of change,  
 and remains the **strongest candidate for small to medium-scale systems.**

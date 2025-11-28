@@ -66,17 +66,17 @@ Typical problems:
 
 ## ✅ History (Genealogy / Parent Styles)
 
-- Structure naturally generated from Data-centric (Active Record / Table Module) designs.
+- Structure naturally generated from [Data-centric](./index.md) ([Active Record](./active-record.md) / [Table Module](./table-module.md)) designs.
 - Evans raised the issue as "Anemic Model" in the context of DDD.
 - Rich Domain Model and DDD approaches evolved as countermeasures to this problem.
 
 ## ✅ Related Styles
 
-- **Active Record / Table Module**
+- **[Active Record](./active-record.md) / [Table Module](./table-module.md)**  
   Data-centric relative styles, prone to becoming Anemic Models.
-- **Domain Model (Rich Domain)**
+- **[Domain Model (Rich Domain)](../layered/domain-model-layered.md)**  
   "Opposite" approach solving the Anemic Model problem.
-- **Service Layer**
+- **Service Layer**  
   Closely related to Anemic Model (also a cause of excessive logic concentration).
 
 ## ✅ Representative Frameworks
@@ -96,13 +96,13 @@ Anemic Domain Model is not "adopted by specific frameworks", but is a **structur
 
 Anemic Domain Model is not a "recommended structure" as a pattern, but the following patterns appear auxiliarily.
 
-- **Command**
+- **Command**  
   Used to organize by operation unit when complex logic accumulates in the service layer.
 
-- **Strategy**
+- **Strategy**  
   Used to organize replaceable logic since domain logic gathers on the service side.
 
-- **Template Method**
+- **Template Method**  
   Used when there is a need to unify overlapping processing steps in multiple services.
 
 ## ✅ Summary
@@ -116,4 +116,4 @@ Important thing is:
 > "Is the complexity of this app's domain low enough for the simplicity of Anemic Model?"
 
 If there is any sign of increasing complexity,
-more serious structural styles like Domain Model / DDD / Layered / Hexagonal should be considered.
+more serious structural styles like [Domain Model](../layered/domain-model-layered.md) / DDD / [Layered](../layered/index.md) / [Hexagonal](../layered/dependency-rule-layered/hexagonal.md) should be considered.

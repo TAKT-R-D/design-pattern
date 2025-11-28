@@ -2,7 +2,7 @@
 
 ## ✅ Overview
 
-A style that reorganized concepts from Hexagonal / Onion and summarized them as **clear layer structures and dependency rules**:
+A style that reorganized concepts from [Hexagonal](./hexagonal.md) / [Onion](./onion.md) and summarized them as **clear layer structures and dependency rules**:
 
 - Entities (Enterprise Business Rules)
 - Use Cases (Application Business Rules)
@@ -11,7 +11,7 @@ A style that reorganized concepts from Hexagonal / Onion and summarized them as 
 
 ## ✅ Problems Addressed
 
-- Concepts like Hexagonal / Onion / Layered / DDD were proliferating, making differences hard to understand.
+- Concepts like [Hexagonal](./hexagonal.md) / [Onion](./onion.md) / [Layered](../index.md) / DDD were proliferating, making differences hard to understand.
 - Wanted to organize the common idea of "Dependencies point inward" and "Domain centric".
 - Wanted more guidance on specifically what to write in which layer.
 
@@ -24,14 +24,17 @@ Clean Architecture can be understood as:
 ### ● Layer Structure
 
 - **Entities**
+
   - Business rules valid across systems.
   - Close to Entities / Value Objects in DDD.
 
 - **Use Cases**
+
   - Application-specific use cases.
   - Input/output control, transaction boundaries, etc.
 
 - **Interface Adapters**
+
   - Presenter / Controller / Repository implementations, etc.
   - Convert external data formats to inner models.
 
@@ -73,45 +76,45 @@ There is a danger of this happening.
 ## ✅ History (Genealogy / Parent Styles)
 
 - Proposed by Robert C. Martin (Uncle Bob).
-- A style that organized and summarized flows like Hexagonal / Onion / DDD / Layered.
+- A style that organized and summarized flows like [Hexagonal](./hexagonal.md) / [Onion](./onion.md) / DDD / Layered.
 - Widely popularized as the book "Clean Architecture".
 
 ## ✅ Related Styles
 
-- **Hexagonal Architecture**: Concept of Ports & Adapters.
-- **Onion Architecture**: Layer structure on concentric circles.
+- **[Hexagonal Architecture](./hexagonal.md)**: Concept of Ports & Adapters.
+- **[Onion Architecture](./onion.md)**: Layer structure on concentric circles.
 - **DDD**: As a concrete expression method for Entities / Use Cases.
 
 ## ✅ Representative Frameworks
 
 Clean Architecture is also a concept independent of frameworks, but in practice, it is often practiced in the following technology stacks.
 
-- **ASP.NET Core / .NET**
+- **ASP.NET Core / .NET**  
   Many official/community templates like "Clean Architecture Template" exist.
 
-- **Spring Boot (Java)**
+- **Spring Boot (Java)**  
   Configurations clearly separating Entities / Use Cases / Interface Adapters / Frameworks & Drivers are introduced.
 
-- **NestJS (Node.js)**
+- **NestJS (Node.js)**  
   Easy to split into UseCase / Repository Interface / Adapter Implementation, making it easy to align with Clean-like structure.
 
 ## ✅ Design Patterns Supporting This Style
 
 In Clean Architecture, multiple patterns are combined to support dependency rules and use-case centric design.
 
-- **Adapter**
+- **Adapter**  
   Functions as a bridge between external I/O and internal models in the Interface Adapters layer.
 
-- **Strategy**
+- **Strategy**  
   Expresses variations of business rules and use cases in a replaceable form.
 
-- **Command**
+- **Command**  
   Objectifies a Use Case as "one operation", clarifying input/output and transaction boundaries.
 
-- **Facade**
+- **Facade**  
   Provides multiple use cases as a unified interface when viewed from the outside (UI / API).
 
-- **Abstract Factory**
+- **Abstract Factory**  
   Used to assemble appropriate implementation adapters (for production / test) at runtime.
 
 ## ✅ Summary

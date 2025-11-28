@@ -1,4 +1,9 @@
-# 🧩 Data & Analytics Architecture
+---
+sidebar_label: Introduction
+pagination_label: Data & Analytics Architecture Overview
+---
+
+# Data & Analytics Architecture
 
 Data Architecture covers the architecture layer dealing with **flow, storage, transformation, and analysis of data.**
 
@@ -18,33 +23,33 @@ Data Architecture covers the architecture layer dealing with **flow, storage, tr
 
 ## ✅ Representative Styles of Data Architecture
 
-### ● Data Warehouse (DWH)
+### ● [Data Warehouse (DWH)](./data-warehouse.md)
 
 - Aggregation database for analysis and reporting.
 - Center of enterprise BI.
 
-### ● Data Lake / Lakehouse
+### ● [Data Lake / Lakehouse](./data-lake-lakehouse.md)
 
 - Large-scale infrastructure handling unstructured/structured data together.
 - For ML and large-scale analysis.
 - Lakehouse is a fusion of DWH + Lake.
 
-### ● CQRS (Command Query Responsibility Segregation)
+### ● [CQRS (Command Query Responsibility Segregation)](./cqrs.md)
 
 - Separates write model and read model.
 - Effective in situations requiring high load distribution and fast reading.
 
-### ● Event Sourcing
+### ● [Event Sourcing](./event-sourcing.md)
 
 - Manages state by "history of events".
 - Supports advanced requirements like audit / reconstruction / snapshot.
 
-### ● Data Mesh
+### ● [Data Mesh](./data-mesh.md)
 
 - Manages data products per domain.
 - Organization structure and distribution of data responsibility are key points.
 
-### ● Lambda / Kappa Architecture
+### ● [Lambda / Kappa Architecture](./lambda-kappa.md)
 
 - Batch + Stream (Lambda).
 - Unification with Stream alone (Kappa).
@@ -57,6 +62,6 @@ Data Architecture covers the architecture layer dealing with **flow, storage, tr
 
 ## ✅ Relationship with Other Layers
 
-- **Integration**: Event-driven is directly connected to data structure.
-- **System Topologies**: CQRS/ES is important in distributed services.
-- **Cross-cutting**: Closely related to Data Governance, Audit, SLO, etc.
+- **[Integration](../integration/index.md)**: Event-driven is directly connected to data structure.
+- **[System Topologies](../topologies/index.md)**: CQRS/ES is important in distributed services.
+- **[Cross-cutting](../cross-cutting/index.md)**: Closely related to Data Governance, Audit, SLO, etc.

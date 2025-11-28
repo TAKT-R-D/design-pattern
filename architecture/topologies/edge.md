@@ -1,3 +1,7 @@
+---
+sidebar_label: 🧩 Edge
+---
+
 # 🧩 Edge Architecture
 
 ## ✅ Overview
@@ -56,30 +60,30 @@ flowchart LR
 
 ## ✅ Representative Frameworks
 
-- **Cloudflare Workers / D1 / KV / R2**
+- **Cloudflare Workers / D1 / KV / R2**  
   Representative Edge Computing environment.
 
-- **Vercel Edge Functions**
+- **Vercel Edge Functions**  
   Can place SSR / Middleware on the edge.
 
-- **Fastly Compute@Edge**
+- **Fastly Compute@Edge**  
   High-speed Web delivery and edge execution.
 
-- **Akamai EdgeWorkers**
+- **Akamai EdgeWorkers**  
   Edge processing platform evolved from CDN.
 
 ## ✅ Design Patterns Supporting This Style
 
-- **Proxy**
+- **Proxy**  
   Performs authentication, caching, and filtering at the edge.
 
-- **Facade**
+- **Facade**  
   Edge API abstracts the backend.
 
-- **Strategy**
+- **Strategy**  
   Routing strategy per geography / user type.
 
-- **Observer**
+- **Observer**  
   Processing triggered by request events.
 
 ## ✅ Summary
@@ -98,5 +102,5 @@ On the other hand, new challenges arise such as:
 - Dispersion of logs / traces
 - Data governance and region constraints
 
-When designing cloud frontends or APIs,
+When designing cloud frontends or APIs,  
 it is important to consciously design **how much to bring to the edge and from where to leave to the origin.**

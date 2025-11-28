@@ -32,7 +32,7 @@ In Streaming Pipeline, data flows in steps like:
 3. **Enrich**
    - Add information using other streams or reference data.
 4. **Sink**
-   - Output to storage (DWH / Data Lake), downstream systems, dashboards, etc.
+   - Output to storage ([DWH](../../data/data-warehouse.md) / [Data Lake](../../data/data-lake-lakehouse.md)), downstream systems, dashboards, etc.
 
 Characteristic elements:
 
@@ -57,36 +57,36 @@ flowchart LR
 
 Streaming Pipeline is particularly powerful in areas like:
 
-- **Log / Metrics Processing**
+- **Log / Metrics Processing**  
   Real-time aggregation and alerting of access logs, application logs, metrics.
 
-- **Event-driven Services**
+- **Event-driven Services**  
   Recommendation, personalization, feed generation based on user behavior events.
 
-- **IoT / Sensor Systems**
+- **IoT / Sensor Systems**  
   Continuous monitoring and anomaly detection of telemetry from sensors and devices.
 
-- **Payment / Transaction Monitoring**
+- **Payment / Transaction Monitoring**  
   Fraud detection, real-time risk assessment, etc.
 
 ## ❌ Unsuitable Cases
 
 Streaming Pipeline does not mean "Everything should be done with streaming".
 
-- **One-off Aggregation or Migration**
+- **One-off Aggregation or Migration**  
   One-off heavy processing is often simpler with Batch.
 
-- **Processing requiring strict batch consistency**
+- **Processing requiring strict batch consistency**  
   Cases where it is safer to judge at once after all data is gathered (e.g., end-of-term batch settlement).
 
-- **Simple CRUD-centric Business Systems**
+- **Simple CRUD-centric Business Systems**  
   Often there is no need to design as a stream in the first place.
 
 ## ✅ History (Genealogy / Parent Styles)
 
 Streaming Pipeline evolved from the following contexts:
 
-- Extended ideas of **Pipe & Filter** and **Batch Pipeline** to real-time processing.
+- Extended ideas of **[Pipe & Filter](./pipe-and-filter.md)** and **[Batch Pipeline](./batch-pipeline.md)** to real-time processing.
 - Evolved from **Log Aggregation Platform** (Hadoop era) to Distributed Log Platform like Kafka + Stream Processing Engine.
 - Formulated as "Speed Layer" / "Stream Layer" in Lambda / Kappa Architecture.
 
@@ -96,51 +96,51 @@ It is a pipeline style swinging in the direction of:
 
 ## ✅ Relationship with Related Styles
 
-- **Pipe & Filter**
+- **[Pipe & Filter](./pipe-and-filter.md)**  
   Model is the same connection of stages, but Streaming assumes "always flowing".
 
-- **Batch Pipeline**
+- **[Batch Pipeline](./batch-pipeline.md)**  
   Difference is whether processing unit is "per Job / Daily / Hourly" or "per Event / Time Window".
 
-- **Event-driven Architecture / EDA**
+- **[Event-driven Architecture / EDA](../../integration/event-driven.md)**  
   When event flow crosses system boundaries, Streaming Pipeline appears as its internal processing.
 
-- **Lambda / Kappa Architecture (Data)**
-  Often appears in the context of how to combine stream processing and DWH / Data Lake.
+- **[Lambda / Kappa Architecture (Data)](../../data/lambda-kappa.md)**  
+  Often appears in the context of how to combine stream processing and [DWH](../../data/data-warehouse.md) / [Data Lake](../../data/data-lake-lakehouse.md).
 
 ## ✅ Representative Frameworks
 
 Representative platforms/frameworks realizing Streaming Pipeline include:
 
-- **Apache Kafka Streams / ksqlDB**
+- **Apache Kafka Streams / ksqlDB**  
   Stream processing dedicated library on Kafka. Can describe stream transformation, join, and aggregation between topics.
 
-- **Apache Flink**
+- **Apache Flink**  
   Distributed processing engine strong in stream processing. Capable of complex window processing and state management.
 
-- **Apache Beam (Streaming Mode)**
+- **Apache Beam (Streaming Mode)**  
   Can describe Batch / Streaming with the same model, portable to multiple runtimes like Dataflow.
 
-- **Amazon Kinesis / Google Cloud Pub/Sub + Dataflow etc.**
+- **Amazon Kinesis / Google Cloud Pub/Sub + Dataflow etc.**  
   Can build streaming pipelines as managed services.
 
 ## ✅ Design Patterns Supporting This Style
 
 Streaming Pipeline is a combination of the following object-oriented design patterns:
 
-- **Iterator**
+- **Iterator**  
   Treats stream as an abstraction to "take out next element in order".
 
-- **Observer**
+- **Observer**  
   Subscribes to arrival of new events and triggers processing.
 
-- **Chain of Responsibility**
+- **Chain of Responsibility**  
   Connects multiple processing stages and processes events stepwise.
 
-- **Mediator**
+- **Mediator**  
   Aggregates routing and joining in one place when multiple streams or stages are involved.
 
-- **Strategy**
+- **Strategy**  
   Makes processing logic (aggregation algorithm or filter condition) per stage replaceable.
 
 ## ✅ Summary
@@ -151,12 +151,12 @@ Streaming Pipeline is a pipeline style for:
 - Combining stages
 - Processing / Aggregating / Detecting almost in real-time
 
-While being in the same genealogy as Pipe & Filter / Batch Pipeline,
+While being in the same genealogy as [Pipe & Filter](./pipe-and-filter.md) / [Batch Pipeline](./batch-pipeline.md),
 its biggest feature is making:
 
 > **"Processing flow that continues to move every time data comes"**
 
 The protagonist of design.
 
-In systems with high requirements for data volume, real-time performance, and scalability,
+In systems with high requirements for data volume, real-time performance, and scalability,  
 design conscious of Streaming Pipeline becomes an important architectural option.

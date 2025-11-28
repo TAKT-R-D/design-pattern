@@ -1,3 +1,7 @@
+---
+sidebar_label: 🧩 Saga
+---
+
 # 🧩 Saga Pattern (Distributed Transaction Coordination)
 
 ## ✅ Overview
@@ -16,7 +20,7 @@ Due to microservices, one business operation came to span:
 As a result:
 
 - Rollback when one place fails is difficult.
-- Distributed transactions (XA, 2PC) are heavy and incompatible with cloud / microservices.
+- Distributed transactions (XA, 2PC) are heavy and incompatible with cloud / [microservices](../topologies/microservices.md).
 
 Saga tries to maintain consistency with the idea:
 
@@ -37,6 +41,7 @@ Saga tries to maintain consistency with the idea:
 ### ● Orchestration vs Choreography
 
 - Orchestration Type
+
   - "Orchestrator" controlling Saga exists and calls each step in order.
 
 - Choreography Type
@@ -73,43 +78,43 @@ So domain understanding and identifying failure patterns are essential.
 
 ## ✅ Related Styles
 
-- **Event-driven Architecture**: Choreography type Saga is built on EDA.
-- **REST / gRPC**: Used for step calls in Orchestration type.
-- **CQRS / Event Sourcing**: Good compatibility with tracking state transitions and implementing compensation logic.
+- **[Event-driven Architecture](./event-driven.md)**: Choreography type Saga is built on EDA.
+- **[REST / gRPC](./rest-grpc-graphql.md)**: Used for step calls in Orchestration type.
+- **[CQRS](../data/cqrs.md) / [Event Sourcing](../data/event-sourcing.md)**: Good compatibility with tracking state transitions and implementing compensation logic.
 
 ## ✅ Representative Frameworks
 
 Saga is a pattern, but frameworks and platforms supporting implementation exist.
 
-- **Workflow Engines like Camunda / Zeebe / JBPM**
+- **Workflow Engines like Camunda / Zeebe / JBPM**  
   Can orchestrate long-running business processes based on BPMN.
 
-- **Temporal / Cadence**
+- **Temporal / Cadence**  
   Platform to describe workflows in code and manage retry / compensation / timeout.
 
-- **AWS Step Functions**
+- **AWS Step Functions**  
   Can build Saga-like flows as orchestration infrastructure for distributed processing.
 
-- **Kafka + Custom Orchestrator**
+- **Kafka + Custom Orchestrator**  
   Many implementations control Saga with application code while using events on Kafka.
 
 ## ✅ Design Patterns Supporting This Style
 
 Saga itself is an architecture pattern, but multiple design patterns are active inside.
 
-- **Command**
+- **Command**  
   Expresses processing of each step (Reservation, Billing, Inventory Allocation etc.) as operation object.
 
-- **Memento**
+- **Memento**  
   Appears as idea when recording/restoring how far processing advanced and to which state to return.
 
-- **State**
+- **State**  
   Explicitly expresses state of entire Saga (In Progress / Success / Compensating / Failed etc.).
 
-- **Chain of Responsibility**
+- **Chain of Responsibility**  
   Structure tracing steps in order and switching to compensation flow if failed in between.
 
-- **Mediator**
+- **Mediator**  
   In Orchestration type Saga, Orchestrator itself acts as mediator between services.
 
 ## ✅ Summary
@@ -119,5 +124,5 @@ Saga Pattern holds an important position as:
 - Practical solution for distributed transaction problem in microservices era.
 - Design assuming "Eventual Consistency" instead of "Strong Consistency".
 
-When introducing,
+When introducing,  
 **"At which step can it fail" and "How to compensate"** are keys to careful design.

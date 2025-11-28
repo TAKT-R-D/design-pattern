@@ -67,40 +67,40 @@ Also, in teams not used to Actor Model:
 
 ## ✅ Related Styles
 
-- **Event Loop based structure**: Close in terms of event-driven, but model is different.
-- **Reactive Streams**: Standard for event stream processing.
-- **EDA (Event-Driven Architecture)**: Event-driven structure of the entire system.
+- **[Event Loop based structure](./event-loop.md)**: Close in terms of event-driven, but model is different.
+- **[Reactive Streams](./reactive-streams.md)**: Standard for event stream processing.
+- **[EDA (Event-Driven Architecture)](../../integration/event-driven.md)**: Event-driven structure of the entire system.
 
 ## ✅ Representative Frameworks
 
 Actor Model has many practical implementations especially in areas where concurrency is important.
 
-- **Erlang / Elixir (BEAM VM)**
+- **Erlang / Elixir (BEAM VM)**  
   Original implementation by lightweight processes + message passing. Excellent fault tolerance.
 
-- **Akka (Scala / Java)**
+- **Akka (Scala / Java)**  
   Most famous Actor Framework on JVM. Rich in supervision, distribution, persistence, etc.
 
-- **Orleans (.NET)**
+- **Orleans (.NET)**  
   Adopts "Virtual Actor" model, used in large-scale distributed systems.
 
-- **Ray (Python)**
+- **Ray (Python)**  
   Distributed Actor execution platform in AI / HPC field. Handles tasks and actors uniformly.
 
 ## ✅ Design Patterns Supporting This Style
 
 When converted to object-oriented patterns, Actor Model corresponds to the following elements:
 
-- **State**
+- **State**  
   Hides internal state of Actor from outside and updates it by its own message processing.
 
-- **Command**
+- **Command**  
   Treats each message as an "operation", and Actor interprets and executes it.
 
-- **Observer**
+- **Observer**  
   Receives messages in event-driven manner and triggers next processing.
 
-- **Mediator**
+- **Mediator**  
   Appears when adjusting message routing or coordination between Actors.
 
 ## ✅ Summary
@@ -111,5 +111,5 @@ Actor Model is a structural style strongly conscious of:
 - Message Passing
 - Fault Isolation
 
-Instead of handling threads and locks directly,
+Instead of handling threads and locks directly,  
 it is characterized by the idea of **designing the system in units of "Actors and Messages"**.

@@ -1,4 +1,8 @@
-# 🧩 REST / gRPC / GraphQL (Synchronous Request-Driven Integration Styles)
+---
+sidebar_label: 🧩 REST / gRPC / GraphQL
+---
+
+# 🧩 Synchronous Request-Driven Integration Styles (REST / gRPC / GraphQL)
 
 ## ✅ Overview
 
@@ -15,10 +19,12 @@ Here we organize them based on "what philosophy they have and what problems they
 All three basically face the challenge of **wanting to make inter-service communication simple and reusable**, but their focus differs slightly.
 
 - REST:
+
   - Wants to provide resource-oriented and unified interface in the world of Web / HTTP.
   - Wants to design link-oriented and cacheable APIs.
 
 - gRPC:
+
   - Wants to reduce JSON/HTTP overhead and realize fast and type-safe communication in microservices.
   - Wants bidirectional streaming and strict interface definition (IDL).
 
@@ -94,62 +100,62 @@ It is easier to understand if you view them as **different directions of evoluti
 
 ## ✅ Related Styles
 
-- **Event-driven / Messaging**: Contrast with asynchronous integration styles.
-- **API Gateway / BFF**: Style of how to expose and aggregate these APIs.
-- **Service Mesh**: Complementary style from the perspective of communication path control and observation.
+- **[Event-driven / Messaging](./event-driven.md)**: Contrast with asynchronous integration styles.
+- **[API Gateway / BFF](./api-gateway-bff.md)**: Style of how to expose and aggregate these APIs.
+- **[Service Mesh](./service-mesh.md)**: Complementary style from the perspective of communication path control and observation.
 
 ## ✅ Representative Frameworks
 
 ### REST
 
-- **Spring MVC / Spring Boot**
+- **Spring MVC / Spring Boot**  
   Representative of enterprise Web/API servers. Often referenced as typical example of RESTful API.
 
-- **Ruby on Rails**
+- **Ruby on Rails**  
   Easy to build RESTful API with resource-oriented routing and controllers.
 
-- **Django REST Framework**
+- **Django REST Framework**  
   De facto standard for implementing REST API on Django.
 
-- **Express / FastAPI etc.**
+- **Express / FastAPI etc.**  
   Lightweight Web frameworks capable of building simple REST APIs quickly.
 
 ### gRPC
 
-- **gRPC Official Libraries (Go / Java / C# / Node.js etc.)**
+- **gRPC Official Libraries (Go / Java / C# / Node.js etc.)**  
   Provides fast and type-safe RPC through IDL (proto) and code generation.
 
-- **Envoy / gRPC-Web**
+- **Envoy / gRPC-Web**  
   Proxy and adapter to handle gRPC from browser.
 
 ### GraphQL
 
-- **Apollo Server / Apollo Gateway**
+- **Apollo Server / Apollo Gateway**  
   Node.js based GraphQL server / federation implementation.
 
-- **Hasura**
+- **Hasura**  
   Backend generating GraphQL API immediately from DB schema.
 
-- **GraphQL Java / Hot Chocolate (.NET) etc.**
+- **GraphQL Java / Hot Chocolate (.NET) etc.**  
   GraphQL server implementations in each language.
 
 ## ✅ Design Patterns Supporting This Style
 
 REST / gRPC / GraphQL are communication protocols, but the following design patterns are often used behind them.
 
-- **Facade**
+- **Facade**  
   Summarizes multiple domain operations as one API, simplifying the entrance seen from client.
 
-- **Adapter**
+- **Adapter**  
   Absorbs difference in data format between internal model/interface and externally exposed API.
 
-- **Proxy**
+- **Proxy**  
   Used when adding control on communication path like authentication, caching, rate limiting.
 
-- **Strategy**
+- **Strategy**  
   Used when switching behavior by version difference or client.
 
-- **Template Method**
+- **Template Method**  
   Unifies common request processing flow (Authentication → Validation → Processing → Response formatting).
 
 ## ✅ Summary

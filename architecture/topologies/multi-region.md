@@ -1,3 +1,7 @@
+---
+sidebar_label: 🧩 Multi-region
+---
+
 # 🧩 Multi-region Architecture
 
 Multi-region Architecture is a topology that deploys services to multiple regions and **satisfies availability, latency, and disaster recovery simultaneously.**
@@ -48,8 +52,8 @@ graph TD
 
 ## ✅ Related Styles
 
-- Cell-based Architecture
-- Event-driven Architecture (Asynchronous replication)
+- [Cell-based Architecture](./cell-based.md)
+- [Event-driven Architecture](../integration/event-driven.md) (Asynchronous replication)
 - Global Caching / CDN
 
 ## ✅ Summary

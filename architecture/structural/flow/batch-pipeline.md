@@ -70,45 +70,45 @@ In such cases, Streaming Pipeline or EDA is more suitable.
 ## ✅ History (Genealogy / Parent Styles)
 
 - Organized practical knowledge of batch processing existing for a long time into the form of a pipeline.
-- Close to ETL patterns in Data Warehouse / DWH context.
+- Close to ETL patterns in [Data Warehouse / DWH](../../data/data-warehouse.md) context.
 - Often combined with workflow orchestration tools in recent years.
 
 ## ✅ Related Styles
 
-- **Pipe & Filter**: Prototype of simple pipeline within 1 process.
-- **Streaming Pipeline**: Evolution to real-time processing.
-- **Data Architecture (Lambda / Kappa)**: Positioning as Batch Layer.
+- **[Pipe & Filter](./pipe-and-filter.md)**: Prototype of simple pipeline within 1 process.
+- **[Streaming Pipeline](./streaming-pipeline.md)**: Evolution to real-time processing.
+- **[Data Architecture (Lambda / Kappa)](../../data/index.md)**: Positioning as Batch Layer.
 
 ## ✅ Representative Frameworks
 
 Batch Pipeline is widely used as a foundation supporting batch workflows.
 
-- **Apache Airflow / Dagster / Argo Workflows**
+- **Apache Airflow / Dagster / Argo Workflows**  
   Build pipelines with DAG (Directed Acyclic Graph) and realize re-execution and dependency management per stage.
 
-- **AWS Glue / Google Cloud Dataflow (Batch Mode)**
+- **AWS Glue / Google Cloud Dataflow (Batch Mode)**  
   Can build ETL / data transformation processing as a stepwise pipeline.
 
-- **Spark (Batch Processing)**
+- **Spark (Batch Processing)**  
   Stage processing by RDD / DataFrame corresponds to pipeline.
 
-- **Airbyte / Fivetran (ELT Tools)**
+- **Airbyte / Fivetran (ELT Tools)**  
   Clearly structure steps of Extract → Load → Transform.
 
 ## ✅ Design Patterns Supporting This Style
 
 Inside Batch Pipeline, the following patterns are used to support stepwise processing and reuse.
 
-- **Chain of Responsibility**
+- **Chain of Responsibility**  
   Connects stages serially and processes them in order.
 
-- **Template Method**
+- **Template Method**  
   Unifies pre-processing / post-processing of jobs and common flows.
 
-- **Iterator**
+- **Iterator**  
   As assistance when processing large scale data sequentially.
 
-- **Strategy**
+- **Strategy**  
   Makes algorithms different per stage replaceable.
 
 ## ✅ Summary
@@ -118,5 +118,5 @@ Batch Pipeline is a structural style that:
 - Controls complexity of batch processing by stage division.
 - Is conscious of operational aspects (monitoring, re-execution, recovery).
 
-If a batch is becoming "one huge black box",
+If a batch is becoming "one huge black box",  
 it might be a sign to consider **redesigning as a pipeline**.

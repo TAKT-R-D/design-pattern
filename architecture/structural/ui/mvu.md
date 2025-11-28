@@ -7,7 +7,7 @@ Made famous by Elm, it became a representative approach for functional front-end
 
 ## ✅ Problems Solved
 
-Even with MVVM, the following challenges remained:
+Even with [MVVM](./mvvm.md), the following challenges remained:
 
 - State flow becomes hard to trace when two-way binding becomes complex.
 - ViewModels become bloated, making it difficult to understand where and what is being changed.
@@ -73,7 +73,7 @@ These are some of the challenges.
 
 ## ✅ Related Styles
 
-- **MVVM**: Binding-based UI structure.
+- **[MVVM](./mvvm.md)**: Binding-based UI structure.
 - **Flux / Redux**: Structure of Single Store + Reducer is close to MVU.
 - **FRP / Reactive Streams**: UI model as event streams.
 

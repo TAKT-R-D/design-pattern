@@ -1,3 +1,7 @@
+---
+sidebar_label: 🧩 API Gateway / BFF
+---
+
 # 🧩 API Gateway / BFF (Backend for Frontend)
 
 ## ✅ Overview
@@ -62,52 +66,52 @@ Care is needed for splitting granularity.
 
 ## ✅ History (Genealogy / Parent Styles)
 
-- API Gateway itself existed since SOA era (ESB + Gateway etc.).
+- API Gateway itself existed since [SOA](../topologies/soa.md) era (ESB + Gateway etc.).
 - Idea of BFF was born with the spread of smartphones.
-- Became standard component with spread of Microservices, REST/gRPC/GraphQL.
+- Became standard component with spread of [Microservices](../topologies/microservices.md), [REST/gRPC/GraphQL](./rest-grpc-graphql.md).
 
 ## ✅ Related Styles
 
-- **REST / gRPC / GraphQL**: API styles provided by Gateway/BFF on the front side.
-- **Service Mesh**: Layer responsible for internal implementation of inter-service communication (Inside Gateway).
-- **Event-driven / Saga**: Components of asynchronous flow triggered from Gateway/BFF.
+- **[REST / gRPC / GraphQL](./rest-grpc-graphql.md)**: API styles provided by Gateway/BFF on the front side.
+- **[Service Mesh](./service-mesh.md)**: Layer responsible for internal implementation of inter-service communication (Inside Gateway).
+- **[Event-driven](./event-driven.md) / [Saga](./saga.md)**: Components of asynchronous flow triggered from Gateway/BFF.
 
 ## ✅ Representative Frameworks
 
 There are many choices for API Gateway / BFF as both products and OSS.
 
-- **AWS API Gateway / Azure API Management / GCP API Gateway**
+- **AWS API Gateway / Azure API Management / GCP API Gateway**  
   Managed API Gateway services. Provide authentication, rate limiting, routing, etc.
 
-- **Kong / Tyk / KrakenD / NGINX**
+- **Kong / Tyk / KrakenD / NGINX**  
   OSS / Commercial API Gateway products. Extensible via plugins.
 
-- **Spring Cloud Gateway**
+- **Spring Cloud Gateway**  
   API Gateway implementation for Spring ecosystem.
 
-- **Node.js / Express / NestJS based BFF**
+- **Node.js / Express / NestJS based BFF**  
   Often used when implementing BFF specialized for Web / Mobile clients.
 
-- **Next.js (App Router / Route Handlers)**
+- **Next.js (App Router / Route Handlers)**  
   Easy to configure Web frontend and BFF-like API within the same project.
 
 ## ✅ Design Patterns Supporting This Style
 
 API Gateway / BFF is established by a combination of multiple patterns as an "entrance" seen from the client.
 
-- **Facade**
+- **Facade**  
   Appearance showing multiple backend services as one API.
 
-- **Adapter**
+- **Adapter**  
   Converts data and interfaces into forms easy for clients to handle.
 
-- **Proxy**
+- **Proxy**  
   Interposes control like authentication, authorization, rate limiting, caching before and after requests.
 
-- **Mediator**
+- **Mediator**  
   Role of integrating responses from multiple services into one response.
 
-- **Strategy**
+- **Strategy**  
   Used when switching routing or response structure per client type.
 
 ## ✅ Summary
@@ -117,5 +121,5 @@ API Gateway / BFF is a structural style that is almost standard in modern Web / 
 - **Entrance for external exposure**
 - **Client-specific orchestration layer**
 
-Especially,
+Especially,  
 **"How much to bring to common Gateway and from where to split to BFF"** becomes an important judgment point in design.

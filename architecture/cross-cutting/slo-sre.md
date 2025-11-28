@@ -1,3 +1,7 @@
+---
+sidebar_label: 🧩 SLO / SRE
+---
+
 # 🧩 SLO / SRE (Site Reliability Engineering)
 
 ## ✅ Overview
@@ -14,9 +18,9 @@
 ## ✅ Basic Philosophy & Rules
 
 - Three stages: SLI (Indicator) → SLO (Objective) → SLA (Agreement).
-- Balance control by "Error Budget".
-  → If reliability is sufficient, increase development speed.
-   If used up, focus on stabilization.
+- Balance control by "Error Budget".  
+  → If reliability is sufficient, increase development speed.  
+  If used up, focus on stabilization.
 - Standardization of incident response (On-call, Runbook).
 - Post-mortem culture (Improvement rather than blame).
 
@@ -38,11 +42,11 @@
 
 ## ✅ Related Styles
 
-- Observability: Foundation of SLI measurement.
-- DevOps: Cultural background and automation.
-- Team Topologies: Distribution of On-call and operational responsibility.
+- [Observability](./observability.md): Foundation of SLI measurement.
+- [DevOps](./devops.md): Cultural background and automation.
+- [Team Topologies](./team-topologies.md): Distribution of On-call and operational responsibility.
 
 ## ✅ Summary
 
-SRE is an **approach to "guarantee reliability with code"**,
+SRE is an **approach to "guarantee reliability with code"**,  
 and availability management by **SLO + Error Budget** becomes central.

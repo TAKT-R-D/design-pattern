@@ -3,12 +3,12 @@
 ## ✅ Overview
 
 A data-centric structural style that **"groups logic for the entire table (set) into one module"**.
-While Active Record centers on "1 Row = 1 Object",
+While [Active Record](./active-record.md) centers on "1 Row = 1 Object",
 Table Module handles "Table = 1 Module".
 
 ## ✅ Problems Addressed
 
-In Active Record, logic tends to scatter when handling sets (multiple rows).
+In [Active Record](./active-record.md), logic tends to scatter when handling sets (multiple rows).
 
 - Places to write aggregation processing become scattered.
 - Confusion about where to place batch processing / reporting processing.
@@ -30,10 +30,10 @@ Table Module organizes these problems and creates a clear place:
 
 ### Image of Role Division with Active Record
 
-| Logic Type | Active Record | Table Module |
-| :--- | :--- | :--- |
-| Row-level attribute operation | ◎ | △ |
-| Aggregation / Search / Set operation | △ | ◎ |
+| Logic Type                           | Active Record | Table Module |
+| :----------------------------------- | :------------ | :----------- |
+| Row-level attribute operation        | ◎             | △            |
+| Aggregation / Search / Set operation | △             | ◎            |
 
 ## ✅ Suitable Applications
 
@@ -61,36 +61,36 @@ Especially effective when you want to create a state where:
 
 ## ✅ Related Styles
 
-- **Active Record**: Strong in row-level operations.
-- **Anemic Domain Model**: Often occurs concurrently in data-centric contexts.
+- **[Active Record](./active-record.md)**: Strong in row-level operations.
+- **[Anemic Domain Model](./anemic-domain-model.md)**: Often occurs concurrently in data-centric contexts.
 - **Repository Pattern**: Set operations in DDD. Philosophy differs but relationship is deep.
-- **Read Model of CQRS**: "Set processing for views" like Table Module appears.
+- **[Read Model of CQRS](../../data/cqrs.md)**: "Set processing for views" like Table Module appears.
 
 ## ✅ Representative Frameworks
 
 Few frameworks adopt Table Module directly, but it appears naturally in contexts like:
 
-- **Django ORM (Set Operations)**
+- **Django ORM (Set Operations)**  
   Django's QuerySet is rich in operations handling entire tables, making Table Module-like usage easy.
 
-- **ETL / DWH Pre-processing (Airflow / Spark Pre-processing)**
+- **ETL / DWH Pre-processing (Airflow / Spark Pre-processing)**  
   Structure grouping set logic into one module matches Table Module design.
 
-- **Batch Processing Systems (Java/Spring Batch, Node.js scripts)**
+- **Batch Processing Systems (Java/Spring Batch, Node.js scripts)**  
   When writing aggregation / bulk update processing by table, it naturally becomes Table Module.
 
 ## ✅ Design Patterns Supporting This Style
 
-- **Facade**
+- **Facade**  
   Acts as an "entry point" for set processing (aggregation / search / bulk update).
 
-- **Template Method**
+- **Template Method**  
   Useful when unifying common steps in aggregation or reporting processing.
 
-- **Strategy**
+- **Strategy**  
   Used when switching aggregation algorithms.
 
-- **Iterator**
+- **Iterator**  
   Useful when processing large amounts of data in a stream-like manner.
 
 ## ✅ Summary

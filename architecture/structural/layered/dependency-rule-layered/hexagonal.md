@@ -60,46 +60,46 @@ If applied excessively:
 ## ✅ History (Genealogy / Parent Styles)
 
 - Proposed by Alistair Cockburn.
-- Positioned as an evolution from Layered / Domain Model families.
+- Positioned as an evolution from [Layered / Domain Model](../index.md) families.
 - Also known as Ports & Adapters.
-- Strongly influenced subsequent styles like Onion / Clean.
+- Strongly influenced subsequent styles like [Onion](./onion.md) / [Clean](./clean.md).
 
 ## ✅ Related Styles
 
-- **Onion Architecture**: Illustrates the same philosophy as "layers" instead of a hexagon.
-- **Clean Architecture**: An organized version clarifying the Use Case layer.
+- **[Onion Architecture](./onion.md)**: Illustrates the same philosophy as "layers" instead of a hexagon.
+- **[Clean Architecture](./clean.md)**: An organized version clarifying the Use Case layer.
 - **DDD (Tactical Patterns)**: Used for expressing the domain model.
 
 ## ✅ Representative Frameworks
 
 Hexagonal Architecture is a concept (Ports & Adapters) and not specific to any framework, but there are many practice examples in environments like:
 
-- **Spring Boot (Java)**
+- **Spring Boot (Java)**  
   Easy to map Controller / Service / Repository to Port / Adapter, with very many Hexagonal samples.
 
-- **ASP.NET Core / .NET**
+- **ASP.NET Core / .NET**  
   Abundant templates and reference implementations themed on Clean / Hexagonal.
 
-- **NestJS (Node.js)**
+- **NestJS (Node.js)**  
   Configuration of Module / Provider / Controller makes it easy to express Ports & Adapters, with many Hexagonal practice examples in the Node.js community.
 
 ## ✅ Design Patterns Supporting This Style
 
 The "Ports and Adapters" structure of Hexagonal is realized by a combination of multiple design patterns.
 
-- **Adapter**
+- **Adapter**  
   The central pattern that adapts external I/O and data formats to the abstract interface defined by the port.
 
-- **Strategy**
+- **Strategy**  
   Used when switching port implementations (DB types, swapping external services, etc.).
 
-- **Command**
+- **Command**  
   Expresses Use Cases (Application Services) as operation objects, making testing and configuration management easier.
 
-- **Proxy**
+- **Proxy**  
   Adds controls like caching, retries, and circuit breakers to access to external services.
 
-- **Abstract Factory**
+- **Abstract Factory**  
   Used to assemble appropriate adapter implementations according to the execution environment (Production / Test) or configuration.
 
 ## ✅ Summary
@@ -110,5 +110,5 @@ Hexagonal Architecture is a powerful choice for projects that prioritize:
 - Control of dependency direction
 - Replaceability of infrastructure
 
-It is important not to be trapped by the "hexagonal look" but to design from the perspective of:
+It is important not to be trapped by the "hexagonal look" but to design from the perspective of:  
 **"Where to draw the boundary between ports and adapters?"**
