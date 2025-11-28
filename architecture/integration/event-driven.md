@@ -41,7 +41,7 @@ Event-driven Architecture (EDA) tries to enhance flexibility and fault tolerance
 
 ### Conceptual Diagram
 
-![Event-Driven Architecture diagram](./event-driven.png)
+![Event-Driven Architecture diagram](/img/architecture/event-driven.png)
 
 > Source: Microsoft, “Asynchronous messaging patterns – Azure Architecture Center”.  
 > https://learn.microsoft.com/en-us/azure/architecture/patterns/async-request-reply

@@ -35,7 +35,7 @@ As a result:
 
 ### Conceptual Diagram
 
-![Hexagonal Architecture diagram](./hexagonal.png)
+![Hexagonal Architecture diagram](/img/architecture/hexagonal.png)
 
 > Source: Alistair Cockburn, “Hexagonal Architecture”, 2005–2013.
 > https://alistair.cockburn.us/hexagonal-architecture

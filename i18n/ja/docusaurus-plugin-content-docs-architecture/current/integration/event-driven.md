@@ -44,7 +44,7 @@ Event-driven Architecture（EDA）はこれに対して：
 
 ### 概念図（Conceptual Diagram）
 
-![Event-Driven Architecture diagram](./event-driven.png)
+![Event-Driven Architecture diagram](/img/architecture/event-driven.png)
 
 > 出典: Microsoft, “Asynchronous messaging patterns – Azure Architecture Center”.  
 > https://learn.microsoft.com/en-us/azure/architecture/patterns/async-request-reply

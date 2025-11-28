@@ -49,7 +49,7 @@ Clean Architecture can be understood as:
 
 ### Conceptual Diagram
 
-![The Clean Architecture diagram](./clean.jpg)
+![The Clean Architecture diagram](/img/architecture/clean.jpg)
 
 > Source: Robert C. Martin, “The Clean Architecture”, 2012.
 > https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html

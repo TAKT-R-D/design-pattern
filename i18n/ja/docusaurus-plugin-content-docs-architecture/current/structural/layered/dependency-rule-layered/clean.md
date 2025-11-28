@@ -53,7 +53,7 @@ Clean Architecture はこれに対して：
 
 ### 概念図（Conceptual Diagram）
 
-![The Clean Architecture diagram](./clean.jpg)
+![The Clean Architecture diagram](/img/architecture/clean.jpg)
 
 > 出典: Robert C. Martin, “The Clean Architecture”, 2012.  
 > https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html

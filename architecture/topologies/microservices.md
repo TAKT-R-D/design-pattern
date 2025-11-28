@@ -23,7 +23,7 @@ sidebar_label: 🧩 Microservice
 
 ### Conceptual Diagram
 
-![Microservices Architecture diagram](./microservices.svg)
+![Microservices Architecture diagram](/img/architecture/microservices.svg)
 
 > Source: Microsoft, “Microservices architecture style – Azure Architecture Center”.  
 > https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/microservices

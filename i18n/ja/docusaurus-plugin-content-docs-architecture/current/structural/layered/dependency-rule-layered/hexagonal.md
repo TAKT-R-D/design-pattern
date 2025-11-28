@@ -36,7 +36,7 @@ Hexagonal は主に次のような課題に対する回答である：
 
 ### 概念図（Conceptual Diagram）
 
-![Hexagonal Architecture diagram](./hexagonal.png)
+![Hexagonal Architecture diagram](/img/architecture/hexagonal.png)
 
 > 出典: Alistair Cockburn, “Hexagonal Architecture”, 2005–2013.  
 > https://alistair.cockburn.us/hexagonal-architecture

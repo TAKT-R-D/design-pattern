@@ -22,7 +22,7 @@ sidebar_label: 🧩 CQRS
 
 ### Conceptual Diagram
 
-![CQRS Architecture diagram](./cqrs.png)
+![CQRS Architecture diagram](/img/architecture/cqrs.png)
 
 > Source: Greg Young, “CQRS Documents”, 2010, Figure 12.  
 > https://cqrs.files.wordpress.com/2010/11/cqrs_documents.pdf

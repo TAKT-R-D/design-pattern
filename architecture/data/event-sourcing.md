@@ -18,7 +18,7 @@
 
 ### Conceptual Diagram
 
-![Event Sourcing Architecture diagram](./event-sourcing.png)
+![Event Sourcing Architecture diagram](/img/architecture/event-sourcing.png)
 
 > Source: Microsoft, “Event Sourcing pattern – Azure Architecture Center”.  
 > https://learn.microsoft.com/en-us/azure/architecture/patterns/event-sourcing

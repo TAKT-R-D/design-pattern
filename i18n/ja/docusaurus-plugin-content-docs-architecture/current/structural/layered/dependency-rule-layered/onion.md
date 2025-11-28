@@ -40,7 +40,7 @@ Onion Architecture は、
 
 ### 概念図（Conceptual Diagram）
 
-![Onion Architecture diagram](./onion.webp)
+![Onion Architecture diagram](/img/architecture/onion.webp)
 
 > 出典: Jeffrey Palermo, “The Onion Architecture (Part 1)”, 2008.  
 > https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/

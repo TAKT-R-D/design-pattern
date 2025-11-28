@@ -37,7 +37,7 @@ It is characterized by visually conveying the image that "the closer to the cent
 
 ### Conceptual Diagram
 
-![Onion Architecture diagram](./onion.webp)
+![Onion Architecture diagram](/img/architecture/onion.webp)
 
 > Source: Jeffrey Palermo, “The Onion Architecture (Part 1)”, 2008.
 > https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/

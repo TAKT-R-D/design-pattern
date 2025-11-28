@@ -13,7 +13,7 @@ sidebar_label: 📚 References
 
 - **Patterns of Enterprise Application Architecture** (Martin Fowler)
   - 通称 PoEAA。Transaction Script, Domain Model, Active Record, Table Module などの原典。
-  - [公式カタログ (martinfowler.com)](https://martinfowler.com/eaaCatalog/)
+  - [公式カタログ (martinfowler.com) <IconExternalLink />](https://martinfowler.com/eaaCatalog/)
 - **Software Architecture in Practice** (Len Bass, Paul Clements, Rick Kazman)
   - アーキテクチャの品質特性（Quality Attributes）や評価手法についての古典的名著である。
 - **Fundamentals of Software Architecture** (Mark Richards, Neal Ford)
@@ -33,16 +33,16 @@ sidebar_label: 📚 References
   - Clean Architecture の詳細解説と、SOLID 原則との関係である。
 - **Implementing Domain-Driven Design** (Vaughn Vernon)
   - 通称 IDDD。Hexagonal Architecture を DDD とどう組み合わせるかの実践的解説が豊富である。
-- **[Hexagonal Architecture](https://alistair.cockburn.us/hexagonal-architecture/)** (Alistair Cockburn)
+- **[Hexagonal Architecture <IconExternalLink />](https://alistair.cockburn.us/hexagonal-architecture/)** (Alistair Cockburn)
   - Ports & Adapters の提唱者によるオリジナル記事である。
-- **[The Onion Architecture](https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/)** (Jeffrey Palermo)
+- **[The Onion Architecture <IconExternalLink />](https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/)** (Jeffrey Palermo)
   - Onion Architecture の提唱記事である。
 
 ### Other Structural Patterns
 
 - **Pattern-Oriented Software Architecture (POSA) Series**
   - Microkernel, Pipe & Filter などの構造パターンが詳細に体系化されている。
-- **[The Reactive Manifesto](https://www.reactivemanifesto.org/)**
+- **[The Reactive Manifesto <IconExternalLink />](https://www.reactivemanifesto.org/)**
 
   - Reactive Architecture の 4 つの特性（Responsive, Resilient, Elastic, Message Driven）の定義である。
 
@@ -55,7 +55,7 @@ sidebar_label: 📚 References
   - マイクロサービスの設計・運用・分割基準についての標準的な教科書である。
 - **Monolith to Microservices** (Sam Newman)
   - モノリスからマイクロサービスへの移行パターン（Strangler Fig 等）の解説である。
-- **[Microservices](https://martinfowler.com/articles/microservices.html)** (James Lewis, Martin Fowler)
+- **[Microservices <IconExternalLink />](https://martinfowler.com/articles/microservices.html)** (James Lewis, Martin Fowler)
   - マイクロサービスの定義を決定づけた記事である。
 - **Serverless Architectures on AWS** (Peter Sbarski)
 
@@ -68,7 +68,7 @@ sidebar_label: 📚 References
 
 - **Enterprise Integration Patterns** (Gregor Hohpe, Bobby Woolf)
   - メッセージング、Pub/Sub、Routing などの統合パターンのバイブルである。
-  - [公式カタログ (enterpriseintegrationpatterns.com)](https://www.enterpriseintegrationpatterns.com/)
+  - [公式カタログ (enterpriseintegrationpatterns.com) <IconExternalLink />](https://www.enterpriseintegrationpatterns.com/)
 - **Microservices Patterns** (Chris Richardson)
 
   - Saga パターン、API Gateway、CQRS/ES などのマイクロサービス特有の実装パターン解説である。
@@ -78,13 +78,13 @@ sidebar_label: 📚 References
 
 ## 💾 Data Architecture (データ・分析)
 
-- **[CQRS Documents](https://cqrs.files.wordpress.com/2010/11/cqrs_documents.pdf)** (Greg Young)
+- **[CQRS Documents <IconExternalLink />](https://cqrs.files.wordpress.com/2010/11/cqrs_documents.pdf)** (Greg Young)
   - CQRS の提唱者による解説ドキュメントである。
 - **Designing Data-Intensive Applications** (Martin Kleppmann)
   - データ分散、レプリケーション、パーティショニング、バッチ/ストリーム処理の仕組みを深く理解するための名著である。
-- **[Data Mesh Principles](https://martinfowler.com/articles/data-mesh-principles.html)** (Zhamak Dehghani)
+- **[Data Mesh Principles <IconExternalLink />](https://martinfowler.com/articles/data-mesh-principles.html)** (Zhamak Dehghani)
   - Data Mesh の概念と 4 つの原則についての解説である。
-- **[The Log: What every software engineer should know about real-time data's unifying abstraction](https://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying)** (Jay Kreps)
+- **[The Log: What every software engineer should know about real-time data's unifying abstraction <IconExternalLink />](https://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying)** (Jay Kreps)
 
   - Kafka 開発者による、ログ中心アーキテクチャ（Kappa Architecture の基礎）の解説である。
 
@@ -99,7 +99,7 @@ sidebar_label: 📚 References
   - DevOps の能力（Four Keys）が組織のパフォーマンスにどう影響するかの科学的分析である。
 - **Site Reliability Engineering** (Google SRE Team)
   - SRE、SLO/SLI、Error Budget などの運用アーキテクチャの原典である。
-- **[The Twelve-Factor App](https://12factor.net/)** (Adam Wiggins)
+- **[The Twelve-Factor App <IconExternalLink />](https://12factor.net/)** (Adam Wiggins)
 
   - モダンな SaaS/Web アプリケーションが守るべき 12 のプラクティスである。
 
