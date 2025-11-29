@@ -1,51 +1,53 @@
 import type { ReactNode } from "react";
 import clsx from "clsx";
 import Heading from "@theme/Heading";
+import Link from "@docusaurus/Link";
 import styles from "./styles.module.css";
 
 type FeatureItem = {
   title: string;
   Svg: React.ComponentType<React.ComponentProps<"svg">>;
   description: ReactNode;
+  link: string;
 };
 
 const FeatureList: FeatureItem[] = [
   {
-    title: "Anti-Pattern Driven",
+    title: "Tutorial",
     Svg: require("@site/static/img/undraw_alert_w756.svg").default,
     description: (
       <>
-        Start from common anti-patterns to understand why they fail, and how
-        design patterns can improve them. Learn practical design through
-        real-world code examples.
+        Learn design patterns by refactoring common anti-patterns.
+        Understand "why" code smells and how to improve it with proven solutions.
       </>
     ),
+    link: "/docs/intro",
   },
   {
-    title: "Focus on the Structure",
+    title: "Advanced",
     Svg: require("@site/static/img/undraw_design-components_529l.svg").default,
     description: (
       <>
-        Instead of memorizing pattern names and jargon, aim to explain "why the
-        structure works" in your own words. Focus on the essence of design and
-        develop structural intuition.
+        Explore applied design by combining multiple patterns.
+        Dive into complex scenarios and learn how to orchestrate patterns effectively.
       </>
     ),
+    link: "/advanced/intro",
   },
   {
-    title: "Refactoring by Choice",
+    title: "Architecture",
     Svg: require("@site/static/img/undraw_solution-mindset_pit7.svg").default,
     description: (
       <>
-        For each anti-pattern, multiple design pattern-based solutions are
-        introduced. Learn to compare and choose patterns depending on the
-        situation.
+        Deep dive into software architecture and design principles.
+        Discover the underlying patterns that support robust and scalable systems.
       </>
     ),
+    link: "/architecture/intro",
   },
 ];
 
-function Feature({ title, Svg, description }: FeatureItem) {
+function Feature({ title, Svg, description, link }: FeatureItem) {
   return (
     <div className={clsx("col col--4")}>
       <div className="text--center">
@@ -54,6 +56,14 @@ function Feature({ title, Svg, description }: FeatureItem) {
       <div className="text--center padding-horiz--md">
         <Heading as="h3">{title}</Heading>
         <p>{description}</p>
+        <div className={styles.buttons}>
+          <Link
+            className="button button--secondary button--sm"
+            to={link}
+          >
+            Learn More
+          </Link>
+        </div>
       </div>
     </div>
   );

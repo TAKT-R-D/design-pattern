@@ -179,6 +179,8 @@ const config: Config = {
         sidebarPath: require.resolve("./sidebars-advanced.ts"),
         editUrl: "https://github.com/TAKT-R-D/design-pattern/edit/main/",
         editLocalizedFiles: true,
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
       },
     ],
     [
@@ -190,6 +192,8 @@ const config: Config = {
         sidebarPath: require.resolve("./sidebars-architecture.ts"),
         editUrl: "https://github.com/TAKT-R-D/design-pattern/edit/main/",
         editLocalizedFiles: true,
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
       },
     ],
     require.resolve("./src/plugins/cookie-consent"),
