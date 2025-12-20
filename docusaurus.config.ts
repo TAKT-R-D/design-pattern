@@ -135,6 +135,10 @@ const config: Config = {
           title: "Our Services",
           items: [
             {
+              label: "Failure Patterns",
+              href: "https://takt.dev/failure-patterns",
+            },
+            {
               label: "Lang x Lang",
               href: "https://langxlang.com",
             },

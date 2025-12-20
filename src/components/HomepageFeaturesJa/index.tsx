@@ -1,12 +1,14 @@
 import type { ReactNode } from "react";
 import clsx from "clsx";
 import Heading from "@theme/Heading";
+import Link from "@docusaurus/Link";
 import styles from "./styles.module.css";
 
 type FeatureItem = {
   title: string;
   Svg: React.ComponentType<React.ComponentProps<"svg">>;
   description: ReactNode;
+  link: string;
 };
 
 const FeatureList: FeatureItem[] = [
@@ -19,6 +21,7 @@ const FeatureList: FeatureItem[] = [
         現場のリアルなコードを題材に、実践的な設計感覚を養う。
       </>
     ),
+    link: "/docs/intro",
   },
   {
     title: "構造で学ぶ",
@@ -29,6 +32,7 @@ const FeatureList: FeatureItem[] = [
         設計の本質にフォーカスし、構造に対する感覚を育てる。
       </>
     ),
+    link: "/advanced/intro",
   },
   {
     title: "選べるリファクタリング",
@@ -39,10 +43,11 @@ const FeatureList: FeatureItem[] = [
         設計の選択肢とその違いを比較しながら、状況に応じた使い分けを学べる。
       </>
     ),
+    link: "/architecture/intro",
   },
 ];
 
-function Feature({ title, Svg, description }: FeatureItem) {
+function Feature({ title, Svg, description, link }: FeatureItem) {
   return (
     <div className={clsx("col col--4")}>
       <div className="text--center">
@@ -51,6 +56,11 @@ function Feature({ title, Svg, description }: FeatureItem) {
       <div className="text--center padding-horiz--md">
         <Heading as="h3">{title}</Heading>
         <p>{description}</p>
+        <div className={styles.buttons}>
+          <Link className="button button--secondary button--sm" to={link}>
+            Learn More
+          </Link>
+        </div>
       </div>
     </div>
   );
